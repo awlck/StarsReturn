@@ -1,0 +1,5 @@
+*.inform/Index
+*.inform/Build
+*.inform/Skein.skein
+*.inform/Release.blurb
+*.materials/Release
