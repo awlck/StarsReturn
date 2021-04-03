@@ -8,6 +8,13 @@ Include Basic Screen Effects by Emily Short.
 
 Release along with a website, an interpreter, and the source text.
 
+To decide whether unicode is available:
+	(- unicode_gestalt_ok -)
+
+To say dash:
+	if unicode is available, say unicode 8211;
+	otherwise say "--".
+
 Book 1 - Mechanics
 
 The carrying capacity of the player is three.
@@ -19,7 +26,7 @@ Chapter 1 - Armor, Air, and Toxicity
 Section 1 - Armor
 
 The player has a number called the air. The air of the player is 5.
-The armor has a number called the air. The air of the armor is 100. The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat-- armor/armour/rattle" or "your/my/-- suit of/-- battle/combat/-- armor/armour" as the armor.
+The armor has a number called the air. The air of the armor is 100. The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
 The pack is a part of the armor. It is a player's holdall. The carrying capacity of the player is 3.
 
 [There is little point to the character lugging around the pieces of the armor, so we disallow explicit takes and skip the implicit one when wearing it.]
@@ -132,6 +139,8 @@ Book 2 - Locations
 
 Chapter 1 - Cell Complex
 
+Section 1 - Main Parts
+
 The cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
 The metal door is north of the cell and south of the corridor. It is an openable closed lockable locked door.
@@ -139,11 +148,13 @@ The metal door is north of the cell and south of the corridor. It is an openable
 The corridor is a room.
 
 West of the corridor is south of the control room. Index map with control room mapped northwest of corridor.
-The control room is a room. "Test."
+The control room is a room. "Write me."
+
+A table is a scenery supporter in the control room.
+The helmet is on the table. "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
+Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
 
 East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
-
-The storage space is east of the front office. The armor is in the storage space.
 
 The airlock is a door. "[airlock-desc]". The airlock is north of the front office and south of the military complex plaza.
 
@@ -153,5 +164,30 @@ To say airlock-desc:
 	
 Report going through the airlock for the first time:
 	say "You open the inner door and step into the intermediate space. [if the player is wearing the armor]Nothing obvious happens, but your suit alerts you that the air coming in from the outside is, shall we say, less than ideal[otherwise]Every breath starts to sting as the clean air inside the airlock is replaced with the outside atmosphere -- you won't last long under these conditions[end if].[line break]The other door opens and you take a tentative step outside.".
+	
+Section 2 - The Storage Area
+
+The storage space is east of the front office. "Write me." [The armor is in the storage space.]
+
+Some shelves are a scenery supporter in the storage space. Understand "shelf/shelves/rack/racks" as the shelves.
+Some plates are on the shelves. "Pieces of armor plating lie on the shelves." The description is "[We] are fairly sure that these are the pieces of [our] battle armor. They seem to be intact, but an integral part [dash] the helmet [dash] is nowhere to be seen.." The printed name is "armor plates". Understand "armor/armour/armored/armoured/-- plates/plating" as the plates. They are fixed in place.
+Instead of taking the plates, say "The're too bulky, and the plates alone won't do you much good."
+Instead of wearing the plates, say "The plates alone won't do you much good."
+
+Instead of putting the helmet on the shelves:
+	now the helmet is nowhere;
+	now the plates are nowhere;
+	now the armor is on the shelves;
+	say "You put the helmet with the armor plates, completing the set again."
+
+Wearing the plates is armor-wear-preparation. Taking the plates is armor-wear-preparation.
+
+Before armor-wear-preparation when the player is carrying the helmet:
+	now the helmet is nowhere;
+	now the plates are nowhere;
+	now the armor is in the location;
+	try wearing the armor instead.
+
+Chapter 2 - The Plaza
 
 The military complex plaza is a toxic room.
