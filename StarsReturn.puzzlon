@@ -1,0 +1,85 @@
+/* https://adventuron.io/puzzlon/ */
+
+: diagram  { 
+
+   events {
+   
+      return_home : goal {
+         depends_on = [take_off]
+         end_state = positive
+      }
+      
+      take_off : goal {
+         depends_on = [open_launch_doors, refuel, gather_information]
+      }
+      
+      open_launch_doors : action {
+         depends_on = [move_to_launch_ramp, set_up_timer]
+      }
+      
+      set_up_timer : action {
+         depends_on = [get_access_card]
+      }
+      
+      move_to_launch_ramp : action {
+         depends_on = [find_ship]
+      }
+      
+      find_ship : action {
+         depends_on = [go_outside]
+      }
+      
+      gather_information : action {
+         depends_on = [get_access_keys, go_outside, break_into_command_center]
+      }
+      
+      break_into_command_center : goal {
+         depends_on = [get_rifle]
+      }
+      
+      get_access_card : action {
+         depends_on = [break_into_command_center]
+      }
+      
+      get_rifle : action {
+         depends_on = [break_into_armory]
+      }
+      
+      break_into_armory : goal {
+         depends_on = [find_metal_sheets]
+      }
+      
+      find_metal_sheets : action {
+         depends_on = []
+      }
+      
+      get_access_keys : action {
+         depends_on = [leave_cell]
+      }
+      
+      refuel : action {
+         depends_on = [go_outside]
+      }
+      
+      go_outside : goal {
+         depends_on = [get_armor, override_door_control]
+      }
+      
+      override_door_control : action {
+         depends_on = [leave_cell]
+      }
+
+      get_armor : action {
+         depends_on = [get_helmet]
+      }
+      
+      get_helmet : action {
+         depends_on = [leave_cell]
+      }
+      
+      leave_cell : action {
+         depends_on = []
+      }
+      
+   }
+}
