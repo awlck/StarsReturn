@@ -5,6 +5,7 @@ The story genre is "Science Fiction". The story headline is "An Interactive Esca
 Use american dialect and the serial comma.
 
 Include Basic Screen Effects by Emily Short.
+Include Inanimate Listeners by Emily Short.
 
 Release along with a website, an interpreter, and the source text.
 
@@ -35,7 +36,7 @@ Instead of taking the armor when the implicitly taking activity is not going on:
 	say "You should probably put on the armor, rather than lugging it around in pieces."
 
 Report wearing the armor for the first time:
-	say "You slip into the undersuit and latch the armored plates into place. As you slide on your helmet, the internal systems boot up, informing that everything is still in working order."; [TODO]
+	say "You slip into the undersuit and latch the armored plates into place. As you slide on your helmet, the internal systems start up, informing that everything is still in working order."; [TODO]
 	rule succeeds.
 
 [Likewise, immediately deposit the armor on the ground when taking it off.]
@@ -135,13 +136,84 @@ To say (relevant time - a time) as military time:
     let M be the minutes part of relevant time;
     say "[if H is less than 10]0[end if][H][if M is less than 10]0[end if][M]hrs".
 
+Chapter 2 - Dummy Objects for saying
+
+[I hadn't decided on a name for the alien faction early on, so I created this dummy object and used a [the aliens] text substitution wherever I wanted to mention them in the story. Once I picked a name, I simply set the printed name of this object.]
+Some aliens are a person. The printed name is "shwabolians". [Or something like that ???]
+
+Chapter 3 - Concepts Can Be Known
+
+A concept is a kind of value.
+
+Knowledge relates one person to various concepts.
+The verb to know means the knowledge relation.
+
+The access codes are a concept.
+
+[Chapter 4 - Computers with Timers
+
+Self-timed opening is an action applying to one thing and one time. Understand "set up/-- [any thing] to open in [a time period]" as self-timed opening.
+
+A computer is a kind of thing.
+
+The launch doors are scenery.
+
+Check self-timed opening when there is no computer in the location (this is the default block self-timed opening rule):
+	instead say "There is nothing here that could control [the noun] in that manner."
+	
+Check self-timed opening something when the player does not know the access codes:
+	instead say "Lacking the relevant access codes, the system rejects your request".
+
+Check self-timed opening something that is not the launch doors when a computer is in the location:
+	instead say "[The noun] cannot be controlled in that manner."
+
+Carry out self-timed opening the launch doors:
+	let t be the time understood;
+	the launch doors open in t from now.
+
+At the time when the launch doors open:]
+
+Chapter 4 - Grates and Air Ducts
+
+An air duct is a kind of fixed in place closed enterable scenery container.[ The printed name is usually "air duct".]
+
+A grate is a kind of thing. A grate is part of every air duct.[ The printed name is usually "grate".]
+
+Understand the command "kick" as "attack".
+
+Check an actor attacking a grate (called the target) when the actor is in the component parts core of the target: rule succeeds.
+
+Carry out an actor attacking a grate (called the target):
+	now the component parts core of the target is open;
+	now the target is in the not-counting-parts holder of the component parts core of the target.
+
+Check an actor attacking an air duct (called the conduit):
+	let the target be a random grate which is part of the conduit;
+	try the actor attacking the target instead.
+
+Connection relates one air duct to one air duct. The verb to connect to means the connection relation.
+
+Crawling into is an action applying to one touchable thing. Understand "crawl through/into/up/down/-- [an air duct]" as crawling into. Understand "crawl" as crawling into.
+
+Rule for supplying a missing noun while crawling into:
+	if the holder of the player is an air duct, now the noun is the holder of the player.
+
+Check an actor crawling into a closed air duct:
+	instead say "The grate is in the way."
+
 Book 2 - Locations
 
 Chapter 1 - Cell Complex
 
+Cell-complex is a region. The cell, the corridor, the control room, the front office, and the storage space are in cell-complex.
+
 Section 1 - Main Parts
 
 The cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
+
+An air duct called cell air duct is in the cell.
+Check attacking the grate:
+	instead say "It's too far up."
 
 The metal door is north of the cell and south of the corridor. It is an openable closed lockable locked door.
 
@@ -153,6 +225,7 @@ The control room is a room. "Write me."
 A table is a scenery supporter in the control room.
 The helmet is on the table. "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
+Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, [the aliens] haven't messed anything up."
 
 East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
 
@@ -167,11 +240,11 @@ Report going through the airlock for the first time:
 	
 Section 2 - The Storage Area
 
-The storage space is east of the front office. "Write me." [The armor is in the storage space.]
+The storage space is east of the front office. "Write me."
 
 Some shelves are a scenery supporter in the storage space. Understand "shelf/shelves/rack/racks" as the shelves.
 Some plates are on the shelves. "Pieces of armor plating lie on the shelves." The description is "[We] are fairly sure that these are the pieces of [our] battle armor. They seem to be intact, but an integral part [dash] the helmet [dash] is nowhere to be seen.." The printed name is "armor plates". Understand "armor/armour/armored/armoured/-- plates/plating" as the plates. They are fixed in place.
-Instead of taking the plates, say "The're too bulky, and the plates alone won't do you much good."
+Instead of taking the plates, say "They're too bulky, and the plates alone won't do you much good."
 Instead of wearing the plates, say "The plates alone won't do you much good."
 
 Instead of putting the helmet on the shelves:
@@ -188,6 +261,38 @@ Before armor-wear-preparation when the player is carrying the helmet:
 	now the armor is in the location;
 	try wearing the armor instead.
 
-Chapter 2 - The Plaza
+Section 3 - Basement
+
+The prison installations room is down from the control room.
+
+An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
+
+Chapter 2 - Plaza and Armory
+
+Section 1 - The Plaza
 
 The military complex plaza is a toxic room.
+
+Section 2 - The Armory
+
+The armory is west of the plaza.
+
+Chapter 3 - The Command Center
+
+The command center is north of the plaza.
+
+Chapter 4 - The Hangar
+
+The hangar is east of the plaza.
+
+Chapter 5 - The Launch Pad
+
+Section 1 - The Launch Pad
+
+The launch pad is north of the hangar.
+
+Section 2 - The Launch Control Room
+
+The launch control room is up from the hangar.
+
+Chapter 6 - Space
