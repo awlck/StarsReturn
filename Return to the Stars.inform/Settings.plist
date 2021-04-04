@@ -10,7 +10,10 @@
 	<key>IFCompilerVersionSettings</key>
 	<dict/>
 	<key>IFI7OutputSettings</key>
-	<dict/>
+	<dict>
+		<key>IFSettingCreateBlorb</key>
+		<true/>
+	</dict>
 	<key>IFLibrarySettings</key>
 	<dict>
 		<key>IFSettingLibraryToUse</key>
@@ -23,7 +26,7 @@
 		<key>IFSettingTestingTabHelpShown</key>
 		<true/>
 		<key>IFSettingTestingTabShownCount</key>
-		<integer>8</integer>
+		<integer>18</integer>
 	</dict>
 	<key>IFOutputSettings</key>
 	<dict>
