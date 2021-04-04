@@ -3,3 +3,4 @@
 *.inform/Skein.skein
 *.inform/Release.blurb
 *.materials/Release
+.DS_Store
