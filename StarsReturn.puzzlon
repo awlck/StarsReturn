@@ -10,19 +10,11 @@
       }
       
       take_off : goal {
-         depends_on = [open_launch_doors, refuel, gather_information]
+         depends_on = [move_to_landing_pad, refuel, gather_information]
       }
       
-      open_launch_doors : action {
-         depends_on = [move_to_launch_ramp, set_up_timer]
-      }
-      
-      set_up_timer : action {
-         depends_on = [get_access_card]
-      }
-      
-      move_to_launch_ramp : action {
-         depends_on = [find_ship]
+      move_to_landing_pad : action {
+         depends_on = [find_ship, get_access_card]
       }
       
       find_ship : action {
@@ -50,7 +42,7 @@
       }
       
       find_metal_sheets : action {
-         depends_on = []
+         depends_on = [go_outside]
       }
       
       get_access_keys : action {
