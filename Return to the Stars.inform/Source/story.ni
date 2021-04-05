@@ -5,7 +5,6 @@ The story genre is "Science Fiction". The story headline is "An Interactive Esca
 Use american dialect and the serial comma.
 
 Include Basic Screen Effects by Emily Short.
-Include Inanimate Listeners by Emily Short.
 
 Release along with a website, an interpreter, and the source text.
 
@@ -48,7 +47,9 @@ After wearing the armor (this is the take a deep breath rule):
 	decrease the air of the armor by (5 minus the air of the player);
 	now the air of the player is 5;
 	continue the action.
-	
+
+There is a device called the helmet lamp.[* This somewhat stilted syntax is the only way we can force Inform to create "the helmet lamp" and (later on) "a helmet" as separate things. By default, Inform would assume that "helmet" is merely a shorthand form of "helmet lamp" and treat them as one object -- causing errors, because they aren't, of course.] It is part of the armor.
+
 Section 2 - Toxicity, Vacuum
 
 [Here we lay out what happens when the player ventures into a hostile environment without adequate protection.]
@@ -150,56 +151,71 @@ The verb to know means the knowledge relation.
 
 The access codes are a concept.
 
-[Chapter 4 - Computers with Timers
-
-Self-timed opening is an action applying to one thing and one time. Understand "set up/-- [any thing] to open in [a time period]" as self-timed opening.
-
-A computer is a kind of thing.
-
-The launch doors are scenery.
-
-Check self-timed opening when there is no computer in the location (this is the default block self-timed opening rule):
-	instead say "There is nothing here that could control [the noun] in that manner."
-	
-Check self-timed opening something when the player does not know the access codes:
-	instead say "Lacking the relevant access codes, the system rejects your request".
-
-Check self-timed opening something that is not the launch doors when a computer is in the location:
-	instead say "[The noun] cannot be controlled in that manner."
-
-Carry out self-timed opening the launch doors:
-	let t be the time understood;
-	the launch doors open in t from now.
-
-At the time when the launch doors open:]
-
 Chapter 4 - Grates and Air Ducts
 
-An air duct is a kind of fixed in place closed enterable scenery container.[ The printed name is usually "air duct".]
+An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 
-A grate is a kind of thing. A grate is part of every air duct.[ The printed name is usually "grate".]
+A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named.
 
 Understand the command "kick" as "attack".
+To kick is a verb.
 
-Check an actor attacking a grate (called the target) when the actor is in the component parts core of the target: rule succeeds.
+Check an actor attacking a grate when the noun is part of an air duct (this is the okay to kick in grates rule): rule succeeds.
 
-Carry out an actor attacking a grate (called the target):
+Carry out an actor attacking a grate (called the target) (this is the grate destruction rule):
 	now the component parts core of the target is open;
-	now the target is in the not-counting-parts holder of the component parts core of the target.
+	now the target is nowhere.
+
+Report an actor attacking a grate (this is the standard report grate destruction rule):
+	say "[The actor] [kick] the old grate, making a hole large enough for a person to squeeze through."
 
 Check an actor attacking an air duct (called the conduit):
 	let the target be a random grate which is part of the conduit;
 	try the actor attacking the target instead.
 
-Connection relates one air duct to one air duct. The verb to connect to means the connection relation.
+Instead of pulling a grate which is part of an air duct (called the conduit):
+	if the actor is in the conduit, instead say "The grate is mounted to the outside of the duct, and won't move when pulled from the inside.";
+	now the conduit is open;
+	now the noun is in the holder of the conduit;
+	say "With a groan of exertion, [we] [pull] the grate with enough force for the old welds to give way. [We] set the grate down on the ground.";
+	rule succeeds.
+
+Connection relates one air duct to another (called the other end). The verb to connect to means the connection relation.
 
 Crawling into is an action applying to one touchable thing. Understand "crawl through/into/up/down/-- [an air duct]" as crawling into. Understand "crawl" as crawling into.
+To crawl is a verb.
 
 Rule for supplying a missing noun while crawling into:
 	if the holder of the player is an air duct, now the noun is the holder of the player.
 
-Check an actor crawling into a closed air duct:
+Check an actor crawling into a closed air duct (called the conduit) when the player is not in the conduit (this is the can't crawl through grates rule):
 	instead say "The grate is in the way."
+
+Check an actor crawling into something that is not an air duct (this is the default block crawling rule):
+	instead say "[The actor] [can't] crawl through [regarding the noun][them]."
+
+Carry out an actor crawling into an air duct (this is the travel through air ducts rule):
+	let the target be the other end of the noun;
+	if the actor is the player, say "[We] [crawl] through the ducts, air rushing past [our] face." (A);
+	if the target is open, now the actor is in the holder of the target;
+	otherwise now the actor is in the target.
+
+Report an actor crawling into an air duct (this is the report air duct travel rule):
+	if the actor is not the player, say "[The actor] [crawl] out of sight." (A)
+
+Understand "climb into [something]" as climbing.
+Instead of climbing an air duct, try entering the noun.
+
+Chapter 5 - Looking Through
+
+[There are a few locations within the game where the player may look through something to get a peek into another room.]
+Looking through is an action applying to one visible thing. Understand "look through [something]" as looking through.
+
+Check looking through a transparent container (this is the convert looking through transparent containers to searching rule):
+	try searching the noun instead.
+
+Check looking through something (this is the default block looking through rule):
+	instead say "[We] can't see through [regarding the noun][them]."
 
 Book 2 - Locations
 
@@ -223,7 +239,7 @@ West of the corridor is south of the control room. Index map with control room m
 The control room is a room. "Write me."
 
 A table is a scenery supporter in the control room.
-The helmet is on the table. "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
+On the table is a thing called a helmet. [The helmet is on the table.] "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
 Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, [the aliens] haven't messed anything up."
 
@@ -289,10 +305,14 @@ Chapter 5 - The Launch Pad
 
 Section 1 - The Launch Pad
 
-The launch pad is north of the hangar.
+The landing strip is north of the hangar.
 
 Section 2 - The Launch Control Room
 
-The launch control room is up from the hangar.
+The control tower is up from the hangar.
+
+The large window is scenery in the tower.
+
+
 
 Chapter 6 - Space
