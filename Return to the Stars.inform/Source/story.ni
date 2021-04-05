@@ -155,7 +155,7 @@ Chapter 4 - Grates and Air Ducts
 
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 
-A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named.
+A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named. The indefinite article of a grate is usually "the".
 
 Understand the command "kick" as "attack".
 To kick is a verb.
@@ -209,13 +209,23 @@ Instead of climbing an air duct, try entering the noun.
 Chapter 5 - Looking Through
 
 [There are a few locations within the game where the player may look through something to get a peek into another room.]
-Looking through is an action applying to one visible thing. Understand "look through [something]" as looking through.
+A thing has some text called the other-side-description.
+
+Looking through is an action applying to one visible thing.
+Understand the commands "look" and "l" as something new. [Argh]
+Understand "look" as looking.
+Understand "look inside/in/into [something]" as searching.
+Understand "look through [something]" as looking through.
+Understand the command "l" as "look".
 
 Check looking through a transparent container (this is the convert looking through transparent containers to searching rule):
 	try searching the noun instead.
 
-Check looking through something (this is the default block looking through rule):
-	instead say "[We] can't see through [regarding the noun][them]."
+Carry out looking through something when the other-side-description of the noun is empty (this is the opaque looking through rule):
+	say "[We] [can't] [see] through [the noun]."
+
+Carry out looking through (this is the standard looking through rule):
+	say "the other-side-description of the noun[paragraph break]".
 
 Book 2 - Locations
 
@@ -228,10 +238,11 @@ Section 1 - Main Parts
 The cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
 An air duct called cell air duct is in the cell.
-Check attacking the grate:
+Check attacking the grate when the noun is part of something:
 	instead say "It's too far up."
 
 The metal door is north of the cell and south of the corridor. It is an openable closed lockable locked door.
+The other-side-description is "[We] peek through the small duraplast window into the corridor outside."
 
 The corridor is a room.
 
@@ -312,7 +323,5 @@ Section 2 - The Launch Control Room
 The control tower is up from the hangar.
 
 The large window is scenery in the tower.
-
-
 
 Chapter 6 - Space
