@@ -34,7 +34,7 @@ Chapter 1 - Armor, Air, and Toxicity
 Section 1 - Armor
 
 The player has a number called the air. The air of the player is 5.
-The armor has a number called the air. The air of the armor is 100. The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
+The armor has a number called the air. The air of the armor is 100. The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
 The pack is a part of the armor. It is a player's holdall. The carrying capacity of the player is 3.
 
 [There is little point to the character lugging around the pieces of the armor, so we disallow explicit takes and skip the implicit one when wearing it.]
@@ -298,11 +298,12 @@ Before armor-wear-preparation when the player is carrying the helmet:
 
 Section 3 - Basement
 
-The prison installations room is down from the control room. "A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall. A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
+The prison installations room is down from the control room. "This is where most of the installations and appliances keeping the cell complex running reside. [if the ventilation switch is switched on]A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall. [end if]A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
 
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
 
 In the installations room is a scenery thing called some air ducts. The description of some air ducts is "They presumably lead to different rooms within the facility."
+Instead of doing something other than examining to some air ducts, say "They're not labeled, and you'd rather not wander through the airducts aimlessly."
 
 A ladder is scenery in the installations room. Instead of climbing the ladder, try going up.
 
