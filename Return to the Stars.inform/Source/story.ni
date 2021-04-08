@@ -8,12 +8,20 @@ Include Basic Screen Effects by Emily Short.
 
 Release along with a website, an interpreter, and the source text.
 
+[Include (-!% -r
+-) before "ICL Commands" in "Output.i6t".]
+Use OMIT_UNUSED_ROUTINES of 1.
+
 To decide whether unicode is available:
 	(- unicode_gestalt_ok -)
 
 To say dash:
 	if unicode is available, say unicode 8211;
 	otherwise say "--".
+
+To say CO2:
+	if unicode is available, say "CO[unicode 8322]";
+	otherwise say "CO2".
 
 Book 1 - Mechanics
 
@@ -58,14 +66,14 @@ A room can be toxic, vacuum, or breathable. A room is usually breathable.
 
 Every turn when the location is toxic (this is the toxic air draining rule):
 	if the air of the player is zero:
-		say "Without the protection of your suit[if the player is wearing the armor][']s filters[end if], you succumb to the toxic atmosphere of this wholly hostile world.";
+		[say "Without the protection of your suit[if the player is wearing the armor][']s filters[end if], you succumb to the toxic atmosphere of this wholly hostile world.";]
+		say "Without [unless the player is wearing the armor]the protection of your suit[otherwise]your suit's air supply[end if], you succumb to the toxic atmosphere of this wholly hostile world.";
 		end the story saying "You have died";
 	if the player is wearing the armor and the air of the armor is greater than zero:
 		if the air of the armor is five:
 			say "Your suit sounds an alarm as its air supply is getting close to being depleted.";
 		decrease the air of the armor by one;
-	otherwise:
-		if the air of the player is five and the player is wearing the armor, say "You notice the toxic gases seeping through the filters of your suit. You haven't got much time left.";			
+	otherwise:	
 		decrease the air of the player by one.
 
 Every turn when the location is vacuum (this is the vacuum air draining rule)[* Similar to the 'toxic' version above, but distinctly different]:
@@ -89,7 +97,7 @@ Every turn when the location is breathable (this is the air replenishment rule):
 
 [Give the player an explicit nudge when they venture outside without protection]
 After going to a toxic room for at least the second time:
-	if the player is not wearing the armor, say "The air stings in your lungs as you force each breath in.";
+	if the player is not wearing the armor, say "Your headache quickly returns as you venture outside again";
 	continue the action.
 
 Section 3 - Status Bar
@@ -125,7 +133,7 @@ To say plain-air:
 
 To say hud-environ-status:
 	if the location is toxic:
-		say "High levels of ammonia";
+		say "High levels of CO2";
 	otherwise if the location is vacuum:
 		say "No atmosphere";
 	otherwise:
@@ -225,13 +233,13 @@ Carry out looking through something when the other-side-description of the noun 
 	say "[We] [can't] [see] through [the noun]."
 
 Carry out looking through (this is the standard looking through rule):
-	say "the other-side-description of the noun[paragraph break]".
+	say "[the other-side-description of the noun][paragraph break]".
 
 Book 2 - Locations
 
 Chapter 1 - Cell Complex
 
-Cell-complex is a region. The cell, the corridor, the control room, the front office, and the storage space are in cell-complex.
+Cell-complex is a region. The cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
 
 Section 1 - Main Parts
 
@@ -250,7 +258,7 @@ West of the corridor is south of the control room. Index map with control room m
 The control room is a room. "Write me."
 
 A table is a scenery supporter in the control room.
-On the table is a thing called a helmet. [The helmet is on the table.] "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
+On the table is a thing called a helmet. "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
 Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, [the aliens] haven't messed anything up."
 
@@ -263,7 +271,7 @@ To say airlock-desc:
 	otherwise say "The airlock leading into the cell complex lies to the south."
 	
 Report going through the airlock for the first time:
-	say "You open the inner door and step into the intermediate space. [if the player is wearing the armor]Nothing obvious happens, but your suit alerts you that the air coming in from the outside is, shall we say, less than ideal[otherwise]Every breath starts to sting as the clean air inside the airlock is replaced with the outside atmosphere -- you won't last long under these conditions[end if].[line break]The other door opens and you take a tentative step outside.".
+	say "You open the inner door and step into the intermediate space. [if the player is wearing the armor]Nothing obvious happens, but your suit alerts you that the air coming in from the outside is, shall we say, less than ideal[otherwise]As the clean air inside the airlock is replaced with the outside atmosphere, you quickly develop a searing headache -- you won't last long under these conditions[end if].[line break]The other door opens and you take a tentative step outside.".
 	
 Section 2 - The Storage Area
 
@@ -290,9 +298,36 @@ Before armor-wear-preparation when the player is carrying the helmet:
 
 Section 3 - Basement
 
-The prison installations room is down from the control room.
+The prison installations room is down from the control room. "A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall. A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
 
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
+
+In the installations room is a scenery thing called some air ducts. The description of some air ducts is "They presumably lead to different rooms within the facility."
+
+A ladder is scenery in the installations room. Instead of climbing the ladder, try going up.
+
+A switch is a kind of device. A switch is usually switched on.
+Check turning a switch:
+	if the noun is switched on, try switching off the noun instead;
+	otherwise try switching on the noun instead.
+
+The switch panel is in the installations room. "On one of the walls is a panel with a number of large switches on it." It is fixed in place. The description is "A number of large rotary switches are attached to this panel. One is labeled 'LIGHTS', the next 'VENTILATION', a third 'DOORS', and one is labeled 'CONTROLS'".
+
+The lights switch is part of the switch panel. It is a switch. The description is "A large rotary switch labeled 'LIGHTS'." Understand "light" as the lights switch.
+The ventilation switch is part of the panel. It is a switch. The description is "A large rotary switch labeled 'VENTILATION'."
+The doors switch is part of the panel. It is a switch. The description is "A large rotary switch labeled 'DOORS'."
+The controls switch is part of the panel. It is a switch. The description is "A large rotary switch labeled 'CONTROLS'."
+
+Carry out switching off the lights switch:
+	now all rooms in cell-complex are dark.
+Carry out switching on the lights switch:
+	now all rooms in cell-complex are lit.
+
+Rule for printing the description of a dark room when the location is the installations room:
+	say "It is pitch dark, save for a small light next to the lights switch beckoning you to switch the lights back on."
+
+After deciding the scope of the player while in darkness and the location is the installations room:
+	place the lights switch in scope.
 
 Chapter 2 - Plaza and Armory
 
