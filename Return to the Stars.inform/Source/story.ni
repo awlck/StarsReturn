@@ -357,6 +357,6 @@ Section 2 - The Launch Control Room
 
 The control tower is up from the hangar.
 
-The large window is scenery in the tower.
+The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
 
 Chapter 6 - Space
