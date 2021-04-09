@@ -235,6 +235,39 @@ Carry out looking through something when the other-side-description of the noun 
 Carry out looking through (this is the standard looking through rule):
 	say "[the other-side-description of the noun][paragraph break]".
 
+Chapter 6 - Ranged Weapons
+
+A gun is a kind of thing. An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
+
+Definition: a thing is ungunlike if it is not a gun.
+
+Shooting it with is an action applying to one touchable thing and one visible thing.
+Understand "shoot [something ungunlike] with [a gun]" as shooting it with.
+Understand "shoot [something] with [something]" as shooting it with.
+Understand "shoot [something] at [something]" as shooting it with (with nouns reversed).
+Understand "fire [something] at [something]" as shooting it with (with nouns reversed).
+Understand "fire at [something] with [something]" as shooting it with.
+Understand "fire at [something ungunlike] with [a gun]" as shooting it with.
+
+Check shooting something with something:
+	if the player is not carrying a gun, say "You are pathetically unarmed!" instead;
+	if the second noun is not a gun, say "[The second noun] does not fire." instead;
+	if the player is not carrying any ammo clips, say "You are all out of ammunition" instead;
+	if the noun is the second noun, say "Nice trick if you can do it!" instead;
+	if the noun is the player, say "That would be disastrous!" instead;
+	if the noun is not the command center lock, say "Needless violence won't get you off this rock any faster. Also, you might still need [the noun] later on." instead.
+
+To decide which number is the ammo-counter of (A - an ammo clip) (this is ammo-counting):
+	decide on the bullet count of A.
+
+To decide which number is the sum of (N - number) and (M - number) (this is summing): 
+    decide on N + M.
+
+Check shooting something with something when the player is carrying at least one ammo clip:
+	let L be the list of ammo clips carried by the player;
+	let S be the summing reduction of ammo-counting applied to L;
+	if S is zero, say "You are all out of ammunition" instead.
+
 Book 2 - Locations
 
 Chapter 1 - Cell Complex
@@ -252,7 +285,7 @@ Check attacking the grate when the noun is part of something:
 The metal door is north of the cell and south of the corridor. It is an openable closed lockable locked door.
 The other-side-description is "[We] peek through the small duraplast window into the corridor outside."
 
-The corridor is a room.
+The corridor is a room. "Write me."
 
 West of the corridor is south of the control room. Index map with control room mapped northwest of corridor.
 The control room is a room. "Write me."
@@ -334,15 +367,17 @@ Chapter 2 - Plaza and Armory
 
 Section 1 - The Plaza
 
-The military complex plaza is a toxic room.
+The military complex plaza is a toxic room. The command center lock is here.
 
 Section 2 - The Armory
 
-The armory is west of the plaza.
+The armory is west of the plaza. It is toxic.
+The assault rifle is a gun in the armory.
+In the armory are three ammo clips.
 
 Chapter 3 - The Command Center
 
-The command center is north of the plaza.
+A room called the command center is north of the plaza.
 
 Chapter 4 - The Hangar
 
