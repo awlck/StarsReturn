@@ -27,7 +27,7 @@ Book 1 - Mechanics
 
 The carrying capacity of the player is three.
 
-The description of the player is "[if the player is wearing the armor]In [our] armored suit [we] almost look soldierly again[otherwise][We]['ve] seen better days[end if]."
+The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Caked helmet-to-boots in mud, [we]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise][We]['ve] seen better days[end if]."
 
 Chapter 1 - Armor, Air, and Toxicity
 
@@ -36,7 +36,8 @@ Section 1 - Armor
 The player has a number called the air. The air of the player is 5.
 The armor has a number called the air. The air of the armor is 100.
 The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
-The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a carrying pack, and it can double as a space suit, providing air in hostile environments.".
+The armor can be muddy or clean. The armor is clean.
+The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a carrying pack, and it can double as a space suit, providing air in hostile environments.[if the armor is muddy][paragraph break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[end if]".
 
 The pack is a part of the armor. It is a player's holdall. The carrying capacity of the player is 3.
 
@@ -67,6 +68,15 @@ Carry out switching off the helmet lamp: now the helmet lamp is not lit.
 [With the armor's air supply and filtration system active, we don't smell much.]
 Check smelling when the player is wearing the armor and the location is not breathable:
 	say "With the armor's air supply system now active, you smell absolutely nothing at all." instead.
+
+[Conversely...]
+Check smelling when the player is wearing the armor and the location is breathable and the armor is muddy:
+	say "You have a hard time smelling anything but the rancid fish smell emanating from the mud on your armor." instead.
+
+Instead of smelling the armor when the player is not wearing the armor and the armor is muddy, say "It smells like old fish.".
+
+[The following is gleaned from Michael J. Robert's "Return to Ditch Day":]
+Instead of rubbing the armor when the armor is muddy, say "You try to wipe the mud off, but all you really accomplish is smearing it around."
 
 Section 2 - Toxicity, Vacuum, Submersion
 
@@ -259,6 +269,9 @@ Carry out looking through something when the other-side-description of the noun 
 Carry out looking through (this is the standard looking through rule):
 	say "[the other-side-description of the noun][paragraph break]".
 
+[And, tacked on here, looking in a compass direction.]
+Understand "look [a direction]" as examining.
+
 Chapter 7 - Ranged Weapons
 
 A gun is a kind of thing. An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
@@ -395,11 +408,13 @@ Section 5 - The Dock
 
 The prison docks are a toxic room. They are east of the prison antecourt.
 
-The water is an enterable container in the prison docks.
+The water is an enterable scenery container in the prison docks.
 
 Instead of entering the water when the player is wearing the armor, try going down.
 
-Understand "jump in/into [a container]" as entering when the location is the prison docks.
+Understand "jump in/into [something]" as entering when the location is the prison docks.
+Does the player mean entering something that is not a container: it is unlikely.
+Does the player mean entering the water: it is likely.
 
 Chapter 2 - Underwater
 
@@ -410,9 +425,11 @@ The sea-region is a region. Seabottom-1, seabottom-2, seabottom-3, and seabottom
 Instead of going nowhere when the location is in the sea-region, say "Best not to wander around, lest you'll never find your way again."
 
 The sea is a backdrop in the sea-region. The description is "There are about ten meter's worth of sea water above you. As you exhale, you can see the bubbles of your breath rising to the surface." Understand "ocean" or "sea" or "water" or "air/-- bubble/bubbles" as the sea.
+Instead of examining up when the location is in the sea-region, try examining the sea.
 
-The ocean floor is a backdrop in the sea-region. The description is "Silt has accumulated in the calmer waters between the shore and the prison island, enough to seriously hamper your movement down here." Understand "sea/ocean/-- bottom/floor" or "silt" as the ocean floor.
+The ocean floor is a backdrop in the sea-region. The description is "Silt has accumulated in the calmer waters between the shore and the prison island, enough to seriously hamper your movement down here." Understand "sea/ocean/-- bottom/floor/silt" as the ocean floor.
 Instead of taking the ocean floor, say "You scoop up a handful of silt, but it quickly runs through your fingers."
+Instead of examining down when the location is in the sea-region, try examining the ocean floor.
 
 Instead of entering the ocean floor: say "You'd feel a bit silly lying in the silt."
 
@@ -434,12 +451,14 @@ seabottom-3 is a sea-room. It is north of seabottom-2.
 seabottom-4 is a sea-room. It is north of seabottom-3. "You are standing knee-deep in the silt at the bottom of the ocean. The ground is sloping upwards to the north."
 
 Before going north from seabottom-4 for the first time:
-	say "You slowly make your way up the muddy incline [dash] half walking, half crawling [dash] until you finally reach dry land again.";
-	now the description of yourself is "Caked helmet-to-boots in mud, you're not sure whether you look particularly fierce or particularly ridiculous.";
-	now the description of the armor is "[the description of the armor][line break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine."
+	say "You slowly make your way up the muddy incline [dash] half walking, half crawling [dash] until you finally reach dry land again.".
+Carry out going north from seabottom-4 (this is the armor dirtying rule):
+	now the armor is muddy;
+	continue the action.
 
-Instead of smelling when the player is wearing the armor and the location is breathable and the player has been in the sea-region:
-	say "You have a hard time smelling anything but the rancid fish smell emanating from the mud on your armor."
+[And being in the water gets us clean again -- no real benefit, except continuity.]
+Every turn when the location is submerged (this is the armor cleaning rule):
+	now the armor is clean.
 
 Instead of squeezing when the player has been in the sea-region:
 	if the noun is the armor or the noun is the player:
