@@ -36,7 +36,7 @@ Section 1 - Armor
 The player has a number called the air. The air of the player is 5.
 The armor has a number called the air. The air of the armor is 100.
 The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
-The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once.[line break]It is fitted with a helmet lamp and a carrying pack, and it can double as a space suit, providing air in hostile environments.".
+The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a carrying pack, and it can double as a space suit, providing air in hostile environments.".
 
 The pack is a part of the armor. It is a player's holdall. The carrying capacity of the player is 3.
 
@@ -64,13 +64,16 @@ Understand "helmet/-- lamp/light" as the helmet lamp.
 Carry out switching on the helmet lamp: now the helmet lamp is lit.
 Carry out switching off the helmet lamp: now the helmet lamp is not lit.
 
-Section 2 - Toxicity, Vacuum
+[With the armor's air supply and filtration system active, we don't smell much.]
+Check smelling when the player is wearing the armor and the location is not breathable:
+	say "With the armor's air supply system now active, you smell absolutely nothing at all." instead.
+
+Section 2 - Toxicity, Vacuum, Submersion
 
 [Here we lay out what happens when the player ventures into a hostile environment without adequate protection.]
+A room can be toxic, vacuum, submerged, or breathable. A room is usually breathable.
 
-A room can be toxic, vacuum, underwater, or breathable. A room is usually breathable.
-
-Every turn when the location is toxic or the location is underwater (this is the toxic air draining rule):
+Every turn when the location is toxic or the location is submerged (this is the toxic air draining rule):
 	if the air of the player is zero:
 		if the location is toxic, say "Without [unless the player is wearing the armor]the protection of your suit[otherwise]your suit's air supply[end if], you succumb to the toxic atmosphere of this wholly hostile world.";
 		otherwise say "With your suit's air supply depleted, you rapidly run out of oxygen.";
@@ -127,7 +130,7 @@ Rule for constructing the status line when the player is not wearing the armor:
 
 To say hud-air:
 	[if the air of the armor is than 100 and the location is toxic:]
-	if the air of the armor is 100 or (the location is not toxic and the location is not underwater), stop;
+	if the air of the armor is 100 or (the location is not toxic and the location is not submerged), stop;
 	if the air of the armor is greater than five:
 		say "Air: [air of the armor] min";
 	otherwise if the air of the armor is greater than zero:
@@ -143,7 +146,7 @@ To say hud-environ-status:
 		say "High levels of CO2";
 	otherwise if the location is vacuum:
 		say "No atmosphere";
-	otherwise if the location is underwater:
+	otherwise if the location is submerged:
 		say "Submerged";
 	otherwise:
 		say "Breathable".
@@ -392,31 +395,35 @@ Section 5 - The Dock
 
 The prison docks are a toxic room. They are east of the prison antecourt.
 
-The water is an enterable scenery container in the prison docks.
+The water is an enterable container in the prison docks.
 
 Instead of entering the water when the player is wearing the armor, try going down.
 
-Understand "jump in/into [something]" as entering when the location is the prison docks.
+Understand "jump in/into [a container]" as entering when the location is the prison docks.
 
 Chapter 2 - Underwater
 
-A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark. The printed name is usually "at the bottom of the ocean". A sea-room is always underwater.
+A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark. The printed name is usually "at the bottom of the ocean". A sea-room is always submerged.
 
 The sea-region is a region. Seabottom-1, seabottom-2, seabottom-3, and seabottom-4 are in the sea-region.
 
 Instead of going nowhere when the location is in the sea-region, say "Best not to wander around, lest you'll never find your way again."
 
-The sea is a backdrop in the sea-region. The description is "There are about ten meter's worth of sea water above you." Understand "ocean" or "sea" or "water" as the sea.
+The sea is a backdrop in the sea-region. The description is "There are about ten meter's worth of sea water above you. As you exhale, you can see the bubbles of your breath rising to the surface." Understand "ocean" or "sea" or "water" or "air/-- bubble/bubbles" as the sea.
 
 The ocean floor is a backdrop in the sea-region. The description is "Silt has accumulated in the calmer waters between the shore and the prison island, enough to seriously hamper your movement down here." Understand "sea/ocean/-- bottom/floor" or "silt" as the ocean floor.
 Instead of taking the ocean floor, say "You scoop up a handful of silt, but it quickly runs through your fingers."
 
+Instead of entering the ocean floor: say "You'd feel a bit silly lying in the silt."
+
 Instead of going up in the sea-region, say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided."
 
-seabottom-1 is a sea-room. It is down from the prison docks[ and north of the prison docks].
+Instead of going up in seabottom-4, try going north.
+
+seabottom-1 is a sea-room. It is down from the prison docks. "You are standing knee-deep in the silt at the bottom of the ocean. The rocky cliffs of the prison island lie to the south, the military complex is due north."
 
 Before going down to seabottom-1 for the first time:
-	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that is does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your your arms and legs to slow your descent.";
+	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that is does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your your arms and legs to slow your descent...";
 	[pause the game; [for dramatic effect only]]
 	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good."
 
@@ -424,7 +431,31 @@ seabottom-2 is a sea-room. It is north of seabottom-1.
 
 seabottom-3 is a sea-room. It is north of seabottom-2.
 
-seabottom-4 is a sea-room. It is north of seabottom-3.
+seabottom-4 is a sea-room. It is north of seabottom-3. "You are standing knee-deep in the silt at the bottom of the ocean. The ground is sloping upwards to the north."
+
+Before going north from seabottom-4 for the first time:
+	say "You slowly make your way up the muddy incline [dash] half walking, half crawling [dash] until you finally reach dry land again.";
+	now the description of yourself is "Caked helmet-to-boots in mud, you're not sure whether you look particularly fierce or particularly ridiculous.";
+	now the description of the armor is "[the description of the armor][line break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine."
+
+Instead of smelling when the player is wearing the armor and the location is breathable and the player has been in the sea-region:
+	say "You have a hard time smelling anything but the rancid fish smell emanating from the mud on your armor."
+
+Instead of squeezing when the player has been in the sea-region:
+	if the noun is the armor or the noun is the player:
+		say "You make a fist, squeezing some sea water out of your gloves, but it's more of a symbolic effort.";
+		rule succeeds;
+	otherwise:
+		continue the action.
+
+Report going to a room in the sea-region for more than the first time (this is the report trudging rule):
+	say "You slowly trudge [noun]ward.";
+	continue the action.
+
+Carry out going from a room in the sea-region (this is the walking in the sea takes longer rule):
+	decrease the air of the armor by 5;
+	increase the time of day by 5 minutes;
+	continue the action.
 
 Chapter 3 - Military Complex Proper
 
