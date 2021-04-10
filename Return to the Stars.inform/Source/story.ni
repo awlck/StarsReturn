@@ -214,7 +214,19 @@ Report an actor crawling into an air duct (this is the report air duct travel ru
 Understand "climb into [something]" as climbing.
 Instead of climbing an air duct, try entering the noun.
 
-Chapter 5 - Looking Through
+Instead of crawling into an air duct when the player is wearing the armor, say "The duct is just large enough for a human to crawl through [dash] bulky suit of armor not included."
+
+Chapter 5 - Looking at Buildings
+
+[This is to allow commands such as "x armory" or "enter armory" when the armory is an adjacent room.]
+A facade is a kind of scenery thing. A facade has a room called the associated room.
+
+Instead of entering a facade (called the building):
+	let direct be the best route from the location to the associated room of the building;
+	if direct is nothing, say "[We] [can't] [seem] to find a way inside [the noun].";
+	otherwise try going direct.
+
+Chapter 6 - Looking Through
 
 [There are a few locations within the game where the player may look through something to get a peek into another room.]
 A thing has some text called the other-side-description.
@@ -235,7 +247,7 @@ Carry out looking through something when the other-side-description of the noun 
 Carry out looking through (this is the standard looking through rule):
 	say "[the other-side-description of the noun][paragraph break]".
 
-Chapter 6 - Ranged Weapons
+Chapter 7 - Ranged Weapons
 
 A gun is a kind of thing. An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
 
@@ -254,7 +266,7 @@ Check shooting something with something:
 	if the second noun is not a gun, say "[The second noun] does not fire." instead;
 	if the player is not carrying any ammo clips, say "You are all out of ammunition" instead;
 	if the noun is the second noun, say "Nice trick if you can do it!" instead;
-	if the noun is the player, say "That would be disastrous!" instead;
+	if the noun is the player, say "Even though you could punch yourself for allowing yourself to be taken captive, suicide isn't an option." instead;
 	if the noun is not the command center lock, say "Needless violence won't get you off this rock any faster. Also, you might still need [the noun] later on." instead.
 
 To decide which number is the ammo-counter of (A - an ammo clip) (this is ammo-counting):
@@ -270,7 +282,7 @@ Check shooting something with something when the player is carrying at least one
 
 Book 2 - Locations
 
-Chapter 1 - Cell Complex
+Chapter 1 - Cell Complex and Prison Island
 
 Cell-complex is a region. The cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
 
@@ -297,7 +309,7 @@ Before taking the helmet for the first time, say "You carefully disconnect the w
 
 East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
 
-The airlock is a door. "[airlock-desc]". The airlock is north of the front office and south of the military complex plaza.
+The airlock is a door. "[airlock-desc]". The airlock is north of the front office and south of the prison antecourt.
 
 To say airlock-desc:
 	if the player is in the front office, say "The way out of the building, to the north, leads through [if the player has not been in the military complex plaza]what appears to be [end if]an airlock.";
@@ -363,11 +375,51 @@ Rule for printing the description of a dark room when the location is the instal
 After deciding the scope of the player while in darkness and the location is the installations room:
 	place the lights switch in scope.
 
-Chapter 2 - Plaza and Armory
+Section 4 - The Antecourt
+
+Prison antecourt is a toxic room.
+
+Section 5 - The Dock
+
+The prison docks are a toxic room. They are east of the prison antecourt.
+
+The water is an enterable scenery container in the prison docks.
+
+Instead of entering the water when the player is wearing the armor, try going down.
+
+Chapter 2 - Underwater
+
+A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark.
+
+The sea-region is a region. Seabottom-1, seabottom-2, seabottom-3, and seabottom-4 are in the sea-region.
+
+Instead of going nowhere when the location is in the sea-region, say "Best not to wander around, lest you'll never find your way again."
+
+The sea is a backdrop in the sea-region. The description is "There are about ten meter's worth of sea water above you." Understand "ocean" or "sea" or "water" as the sea.
+
+The ocean floor is a backdrop in the sea-region. The description is "Silt has accumulated in the calmer waters between the shore and the prison island, enough to seriously hamper your movement down here." Understand "sea/ocean/-- bottom/floor" or "silt" as the ocean floor.
+Instead of taking the ocean floor, say "You scoop up a handful of silt, but it quickly runs through your fingers."
+
+seabottom-1 is a sea-room. It is down from the prison docks[ and north of the prison docks].
+
+Before going down to seabottom-1 for the first time:
+	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that is does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your your arms and legs to slow your descent.";
+	pause the game; [for dramatic effect only]
+	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good."
+
+seabottom-2 is a sea-room. It is north of seabottom-1.
+
+seabottom-3 is a sea-room. It is north of seabottom-2.
+
+seabottom-4 is a sea-room. It is north of seabottom-3.
+
+Chapter 3 - Military Complex Proper
+
+The shore docks are a toxic room. They are up from seabottom-4 and north from seabottom-4.
 
 Section 1 - The Plaza
 
-The military complex plaza is a toxic room. The command center lock is here.
+The military complex plaza is a toxic room. It is north of the shore docks. The command center lock is here.
 
 Section 2 - The Armory
 
@@ -375,15 +427,15 @@ The armory is west of the plaza. It is toxic.
 The assault rifle is a gun in the armory.
 In the armory are three ammo clips.
 
-Chapter 3 - The Command Center
+Chapter 4 - The Command Center
 
 A room called the command center is north of the plaza.
 
-Chapter 4 - The Hangar
+Chapter 5 - The Hangar
 
 The hangar is east of the plaza.
 
-Chapter 5 - The Launch Pad
+Chapter 6 - The Launch Pad
 
 Section 1 - The Launch Pad
 
@@ -395,4 +447,4 @@ The control tower is up from the hangar.
 
 The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
 
-Chapter 6 - Space
+Chapter 7 - Space
