@@ -444,6 +444,15 @@ Before going down to seabottom-1 for the first time:
 	[pause the game; [for dramatic effect only]]
 	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good."
 
+The rocky cliffs are scenery in seabottom-1. "These cliffs are what the prison is built on top of." Understand "rocks" as the cliffs.
+Instead of climbing the rocky cliffs:
+	say "You climb up the cliffs[run paragraph on]";
+	if a random chance of 1 in 2 succeeds, say ", but lose your purchase on the slippery rock and fall back down to the bottom of the sea." instead;
+	say ".";
+	now the player is in the prison docks.
+Instead of going up from seabottom-1 for more than the first time (this is the hint at climbig rule):
+	say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided.[line break](However, if you really must return, the cliffs look like you might stand a chance at climbing them.)"
+
 seabottom-2 is a sea-room. It is north of seabottom-1.
 
 seabottom-3 is a sea-room. It is north of seabottom-2.
