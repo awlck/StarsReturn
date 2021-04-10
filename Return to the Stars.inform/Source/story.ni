@@ -34,7 +34,10 @@ Chapter 1 - Armor, Air, and Toxicity
 Section 1 - Armor
 
 The player has a number called the air. The air of the player is 5.
-The armor has a number called the air. The air of the armor is 100. The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
+The armor has a number called the air. The air of the armor is 100.
+The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
+The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once.[line break]It is fitted with a helmet lamp and a carrying pack, and it can double as a space suit, providing air in hostile environments.".
+
 The pack is a part of the armor. It is a player's holdall. The carrying capacity of the player is 3.
 
 [There is little point to the character lugging around the pieces of the armor, so we disallow explicit takes and skip the implicit one when wearing it.]
