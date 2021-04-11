@@ -13,7 +13,7 @@ Release along with a website, an interpreter, and the source text.
 Use OMIT_UNUSED_ROUTINES of 1.
 
 To decide whether unicode is available:
-	(- unicode_gestalt_ok -)
+	(- unicode_gestalt_ok -).
 
 To say dash:
 	if unicode is available, say unicode 8211;
@@ -204,10 +204,11 @@ An air duct is a kind of fixed in place closed enterable transparent scenery con
 
 A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named. The indefinite article of a grate is usually "the".
 
-Understand the command "kick" as "attack".
+Understand the command "kick" or "bash" as "attack".
 To kick is a verb.
 
-Check an actor attacking a grate when the noun is part of an air duct (this is the okay to kick in grates rule): rule succeeds.
+The block attacking rule does nothing when the noun is a grate.
+Does the player mean attacking a grate when the player is in an air duct: it is likely.
 
 Carry out an actor attacking a grate (called the target) (this is the grate destruction rule):
 	now the component parts core of the target is open;
@@ -233,7 +234,8 @@ Crawling into is an action applying to one touchable thing. Understand "crawl th
 To crawl is a verb.
 
 Rule for supplying a missing noun while crawling into:
-	if the holder of the player is an air duct, now the noun is the holder of the player.
+	if the holder of the player is an air duct, now the noun is the holder of the player;
+	say "(through the air duct)[command clarification break]".
 
 Check an actor crawling into a closed air duct (called the conduit) when the player is not in the conduit (this is the can't crawl through grates rule):
 	instead say "The grate is in the way."
@@ -250,7 +252,7 @@ Carry out an actor crawling into an air duct (this is the travel through air duc
 Report an actor crawling into an air duct (this is the report air duct travel rule):
 	if the actor is not the player, say "[The actor] [crawl] out of sight." (A)
 
-Understand "climb into [something]" as climbing.
+Understand "climb in/into [something]" as climbing.
 Instead of climbing an air duct, try entering the noun.
 
 Instead of crawling into an air duct when the player is wearing the armor, say "The duct is just large enough for a human to crawl through [dash] bulky suit of armor not included."
@@ -314,8 +316,8 @@ Check shooting something with something:
 To decide which number is the ammo-counter of (A - an ammo clip) (this is ammo-counting):
 	decide on the bullet count of A.
 
-To decide which number is the sum of (N - number) and (M - number) (this is summing): 
-    decide on N + M.
+To decide which number is the sum of (N - number) and (M - number) (this is summing):
+	decide on N + M.
 
 Check shooting something with something when the player is carrying at least one ammo clip:
 	let L be the list of ammo clips carried by the player;
@@ -326,17 +328,17 @@ Book 2 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
 
-Cell-complex is a region. The cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
+Cell-complex is a region. Your cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
 
 Section 1 - Main Parts
 
-The cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
+Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
-An air duct called cell air duct is in the cell.
-Check attacking the grate when the noun is part of something:
+An air duct called cell air duct is in your cell.
+Check attacking the cell air duct's grate when the noun is part of something:
 	instead say "It's too far up."
 
-The metal door is north of the cell and south of the corridor. It is an openable closed lockable locked door.
+The metal door is north of your cell and south of the corridor. It is an openable closed lockable locked door.
 The other-side-description is "[We] peek through the small duraplast window into the corridor outside."
 
 The corridor is a room. "Write me."
@@ -389,8 +391,8 @@ The prison installations room is down from the control room. "This is where most
 
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
 
-In the installations room is a scenery thing called some air ducts. The description of some air ducts is "They presumably lead to different rooms within the facility."
-Instead of doing something other than examining to some air ducts, say "They're not labeled, and you'd rather not wander through the airducts aimlessly."
+some-air-ducts is scenery in the prison installations room. It is privately-named. The description of some-air-ducts is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
+Instead of doing something other than examining to some-air-ducts, say "They're not labeled, and you'd rather not wander through the airducts aimlessly."
 
 A ladder is scenery in the installations room. Instead of climbing the ladder, try going up.
 
