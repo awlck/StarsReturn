@@ -29,7 +29,22 @@ The carrying capacity of the player is three.
 
 The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Caked helmet-to-boots in mud, [we]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise][We]['ve] seen better days[end if]."
 
-Chapter 1 - Armor, Air, and Toxicity
+Chapter 1 - Time
+
+[Time is a somewhat important concept in this story, so we give it a little extra attention.]
+The work duration is a number that varies.
+The work duration variable translates into I6 as "time_rate".[* Reusing the existing I6-level variable for how many minutes should pass each turn, which is applied by the "Advance Time Rule". This is usually just set to 1 throughout the course of the game: I7 doesn't usually touch it unless we force it to.]
+
+The time allotment rules are a rulebook producing a number.
+
+The last time allotment rule (this is the default time rule): rule succeeds with result 1.
+
+Every turn (this is the apply action-specific time rule):
+	let d be the number produced by the time allotment rules;
+	now the work duration is d;
+	follow the air supply rules for the location.
+
+Chapter 2 - Armor, Air, and Toxicity
 
 Section 1 - Armor
 
@@ -83,37 +98,39 @@ Section 2 - Toxicity, Vacuum, Submersion
 [Here we lay out what happens when the player ventures into a hostile environment without adequate protection.]
 A room can be toxic, vacuum, submerged, or breathable. A room is usually breathable.
 
-Every turn when the location is toxic or the location is submerged (this is the toxic air draining rule):
-	if the air of the player is zero:
-		if the location is toxic, say "Without [unless the player is wearing the armor]the protection of your suit[otherwise]your suit's air supply[end if], you succumb to the toxic atmosphere of this wholly hostile world.";
-		otherwise say "With your suit's air supply depleted, you rapidly run out of oxygen.";
-		end the story saying "You have died";
-	if the player is wearing the armor and the air of the armor is greater than zero:
-		if the air of the armor is five:
-			say "Your suit sounds an alarm as its air supply is getting close to being depleted.";
-		decrease the air of the armor by one;
-	otherwise:	
-		decrease the air of the player by one.
+The air supply rules are a room based rulebook.
 
-Every turn when the location is vacuum (this is the vacuum air draining rule)[* Similar to the 'toxic' version above, but distinctly different]:
-	if the player is not wearing the armor: [die immediately when not wearing the armor at all]
-		say "Without a space suit of some description, you quickly perish in the vacuum.";
-		end the story saying "You have asphyxiated";
-	if the player is wearing the armor and the air of the armor is greater than zero:
-		if the air of the armor is five, say "Your suit sounds an alarm as its air supply is getting close to being depleted.";
-		decrease the air of the armor by one;
-	otherwise if the player is wearing the armor and the air of the armor is zero:
-		if the air of the player is five:
-			say "The alarm grows more urgent as your suit's air reserve is now empty. As you take a final deep breath, you know that you have mere minutes left before you suffocate.";
-		otherwise if the air of the player is zero:
-			end the story saying "You have asphyxiated";
-			stop;
-		decrease the air of the player by one.
+An air supply rule for a room that is not breathable when the player is wearing the armor:
+	if the air of the armor is five, say "Your suit sounds an alarm as its air supply is getting close to being depleted.";
+	decrease the air of the armor by the work duration;
+	if the air of the armor is less than zero:
+		let d be the air of the armor multiplied by -1;
+		if the air of the player is five, say "The alarm grows more urgent as your suit's air reserve is now empty. As you take a final deep breath, you know that you have mere minutes left before you suffocate.";
+		decrease the air of the player by d.
 
-Every turn when the location is breathable (this is the air replenishment rule):
+An air supply rule for a room that is not breathable when the player is not wearing the armor:
+	decrease the air of the player by the work duration.
+
+An air supply rule for a breathable room (this is the air replenishment rule):
 	now the air of the player is five;
-	if the air of the armor is less than 100, increase the air of the armor by five;
-	if the air of the armor is greater than 100, now the air of the armor is 100.
+	if the player is wearing the armor:
+		if the air of the armor is less than 100, increase the air of the armor by five times the work duration;
+		if the air of the armor is greater than 100, now the air of the armor is 100.
+
+An air supply rule for a toxic room when the air of the player is at most zero:
+	say "Without [unless the player is wearing the armor]the protection of your suit[otherwise]your suit's air supply[end if], you succumb to the toxic atmosphere of this wholly hostile world.";
+	end the story saying "You have died".
+
+An air supply rule for a submerged room when the air of the player is at most zero:
+	say "With your suit's air supply depleted, you rapidly run out of oxygen.";
+	end the story saying "You have drowned".
+
+The first air supply rule for a vacuum room when the player is not wearing the armor (this is the die immediately in vaccum without a space suit rule):
+	say "Without a space suit of some description, you quickly perish in the vacuum.";
+	end the story saying "You have asphyxiated".
+
+An air supply rule for a vacuum room when the air of the player is at most zero:
+	end the story saying "You have asphyxiated".
 
 [Give the player an explicit nudge when they venture outside without protection]
 After going to a toxic room for at least the second time:
@@ -167,12 +184,12 @@ To say (relevant time - a time) as military time:
     let M be the minutes part of relevant time;
     say "[if H is less than 10]0[end if][H][if M is less than 10]0[end if][M]hrs".
 
-Chapter 2 - Dummy Objects for saying
+Chapter 3 - Dummy Objects for saying
 
 [I hadn't decided on a name for the alien faction early on, so I created this dummy object and used a [the aliens] text substitution wherever I wanted to mention them in the story. Once I picked a name, I simply set the printed name of this object.]
 Some aliens are a person. The printed name is "shwabolians". [Or something like that ???]
 
-Chapter 3 - Concepts Can Be Known
+Chapter 4 - Concepts Can Be Known
 
 A concept is a kind of value.
 
@@ -181,7 +198,7 @@ The verb to know means the knowledge relation.
 
 The access codes are a concept.
 
-Chapter 4 - Grates and Air Ducts
+Chapter 5 - Grates and Air Ducts
 
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 
@@ -238,7 +255,7 @@ Instead of climbing an air duct, try entering the noun.
 
 Instead of crawling into an air duct when the player is wearing the armor, say "The duct is just large enough for a human to crawl through [dash] bulky suit of armor not included."
 
-Chapter 5 - Looking at Buildings
+Chapter 6 - Looking at Buildings
 
 [This is to allow commands such as "x armory" or "enter armory" when the armory is an adjacent room.]
 A facade is a kind of scenery thing. A facade has a room called the associated room.
@@ -248,7 +265,7 @@ Instead of entering a facade (called the building):
 	if direct is nothing, say "[We] [can't] [seem] to find a way inside [the noun].";
 	otherwise try going direct.
 
-Chapter 6 - Looking Through
+Chapter 7 - Looking Through
 
 [There are a few locations within the game where the player may look through something to get a peek into another room.]
 A thing has some text called the other-side-description.
@@ -272,7 +289,7 @@ Carry out looking through (this is the standard looking through rule):
 [And, tacked on here, looking in a compass direction.]
 Understand "look [a direction]" as examining.
 
-Chapter 7 - Ranged Weapons
+Chapter 8 - Ranged Weapons
 
 A gun is a kind of thing. An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
 
@@ -450,6 +467,8 @@ Instead of climbing the rocky cliffs:
 	if a random chance of 1 in 2 succeeds, say ", but lose your purchase on the slippery rock and fall back down to the bottom of the sea.[line break]Luckily, the ground is soft and the water slowed your descent, so you didn't hurt yourself." instead;
 	say ".";
 	now the player is in the prison docks.
+A time allotment rule for climbing the rocky cliffs:
+	rule succeeds with result 8.
 Instead of going up from seabottom-1 for more than the first time (this is the hint at climbig rule):
 	say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided.[line break](However, if you really must return, the cliffs look like you might stand a chance at climbing them.)"
 
@@ -469,21 +488,19 @@ Carry out going north from seabottom-4 (this is the armor dirtying rule):
 Every turn when the location is submerged (this is the armor cleaning rule):
 	now the armor is clean.
 
-Instead of squeezing when the player has been in the sea-region:
+Instead of squeezing when the player has been in the sea-region and the location is not in the sea-region:
 	if the noun is the armor or the noun is the player:
 		say "You make a fist, squeezing some sea water out of your gloves, but it's more of a symbolic effort.";
 		rule succeeds;
 	otherwise:
 		continue the action.
 
-Report going to a room in the sea-region from a room in the sea-region[ for more than the first time] (this is the report trudging rule):
+Report going to a room in the sea-region from a room in the sea-region (this is the report trudging rule):
 	say "You slowly trudge [noun]ward.";
 	continue the action.
 
-Carry out going from a room in the sea-region (this is the walking in the sea takes longer rule):
-	decrease the air of the armor by 5;
-	increase the time of day by 5 minutes;
-	continue the action.
+A time allotment rule for going from a room in the sea-region (this is the walking in the sea takes longer rule):
+	rule succeeds with result 5.
 
 Chapter 3 - Military Complex Proper
 
