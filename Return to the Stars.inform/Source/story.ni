@@ -328,6 +328,8 @@ Book 2 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
 
+Test prison with "x me / i / smell / look through door / pull grate / enter duct / crawl / kick grate / out / switch doors off / up / x helmet / take helmet / s / e / e / x plates / take plates / x armor / x me / i / w / open airlock / n / smell / e / jump / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
+
 Cell-complex is a region. Your cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
 
 Section 1 - Main Parts
@@ -434,6 +436,10 @@ Instead of entering the water when the player is wearing the armor, try going do
 Understand "jump in/into [something]" as entering when the location is the prison docks.
 Does the player mean entering something that is not a container: it is unlikely.
 Does the player mean entering the water: it is likely.
+
+Instead of jumping when the location is the prison docks:
+	say "(in the water)[command clarification break]";
+	try entering the water.
 
 Chapter 2 - Underwater
 
