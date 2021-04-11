@@ -440,14 +440,14 @@ Instead of going up in seabottom-4, try going north.
 seabottom-1 is a sea-room. It is down from the prison docks. "You are standing knee-deep in the silt at the bottom of the ocean. The rocky cliffs of the prison island lie to the south, the military complex is due north."
 
 Before going down to seabottom-1 for the first time:
-	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that is does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your your arms and legs to slow your descent...";
+	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that is does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your your arms and legs to slow your descent..."; [blatantly ignoring the potential issue of barotrauma, but whatever]
 	[pause the game; [for dramatic effect only]]
 	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good."
 
 The rocky cliffs are scenery in seabottom-1. "These cliffs are what the prison is built on top of." Understand "rocks" as the cliffs.
 Instead of climbing the rocky cliffs:
 	say "You climb up the cliffs[run paragraph on]";
-	if a random chance of 1 in 2 succeeds, say ", but lose your purchase on the slippery rock and fall back down to the bottom of the sea." instead;
+	if a random chance of 1 in 2 succeeds, say ", but lose your purchase on the slippery rock and fall back down to the bottom of the sea.[line break]Luckily, the ground is soft and the water slowed your descent, so you didn't hurt yourself." instead;
 	say ".";
 	now the player is in the prison docks.
 Instead of going up from seabottom-1 for more than the first time (this is the hint at climbig rule):
