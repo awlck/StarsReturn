@@ -476,7 +476,7 @@ Instead of squeezing when the player has been in the sea-region:
 	otherwise:
 		continue the action.
 
-Report going to a room in the sea-region for more than the first time (this is the report trudging rule):
+Report going to a room in the sea-region from a room in the sea-region[ for more than the first time] (this is the report trudging rule):
 	say "You slowly trudge [noun]ward.";
 	continue the action.
 
