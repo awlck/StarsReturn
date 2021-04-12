@@ -203,6 +203,7 @@ Chapter 5 - Grates and Air Ducts
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 
 A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named. The indefinite article of a grate is usually "the".
+Understand "flimsy/rusty/old/-- grate/grid/grating/bars" as a grate.
 
 Understand the command "kick" or "bash" as "attack".
 To kick is a verb.
@@ -328,20 +329,35 @@ Book 2 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
 
-Test prison with "x me / i / smell / look through door / pull grate / enter duct / crawl / kick grate / out / switch doors off / up / x helmet / take helmet / s / e / e / x plates / take plates / x armor / x me / i / w / open airlock / n / smell / e / jump / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
+Test prison with "x me / i / smell / look through door / get on cot / get up / pull grate / enter duct / crawl / kick grate / out / switch doors off / up / x helmet / take helmet / s / e / e / x plates / take plates / x armor / x me / i / w / open airlock / n / smell / e / jump / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
 
 Cell-complex is a region. Your cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
 
+The silence is a backdrop in cell-complex.
+Instead of doing something other than listening to the silence, say "The absence of sound is, of course, intangible."
+Instead of listening to the location when the silence is in the location, try listening to the silence.
+Instead of listening to the silence:
+	say "It has been eerily quiet for a few days now. Gone are the footsteps, the occasional shouting, the idle chit-chat of the guards. Now you hear nothing but the faint noise of the ventilation system."
+
 Section 1 - Main Parts
 
-Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
+[We've spent A LOT of time in this room, so describe it in excruciating detail.]
+Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]splash[roman type])[end if]. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
-	instead say "It's too far up."
+	instead say "It's too far up to throw a good punch at the grate."
+The description of the cell air duct's grate is "A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you tried hard enough."
 
 The metal door is north of your cell and south of the corridor. It is an openable closed lockable locked door.
-The other-side-description is "[We] peek through the small duraplast window into the corridor outside."
+The other-side-description is "[We] peek through the small duraplast window into the corridor outside. It is empty."
+
+The cot is a fixed in place enterable supporter in your cell. "A cot stands in one corner of the room." The description is "Flimsy frame, uncomfortable plastic surface [dash] it's a cot alright."
+Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
+
+Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets." The description is "Plain white bedsheets. Thin, scratchy, and not quite warm enough to keep you comfortable. It seems like all expenses were spared here.[unless the bedsheets are handled]Your military discipline dictates that you neatly fold the bedsheets when you get up in the morning.[end if]"
+
+[The sanitary station is an enterable container in the cell.][TODO]
 
 The corridor is a room. "Write me."
 
