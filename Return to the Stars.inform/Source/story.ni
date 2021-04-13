@@ -2,16 +2,18 @@
 
 The story genre is "Science Fiction". The story headline is "An Interactive Escape".
 
+Release along with a website, an interpreter, and the source text.
+
+Book 1 - Preamble
+
 Use american dialect and the serial comma.
 
 Include Basic Screen Effects by Emily Short.
 
-Release along with a website, an interpreter, and the source text.
-
-[Include (-!% -r
--) before "ICL Commands" in "Output.i6t".]
+[This is an instruction to the I6 compiler to leave out routines not used by the game (such as those relating to external files and real numbers), reducing the size of the resulting Glulx story file by some 10%.]
 Use OMIT_UNUSED_ROUTINES of 1.
 
+[Upon startup, the library checks whether the current interpreter claims to support unicode, and stores the result in this global variable.]
 To decide whether unicode is available:
 	(- unicode_gestalt_ok -).
 
@@ -23,7 +25,27 @@ To say CO2:
 	if unicode is available, say "CO[unicode 8322]";
 	otherwise say "CO2".
 
-Book 1 - Mechanics
+Requesting credits is an action out of world applying to nothing.
+Understand "credits" or "about" as requesting credits.
+
+Carry out requesting credits:
+	say the banner text;
+	say "[line break]Built using the following extensions:[line break][complete list of extension credits][line break]";
+	say the playtesters.
+
+To say the playtesters:
+	say "[bold type]Playtesters[roman type]: none yet...".
+
+Table of Final Question Options (continued)
+final question wording	only if victorious	topic	final response rule	final response activity
+"read some author's NOTES about this story"	true	"author/author's/-- note/notes"	author's notes rule	--
+
+This is the author's notes rule:
+	say "(But those haven't been written yet.)".
+
+Every turn when the story has not ended finally: end the story finally.
+
+Book 2 - Mechanics
 
 The carrying capacity of the player is three.
 
@@ -33,15 +55,14 @@ Chapter 1 - Time
 
 [Time is a somewhat important concept in this story, so we give it a little extra attention.]
 The work duration is a number that varies.
-The work duration variable translates into I6 as "time_rate".[* Reusing the existing I6-level variable for how many minutes should pass each turn, which is applied by the "Advance Time Rule". This is usually just set to 1 throughout the course of the game: I7 doesn't usually touch it unless we force it to.]
+The work duration variable translates into I6 as "time_rate".[* Reusing the existing I6-level variable for how many minutes should pass each turn, which is applied by the "Advance Time Rule". This is usually just set to 1 throughout the course of the game: I7 doesn't normally touch it.]
 
 The time allotment rules are a rulebook producing a number.
 
 The last time allotment rule (this is the default time rule): rule succeeds with result 1.
 
 Every turn (this is the apply action-specific time rule):
-	let d be the number produced by the time allotment rules;
-	now the work duration is d;
+	let the work duration be the number produced by the time allotment rules;[* we could just as well have written each time allotment rule to set 'work duration' directly, but this feels better]
 	follow the air supply rules for the location.
 
 Chapter 2 - Armor, Air, and Toxicity
@@ -325,7 +346,12 @@ Check shooting something with something when the player is carrying at least one
 	let S be the summing reduction of ammo-counting applied to L;
 	if S is zero, say "You are all out of ammunition" instead.
 
-Book 2 - Locations
+Chapter 9 - Altered responses
+
+[Replacing some of the standard responses with something more thematic.]
+block sleeping rule response (A) is "You've spent so much of these past few weeks sleeping that you feel like you won't be tired again in a [italic type]long[roman type] time".
+
+Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
 
@@ -342,7 +368,7 @@ Instead of listening to the silence:
 Section 1 - Main Parts
 
 [We've spent A LOT of time in this room, so describe it in excruciating detail.]
-Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]splash[roman type])[end if]. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
+Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]splash[roman type])[end if]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
@@ -354,10 +380,14 @@ The other-side-description is "[We] peek through the small duraplast window into
 
 The cot is a fixed in place enterable supporter in your cell. "A cot stands in one corner of the room." The description is "Flimsy frame, uncomfortable plastic surface [dash] it's a cot alright."
 Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
+After printing the name of the cot, omit contents in listing.
 
 Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets." The description is "Plain white bedsheets. Thin, scratchy, and not quite warm enough to keep you comfortable. It seems like all expenses were spared here.[unless the bedsheets are handled]Your military discipline dictates that you neatly fold the bedsheets when you get up in the morning.[end if]"
 
-[The sanitary station is an enterable container in the cell.][TODO]
+The sanitary station is an enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room."
+After printing the name of the sanitary station, omit contents in listing.
+
+Instead of examining down in the cell, say "The floor has a grey, rubbery non-slip surface."
 
 The corridor is a room. "Write me."
 
