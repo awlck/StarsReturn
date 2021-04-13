@@ -43,13 +43,11 @@ final question wording	only if victorious	topic	final response rule	final respon
 This is the author's notes rule:
 	say "(But those haven't been written yet.)".
 
-Every turn when the story has not ended finally: end the story finally.
-
 Book 2 - Mechanics
 
 The carrying capacity of the player is three.
 
-The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Caked helmet-to-boots in mud, [we]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise][We]['ve] seen better days[end if]."
+The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]The last time [we] looked this bad was probably way back in [our] bootcamp days.[line break]Caked helmet-to-boots in mud, [we]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise][We]['ve] seen better days[end if]."
 
 Chapter 1 - Time
 
@@ -327,13 +325,20 @@ Understand "fire [something] at [something]" as shooting it with (with nouns rev
 Understand "fire at [something] with [something]" as shooting it with.
 Understand "fire at [something ungunlike] with [a gun]" as shooting it with.
 
-Check shooting something with something:
+To shoot is a verb. To fire is a verb.
+
+A wreckage is a kind of thing.
+Wrecking relates one wreckage (called the remains) to one thing.
+The verb to be the original of means the wrecking relation.
+The verb to be the remains of means the reversed wrecking relation.
+
+Check shooting something with something (this is the shooting requirements rule):
 	if the player is not carrying a gun, say "You are pathetically unarmed!" instead;
 	if the second noun is not a gun, say "[The second noun] does not fire." instead;
 	if the player is not carrying any ammo clips, say "You are all out of ammunition" instead;
 	if the noun is the second noun, say "Nice trick if you can do it!" instead;
 	if the noun is the player, say "Even though you could punch yourself for allowing yourself to be taken captive, suicide isn't an option." instead;
-	if the noun is not the command center lock, say "Needless violence won't get you off this rock any faster. Also, you might still need [the noun] later on." instead.
+	if the remains of the noun is nothing, say "Needless violence won't get you off this rock any faster. Also, you might still need [the noun] later on." instead.
 
 To decide which number is the ammo-counter of (A - an ammo clip) (this is ammo-counting):
 	decide on the bullet count of A.
@@ -341,10 +346,24 @@ To decide which number is the ammo-counter of (A - an ammo clip) (this is ammo-c
 To decide which number is the sum of (N - number) and (M - number) (this is summing):
 	decide on N + M.
 
-Check shooting something with something when the player is carrying at least one ammo clip:
+Check shooting something with a gun when the player is carrying at least one ammo clip:
 	let L be the list of ammo clips carried by the player;
 	let S be the summing reduction of ammo-counting applied to L;
 	if S is zero, say "You are all out of ammunition" instead.
+
+Carry out shooting something (called the target) with a gun (called the weapon) (this is the default shooting rule):
+	let cnt be 30;
+	let clp be nothing;
+	repeat with c running through ammo clips carried by the player:
+		if the bullet count of c is less than cnt:
+			now cnt is the bullet count of c;
+			now clp is c;
+	decrease the bullet count of clp by 3;
+	now the remains of the target is in the holder of the target;
+	now the target is nowhere.
+
+Report shooting something (called the target) with a gun (called the weapon) (this is the default report shooting rule):
+	say "[We] [fire] a three-shot burst from [the weapon] at [the target], utterly destroying [them]." (A)
 
 Chapter 9 - Altered responses
 
