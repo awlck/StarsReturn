@@ -313,9 +313,12 @@ Understand "look [a direction]" as examining.
 
 Chapter 8 - Ranged Weapons
 
+[I am as of yet unsure whether this will ever be used.]
+
 A gun is a kind of thing. An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
 
 Definition: a thing is ungunlike if it is not a gun.
+Definition: an ammo clip is empty rather than non-empty if its bullet count is less than one.
 
 Shooting it with is an action applying to one touchable thing and one visible thing.
 Understand "shoot [something ungunlike] with [a gun]" as shooting it with.
@@ -324,46 +327,51 @@ Understand "shoot [something] at [something]" as shooting it with (with nouns re
 Understand "fire [something] at [something]" as shooting it with (with nouns reversed).
 Understand "fire at [something] with [something]" as shooting it with.
 Understand "fire at [something ungunlike] with [a gun]" as shooting it with.
+The shooting it with action has an object called the clip shot from.
 
-To shoot is a verb. To fire is a verb.
+To shoot is a verb. To fire is a verb. To discard is a verb.
 
 A wreckage is a kind of thing.
 Wrecking relates one wreckage (called the remains) to one thing.
 The verb to be the original of means the wrecking relation.
 The verb to be the remains of means the reversed wrecking relation.
 
-Check shooting something with something (this is the shooting requirements rule):
-	if the player is not carrying a gun, say "You are pathetically unarmed!" instead;
+Setting action variables for an actor shooting something with something:
+	let cnt be 30;
+	let clp be nothing;
+	[find the carried ammo clip with the lowest bullet count]
+	repeat with c running through ammo clips carried by the actor:
+		if the bullet count of c is less than cnt:
+			now cnt is the bullet count of c;
+			now clp is c;
+	now the clip shot from is clp.
+
+Check the player shooting something with something (this is the shooting requirements rule):
+	if the player is not carrying a gun, say "[regarding the actor][They] are pathetically unarmed!" instead;
 	if the second noun is not a gun, say "[The second noun] does not fire." instead;
-	if the player is not carrying any ammo clips, say "You are all out of ammunition" instead;
+	if the clip shot from is nothing, say "You are all out of ammunition" instead;
 	if the noun is the second noun, say "Nice trick if you can do it!" instead;
 	if the noun is the player, say "Even though you could punch yourself for allowing yourself to be taken captive, suicide isn't an option." instead;
 	if the remains of the noun is nothing, say "Needless violence won't get you off this rock any faster. Also, you might still need [the noun] later on." instead.
 
-To decide which number is the ammo-counter of (A - an ammo clip) (this is ammo-counting):
-	decide on the bullet count of A.
+Check an actor shooting something with something when the actor is not the player (this is the silent shooting requirements rule):
+	if the actor is not carrying a gun, stop the action;
+	if the second noun is not a gun, stop the action;
+	if the clip shot from is nothing, stop the action;
+	if the remains of the noun is nothing, stop the action.
 
-To decide which number is the sum of (N - number) and (M - number) (this is summing):
-	decide on N + M.
-
-Check shooting something with a gun when the player is carrying at least one ammo clip:
-	let L be the list of ammo clips carried by the player;
-	let S be the summing reduction of ammo-counting applied to L;
-	if S is zero, say "You are all out of ammunition" instead.
-
-Carry out shooting something (called the target) with a gun (called the weapon) (this is the default shooting rule):
-	let cnt be 30;
-	let clp be nothing;
-	repeat with c running through ammo clips carried by the player:
-		if the bullet count of c is less than cnt:
-			now cnt is the bullet count of c;
-			now clp is c;
-	decrease the bullet count of clp by 3;
+Carry out an actor shooting something (called the target) with a gun (called the weapon) (this is the default shooting rule):
+	decrease the bullet count of the clip shot from by 3;
 	now the remains of the target is in the holder of the target;
-	now the target is nowhere.
+	now the target is nowhere;
+	if the clip shot from is empty, now the clip shot from is nowhere.
 
-Report shooting something (called the target) with a gun (called the weapon) (this is the default report shooting rule):
-	say "[We] [fire] a three-shot burst from [the weapon] at [the target], utterly destroying [them]." (A)
+Report an actor shooting something (called the target) with a gun (called the weapon) (this is the default report shooting rule):
+	if the actor is the player:
+		say "[We] [fire] a three-shot burst from [the weapon] at [the target], utterly destroying [them]." (A);
+		if the clip shot from is empty, say "[We] [discard] the expended ammo clip." (B);
+	otherwise:
+		say "[The actor] [fire] at [the target]." (C)
 
 Chapter 9 - Altered responses
 
