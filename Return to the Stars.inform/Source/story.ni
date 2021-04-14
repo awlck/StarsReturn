@@ -116,6 +116,7 @@ Section 2 - Toxicity, Vacuum, Submersion
 
 [Here we lay out what happens when the player ventures into a hostile environment without adequate protection.]
 A room can be toxic, vacuum, submerged, or breathable. A room is usually breathable.
+An outdoor room is a kind of room. An outdoor room is usually toxic.
 
 The air supply rules are a room based rulebook.
 
@@ -308,9 +309,6 @@ Carry out looking through something when the other-side-description of the noun 
 Carry out looking through (this is the standard looking through rule):
 	say "[the other-side-description of the noun][paragraph break]".
 
-[And, tacked on here, looking in a compass direction.]
-Understand "look [a direction]" as examining.
-
 Chapter 8 - Ranged Weapons
 
 [I am as of yet unsure whether this will ever be used.]
@@ -378,6 +376,49 @@ Chapter 9 - Altered responses
 [Replacing some of the standard responses with something more thematic.]
 block sleeping rule response (A) is "You've spent so much of these past few weeks sleeping that you feel like you won't be tired again in a [italic type]long[roman type] time".
 
+Chapter 10 - Room Parts
+
+[Creating a floor/ground, ceiling/sky, and walls that are usually the same but can be customized on a per-room basis, and all without having to create each instance of the default as a thing (that would be anywhere from two to six things per room!). Modeled after how room parts work in the TADS3 library.]
+A room-part is a kind of privately-named backdrop.
+A room-floor is a kind of room-part. Understand "floor" or "ground" as a floor. The default-floor is a room-floor. The printed name is "floor". The default-ground is a room-floor. The printed name is "ground".
+A room-ceiling is a kind of room-part. Understand "ceiling" as a room-ceiling. The default-ceiling is a room-ceiling. The printed name is "ceiling".
+A room-sky is a kind of room-part. Understand "sky" as a room-sky. The default-sky is a room-sky. The printed name is "sky".
+A room-wall is a kind of room-part. Understand "wall" as a room-wall.
+A north-wall is a kind of room-wall. Understand "north/northern wall/--" as a north-wall. The default-north-wall is a north-wall. The printed name is "northern wall".
+A south-wall is a kind of room-wall. Understand "south/southern wall/--" as a south-wall. The default-south-wall is a south-wall. The printed name is "southern wall".
+A west-wall is a kind of room-wall. Understand "west/western wall/--" as a west-wall. The default-west-wall is a west-wall. The printed name is "western wall".
+An east-wall is a kind of room-wall. Understand "east/eastern wall/--" as a west-wall. The default-east-wall is an east-wall. The printed name is "eastern wall."
+
+[If we just wrote "A room has a room-top.", the property name would be equal to the kind name, confusing the compiler if we tried to create more instances of the kind later on.]
+A room has an object called the room-top-prop. The room-top-prop of a room is usually the default-ceiling.
+A room has an object called the room-floor-prop. The room-floor-prop of a room is usually the default-floor.
+A room has a list of room-walls called the walls. The walls of a room is usually {default-north-wall, default-west-wall, default-west-wall, default-east-wall}.
+
+The room-top-prop of an outdoor room is usually the default-sky.
+The room-floor-prop of an outdoor room is usually the default-ground.
+The walls of an outdoor room are usually {}.
+
+After deciding the scope of the player when not in darkness:
+	if the room-top-prop of the location is not nothing, place the room-top-prop of the location in scope;
+	if the room-floor-prop of the location is not nothing, place the room-floor-prop of the location in scope;
+	repeat with r running through walls of the location:
+		place r in scope.
+
+Check examining a direction (this is the redirect direction-examining to room parts or doors rule):
+	[when there is a door in that direction, examine the door]
+	let the portal be the door noun from the location;
+	if the portal is not nothing, try examining the portal instead;
+	[otherwise examine the room part in that direction, if any]
+	if the noun is down and the room-floor-prop of the location is not nothing, try examining the room-floor-prop of the location instead;
+	if the noun is up and the room-top-prop of the location is not nothing, try examining the room-top-prop of the location instead;
+	repeat with w running through the walls of the location:
+		if the noun is north and w is a north-wall, try examining w instead;
+		if the noun is south and w is a south-wall, try examining w instead;
+		if the noun is west and w is a west-wall, try examining w instead;
+		if the noun is east and w is an east-wall, try examining w instead.
+
+Understand "look [a direction]" as examining.
+
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
@@ -395,7 +436,7 @@ Instead of listening to the silence:
 Section 1 - Main Parts
 
 [We've spent A LOT of time in this room, so describe it in excruciating detail.]
-Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]splash[roman type])[end if]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
+Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]plink[roman type])[end if]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
@@ -414,7 +455,9 @@ Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets." Th
 The sanitary station is an enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room."
 After printing the name of the sanitary station, omit contents in listing.
 
-Instead of examining down in the cell, say "The floor has a grey, rubbery non-slip surface."
+[And here is our first custom room part.]
+The cell floor is a room-floor. The description is "The floor has a grey, rubbery non-slip surface." Understand "grey/-- rubber/rubbery/rubberized/rubberised/plastic/-- cell/-- floor" as the cell floor.
+The room-floor-prop of your cell is the cell floor.
 
 The corridor is a room. "Write me."
 
@@ -496,11 +539,11 @@ After deciding the scope of the player while in darkness and the location is the
 
 Section 4 - The Antecourt
 
-Prison antecourt is a toxic room.
+Prison antecourt is an outdoor room. "Write me."
 
 Section 5 - The Dock
 
-The prison docks are a toxic room. They are east of the prison antecourt.
+The prison docks are an outdoor room. They are east of the prison antecourt. "Write me."
 
 The water is an enterable scenery container in the prison docks.
 
@@ -514,9 +557,11 @@ Instead of jumping when the location is the prison docks:
 	say "(in the water)[command clarification break]";
 	try entering the water.
 
+Instead of entering the water when the player is not wearing the armor, say "And swim all the way to shore? You'd never make it in time before the atmosphere here got the better of you."
+
 Chapter 2 - Underwater
 
-A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark. The printed name is usually "at the bottom of the ocean". A sea-room is always submerged.
+A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark. The printed name is usually "at the bottom of the ocean". A sea-room is always submerged. The room-top-prop of a sea-room is usually nothing. The room-floor-prop of a sea-room is usually nothing. The walls of a sea-room are usually {}.
 
 The sea-region is a region. Seabottom-1, seabottom-2, seabottom-3, and seabottom-4 are in the sea-region.
 
@@ -585,11 +630,11 @@ A time allotment rule for going from a room in the sea-region (this is the walki
 
 Chapter 3 - Military Complex Proper
 
-The shore docks are a toxic room. They are up from seabottom-4 and north from seabottom-4.
+The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4.
 
 Section 1 - The Plaza
 
-The military complex plaza is a toxic room. It is north of the shore docks. The command center lock is here.
+The military complex plaza is an outdoor room. It is north of the shore docks. The command center lock is here.
 
 Section 2 - The Armory
 
@@ -609,7 +654,7 @@ Chapter 6 - The Launch Pad
 
 Section 1 - The Launch Pad
 
-The landing strip is north of the hangar.
+The landing strip is north of the hangar. It is an outdoor room.
 
 Section 2 - The Launch Control Room
 
