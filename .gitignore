@@ -1,5 +1,6 @@
 *.inform/Index
 *.inform/Build
+*.inform/Metadata.iFiction
 *.inform/Skein.skein
 *.inform/Release.blurb
 *.materials/Release

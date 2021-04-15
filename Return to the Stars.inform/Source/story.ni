@@ -41,7 +41,7 @@ final question wording	only if victorious	topic	final response rule	final respon
 "read some author's NOTES about this story"	true	"author/author's/-- note/notes"	author's notes rule	--
 
 This is the author's notes rule:
-	say "(But those haven't been written yet.)".
+	say "Thank you for playing 'Return to the Stars'![paragraph break]The general premise of needing to escape from captivity on an alien world occurred to me in early 2018, but as things often go in life, I was busy with other projects, so the idea was set aside and mostly forgotten about. The announcement of ParserComp 2021 brought the concept back to my mind, I reduced the scope somewhat, and in April [']21 I finally sat down and started working on the implementation in earnest [dash] partially out of sheer boredom, some five months into Germany's second COVID lockdown. Its release marks the first time I actually finish and publish a piece of IF.[paragraph break]With the minor history lesson out of the way, it is time for some acknowledgements. While it is often said in writing circles that 'everything has been done before', and that it's all about the individual author's take on a certain concept, I think it is only fair for me to acknowledge the major source of inspiration for 'Return': Marko Kloos['] [italic type]Frontlines[roman type] novel series. (And probably half a dozen others, subconsciously, but that's usually the one that comes to my mind when I think 'military SF'. I highly recommend it.) As such, the appearance of certain names or phrases, such as [italic type]space-borne infantry[roman type], is no coincidence. (Rest assured, however, that this is not just a barely-concealed fanficion.)".
 
 Book 2 - Mechanics
 
@@ -419,6 +419,11 @@ Check examining a direction (this is the redirect direction-examining to room pa
 
 Understand "look [a direction]" as examining.
 
+Instead of putting something on a room-floor, try dropping the noun.
+
+Instead of entering a room-floor when the holder of the player is not the location, try exiting.
+Instead of entering a room-floor when the holder of the player is the location, say "But [we] [are] already firmly standing on the ground."
+
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
@@ -452,8 +457,8 @@ After printing the name of the cot, omit contents in listing.
 
 Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets." The description is "Plain white bedsheets. Thin, scratchy, and not quite warm enough to keep you comfortable. It seems like all expenses were spared here.[unless the bedsheets are handled]Your military discipline dictates that you neatly fold the bedsheets when you get up in the morning.[end if]"
 
-The sanitary station is an enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room."
-After printing the name of the sanitary station, omit contents in listing.
+The sanitary station is an enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room." The description is "A brushed aluminum clamshell contraption for personal hygiene, not unlike showers you've used on some UNDC ships."
+After printing the name of the sanitary station, omit contents in listing. 
 
 [And here is our first custom room part.]
 The cell floor is a room-floor. The description is "The floor has a grey, rubbery non-slip surface." Understand "grey/-- rubber/rubbery/rubberized/rubberised/plastic/-- cell/-- floor" as the cell floor.
