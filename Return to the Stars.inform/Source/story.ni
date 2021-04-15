@@ -71,9 +71,9 @@ The player has a number called the air. The air of the player is 5.
 The armor has a number called the air. The air of the armor is 100.
 The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
 The armor can be muddy or clean. The armor is clean.
-The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a carrying pack, and it can double as a space suit, providing air in hostile environments.[if the armor is muddy][paragraph break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[end if]".
+The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump puch, and it can double as a space suit, providing air in hostile environments.[if the armor is muddy][paragraph break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[end if]".
 
-The pack is a part of the armor. It is a player's holdall. The carrying capacity of the player is 3.
+The dump pouch is a part of the armor. It is a player's holdall. The carrying capacity of the player is 3.
 
 [There is little point to the character lugging around the pieces of the armor, so we disallow explicit takes and skip the implicit one when wearing it.]
 The carrying requirements rule does nothing when the current action is Wearing and the noun is the armor. The can't wear what's not held rule does nothing when the noun is the armor.
@@ -420,6 +420,7 @@ Check examining a direction (this is the redirect direction-examining to room pa
 Understand "look [a direction]" as examining.
 
 Instead of putting something on a room-floor, try dropping the noun.
+Instead of removing something from a room-floor, try taking the noun.
 
 Instead of entering a room-floor when the holder of the player is not the location, try exiting.
 Instead of entering a room-floor when the holder of the player is the location, say "But [we] [are] already firmly standing on the ground."
@@ -443,6 +444,9 @@ Section 1 - Main Parts
 [We've spent A LOT of time in this room, so describe it in excruciating detail.]
 Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]plink[roman type])[end if]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
+The player is wearing a set of fatigues. The description of the fatigues is "A set of standard-issue combat fatigues[if the number of things held by the player is 1], the only possession you have left at the moment[end if].". Understand "uniform" or "fatigue" or "fatigues" or "blouse" or "pants" or "trousers" or "clothes" or "camo" or "camouflage" or "battle/combat dress" as the fatigues.
+Instead of taking off the fatigues, say "You'd rather not strip naked.[if the location is your cell] It's not exactly warm in here, anyways.[end if]". 
+
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
 	instead say "It's too far up to throw a good punch at the grate."
@@ -457,11 +461,12 @@ After printing the name of the cot, omit contents in listing.
 
 Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets." The description is "Plain white bedsheets. Thin, scratchy, and not quite warm enough to keep you comfortable. It seems like all expenses were spared here.[unless the bedsheets are handled]Your military discipline dictates that you neatly fold the bedsheets when you get up in the morning.[end if]"
 
-The sanitary station is an enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room." The description is "A brushed aluminum clamshell contraption for personal hygiene, not unlike showers you've used on some UNDC ships."
-After printing the name of the sanitary station, omit contents in listing. 
+The sanitary station is a fixed in place enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room." The description is "A brushed aluminum clamshell contraption for personal hygiene, not unlike showers you've used on some UNDC ships."
+Instead of entering the sanitary station, say "You've already showered today."
+After printing the name of the sanitary station, omit contents in listing.
 
 [And here is our first custom room part.]
-The cell floor is a room-floor. The description is "The floor has a grey, rubbery non-slip surface." Understand "grey/-- rubber/rubbery/rubberized/rubberised/plastic/-- cell/-- floor" as the cell floor.
+The cell floor is a room-floor. The description is "The floor has a grey, rubbery non-slip surface." Understand "grey/gray/-- rubber/rubbery/rubberized/rubberised/plastic/-- cell/-- floor" as the cell floor.
 The room-floor-prop of your cell is the cell floor.
 
 The corridor is a room. "Write me."
