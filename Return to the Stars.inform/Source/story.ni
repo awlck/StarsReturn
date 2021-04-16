@@ -45,11 +45,20 @@ This is the author's notes rule:
 
 Book 2 - Mechanics
 
+Chapter 1 - Player Description
+
 The carrying capacity of the player is three.
 
 The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Covered in a generous amount of ocean mud [dash] [we] [haven't] looked this bad since bootcamp, probably. [We]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise][We]['ve] seen better days[end if]."
 
-Chapter 1 - Time
+The player is wearing a set of fatigues. The description of the fatigues is "A set of standard-issue combat fatigues[if the number of things held by the player is 1], the only possession you have left at the moment[end if].". Understand "uniform" or "fatigue" or "fatigues" or "blouse" or "pants" or "trousers" or "clothes" or "camo" or "camouflage" or "battle/combat dress" as the fatigues.
+Instead of taking off the fatigues, say "You'd rather not strip naked.[if the location is your cell] It's not exactly warm in here, anyways.[end if]".
+
+Instead of listening to the player:
+	if we have not eaten, say "Your stomach is growling.";
+	otherwise continue the action.
+
+Chapter 2 - Time
 
 [Time is a somewhat important concept in this story, so we give it a little extra attention.]
 The work duration is a number that varies.
@@ -63,17 +72,17 @@ Every turn (this is the apply action-specific time rule):
 	let the work duration be the number produced by the time allotment rules;[* we could just as well have written each time allotment rule to set 'work duration' directly, but this feels better]
 	follow the air supply rules for the location.
 
-Chapter 2 - Armor, Air, and Toxicity
+Chapter 3 - Armor, Air, and Toxicity
 
 Section 1 - Armor
 
 The player has a number called the air. The air of the player is 5.
 The armor has a number called the air. The air of the armor is 100.
-The armor is wearable and proper-named. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" as the armor.
+The armor is wearable and proper-named. It is a player's holdall. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "dump" or "pouch" or "sack" or "holdall" as the armor.
 The armor can be muddy or clean. The armor is clean.
 The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump puch, and it can double as a space suit, providing air in hostile environments.[if the armor is muddy][paragraph break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[end if]".
 
-The dump pouch is a part of the armor. It is a player's holdall. The carrying capacity of the player is 3.
+use player's holdall to avoid exceeding carrying capacity rule response (A) is "(putting [the transferred item] into [the current working sack][if the current working sack is the armor]'s dump pouch[end if] to make room)[command clarification break]".
 
 [There is little point to the character lugging around the pieces of the armor, so we disallow explicit takes and skip the implicit one when wearing it.]
 The carrying requirements rule does nothing when the current action is Wearing and the noun is the armor. The can't wear what's not held rule does nothing when the noun is the armor.
@@ -204,12 +213,12 @@ To say (relevant time - a time) as military time:
     let M be the minutes part of relevant time;
     say "[if H is less than 10]0[end if][H][if M is less than 10]0[end if][M]hrs".
 
-Chapter 3 - Dummy Objects for saying
+Chapter 4 - Dummy Objects for saying
 
 [I hadn't decided on a name for the alien faction early on, so I created this dummy object and used a [the aliens] text substitution wherever I wanted to mention them in the story. Once I picked a name, I simply set the printed name of this object.]
 Some aliens are a person. The printed name is "shwabolians". [Or something like that ???]
 
-Chapter 4 - Concepts Can Be Known
+Chapter 5 - Concepts Can Be Known
 
 A concept is a kind of value.
 
@@ -218,7 +227,7 @@ The verb to know means the knowledge relation.
 
 The access codes are a concept.
 
-Chapter 5 - Grates and Air Ducts
+Chapter 6 - Grates and Air Ducts
 
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 
@@ -278,7 +287,7 @@ Instead of climbing an air duct, try entering the noun.
 
 Instead of crawling into an air duct when the player is wearing the armor, say "The duct is just large enough for a human to crawl through [dash] bulky suit of armor not included."
 
-Chapter 6 - Looking at Buildings
+Chapter 7 - Looking at Buildings
 
 [This is to allow commands such as "x armory" or "enter armory" when the armory is an adjacent room.]
 A facade is a kind of scenery thing. A facade has a room called the associated room.
@@ -288,7 +297,7 @@ Instead of entering a facade (called the building):
 	if direct is nothing, say "[We] [can't] [seem] to find a way inside [the noun].";
 	otherwise try going direct.
 
-Chapter 7 - Looking Through
+Chapter 8 - Looking Through
 
 [There are a few locations within the game where the player may look through something to get a peek into another room.]
 A thing has some text called the other-side-description.
@@ -309,7 +318,7 @@ Carry out looking through something when the other-side-description of the noun 
 Carry out looking through (this is the standard looking through rule):
 	say "[the other-side-description of the noun][paragraph break]".
 
-Chapter 8 - Ranged Weapons
+Chapter 9 - Ranged Weapons
 
 [I am as of yet unsure whether this will ever be used.]
 
@@ -371,12 +380,12 @@ Report an actor shooting something (called the target) with a gun (called the we
 	otherwise:
 		say "[The actor] [fire] at [the target]." (C)
 
-Chapter 9 - Altered responses
+Chapter 10 - Altered responses
 
 [Replacing some of the standard responses with something more thematic.]
 block sleeping rule response (A) is "You've spent so much of these past few weeks sleeping that you feel like you won't be tired again in a [italic type]long[roman type] time".
 
-Chapter 10 - Room Parts
+Chapter 11 - Room Parts
 
 [Creating a floor/ground, ceiling/sky, and walls that are usually the same but can be customized on a per-room basis, and all without having to create each instance of the default as a thing (that would be anywhere from two to six things per room!). Modeled after how room parts work in the TADS3 library.]
 A room-part is a kind of privately-named backdrop.
@@ -444,9 +453,6 @@ Section 1 - Main Parts
 [We've spent A LOT of time in this room, so describe it in excruciating detail.]
 Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]plink[roman type])[end if]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
-The player is wearing a set of fatigues. The description of the fatigues is "A set of standard-issue combat fatigues[if the number of things held by the player is 1], the only possession you have left at the moment[end if].". Understand "uniform" or "fatigue" or "fatigues" or "blouse" or "pants" or "trousers" or "clothes" or "camo" or "camouflage" or "battle/combat dress" as the fatigues.
-Instead of taking off the fatigues, say "You'd rather not strip naked.[if the location is your cell] It's not exactly warm in here, anyways.[end if]". 
-
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
 	instead say "It's too far up to throw a good punch at the grate."
@@ -512,6 +518,9 @@ Before armor-wear-preparation when the player is carrying the helmet:
 	now the plates are nowhere;
 	now the armor is in the location;
 	try wearing the armor instead.
+
+A ration bar is a kind of edible thing.
+On the shelves are five ration bars.
 
 Section 3 - Basement
 
