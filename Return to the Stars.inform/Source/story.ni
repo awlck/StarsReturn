@@ -78,7 +78,7 @@ Section 1 - Armor
 
 The player has a number called the air. The air of the player is 5.
 The armor has a number called the air. The air of the armor is 100.
-The armor is wearable and proper-named. It is a player's holdall. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "dump" or "pouch" or "sack" or "holdall" as the armor.
+The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "dump" or "pouch" or "sack" or "holdall" as the armor.
 The armor can be muddy or clean. The armor is clean.
 The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump puch, and it can double as a space suit, providing air in hostile environments.[if the armor is muddy][paragraph break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[end if]".
 
@@ -432,13 +432,18 @@ Instead of putting something on a room-floor, try dropping the noun.
 Instead of removing something from a room-floor, try taking the noun.
 
 Instead of entering a room-floor when the holder of the player is not the location, try exiting.
-Instead of entering a room-floor when the holder of the player is the location, say "But [we] [are] already firmly standing on the ground."
+Instead of entering a room-floor when the holder of the player is the location, say "But [we] [are] already firmly standing on [the room-floor-prop of the location]."
+
+Understand the command "stand" as something new.
+Standing on is an action applying to one visible thing.
+Understand "stand on/in [something]" as standing on.
+Check standing on something: try entering the noun instead.
 
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
 
-Test prison with "x me / i / smell / look through door / get on cot / get up / pull grate / enter duct / crawl / kick grate / out / switch doors off / up / x helmet / take helmet / s / e / e / x plates / take plates / x armor / x me / i / w / open airlock / n / smell / e / jump / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
+Test prison with "x me / listen to me / i / x fatigues / smell / x floor / x down / x north / look through door / x cot / get on cot / get up / x sanitary station / enter station / x air duct / pull grate / enter duct / crawl / kick grate / out / switch doors off / up / x helmet / take helmet / s / e / e / x plates / take plates / x armor / x me / i / take all ration bars / i / eat ration / listen to me / w / open airlock / n / smell / e / jump / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
 
 Cell-complex is a region. Your cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
 
@@ -593,7 +598,9 @@ The ocean floor is a backdrop in the sea-region. The description is "Silt has ac
 Instead of taking the ocean floor, say "You scoop up a handful of silt, but it quickly runs through your fingers."
 Instead of examining down when the location is in the sea-region, try examining the ocean floor.
 
-Instead of entering the ocean floor: say "You'd feel a bit silly lying in the silt."
+
+Instead of standing on the ocean floor, say "But [we] [are] already standing firmly on (or rather, [italic type]in[roman type]) the ocean floor."
+Instead of entering the ocean floor, say "You'd feel a bit silly lying in the silt."
 
 Instead of going up in the sea-region, say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided."
 
@@ -649,13 +656,23 @@ A time allotment rule for going from a room in the sea-region (this is the walki
 
 Chapter 3 - Military Complex Proper
 
+Section 1 - The Docks
+
 The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4.
 
-Section 1 - The Plaza
+Sliding down is an action applying to one touchable thing.
+Understand "slide down [something]" as sliding down.
+Check sliding down something: say "[regarding the noun][That's] not something [we] can slide down."
+
+The muddy incline is scenery in the shore docks.
+Instead of sliding down the muddy incline, try going south.
+Before going south from the shore docks, say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
+
+Section 2 - The Plaza
 
 The military complex plaza is an outdoor room. It is north of the shore docks. The command center lock is here.
 
-Section 2 - The Armory
+Section 3 - The Armory
 
 The armory is west of the plaza. It is toxic.
 The assault rifle is a gun in the armory.
