@@ -83,6 +83,8 @@ The armor can be muddy or clean. The armor is clean.
 The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump puch, and it can double as a space suit, providing air in hostile environments.[if the armor is muddy][paragraph break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[end if]".
 
 use player's holdall to avoid exceeding carrying capacity rule response (A) is "(putting [the transferred item] into [the current working sack][if the current working sack is the armor]'s dump pouch[end if] to make room)[command clarification break]".
+examine containers rule response (A) is "In [the noun][if the noun is the armor]'s dump pouch[end if] ".
+examine containers rule response (B) is "[The noun][if the noun is the armor]'s dump pouch[end if] [are] empty.".
 
 [There is little point to the character lugging around the pieces of the armor, so we disallow explicit takes and skip the implicit one when wearing it.]
 The carrying requirements rule does nothing when the current action is Wearing and the noun is the armor. The can't wear what's not held rule does nothing when the noun is the armor.
@@ -443,7 +445,7 @@ Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
 
-Test prison with "x me / listen to me / i / x fatigues / smell / x floor / x down / x north / look through door / x cot / get on cot / get up / x sanitary station / enter station / x air duct / pull grate / enter duct / crawl / kick grate / out / switch doors off / up / x helmet / take helmet / s / e / e / x plates / take plates / x armor / x me / i / take all ration bars / i / eat ration / listen to me / w / open airlock / n / smell / e / jump / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
+Test prison with "x me / listen to me / i / x fatigues / smell / x floor / x down / x north / look through door / x cot / get on cot / get up / x sanitary station / enter station / x air duct / pull grate / enter duct / crawl / kick grate / out / switch doors off / up / x helmet / take helmet / s / e / e / x plates / take plates / x armor / x me / i / take all ration bars / i / eat ration / listen to me / w / open airlock / n / smell / e / jump / turn on lamp / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
 
 Cell-complex is a region. Your cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
 
@@ -554,6 +556,10 @@ Carry out switching off the lights switch:
 	now all rooms in cell-complex are dark.
 Carry out switching on the lights switch:
 	now all rooms in cell-complex are lit.
+Carry out switching off the doors switch:
+	now all doors in cell-complex are unlocked.
+Carry out switching on the doors switch:
+	now all doors in cell-complex are locked.
 
 Rule for printing the description of a dark room when the location is the installations room:
 	say "It is pitch dark, save for a small light next to the lights switch beckoning you to switch the lights back on."
@@ -662,7 +668,7 @@ The shore docks are an outdoor room. They are up from seabottom-4 and north from
 
 Sliding down is an action applying to one touchable thing.
 Understand "slide down [something]" as sliding down.
-Check sliding down something: say "[regarding the noun][That's] not something [we] can slide down."
+Check sliding down something: say "[regarding the noun][Those]['re] not something [we] can slide down."
 
 The muddy incline is scenery in the shore docks.
 Instead of sliding down the muddy incline, try going south.
