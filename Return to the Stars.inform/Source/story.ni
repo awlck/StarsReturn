@@ -69,7 +69,7 @@ The time allotment rules are a rulebook producing a number.
 The last time allotment rule (this is the default time rule): rule succeeds with result 1.
 
 Every turn (this is the apply action-specific time rule):
-	let the work duration be the number produced by the time allotment rules;[* we could just as well have written each time allotment rule to set 'work duration' directly, but this feels better]
+	now the work duration is the number produced by the time allotment rules;[* we could just as well have written each time allotment rule to set 'work duration' directly, but this feels better]
 	follow the air supply rules for the location.
 
 Chapter 3 - Armor, Air, and Toxicity
@@ -96,7 +96,7 @@ Report wearing the armor for the first time:
 	rule succeeds.
 
 [Likewise, immediately deposit the armor on the ground when taking it off.]
-After taking off the armor:
+After taking off the armor (this is the deposit armor immediately rule):
 	silently try dropping the armor;
 	say "You take off the armor, setting the pieces down on the ground in front of you."
 	
@@ -104,6 +104,8 @@ After wearing the armor (this is the take a deep breath rule):
 	decrease the air of the armor by (5 minus the air of the player);
 	now the air of the player is 5;
 	continue the action.
+
+A time allotment rule for wearing the armor (this is the armor-donning is complex rule): rule succeeds with result 2.
 
 There is a device called the helmet lamp.[* This somewhat stilted syntax is the only way we can force Inform to create "the helmet lamp" and (later on) "a helmet" as separate things. By default, Inform would assume that "helmet" is merely a shorthand form of "helmet lamp" and treat them as one object -- causing errors, because they aren't, of course.] It is part of the armor.
 Understand "helmet/-- lamp/light" as the helmet lamp.
@@ -227,7 +229,7 @@ A concept is a kind of value.
 Knowledge relates one person to various concepts.
 The verb to know means the knowledge relation.
 
-The access codes are a concept.
+The prison warden's access codes are a concept.
 
 Chapter 6 - Grates and Air Ducts
 
