@@ -53,6 +53,8 @@ The description of the player is "[if the player is wearing the armor and the ar
 
 The player is wearing a set of fatigues. The description of the fatigues is "A set of standard-issue combat fatigues[if the number of things held by the player is 1], the only possession you have left at the moment[end if].". Understand "uniform" or "fatigue" or "fatigues" or "blouse" or "pants" or "trousers" or "clothes" or "camo" or "camouflage" or "battle/combat dress" as the fatigues.
 Instead of taking off the fatigues, say "You'd rather not strip naked.[if the location is your cell] It's not exactly warm in here, anyways.[end if]".
+Report smelling the fatigues:
+	say "You've been wearing the same clothes for the past few weeks, so they don't exactly smell fresh anymore."
 
 Instead of listening to the player:
 	if we have not eaten, say "Your stomach is growling.";
