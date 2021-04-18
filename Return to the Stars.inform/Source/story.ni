@@ -236,6 +236,7 @@ The prison warden's access codes are a concept.
 Chapter 6 - Grates and Air Ducts
 
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
+The description of an air duct is usually "It exudes a stream of cool, fresh air."
 
 A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named. The indefinite article of a grate is usually "the".
 Understand "flimsy/rusty/old/-- grate/grid/grating/bars" as a grate.
