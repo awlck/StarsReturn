@@ -491,7 +491,7 @@ Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
 After printing the name of the cot, omit contents in listing.
 
 Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets."
-The description is "Plain white bedsheets. Thin, scratchy, and not quite warm enough to keep you comfortable. It seems like all expenses were spared here.[unless the bedsheets are handled]Your military discipline dictates that you neatly fold the bedsheets when you get up in the morning.[end if]".
+The description is "Plain white bedsheets. Thin, scratchy, and not quite warm enough to keep you comfortable. It seems like all expenses were spared here.[unless the bedsheets are handled] Your military discipline dictates that you neatly fold the bedsheets when you get up in the morning.[end if]".
 Understand "sheets" as the bedsheets.
 
 The sanitary station is a fixed in place enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room." The description is "A brushed aluminum clamshell contraption for personal hygiene, not unlike showers you've used on some UNDC ships."
