@@ -264,8 +264,11 @@ Instead of pulling a grate which is part of an air duct (called the conduit):
 
 Connection relates one air duct to another (called the other end). The verb to connect to means the connection relation.
 
-Crawling into is an action applying to one touchable thing. Understand "crawl through/into/up/down/-- [an air duct]" as crawling into. Understand "crawl" as crawling into.
+Crawling into is an action applying to one touchable thing.
+Understand "crawl through/into/up/down/-- [something]" as crawling into.
+Understand "crawl" as crawling into.
 To crawl is a verb.
+Does the player mean crawling into an air duct: it is likely.
 
 Rule for supplying a missing noun while crawling into:
 	if the holder of the player is an air duct, now the noun is the holder of the player;
@@ -275,7 +278,7 @@ Check an actor crawling into a closed air duct (called the conduit) when the pla
 	instead say "The grate is in the way."
 
 Check an actor crawling into something that is not an air duct (this is the default block crawling rule):
-	instead say "[The actor] [can't] crawl through [regarding the noun][them]."
+	instead say "[The actor] [can't] crawl through [regarding the noun][those]."
 
 Carry out an actor crawling into an air duct (this is the travel through air ducts rule):
 	let the target be the other end of the noun;
@@ -443,6 +446,19 @@ Standing on is an action applying to one visible thing.
 Understand "stand on/in [something]" as standing on.
 Check standing on something: try entering the noun instead.
 
+Lying on is an action applying to one touchable thing.
+Understand "lie down/-- on/in [something]" or "lay down/-- on/in [something]" as lying on.
+Understand "lie down" or "lay down" as lying on.
+Rule for supplying a missing noun while lying on:
+	let the ground be the room-floor-prop of the location;
+	if the ground is not nothing:
+		say "(on [the ground])[command clarification break]";
+		now the noun is the ground.
+Check lying on a supporter: try entering the noun instead.
+Check lying on a container: try entering the noun instead.
+Check lying on:
+	say "Now is not the time for rest. Besides, [we]['ve] done nothing but sleep for the past few weeks, so [we]['re] not particularly tired."
+
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
@@ -496,7 +512,7 @@ Before taking the helmet for the first time, say "You carefully disconnect the w
 
 East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
 
-The airlock is a door. "[airlock-desc]". The airlock is north of the front office and south of the prison antecourt.
+The airlock is a locked door. "[airlock-desc]". The airlock is north of the front office and south of the prison antecourt.
 
 To say airlock-desc:
 	if the player is in the front office, say "The way out of the building, to the north, leads through [if the player has not been in the military complex plaza]what appears to be [end if]an airlock.";
@@ -577,23 +593,24 @@ Section 5 - The Dock
 
 The prison docks are an outdoor room. They are east of the prison antecourt. "Write me."
 
-The water is an enterable scenery container in the prison docks.
+[The water is an enterable scenery container in the prison docks.]
+The water is a backdrop. It is in the prison docks and the shore docks.
 
 Instead of entering the water when the player is wearing the armor, try going down.
 
-Understand "jump in/into [something]" as entering when the location is the prison docks.
-Does the player mean entering something that is not a container: it is unlikely.
+Understand "jump in/into [something]" or "dive in/into [something]" as entering.
+[Does the player mean entering something that is not a container: it is unlikely.]
 Does the player mean entering the water: it is likely.
 
-Instead of jumping when the location is the prison docks:
+Instead of jumping when the location is the prison docks or the location is the shore docks:
 	say "(in the water)[command clarification break]";
 	try entering the water.
 
-Instead of entering the water when the player is not wearing the armor, say "And swim all the way to shore? You'd never make it in time before the atmosphere here got the better of you."
+Instead of entering the water when the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you."
 
 Chapter 2 - Underwater
 
-A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark. The printed name is usually "at the bottom of the ocean". A sea-room is always submerged. The room-top-prop of a sea-room is usually nothing. The room-floor-prop of a sea-room is usually nothing. The walls of a sea-room are usually {}.
+A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark. The printed name is usually "at the bottom of the ocean". A sea-room is always submerged. The room-top-prop of a sea-room is usually the sea. The room-floor-prop of a sea-room is usually the ocean floor. The walls of a sea-room are usually {}.
 
 The sea-region is a region. Seabottom-1, seabottom-2, seabottom-3, and seabottom-4 are in the sea-region.
 
@@ -602,15 +619,26 @@ Instead of going nowhere when the location is in the sea-region, say "Best not t
 The sea is a backdrop in the sea-region. The description is "There are about ten meter's worth of sea water above you. As you exhale, you can see the bubbles of your breath rising to the surface." Understand "ocean" or "sea" or "water" or "air/-- bubble/bubbles" as the sea.
 Instead of examining up when the location is in the sea-region, try examining the sea.
 
-The ocean floor is a backdrop in the sea-region. The description is "Silt has accumulated in the calmer waters between the shore and the prison island, enough to seriously hamper your movement down here." Understand "sea/ocean/-- bottom/floor/silt" as the ocean floor.
+The ocean floor is a backdrop in the sea-region. The description is "Silt has accumulated in the calmer waters between the shore and the prison island, enough to seriously hamper your movement down here." Understand "sea/ocean/-- bottom/ground/floor/silt" as the ocean floor.
 Instead of taking the ocean floor, say "You scoop up a handful of silt, but it quickly runs through your fingers."
 Instead of examining down when the location is in the sea-region, try examining the ocean floor.
 
-
 Instead of standing on the ocean floor, say "But [we] [are] already standing firmly on (or rather, [italic type]in[roman type]) the ocean floor."
 Instead of entering the ocean floor, say "You'd feel a bit silly lying in the silt."
+Report jumping when the location is in the sea-region:
+	say "You jump on the spot, kicking clouds of sediment up into the water around you."
 
-Instead of going up in the sea-region, say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided."
+[An alternate ending.]
+Surrendering is an action applying to one topic. Understand "give up hope/--" or "capitulate" or "fall" or "succumb" or "succumb to/-- [text]" or "give in to [text]" or "surrender" or "surrender to/-- [text]" or "abandon your/my/-- me/myself/you/yourself/hope/faith/life/existence" or "resign" or "stop fighting/breathing" or "despair" as surrendering.
+Check surrendering: say "Not in a thousand years!" instead.
+Lying on the ocean floor is giving up. Entering the ocean floor is giving up. Sleeping is giving up. Waiting is giving up. Surrendering is giving up.
+Instead of giving up when the air of the armor is less than five and the location is in the sea-region:
+	now the air of the armor is zero;
+	say "Looking at the remaining air timer on your HUD, a strange sense of calmness overcomes you: you won't make it out of this alive, and that's okay. After some fifteen years of waging war, you have done your share. You can rest now.[line break]The ocean floor looks soft and inviting. You lay down, the silt conforming to the shape of your armored body, cushioning the bulky plates and sharp angles that typically make sleeping in armor a rather futile effort. Your armor's [CO2] scrubbers are still working, and the heating elements will keep you comfortable. [italic type]There are worse ways to go...[roman type], you think to yourself as you slowly slip into unconsciousness, with a hint of a smile on your face.";
+	end the story finally saying "You have made peace."
+Test alternate with "pull grate / crawl into duct / kick grate / out / turn off doors / up / take helmet / s / e / e / take plates / w / n / e / turn on helmet light / jump / air-drain / n / z / lie down".
+
+Instead of going up in the sea-region (this is the can't swim in armor rule), say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided."
 
 Instead of going up in seabottom-4, try going north.
 
@@ -659,7 +687,11 @@ Report going to a room in the sea-region from a room in the sea-region (this is 
 	say "You slowly trudge [noun]ward.";
 	continue the action.
 
-A time allotment rule for going from a room in the sea-region (this is the walking in the sea takes longer rule):
+[A time allotment rule for going from a room in the sea-region (this is the walking in the sea takes longer rule):
+	rule succeeds with result 5.]
+A time allotment rule for going north when the location is in the sea-region or the location is the shore docks:
+	rule succeeds with result 5.
+A time allotment rule for going south when the location is in the sea-region:
 	rule succeeds with result 5.
 
 Chapter 3 - Military Complex Proper
@@ -675,6 +707,7 @@ Check sliding down something: say "[regarding the noun][Those]['re] not somethin
 The muddy incline is scenery in the shore docks.
 Instead of sliding down the muddy incline, try going south.
 Before going south from the shore docks, say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
+Before going down from the shore docks for the first time, say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
 
 Section 2 - The Plaza
 
@@ -707,3 +740,15 @@ The control tower is up from the hangar.
 The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
 
 Chapter 7 - Space
+
+Book 4 - Debug Commands - Not for Release
+
+Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
+Carry out air-draining:
+	now the air of the armor is 10;
+	say "[bracket]Drained.[close bracket][paragraph break]".
+
+After reading a command (this is the ignore beta-comments rule): 
+	if the player's command matches the regular expression "^\p": 
+		say "([one of]Oh no! [or]How embarassing... [or]I'll look into that. [or][at random]Noted.)"; 
+		reject the player's command.
