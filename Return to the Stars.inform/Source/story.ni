@@ -126,6 +126,10 @@ Instead of smelling the armor when the player is not wearing the armor and the a
 
 [The following is gleaned from Michael J. Robert's "Return to Ditch Day":]
 Instead of rubbing the armor when the armor is muddy, say "You try to wipe the mud off, but all you really accomplish is smearing it around."
+Understand "wipe off [something]" or "wipe [something] off" or "wipe [something]" or "wipe the/-- mud/-- off/-- [something]" as rubbing.
+
+Report touching something that is not a person while the player is wearing the armor:
+	say "Through [our] armored gloves, [we] don't really feel much of anything."
 
 Section 2 - Toxicity, Vacuum, Submersion
 
@@ -171,6 +175,9 @@ An air supply rule for a vacuum room when the air of the player is at most zero:
 After going to a toxic room for at least the second time:
 	if the player is not wearing the armor, say "Your headache quickly returns as you venture outside again";
 	continue the action.
+
+Check eating when the location is not breathable and the player is wearing the armor:
+	say "That would require raising [our] faceplate, which would not be advisable right now." instead.
 
 Section 3 - Status Bar
 
@@ -330,12 +337,14 @@ Carry out looking through (this is the standard looking through rule):
 
 Chapter 9 - Ranged Weapons
 
-[I am as of yet unsure whether this will ever be used.]
+[And, really just because we can't have a MilSF-themed game without guns in it...]
 
 A gun is a kind of thing. An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
 
 Definition: a thing is ungunlike if it is not a gun.
 Definition: an ammo clip is empty rather than non-empty if its bullet count is less than one.
+
+A standoff-outcome is a kind of value. The standoff-outcomes are full-miss, near-miss, shot-dodged, glancing-hit, and deadly-hit.
 
 Shooting it with is an action applying to one touchable thing and one visible thing.
 Understand "shoot [something ungunlike] with [a gun]" as shooting it with.
@@ -345,16 +354,17 @@ Understand "fire [something] at [something]" as shooting it with (with nouns rev
 Understand "fire at [something] with [something]" as shooting it with.
 Understand "fire at [something ungunlike] with [a gun]" as shooting it with.
 The shooting it with action has an object called the clip shot from.
+The shooting it with action has a standoff-outcome called the shot-result.
 
-To shoot is a verb. To fire is a verb. To discard is a verb.
+To shoot is a verb. To fire is a verb. To discard is a verb. To glance is a verb. To bring is a verb. To whirr is a verb. To dodge is a verb. To stand is a verb. To zero is a verb. To unleash is a verb. To discharge is a verb. To cock is a verb. To train is a verb. To pop is a verb.
 
 A wreckage is a kind of thing.
 Wrecking relates one wreckage (called the remains) to one thing.
-The verb to be the original of means the wrecking relation.
-The verb to be the remains of means the reversed wrecking relation.
+The verb to be the original of means the reversed wrecking relation.
+The verb to be the remains of means the wrecking relation.
 
 Setting action variables for an actor shooting something with something:
-	let cnt be 30;
+	let cnt be 31;
 	let clp be nothing;
 	[find the carried ammo clip with the lowest bullet count]
 	repeat with c running through ammo clips carried by the actor:
@@ -379,16 +389,81 @@ Check an actor shooting something with something when the actor is not the playe
 
 Carry out an actor shooting something (called the target) with a gun (called the weapon) (this is the default shooting rule):
 	decrease the bullet count of the clip shot from by 3;
-	now the remains of the target is in the holder of the target;
-	now the target is nowhere;
-	if the clip shot from is empty, now the clip shot from is nowhere.
+	if the target is the player:
+		[now the shot-result is a random standoff-outcome;]
+		let c be a random number between 1 and 10;
+		if c is 1:
+			now the shot-result is deadly-hit;
+		otherwise if c is 2:
+			now the shot-result is shot-dodged;
+		otherwise if c is less than six:
+			now the shot-result is glancing-hit;
+		otherwise if c is less than nine:
+			now the shot-result is near-miss;
+		otherwise:
+			now the shot-result is full-miss;
+	otherwise if the target is a person:
+		if a random chance of four in five succeeds:
+			now the shot-result is deadly-hit;
+		otherwise:
+			now the shot-result is near-miss;
+	otherwise:
+		now the shot-result is deadly-hit;
+	if the target is not the player and the shot-result is deadly-hit:
+		now the remains of the target is in the holder of the target;
+		now the target is nowhere;
+	if the clip shot from is empty:
+		now the bullet count of the clip shot from is 30;
+		now the clip shot from is in ammo-temp-storage.
 
 Report an actor shooting something (called the target) with a gun (called the weapon) (this is the default report shooting rule):
 	if the actor is the player:
 		say "[We] [fire] a three-shot burst from [the weapon] at [the target], utterly destroying [them]." (A);
 		if the clip shot from is empty, say "[We] [discard] the expended ammo clip." (B);
+	otherwise if the target is the player:
+		say "[The actor] [one of][take] aim[or][bring] [their] [weapon] to bear[or][cock] [their] [weapon][or][train] [their] [weapon] at [us][or][zero] in on [us][at random] and [one of][unleash][or][shoot][or][fire][or][discharge][or][pop][at random] a volley in [our] direction! [run paragraph on]";
+		if the shot-result is:
+			-- deadly-hit:
+				say "At point-blank range, [the armor] [stand] little chance: leaving a trail of searing hot pain, the bullet carves a path through [our] [one of]head[or]chest[at random] before coming out on the other side, leaving [our] innards distributed on [the room-floor-prop of the location][unless the location is an outdoor room] and the wall behind [us][end unless].";
+				end the story saying "You have been shot";
+			-- glancing-hit:
+				say "[regarding the actor][They] [past participle of the verb hold] [their] [weapon] at an odd angle, and the shot [regarding one][glance] off [our] [one of]helmet[or]chest plate[or]shoulder plate[or]leg armor[at random], leaving [one of]a[or]another[or]yet another[or]a deep[at random] gouge in the material.";
+			-- shot-dodged:
+				say "Fifteen years of military experience lead to some rather tuned reflexes, so [we] [dodge] in time to avoid the shot.";
+			-- near-miss:
+				say "[regarding the actor][Their] aim [are] slightly off. The bullet [regarding one][whirr] past [our] [one of]head[or]shoulder[or]chest[at random] and [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind us[end if].";
+			-- full-miss:
+				say "Their aim is way off and the shot [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind us[end if].";
 	otherwise:
 		say "[The actor] [fire] at [the target]." (C)
+
+[Really the only ways to die in this game are by running out of air, or getting shot to death. I don't want to use undo prevention, but we don't need to rub in the possibility of retrying the random combat, so...]
+When play begins:
+	choose row with a final response rule of immediately undo rule in the Table of Final Question Options;
+	blank out the final question wording entry.
+
+A shwabolian is a kind of person.
+A corpse is a kind of wreckage.
+A corpse is part of every person.
+Every shwabolian carries a gun and two ammo clips.
+When play begins:
+	repeat with s running through people:
+		let c be a random wreckage that is part of s;
+		now c is the remains of s.
+
+[Our sorry imitation of a combat AI]
+Turns-in-location is a number that varies.
+Carry out going:
+	now turns-in-location is zero;
+	continue the action.
+
+Every turn:
+	increase turns-in-location by one;
+	if turns-in-location is at least two:
+		let the hostile be a random shwabolian in the location;
+		if the hostile is not nothing:
+			let g be a random gun carried by the hostile;
+			try the hostile shooting the player with g.
 
 Chapter 10 - Altered responses
 
@@ -617,7 +692,7 @@ Chapter 2 - Underwater
 
 A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark. The printed name is usually "at the bottom of the ocean". A sea-room is always submerged. The room-top-prop of a sea-room is usually the sea. The room-floor-prop of a sea-room is usually the ocean floor. The walls of a sea-room are usually {}.
 
-The sea-region is a region. Seabottom-1, seabottom-2, seabottom-3, and seabottom-4 are in the sea-region.
+The sea-region is a region. Seabottom-1, seabottom-2, seabottom-3, and seabottom-4 are in the sea-region. Index map with room-colour of sea-region set to "Navy" and room-name-colour of sea-region set to "White".
 
 Instead of going nowhere when the location is in the sea-region, say "Best not to wander around, lest you'll never find your way again."
 
@@ -665,6 +740,8 @@ A time allotment rule for climbing the rocky cliffs:
 Instead of going up from seabottom-1 for more than the first time (this is the hint at climbig rule):
 	say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided.[line break](However, if you really must return, the cliffs look like you might stand a chance at climbing them.)"
 
+[Index map with seabottom-1 mapped north of the prison docks.]
+
 seabottom-2 is a sea-room. It is north of seabottom-1.
 
 seabottom-3 is a sea-room. It is north of seabottom-2.
@@ -699,11 +776,12 @@ A time allotment rule for going north when the location is in the sea-region or 
 A time allotment rule for going south when the location is in the sea-region:
 	rule succeeds with result 5.
 
-Chapter 3 - Military Complex Proper
+Chapter 3 - Military Complex Outdoors
 
 Section 1 - The Docks
 
 The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4.
+Index map with shore docks mapped north of prison docks.
 
 Sliding down is an action applying to one touchable thing.
 Understand "slide down [something]" as sliding down.
@@ -716,35 +794,64 @@ Before going down from the shore docks for the first time, say "With more confid
 
 Section 2 - The Plaza
 
-The military complex plaza is an outdoor room. It is north of the shore docks. The command center lock is here.
+The military complex plaza is an outdoor room. It is north of the shore docks. [The command center lock is here.] "Write me."
 
-Section 3 - The Armory
-
-The armory is west of the plaza. It is toxic.
-The assault rifle is a gun in the armory.
-In the armory are three ammo clips.
+The command-center-facade is a facade in the plaza. The printed name is "command center". The associated room is the entry hallway.
 
 Chapter 4 - The Command Center
 
-A room called the command center is north of the plaza.
+Section 1 - Hallways
 
-Chapter 5 - The Hangar
+[A room called the command center is north of the plaza.]
+The entry hallway is north of the plaza. "Write me."
 
-The hangar is east of the plaza.
+Section 2 - Armory
 
-Chapter 6 - The Launch Pad
+The armory is west of the entry hallway. "Write me."
+A rifle is a gun in the armory.
 
-Section 1 - The Launch Pad
+The ammo crate is a container in the armory.
+some-ammo-clips is in the crate. It is privately-named and plural-named. The indefinite article is "some". The printed name is "ammo clips". Understand "clip" or "clips" or "ammo" or "ammunition" or "rounds" or "magazines" as some-ammo-clips.
+ammo-temp-storage is a container. In it are ten ammo clips. 
+Instead of taking some-ammo-clips:
+	if the player is carrying at least three ammo clips:
+		say "You have enough ammunition already." instead;
+	otherwise:
+		let the clips taken be three minus the number of ammo clips carried by the player;
+		say "You take [clips taken] clips.";
+		repeat with i running from 1 to clips taken:
+			let c be a random ammo clip in the ammo-temp-storage;
+			now c is in the ammo crate;
+			silently try taking c.
 
-The landing strip is north of the hangar. It is an outdoor room.
+Section 3 - Nerve Center
 
-Section 2 - The Launch Control Room
+The command center lobby is north of the entry hallway. "Write me."
 
-The control tower is up from the hangar.
+The ops center is north of the lobby. "Write me."
+In the ops center is a shwabolian.
+
+The briefing room is east of the lobby. "Write me."
+
+Chapter 5 - Hangar and Launch
+
+Section 1 - The Hangar
+
+The hangar is east of the plaza. "Write me."
+
+Section 2 - The Launch Pad
+
+The landing strip is north of the hangar. It is an outdoor room. "Write me."
+
+Section 3 - The Launch Control Room
+
+The control tower is up from the hangar. "Write me."
 
 The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
 
-Chapter 7 - Space
+Chapter 6 - Space
+
+Planetary orbit is a room.
 
 Book 4 - Debug Commands - Not for Release
 
