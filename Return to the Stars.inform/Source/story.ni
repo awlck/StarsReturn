@@ -94,7 +94,7 @@ Instead of taking the armor when the implicitly taking activity is not going on:
 	say "You should probably put on the armor, rather than lugging it around in pieces."
 
 Report wearing the armor for the first time:
-	say "You slip into the undersuit and latch the armored plates into place. As you slide on your helmet, the internal systems start up, informing that everything is still in working order."; [TODO]
+	say "You slip into the undersuit and latch the armored plates into place. As you slide on your helmet, the internal systems start up, informing you that everything is still in working order."; [TODO]
 	rule succeeds.
 
 [Likewise, immediately deposit the armor on the ground when taking it off.]
@@ -442,7 +442,7 @@ When play begins:
 	choose row with a final response rule of immediately undo rule in the Table of Final Question Options;
 	blank out the final question wording entry.
 
-A shwabolian is a kind of person.
+A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green lizard-looking creature, walking on two legs."
 A corpse is a kind of wreckage.
 A corpse is part of every person.
 Every shwabolian carries a gun and two ammo clips.
@@ -828,8 +828,8 @@ Section 3 - Nerve Center
 
 The command center lobby is north of the entry hallway. "Write me."
 
-The ops center is north of the lobby. "Write me."
-In the ops center is a shwabolian.
+The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
+In the ops center are two shwabolians.
 
 The briefing room is east of the lobby. "Write me."
 
