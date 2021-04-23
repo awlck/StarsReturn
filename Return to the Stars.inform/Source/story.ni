@@ -226,10 +226,85 @@ To say (relevant time - a time) as military time:
     let M be the minutes part of relevant time;
     say "[if H is less than 10]0[end if][H][if M is less than 10]0[end if][M]hrs".
 
-Chapter 4 - Dummy Objects for saying
+Chapter 4 - Synonyms and Extra Grammar
 
-[I hadn't decided on a name for the alien faction early on, so I created this dummy object and used a [the aliens] text substitution wherever I wanted to mention them in the story. Once I picked a name, I simply set the printed name of this object.]
-Some aliens are a person. The printed name is "shwabolians". [Or something like that ???]
+[Adding some extra grammar, mostly based on dictionary synonyms.]
+
+[Taking, Removing it from]
+Understand the command "grab" as "take".
+Understand the command "pack" as "pick".
+Understand "collect [things]" as taking.
+Understand "collect [things inside] from/off [something]" as removing it from.
+
+[Dropping, Putting it on, Inserting it into]
+Understand "let go of/-- [things preferably held]" or "let [things preferably held] go" as dropping.
+Understand "set [things preferably held] down" or "set down [things preferably held]" as dropping.
+Understand the command "release" or "relinquish" or "deposit" or "offload" as "drop".
+Understand "cast aside [something]" or "cast [something] aside" as dropping.
+Understand the command "toss" as "cast".
+
+[Eating]
+Understand the command "consume" or "devour" or "ingest" or "munch" as "eat".
+Understand "wolf down [something preferably held]" or "wolf [something preferably held] down" as eating.
+Understand "chow" or "food" or "ration" as something edible.
+
+[Exiting]
+Understand "stand up" as exiting.
+
+[Looking]
+Understand "look around" as looking.
+
+[Examining]
+Understand the command "survery" or "study" or "inspect" as "examine".
+
+[Searching]
+Understand "search through [something]" as searching.
+Understand the command "sift" or "comb" or "weed" or "rummage" or "scour" or "dredge" as "search".
+Understand "dig into/through/-- [something]" as searching.
+
+[Switching on]
+Understand "enable [something]" as switching on.
+Understand the command "activate" or "engage" as "enable".
+
+[Switching off]
+Understand "disable [something]" as switching off.
+Understand the command "deactivate" or "disengage" as "disable".
+
+[Opening]
+Understand the command "unclose" as "open".
+
+[Wearing]
+Understand "get into [the armor]" as wearing.
+Understand "get dressed in [something]" as wearing.
+Understand "clothe me/you/yourself/-- in/with [something]" as wearing.
+Understand "dress up/down/-- in [something]" as wearing.
+Understand "slip into/on [something]" as wearing.
+Understand "slip [something] on" as wearing.
+Understand "suit up in/with [something]" as wearing.
+Understand "suit up" as wearing.
+Understand "rig me/you/myself/yourself out in/with [something]" as wearing.
+Understand "change into [something]" as wearing.
+Understand "wrap me/you/myself/yourself/-- up/-- in [something]" as wearing.
+Understand the command "bundle" as "wrap".
+Understand "array me/you/myself/yourself/-- in [something]" as wearing.
+Understand "equip [something]" as wearing.
+
+Rule for supplying a missing noun while wearing:
+	if the armor is in the location:
+		now the noun is the armor;
+	otherwise if the player is carrying the helmet and the plates are in the location:
+		now the noun is the plates.
+
+[Taking off]
+Understand "pull off [something]" or "pull [something] off" as taking off.
+Understand "peel off [something]" or "peel [something] off" as taking off.
+Understand "cast off [something]" or "cast [something] off" as taking off.
+Understand "slip out of [something]" as taking off.
+Understand "slip off [something]" or "slip [something] off" as taking off.
+Understand "strip off/-- [something]" or "strip [something] off" as taking off.
+
+[Waking up]
+Understand "arise" or "rise and shine" as waking up.
 
 Chapter 5 - Concepts Can Be Known
 
@@ -520,9 +595,9 @@ Instead of entering a room-floor when the holder of the player is not the locati
 Instead of entering a room-floor when the holder of the player is the location, say "But [we] [are] already firmly standing on [the room-floor-prop of the location]."
 
 Understand the command "stand" as something new.
-Standing on is an action applying to one visible thing.
+Standing on is an action applying to one touchable thing.
 Understand "stand on/in [something]" as standing on.
-Check standing on something: try entering the noun instead.
+Check standing on something (this is the convert standing on to entering rule): try entering the noun instead.
 
 Lying on is an action applying to one touchable thing.
 Understand "lie down/-- on/in [something]" or "lay down/-- on/in [something]" as lying on.
@@ -588,7 +663,7 @@ The control room is a room. "Write me."
 A table is a scenery supporter in the control room.
 On the table is a thing called a helmet. "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
-Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, [the aliens] haven't messed anything up."
+Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, your captors haven't messed anything up."
 
 East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
 
