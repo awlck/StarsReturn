@@ -312,8 +312,77 @@ A concept is a kind of value.
 
 Knowledge relates one person to various concepts.
 The verb to know means the knowledge relation.
+The verb to be learned by means the reversed knowledge relation.
 
-The prison warden's access codes are a concept.
+The prison warden's access code is a concept. Understand "prison" or "warden" or "warden's" or "access" or "code" or "581345" as the prison warden's access code.
+
+[And now to make them useful: they can open doors.]
+A keypad is a kind of thing. A keypad is usually fixed in place.
+A keypad has a door called the associated door.
+A keypad has a concept called the matching concept.
+
+Codelock-fitting relates one thing (called the matching keypad) to various doors.
+The verb to code-unlock means the codelock-fitting relation.
+
+Code-Unlocking it with is an action applying to one touchable thing and one concept.
+Understand "unlock [something] with [a concept]" as code-unlocking it with.
+Code-Locking it with is an action applying to one touchable thing and one concept.
+Understand "lock [something] with [a concept]" as code-locking it with.
+Code-Entering it on is an action applying to one concept and one touchable thing.
+Understand "enter [a concept] on [something]" as code-entering it on.
+Understand "type [a concept] on [something]" as code-entering it on.
+Understand the command "punch" as something new. Understand "punch [something]" as attacking.[* We put the 'attacking' grammar for "punch" right back in, but this way we don't bring along all the synonyms from the attacking action when setting up "punch in ...". Otherwise, the player could have typed "attack in codes", "smash in codes" or even "torture in codes".]
+Understand "punch in [a concept] on [something]" as code-entering it on.
+Understand "punch [a concept] into/in on/-- [something]" as code-entering it on.
+Understand "input [a concept] on/in/into/to [something]" as code-entering it on.
+Understand "type in/-- [a concept] on [something]" as code-entering it on.
+To enter is a verb.
+
+Check code-unlocking something with a concept:
+	try code-entering the concept understood on the noun instead.
+Check code-unlocking an unlocked door with a concept:
+	say "[The noun] [are] already unlocked." instead.
+Check code-unlocking a keypad (called the pad) with a concept when the associated door of the pad is not nothing and the associated door of the pad is unlocked:
+	say "[The associated door of the pad] is already unlocked." instead.
+
+Check code-locking something with a concept:
+	try code-entering the concept understood on the noun instead.
+Check code-locking a locked door with a concept:
+	say "[The noun] [are] already locked." instead.
+Check code-locking a keypad (called the pad) with a concept when the associated door of the pad is not nothing and the associated door of the pad is locked:
+	say "[The associated door of the pad] is already locked." instead.
+
+Check code-entering a concept that is not known by the player on something:
+	instead say "[regarding nothing][They're] not something [we] [are] aware of.".
+
+Check code-entering a concept that is not known by the player on something:
+	say "[regarding nothing][They're] not something [we] [are] aware of." instead.
+
+Check code-entering a concept on something that is not a keypad:
+	if the second noun is a door:
+		let pad be the matching keypad of the second noun;
+		if the pad is not nothing and the pad is visible, try code-entering the concept understood on the pad;
+		otherwise say "[There] [don't] seem to be a keypad for [the second noun] around here." instead;
+	otherwise:
+		say "[regarding the noun][They're] not something [we] [can enter] enter anything on." instead.
+
+To flash is a verb. To click is a verb. To slam is a verb. To engage is a verb.
+Carry out code-entering a concept on a keypad (called the receiver) when the associated door of the receiver is not nothing:
+	if the concept understood is the matching concept of the receiver:
+		let the portal be the associated door of the receiver;
+		if the receiver is locked:
+			now the receiver is unlocked;
+			say "[The receiver] [flash] a green light, and [the portal] [click].";
+		otherwise:
+			say "[The receiver] [flash] a green light. [if the portal is open][The portal] [slam] shut and the lock engages.[otherwise]With a click, [regarding the portal][possessive] lock [engage].";
+			now the portal is closed;
+			now the portal is locked;
+	otherwise:
+		say "[The receiver] [flash] a red light. Apparently, the entered code [regarding nothing][are] incorrect." instead.
+		
+
+Report code-entering a concept on a keypad (called the receiver) when the associated door of the receiver is nothing:
+	say "Nothing obvious happens."
 
 Chapter 6 - Grates and Air Ducts
 
@@ -414,7 +483,9 @@ Chapter 9 - Ranged Weapons
 
 [And, really just because we can't have a MilSF-themed game without guns in it...]
 
-A gun is a kind of thing. An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
+A gun is a kind of thing.
+An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
+After printing the name of an ammo clip while taking inventory, say "(in which are [bullet count] rounds)".
 
 Definition: a thing is ungunlike if it is not a gun.
 Definition: an ammo clip is empty rather than non-empty if its bullet count is less than one.
@@ -424,12 +495,19 @@ A standoff-outcome is a kind of value. The standoff-outcomes are full-miss, near
 Shooting it with is an action applying to one touchable thing and one visible thing.
 Understand "shoot [something ungunlike] with [a gun]" as shooting it with.
 Understand "shoot [something] with [something]" as shooting it with.
+Understand "shoot [something]" as shooting it with.
 Understand "shoot [something] at [something]" as shooting it with (with nouns reversed).
 Understand "fire [something] at [something]" as shooting it with (with nouns reversed).
 Understand "fire at [something] with [something]" as shooting it with.
+Understand "fire at [something]" as shooting it with.
 Understand "fire at [something ungunlike] with [a gun]" as shooting it with.
 The shooting it with action has an object called the clip shot from.
 The shooting it with action has a standoff-outcome called the shot-result.
+Rule for supplying a missing second noun while shooting something with:
+	let the weapon be a random gun held by the player;
+	if the weapon is not nothing:
+		now the second noun is the weapon;
+		say "(with [the weapon])[command clarification break]".
 
 To shoot is a verb. To fire is a verb. To discard is a verb. To glance is a verb. To bring is a verb. To whirr is a verb. To dodge is a verb. To stand is a verb. To zero is a verb. To unleash is a verb. To discharge is a verb. To cock is a verb. To train is a verb. To pop is a verb.
 
@@ -465,7 +543,6 @@ Check an actor shooting something with something when the actor is not the playe
 Carry out an actor shooting something (called the target) with a gun (called the weapon) (this is the default shooting rule):
 	decrease the bullet count of the clip shot from by 3;
 	if the target is the player:
-		[now the shot-result is a random standoff-outcome;]
 		let c be a random number between 1 and 10;
 		if c is 1:
 			now the shot-result is deadly-hit;
@@ -748,13 +825,11 @@ Section 5 - The Dock
 
 The prison docks are an outdoor room. They are east of the prison antecourt. "Write me."
 
-[The water is an enterable scenery container in the prison docks.]
 The water is a backdrop. It is in the prison docks and the shore docks.
 
 Instead of entering the water when the player is wearing the armor, try going down.
 
 Understand "jump in/into [something]" or "dive in/into [something]" as entering.
-[Does the player mean entering something that is not a container: it is unlikely.]
 Does the player mean entering the water: it is likely.
 
 Instead of jumping when the location is the prison docks or the location is the shore docks:
@@ -869,16 +944,19 @@ Before going down from the shore docks for the first time, say "With more confid
 
 Section 2 - The Plaza
 
-The military complex plaza is an outdoor room. It is north of the shore docks. [The command center lock is here.] "Write me."
+The military complex plaza is an outdoor room. It is north of the shore docks. "Write me."
 
-The command-center-facade is a facade in the plaza. The printed name is "command center". The associated room is the entry hallway.
+The command-center-facade is a facade in the plaza. The printed name is "command center". Understand "command" or "center" as the command-center-facade. The associated room is the entry hallway.
+
+The command center door is north of the plaza and south of the entry hallway. It is an openable closed lockable locked door.
 
 Chapter 4 - The Command Center
 
 Section 1 - Hallways
 
-[A room called the command center is north of the plaza.]
-The entry hallway is north of the plaza. "Write me."
+The entry hallway is a room. "Write me."
+
+The command center lobby is north of the entry hallway. "Write me."
 
 Section 2 - Armory
 
@@ -901,10 +979,13 @@ Instead of taking some-ammo-clips:
 
 Section 3 - Nerve Center
 
-The command center lobby is north of the entry hallway. "Write me."
-
 The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
-In the ops center are two shwabolians.
+The larger alien and the smaller alien are shwabolians in the ops center.
+
+Report going to the ops center for the first time (this is the alien swallows key rule):
+	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
+
+The alien swallows key rule is listed last in the report going rules.
 
 The briefing room is east of the lobby. "Write me."
 
