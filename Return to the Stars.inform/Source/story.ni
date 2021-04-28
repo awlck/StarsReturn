@@ -231,8 +231,10 @@ Chapter 4 - Synonyms and Extra Grammar
 [Adding some extra grammar, mostly based on dictionary synonyms.]
 
 [Taking, Removing it from]
-Understand the command "grab" as "take".
+[Understand the command "grab" as "take".]
 Understand the command "pack" as "pick".
+Understand "grab [things]" as taking.
+Understand "grab [things inside] from/off [something]" as removing it from.
 Understand "collect [things]" as taking.
 Understand "collect [things inside] from/off [something]" as removing it from.
 
@@ -276,7 +278,7 @@ Understand the command "unclose" as "open".
 [Wearing]
 Understand "get into [the armor]" as wearing.
 Understand "get dressed in [something]" as wearing.
-Understand "clothe me/you/yourself/-- in/with [something]" as wearing.
+Understand "clothe me/you/myself/yourself/-- in/with [something]" as wearing.
 Understand "dress up/down/-- in [something]" as wearing.
 Understand "slip into/on [something]" as wearing.
 Understand "slip [something] on" as wearing.
@@ -306,85 +308,20 @@ Understand "strip off/-- [something]" or "strip [something] off" as taking off.
 [Waking up]
 Understand "arise" or "rise and shine" as waking up.
 
-Chapter 5 - Concepts Can Be Known
+[Attacking]
+[to allow "break orbit" without also allowing "attack orbit"]
+Understand the command "break" as something new.
+Understand "break [something]" as attacking.
 
-A concept is a kind of value.
+[Further separate attacking into verbs that make sense for shooting, and those that don't.]
+Understand the command "attack" as something new.
+Understand the command "fight" as something new.
+Understand the command "murder" as something new.
+Understand the command "kill" as something new.
+Understand "attack [something]" as attacking.
+Understand the command "fight", "murder" and "kill" as "attack".
 
-Knowledge relates one person to various concepts.
-The verb to know means the knowledge relation.
-The verb to be learned by means the reversed knowledge relation.
-
-The prison warden's access code is a concept. Understand "prison" or "warden" or "warden's" or "access" or "code" or "581345" as the prison warden's access code.
-
-[And now to make them useful: they can open doors.]
-A keypad is a kind of thing. A keypad is usually fixed in place.
-A keypad has a door called the associated door.
-A keypad has a concept called the matching concept.
-
-Codelock-fitting relates one thing (called the matching keypad) to various doors.
-The verb to code-unlock means the codelock-fitting relation.
-
-Code-Unlocking it with is an action applying to one touchable thing and one concept.
-Understand "unlock [something] with [a concept]" as code-unlocking it with.
-Code-Locking it with is an action applying to one touchable thing and one concept.
-Understand "lock [something] with [a concept]" as code-locking it with.
-Code-Entering it on is an action applying to one concept and one touchable thing.
-Understand "enter [a concept] on [something]" as code-entering it on.
-Understand "type [a concept] on [something]" as code-entering it on.
-Understand the command "punch" as something new. Understand "punch [something]" as attacking.[* We put the 'attacking' grammar for "punch" right back in, but this way we don't bring along all the synonyms from the attacking action when setting up "punch in ...". Otherwise, the player could have typed "attack in codes", "smash in codes" or even "torture in codes".]
-Understand "punch in [a concept] on [something]" as code-entering it on.
-Understand "punch [a concept] into/in on/-- [something]" as code-entering it on.
-Understand "input [a concept] on/in/into/to [something]" as code-entering it on.
-Understand "type in/-- [a concept] on [something]" as code-entering it on.
-To enter is a verb.
-
-Check code-unlocking something with a concept:
-	try code-entering the concept understood on the noun instead.
-Check code-unlocking an unlocked door with a concept:
-	say "[The noun] [are] already unlocked." instead.
-Check code-unlocking a keypad (called the pad) with a concept when the associated door of the pad is not nothing and the associated door of the pad is unlocked:
-	say "[The associated door of the pad] is already unlocked." instead.
-
-Check code-locking something with a concept:
-	try code-entering the concept understood on the noun instead.
-Check code-locking a locked door with a concept:
-	say "[The noun] [are] already locked." instead.
-Check code-locking a keypad (called the pad) with a concept when the associated door of the pad is not nothing and the associated door of the pad is locked:
-	say "[The associated door of the pad] is already locked." instead.
-
-Check code-entering a concept that is not known by the player on something:
-	instead say "[regarding nothing][They're] not something [we] [are] aware of.".
-
-Check code-entering a concept that is not known by the player on something:
-	say "[regarding nothing][They're] not something [we] [are] aware of." instead.
-
-Check code-entering a concept on something that is not a keypad:
-	if the second noun is a door:
-		let pad be the matching keypad of the second noun;
-		if the pad is not nothing and the pad is visible, try code-entering the concept understood on the pad;
-		otherwise say "[There] [don't] seem to be a keypad for [the second noun] around here." instead;
-	otherwise:
-		say "[regarding the noun][They're] not something [we] [can enter] enter anything on." instead.
-
-To flash is a verb. To click is a verb. To slam is a verb. To engage is a verb.
-Carry out code-entering a concept on a keypad (called the receiver) when the associated door of the receiver is not nothing:
-	if the concept understood is the matching concept of the receiver:
-		let the portal be the associated door of the receiver;
-		if the receiver is locked:
-			now the receiver is unlocked;
-			say "[The receiver] [flash] a green light, and [the portal] [click].";
-		otherwise:
-			say "[The receiver] [flash] a green light. [if the portal is open][The portal] [slam] shut and the lock engages.[otherwise]With a click, [regarding the portal][possessive] lock [engage].";
-			now the portal is closed;
-			now the portal is locked;
-	otherwise:
-		say "[The receiver] [flash] a red light. Apparently, the entered code [regarding nothing][are] incorrect." instead.
-		
-
-Report code-entering a concept on a keypad (called the receiver) when the associated door of the receiver is nothing:
-	say "Nothing obvious happens."
-
-Chapter 6 - Grates and Air Ducts
+Chapter 5 - Grates and Air Ducts
 
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 The description of an air duct is usually "It exudes a stream of cool, fresh air."
@@ -392,7 +329,7 @@ The description of an air duct is usually "It exudes a stream of cool, fresh air
 A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named. The indefinite article of a grate is usually "the".
 Understand "flimsy/rusty/old/-- grate/grid/grating/bars" as a grate.
 
-Understand the command "kick" or "bash" as "attack".
+Understand the command "kick" or "bash" as "destroy".
 To kick is a verb.
 
 The block attacking rule does nothing when the noun is a grate.
@@ -448,7 +385,7 @@ Instead of climbing an air duct, try entering the noun.
 
 Instead of crawling into an air duct when the player is wearing the armor, say "The duct is just large enough for a human to crawl through [dash] bulky suit of armor not included."
 
-Chapter 7 - Looking at Buildings
+Chapter 6 - Looking at Buildings
 
 [This is to allow commands such as "x armory" or "enter armory" when the armory is an adjacent room.]
 A facade is a kind of scenery thing. A facade has a room called the associated room.
@@ -458,7 +395,7 @@ Instead of entering a facade (called the building):
 	if direct is nothing, say "[We] [can't] [seem] to find a way inside [the noun].";
 	otherwise try going direct.
 
-Chapter 8 - Looking Through
+Chapter 7 - Looking Through
 
 [There are a few locations within the game where the player may look through something to get a peek into another room.]
 A thing has some text called the other-side-description.
@@ -479,11 +416,11 @@ Carry out looking through something when the other-side-description of the noun 
 Carry out looking through (this is the standard looking through rule):
 	say "[the other-side-description of the noun][paragraph break]".
 
-Chapter 9 - Ranged Weapons
+Chapter 8 - Ranged Weapons
 
 [And, really just because we can't have a MilSF-themed game without guns in it...]
 
-A gun is a kind of thing.
+A gun is a kind of thing. Understand "gun" as a gun.
 An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
 After printing the name of an ammo clip while taking inventory, say "(in which are [bullet count] rounds)".
 
@@ -501,6 +438,8 @@ Understand "fire [something] at [something]" as shooting it with (with nouns rev
 Understand "fire at [something] with [something]" as shooting it with.
 Understand "fire at [something]" as shooting it with.
 Understand "fire at [something ungunlike] with [a gun]" as shooting it with.
+Understand "attack [something] with [something]" as shooting it with.
+Understand "attack [something ungunlike] with [a gun]" as shooting it with.
 The shooting it with action has an object called the clip shot from.
 The shooting it with action has a standoff-outcome called the shot-result.
 Rule for supplying a missing second noun while shooting something with:
@@ -617,12 +556,12 @@ Every turn:
 			let g be a random gun carried by the hostile;
 			try the hostile shooting the player with g.
 
-Chapter 10 - Altered responses
+Chapter 9 - Altered responses
 
 [Replacing some of the standard responses with something more thematic.]
 block sleeping rule response (A) is "You've spent so much of these past few weeks sleeping that you feel like you won't be tired again in a [italic type]long[roman type] time".
 
-Chapter 11 - Room Parts
+Chapter 10 - Room Parts
 
 [Creating a floor/ground, ceiling/sky, and walls that are usually the same but can be customized on a per-room basis, and all without having to create each instance of the default as a thing (that would be anywhere from two to six things per room!). Modeled after how room parts work in the TADS3 library.]
 A room-part is a kind of privately-named backdrop.
@@ -725,6 +664,7 @@ The description is "Plain white bedsheets. Thin, scratchy, and not quite warm en
 Understand "sheets" as the bedsheets.
 
 The sanitary station is a fixed in place enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room." The description is "A brushed aluminum clamshell contraption for personal hygiene, not unlike showers you've used on some UNDC ships."
+Understand "shower" or "toilet" or "head" as the sanitary station.
 Instead of entering the sanitary station, say "You've already showered today."
 After printing the name of the sanitary station, omit contents in listing.
 
@@ -755,7 +695,7 @@ Report going through the airlock for the first time:
 	
 Section 2 - The Storage Area
 
-The storage space is east of the front office. "Write me."
+The storage space is east of the front office. "Bare-metal [shelves] line the walls. This seems to be the place where inmates' possessions are stored."
 
 Some shelves are a scenery supporter in the storage space. Understand "shelf/shelves/rack/racks" as the shelves.
 Some plates are on the shelves. "Pieces of armor plating lie on the shelves." The description is "[We] are fairly sure that these are the pieces of [our] battle armor. They seem to be intact, but an integral part [dash] the helmet [dash] is nowhere to be seen.." The printed name is "armor plates". Understand "armor/armour/armored/armoured/-- plates/plating" as the plates. They are fixed in place.
@@ -786,7 +726,7 @@ The prison installations room is down from the control room. "This is where most
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
 
 some-air-ducts is scenery in the prison installations room. It is privately-named. The description of some-air-ducts is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
-Instead of doing something other than examining to some-air-ducts, say "They're not labeled, and you'd rather not wander through the airducts aimlessly."
+Instead of doing something other than examining to some-air-ducts, say "They're not labeled, and you'd rather not wander through the air ducts aimlessly."
 
 A ladder is scenery in the installations room. Instead of climbing the ladder, try going up.
 
@@ -963,8 +903,11 @@ Section 2 - Armory
 The armory is west of the entry hallway. "Write me."
 A rifle is a gun in the armory.
 
-The ammo crate is a container in the armory.
-some-ammo-clips is in the crate. It is privately-named and plural-named. The indefinite article is "some". The printed name is "ammo clips". Understand "clip" or "clips" or "ammo" or "ammunition" or "rounds" or "magazines" as some-ammo-clips.
+The ammo crate is a fixed in place container in the armory.
+Instead of taking the ammo crate, say "It's too heavy and awkward to carry around."
+Does the player mean taking the ammo crate: it is unlikely.
+
+Some some-ammo-clips is in the crate. It is privately-named. The indefinite article is "some". The printed name is "ammo clips". Understand "clip" or "clips" or "ammo" or "ammunition" or "rounds" or "magazines" as some-ammo-clips.
 ammo-temp-storage is a container. In it are ten ammo clips. 
 Instead of taking some-ammo-clips:
 	if the player is carrying at least three ammo clips:
@@ -1005,9 +948,72 @@ The control tower is up from the hangar. "Write me."
 
 The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
 
+Section 4 - Ship
+
+The messenger ship is an enterable container in the hangar.
+After printing the name of the messenger ship, omit contents in listing.
+The ship can be started. The ship is not started.
+
+Launching is an action applying to one visible thing.
+Understand "launch" or "launch [something]" as launching.
+Rule for supplying a missing noun while launching:
+	if the player is in the messenger ship, now the noun is the messenger ship.
+Check launching something that is not the messenger ship:
+	say "[We] [can't] launch [regarding the noun][those]." instead.
+Check launching the messenger ship when the player is not in the messenger ship:
+	say "[We] [can't] remote-control [the messenger ship]. Also, it would probably be good if [we] were [italic type]on[roman type] the ship when it launches, wouldn't it?" instead.
+Check launching the messenger ship when the messenger ship is not started:
+	say "The systems of [the messenger ship] are powered down." instead.
+Check launching the messenger ship when the location is the planetary orbit:
+	say "[We] [are] already in space." instead.
+
+Nounless-launching is an action applying to nothing.
+Understand "make orbit" or "take off" or "blast off" or "ascend" or "ascend into/to the/-- skies/sky/space/orbit" or "depart" as nounless-launching.
+Understand "climb" or "climb into space/orbit" or "climb into the sky" or "rise" or "take flight" when the player is in the ship.
+Check nounless-launching when the messenger ship is in the location:
+	try launching the messenger ship instead.
+Check nounless-launching (this is the default block nounless launching rule):
+	say "[We] [are] incapable." instead.
+Instead of going up when the player is in the ship, try nounless-launching.
+
+Deorbiting is an action applying to one visible thing.
+Understand "land" or "land [something]" as deorbiting.
+Rule for supplying a missing noun while deorbiting:
+	if the player is in the messenger ship, now the noun is the messenger ship.
+Check deorbiting something that is not the messenger ship:
+	say "[We] [can't] land [regarding the noun][those]." instead.
+To leave is a verb.
+Check deorbiting the messenger ship when the player is not in the messenger ship:
+	say "[We] [can't] remote-control [the messenger ship]. Also, doing that [would leave] [us] stranded out here." instead.
+Check deorbiting the messenger ship when the location is not the planetary orbit:
+	say "[We] [are] already on the planet." instead.
+
+Nounless-deorbiting is an action applying to nothing.
+Understand "deorbit" or "break orbit" or "touchdown" or "touch down" or "make planetfall" or "enter the/-- atmosphere" or "re-enter the/-- atmosphere" or "reenter the/-- atmosphere" or "return to the/-- surface/planet/island" or "return to the/-- landing/-- runway/pad/strip" as nounless-deorbiting.
+Understand "make a/the/-- combat descent maneuver/--" or "fly a/the/-- combat descent maneuver/--" or "do a/the/-- combat descent maneuver/--" or "combat descent" as nounless-deorbiting.[* A "Frontlines" easter egg, so to speak.]
+Check nounless-deorbiting when the location is not planetary orbit:
+	say "[We] [are] not in orbit." instead.
+Check nounless-deorbiting when the messenger ship is in the location:
+	try launching the messenger ship instead.
+Instead of going down when the location is the planetary orbit, try nounless-deorbiting.
+
 Chapter 6 - Space
 
 Planetary orbit is a room.
+
+Home-going is an action applying to nothing.
+Understand "go home" or "go to/-- earth" or "return home" or "return to/-- earth" or "leave the/this/-- planet/rock behind/--" as home-going.
+Understand "hit the/-- road/hyperlane" or "hit the/-- alcubierre/-- chute" or "pedal to the/-- metal" or "put the/-- to the/-- metal" or "punch it" as home-going when the location is the orbit.
+
+Check home-going when the location is not the planetary orbit:
+	say "Yes, that's [one of]the plan[or]the mission[or]the objective[or]what [we]['re] trying to do[at random]." instead.
+Check home-going when the location is the planetary orbit and the player is not in the messenger ship:
+	say "Without a ship? Good luck." instead;
+Check home-going when the location is not the planetary orbit and the player is in the messenger ship:
+	say "Yes! Take off." instead.
+
+Carry out home-going:
+	end the story finally saying "You have returned home".
 
 Book 4 - Debug Commands - Not for Release
 
