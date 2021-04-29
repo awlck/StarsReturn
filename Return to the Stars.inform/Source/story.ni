@@ -969,7 +969,7 @@ Check launching the messenger ship when the location is the planetary orbit:
 
 Nounless-launching is an action applying to nothing.
 Understand "make orbit" or "take off" or "blast off" or "ascend" or "ascend into/to the/-- skies/sky/space/orbit" or "depart" as nounless-launching.
-Understand "climb" or "climb into space/orbit" or "climb into the sky" or "rise" or "take flight" when the player is in the ship.
+Understand "climb" or "climb into space/orbit" or "climb into the sky" or "rise" or "take flight" as nounless-launching when the player is in the ship.
 Check nounless-launching when the messenger ship is in the location:
 	try launching the messenger ship instead.
 Check nounless-launching (this is the default block nounless launching rule):
