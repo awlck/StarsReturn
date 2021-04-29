@@ -60,6 +60,7 @@ Instead of listening to the player:
 	if we have not eaten, say "Your stomach is growling.";
 	otherwise continue the action.
 
+
 Chapter 2 - Time
 
 [Time is a somewhat important concept in this story, so we give it a little extra attention.]
@@ -226,7 +227,9 @@ To say (relevant time - a time) as military time:
     let M be the minutes part of relevant time;
     say "[if H is less than 10]0[end if][H][if M is less than 10]0[end if][M]hrs".
 
-Chapter 4 - Synonyms and Extra Grammar
+Chapter 4 - Parser Improvements
+
+Section 1 - Synonyms and Extra Grammar
 
 [Adding some extra grammar, mostly based on dictionary synonyms.]
 
@@ -312,6 +315,12 @@ Understand "arise" or "rise and shine" as waking up.
 [to allow "break orbit" without also allowing "attack orbit"]
 Understand the command "break" as something new.
 Understand "break [something]" as attacking.
+[to allow "hit the hyperlane", but not "torture the hyperlane"]
+Understand the command "hit" as something new.
+Understand "hit [something]" as attacking.
+[to allow "punch it" (for going home), but not "torture it"]
+Understand the command "punch" as something new.
+Understand "punch [something]" as attacking.
 
 [Further separate attacking into verbs that make sense for shooting, and those that don't.]
 Understand the command "attack" as something new.
@@ -319,7 +328,48 @@ Understand the command "fight" as something new.
 Understand the command "murder" as something new.
 Understand the command "kill" as something new.
 Understand "attack [something]" as attacking.
-Understand the command "fight", "murder" and "kill" as "attack".
+Understand the command "combat", "fight", "murder" and "kill" as "attack".
+
+[And finally]
+Understand "xyzzy" or "say xyzzy" or "cast xyzzy" as a mistake ("You're not supersitious like that.")
+
+Section 2 - Command Rewriting and Error Reporting
+
+[Like Andrew Plotkin's "Heliopause", allow the player to end commands with an exclamation mark -- but do it in the I7 way.]
+After reading a command (this is the replace punctuation rule):
+	let T be "[the player's command]";
+	replace the regular expression "!|\?" in T with ".";
+	change the text of the player's command to T.
+
+[To interpret commands like "I would like to leave the cell" or "Could you get up please"]
+Politeness-admonished is a truth state that varies. Politeness-admonished is false.
+Before reading a command (this is the reset politeness admonishment rule):
+	now politeness-admonished is false.
+
+After reading a command (this is the replace please at end rule):
+	let T be "[the player's command]";
+	replace the regular expression ", please" in T with "";
+	change the text of the player's command to T.
+
+After reading a command (this is the cut politeness rule):
+	if the player's command includes "i would like you/-- to":
+		if politeness-admonished is false, say "(As a soldier, [we]['re] used to taking orders, so there is no need for politeness.)";
+		now politeness-admonished is true;
+		cut the matched text;
+	if the player's command includes "please":
+		if politeness-admonished is false, say "(As a soldier, [we]['re] used to taking orders, so there is no need for politeness.)";
+		now politeness-admonished is true;
+		cut the matched text;
+	if the player's command includes "would/could/might you":
+		if politeness-admonished is false, say "(As a soldier, [we]['re] used to taking orders, so there is no need for politeness.)";
+		now politeness-admonished is true;
+		cut the matched text;
+	if the player's command includes "you must/should/could/might":
+		cut the matched text.
+
+After printing a parser error when the latest parser error is the not a verb I recognise error or the latest parser error is the can't see whom to talk to error:
+	if "[the player's command]" matches the regular expression "^(Sir,|Sir|Ma'am|Ma'am,|Maam|Maam,)", case insensitively:
+		say "(Try beginning your command with an imperative verb, e.g. TAKE BEDSHEETS.)".
 
 Chapter 5 - Grates and Air Ducts
 
@@ -989,21 +1039,28 @@ Check deorbiting the messenger ship when the location is not the planetary orbit
 	say "[We] [are] already on the planet." instead.
 
 Nounless-deorbiting is an action applying to nothing.
-Understand "deorbit" or "break orbit" or "touchdown" or "touch down" or "make planetfall" or "enter the/-- atmosphere" or "re-enter the/-- atmosphere" or "reenter the/-- atmosphere" or "return to the/-- surface/planet/island" or "return to the/-- landing/-- runway/pad/strip" as nounless-deorbiting.
-Understand "make a/the/-- combat descent maneuver/--" or "fly a/the/-- combat descent maneuver/--" or "do a/the/-- combat descent maneuver/--" or "combat descent" as nounless-deorbiting.[* A "Frontlines" easter egg, so to speak.]
+Understand "deorbit" or "break orbit" or "touchdown" or "touch down" or "make planetfall" or "enter the/-- atmosphere" or "re-enter the/-- atmosphere" or "reenter the/-- atmosphere" or "return to the/-- [surface-desc]" as nounless-deorbiting.
+Understand "surface/planet/island" or "landing/-- runway/pad/strip" or "military/-- complex/facility/prison" as "[surface-desc]".
+[Understand "make a/the/-- combat descent maneuver/--" or "fly a/the/-- combat descent maneuver/--" or "do a/the/-- combat descent maneuver/--" or "combat descent" as nounless-deorbiting.[* A "Frontlines" easter egg, so to speak.]]
 Check nounless-deorbiting when the location is not planetary orbit:
 	say "[We] [are] not in orbit." instead.
 Check nounless-deorbiting when the messenger ship is in the location:
 	try launching the messenger ship instead.
 Instead of going down when the location is the planetary orbit, try nounless-deorbiting.
 
+Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat theory, but the real world doesn't work like that.") when the player is in the ship.
+
 Chapter 6 - Space
 
 Planetary orbit is a room.
 
+The planet is scenery in the orbit. "In the external camera view, [we] [see] the barren, yellow surface of your former prison receding behind [us]. [We] [are] glat to be on [our] way."
+
 Home-going is an action applying to nothing.
-Understand "go home" or "go to/-- earth" or "return home" or "return to/-- earth" or "leave the/this/-- planet/rock behind/--" as home-going.
-Understand "hit the/-- road/hyperlane" or "hit the/-- alcubierre/-- chute" or "pedal to the/-- metal" or "put the/-- to the/-- metal" or "punch it" as home-going when the location is the orbit.
+Understand "go [home-desc]" or "return [home-desc]" or "leave the/this/-- [planet-desc] behind/--" as home-going.
+Understand "wretched/damned/godforsaken/horrible/awful/blasted/flippin/flipping/freaking/freakin/fricking/friggin/crappy/shitty/shite/third-rate/shithole/hellish/unpleasant/-- planet/rock/wasteland" or "wretched/damned/damn/godforsaken/horrible/awful/blasted/flippin/flipping/freaking/freakin/fricking/friggin/crappy/shitty/-- wasteland/excuse/shithole/hell-hole/hellhole of a planet" as "[planet-desc]".
+Understand "home" or "to/-- earth" as "[home-desc]".
+Understand "hit the/-- space/-- road/highway/motorway/hyperlane" or "hit the/-- alcubierre/-- chute" or "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "punch it" as home-going when the location is the orbit.
 
 Check home-going when the location is not the planetary orbit:
 	say "Yes, that's [one of]the plan[or]the mission[or]the objective[or]what [we]['re] trying to do[at random]." instead.
