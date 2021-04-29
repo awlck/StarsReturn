@@ -331,7 +331,8 @@ Understand "attack [something]" as attacking.
 Understand the command "combat", "fight", "murder" and "kill" as "attack".
 
 [And finally]
-Understand "xyzzy" or "say xyzzy" or "cast xyzzy" as a mistake ("You're not supersitious like that.")
+Understand "xyzzy" or "say xyzzy" or "cast xyzzy" as a mistake ("You're not superstitious like that.").
+Understand "throw snotball at evil librarian" or "throw snotball at [someone]" as a mistake ("You remember the last thing your squadmate Rovarssen told you before you got separated: [italic type]...and if nothing else, throw a snotball at them![roman type]").
 
 Section 2 - Command Rewriting and Error Reporting
 
