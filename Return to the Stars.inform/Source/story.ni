@@ -584,7 +584,7 @@ When play begins (this is the don't advertise undo rule):
 	choose row with a final response rule of immediately undo rule in the Table of Final Question Options;
 	blank out the final question wording entry.
 
-A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green lizard-looking creature, walking on two legs."
+A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod yet lizard-looking creature, walking on two legs."
 A corpse is a kind of wreckage.
 A corpse is part of every person.
 Every shwabolian carries a gun and two ammo clips.
@@ -592,6 +592,10 @@ When play begins:
 	repeat with s running through people:
 		let c be a random wreckage that is part of s;
 		now c is the remains of s.
+
+Giving something to a shwabolian is invalid-conversation. Showing something to a shwabolian is invalid-conversation. Answering a shwabolian that something is invalid-conversation. Telling a shwabolian about something is invalid-conversation. Asking a shwabolian about something is invalid-conversation. Asking a shwabolian for something is invalid-conversation.
+
+Instead of invalid-conversation, say "Now is not the time for idle talk!".
 
 [Our sorry imitation of a combat AI]
 Turns-in-location is a number that varies.
@@ -743,12 +747,15 @@ To say airlock-desc:
 	
 Report going through the airlock for the first time:
 	say "You open the inner door and step into the intermediate space. [if the player is wearing the armor]Nothing obvious happens, but your suit alerts you that the air coming in from the outside is, shall we say, less than ideal[otherwise]As the clean air inside the airlock is replaced with the outside atmosphere, you quickly develop a searing headache -- you won't last long under these conditions[end if].[line break]The other door opens and you take a tentative step outside.".
+
+The airlock's inner card reader is an unthing in the front office. The description is "The door doesn't seem to have a card reader. There must be another way to unlock it.".
 	
 Section 2 - The Storage Area
 
 The storage space is east of the front office. "Bare-metal [shelves] line the walls. This seems to be the place where inmates' possessions are stored."
 
-Some shelves are a scenery supporter in the storage space. Understand "shelf/shelves/rack/racks" as the shelves.
+Some shelves are a scenery supporter in the storage space.
+Understand "bare" or "metal" or "bare-metal" or "shelf" or "rack" as the shelves. Understand "shelves" or "racks" as the plural of shelves.
 Some plates are on the shelves. "Pieces of armor plating lie on the shelves." The description is "[We] are fairly sure that these are the pieces of [our] battle armor. They seem to be intact, but an integral part [dash] the helmet [dash] is nowhere to be seen.." The printed name is "armor plates". Understand "armor/armour/armored/armoured/-- plates/plating" as the plates. They are fixed in place.
 Instead of taking the plates, say "They're too bulky, and the plates alone won't do you much good."
 Instead of wearing the plates, say "The plates alone won't do you much good."
@@ -952,7 +959,6 @@ The command center lobby is north of the entry hallway. "Write me."
 Section 2 - Armory
 
 The armory is west of the entry hallway. "Write me."
-A rifle is a gun in the armory.
 
 The ammo crate is a fixed in place container in the armory.
 Instead of taking the ammo crate, say "It's too heavy and awkward to carry around."
@@ -965,11 +971,15 @@ Instead of taking some-ammo-clips:
 		say "You have enough ammunition already." instead;
 	otherwise:
 		let the clips taken be three minus the number of ammo clips carried by the player;
-		say "You take [clips taken] clips.";
+		say "[Clips taken in words] clips: Taken.";
 		repeat with i running from 1 to clips taken:
 			let c be a random ammo clip in the ammo-temp-storage;
 			now c is in the ammo crate;
 			silently try taking c.
+
+Some racks are a fixed in place supporter in the armory.
+Understand "bare" or "metal" or "shelf" or "rack" as the racks. Understand "shelves" or "racks" as the plural of racks.
+A rifle is a gun on the racks. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
 
 Section 3 - Nerve Center
 
