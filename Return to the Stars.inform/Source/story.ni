@@ -683,6 +683,12 @@ Check lying on a container: try entering the noun instead.
 Check lying on:
 	say "Now is not the time for rest. Besides, [we]['ve] done nothing but sleep for the past few weeks, so [we]['re] not particularly tired."
 
+Chapter 11 - Unthings
+
+[This is another concept lifted from TADS's adv3 library: a thing denoting the absence of a thing.]
+An unthing is a kind of thing. It is always scenery. The description is usually "[The printed name] isn't here."
+Instead of doing something other than examining to an unthing, try examining the noun.
+
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
@@ -736,6 +742,9 @@ A table is a scenery supporter in the control room.
 On the table is a thing called a helmet. "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
 Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, your captors haven't messed anything up."
+
+The control panel is a scenery supporter in the control room. "It is festooned with buttons and switches."
+The prison warden's ID card is on the panel. "A purple-colored card with shwabolian writing on it." Understand "warden" or "guard" or "access" or "purple" as the ID card.
 
 East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
 
@@ -946,7 +955,11 @@ The military complex plaza is an outdoor room. It is north of the shore docks. "
 
 The command-center-facade is a facade in the plaza. The printed name is "command center". Understand "command" or "center" as the command-center-facade. The associated room is the entry hallway.
 
-The command center door is north of the plaza and south of the entry hallway. It is an openable closed lockable locked door.
+The command center door is north of the plaza and south of the entry hallway. It is an openable closed lockable locked door. The prison warden's ID card unlocks the command center door.
+The command center door's card reader is a fixed in place thing in the plaza.
+Instead of unlocking the card reader with something, try unlocking the command center door with the noun.
+Instead of locking the card reader with something, try locking the command center door with the noun.
+
 
 Chapter 4 - The Command Center
 
