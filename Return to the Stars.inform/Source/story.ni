@@ -706,15 +706,16 @@ Instead of listening to the silence:
 Section 1 - Main Parts
 
 [We've spent A LOT of time in this room, so describe it in excruciating detail.]
-Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]plink[roman type])[end if]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
+Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]plink[roman type])[end if], next to which is a small [camera]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
 
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
 	instead say "It's too far up to throw a good punch at the grate."
-The description of the cell air duct's grate is "A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you tried hard enough."
+The description of the cell air duct's grate is "A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you wanted to (although the presence of the camera has so far kept you from attempting anything)."
 
 The metal door is north of your cell and south of the corridor. It is an openable closed lockable locked door.
 The other-side-description is "[We] peek through the small duraplast window into the corridor outside. It is empty."
+Instead of unlocking the metal door with something when the location is your cell, say "The door doens't have any lock or control mechanism on the inside."
 
 The cot is a fixed in place enterable supporter in your cell. "A cot stands in one corner of the room." The description is "Flimsy frame, uncomfortable plastic surface [dash] it's a cot alright."
 Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
@@ -728,6 +729,9 @@ The sanitary station is a fixed in place enterable container in the cell. "A san
 Understand "shower" or "toilet" or "head" as the sanitary station.
 Instead of entering the sanitary station, say "You've already showered today."
 After printing the name of the sanitary station, omit contents in listing.
+
+The camera is scenery in the cell. "A small camera hangs in one corner of the room, a small red light presumably indicating that it is active."
+Instead of attacking the camera, say "While it would give you great satisfaction to rip the camera off its mount, it's mounted too high up on the wall to reach.".
 
 [And here is our first custom room part.]
 The cell floor is a room-floor. The description is "The floor has a grey, rubbery non-slip surface." Understand "grey/gray/-- rubber/rubbery/rubberized/rubberised/plastic/-- cell/-- floor" as the cell floor.
@@ -758,6 +762,9 @@ Report going through the airlock for the first time:
 	say "You open the inner door and step into the intermediate space. [if the player is wearing the armor]Nothing obvious happens, but your suit alerts you that the air coming in from the outside is, shall we say, less than ideal[otherwise]As the clean air inside the airlock is replaced with the outside atmosphere, you quickly develop a searing headache -- you won't last long under these conditions[end if].[line break]The other door opens and you take a tentative step outside.".
 
 The airlock's inner card reader is an unthing in the front office. The description is "The door doesn't seem to have a card reader. There must be another way to unlock it.".
+Instead of locking the airlock with something when the location is the front office, say "The door doesn't seem to have a card reader. There must be another way to unlock it.".
+Instead of unlocking the airlock with something when the location is the front office, say "The door doesn't seem to have a card reader. There must be another way to control it.".
+
 	
 Section 2 - The Storage Area
 
@@ -818,8 +825,10 @@ Carry out switching off the doors switch:
 Carry out switching on the doors switch:
 	now all doors in cell-complex are locked.
 
+Report switching off the ventilation switch:
+	say "The ventilation machinery falls silent, and the wind in the room subsides."
 Rule for printing the description of a dark room when the location is the installations room:
-	say "It is pitch dark, save for a small light next to the lights switch beckoning you to switch the lights back on."
+	say "It is pitch dark, save for a small light next to the lights switch beckoning you to turn the lights back on."
 
 After deciding the scope of the player while in darkness and the location is the installations room:
 	place the lights switch in scope.
