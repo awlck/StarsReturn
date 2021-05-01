@@ -937,6 +937,9 @@ Chapter 3 - Military Complex Outdoors
 
 Section 1 - The Docks
 
+[Not a test as much as a convenience to quickly skip ahead during debugging.]
+Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card".
+
 The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4.
 Index map with shore docks mapped north of prison docks.
 
@@ -1051,7 +1054,7 @@ Check nounless-launching (this is the default block nounless launching rule):
 Instead of going up when the player is in the ship, try nounless-launching.
 
 Deorbiting is an action applying to one visible thing.
-Understand "land" or "land [something]" as deorbiting.
+Understand "land" or "land [something]" or "land [something] on/at [surface-desc]" as deorbiting.
 Rule for supplying a missing noun while deorbiting:
 	if the player is in the messenger ship, now the noun is the messenger ship.
 Check deorbiting something that is not the messenger ship:
@@ -1065,7 +1068,6 @@ Check deorbiting the messenger ship when the location is not the planetary orbit
 Nounless-deorbiting is an action applying to nothing.
 Understand "deorbit" or "break orbit" or "touchdown" or "touch down" or "make planetfall" or "enter the/-- atmosphere" or "re-enter the/-- atmosphere" or "reenter the/-- atmosphere" or "return to the/-- [surface-desc]" as nounless-deorbiting.
 Understand "surface/planet/island" or "landing/-- runway/pad/strip" or "military/-- complex/facility/prison" as "[surface-desc]".
-[Understand "make a/the/-- combat descent maneuver/--" or "fly a/the/-- combat descent maneuver/--" or "do a/the/-- combat descent maneuver/--" or "combat descent" as nounless-deorbiting.[* A "Frontlines" easter egg, so to speak.]]
 Check nounless-deorbiting when the location is not planetary orbit:
 	say "[We] [are] not in orbit." instead.
 Check nounless-deorbiting when the messenger ship is in the location:
@@ -1082,6 +1084,8 @@ The room-floor-prop is nothing. The room-top-prop is nothing. The walls are {}.
 The planet is scenery in the orbit. "In the external camera view, [we] [see] the barren, yellow surface of your former prison receding behind [us]. [We] [are] glat to be on [our] way." Understand "wretched" or "damned" or "godforsaken" or "horrible" or "awful" or "third-rate" or "shithole" or "hellish" or "hell-hole" or "hellhole" or "planet" or "rock" or "wasteland" or "excuse" or "of a" as the planet.
 Understand "leave this/-- [the planet]" as getting off when the location is the planetary orbit.
 Instead of getting off the planet, try home-going.
+Understand "go to [the planet]" as entering when the location is the planetary orbit.
+Instead of entering the planet, try nounless-deorbiting.
 
 The transit node is scenery in the orbit. "A yellow dot on the ship's map marks the spot at which you can transition transition to earth [dash] it is not actually visible out there." Understand "space/-- road/highway/motorway" or "hyperlane" or "alcubierre" or "chute" as the transit node.
 Understand "hit [the transit node]" as entering when the location is the planetary orbit.
@@ -1089,7 +1093,7 @@ Instead of entering the transit node, try home-going.
 Instead of doing something other than entering or examining to the transit node, say "The node isn't a tangible thing [dash] just an area where local space-time is weak."
 
 Home-going is an action applying to nothing.
-Understand "go [home-desc]" or "return [home-desc]" as home-going.
+Understand "go [home-desc]" or "return [home-desc]" or "travel [home-desc]" as home-going.
 Understand "home" or "to/-- earth" as "[home-desc]".
 Understand "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "stick to the/-- panel" or "put the/-- control/-- stick to the/-- panel" or "punch it" or "transition [home-desc]" or "transition away" or "transition out of here" or "leave this/-- system" as home-going when the location is the orbit.
 
