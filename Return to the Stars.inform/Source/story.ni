@@ -580,7 +580,7 @@ Report an actor shooting something (called the target) with a gun (called the we
 		say "[The actor] [fire] at [the target]." (C)
 
 [Really the only ways to die in this game are by running out of air, or getting shot to death. I don't want to use undo prevention, but we don't need to rub in the possibility of retrying the random combat, so...]
-When play begins:
+When play begins (this is the don't advertise undo rule):
 	choose row with a final response rule of immediately undo rule in the Table of Final Question Options;
 	blank out the final question wording entry.
 
@@ -878,7 +878,7 @@ Instead of climbing the rocky cliffs:
 	now the player is in the prison docks.
 A time allotment rule for climbing the rocky cliffs:
 	rule succeeds with result 8.
-Instead of going up from seabottom-1 for more than the first time (this is the hint at climbig rule):
+Instead of going up from seabottom-1 for more than the first time (this is the hint at climbing rule):
 	say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided.[line break](However, if you really must return, the cliffs look like you might stand a chance at climbing them.)"
 
 [Index map with seabottom-1 mapped north of the prison docks.]
@@ -1053,15 +1053,22 @@ Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat th
 
 Chapter 6 - Space
 
-Planetary orbit is a room.
+Planetary orbit is a vacuum room.
+The room-floor-prop is nothing. The room-top-prop is nothing. The walls are {}.
 
-The planet is scenery in the orbit. "In the external camera view, [we] [see] the barren, yellow surface of your former prison receding behind [us]. [We] [are] glat to be on [our] way."
+The planet is scenery in the orbit. "In the external camera view, [we] [see] the barren, yellow surface of your former prison receding behind [us]. [We] [are] glat to be on [our] way." Understand "wretched" or "damned" or "godforsaken" or "horrible" or "awful" or "third-rate" or "shithole" or "hellish" or "hell-hole" or "hellhole" or "planet" or "rock" or "wasteland" or "excuse" or "of a" as the planet.
+Understand "leave this/-- [the planet]" as getting off when the location is the planetary orbit.
+Instead of getting off the planet, try home-going.
+
+The transit node is scenery in the orbit. "A yellow dot on the ship's map marks the spot at which you can transition transition to earth [dash] it is not actually visible out there." Understand "space/-- road/highway/motorway" or "hyperlane" or "alcubierre" or "chute" as the transit node.
+Understand "hit [the transit node]" as entering when the location is the planetary orbit.
+Instead of entering the transit node, try home-going.
+Instead of doing something other than entering or examining to the transit node, say "The node isn't a tangible thing [dash] just an area where local space-time is weak."
 
 Home-going is an action applying to nothing.
-Understand "go [home-desc]" or "return [home-desc]" or "leave the/this/-- [planet-desc] behind/--" as home-going.
-Understand "wretched/damned/godforsaken/horrible/awful/blasted/flippin/flipping/freaking/freakin/fricking/friggin/crappy/shitty/shite/third-rate/shithole/hellish/unpleasant/-- planet/rock/wasteland" or "wretched/damned/damn/godforsaken/horrible/awful/blasted/flippin/flipping/freaking/freakin/fricking/friggin/crappy/shitty/-- wasteland/excuse/shithole/hell-hole/hellhole of a planet" as "[planet-desc]".
+Understand "go [home-desc]" or "return [home-desc]" as home-going.
 Understand "home" or "to/-- earth" as "[home-desc]".
-Understand "hit the/-- space/-- road/highway/motorway/hyperlane" or "hit the/-- alcubierre/-- chute" or "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "punch it" as home-going when the location is the orbit.
+Understand "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "stick to the/-- panel" or "put the/-- control/-- stick to the/-- panel" or "punch it" or "transition [home-desc]" or "transition away" or "transition out of here" or "leave this/-- system" as home-going when the location is the orbit.
 
 Check home-going when the location is not the planetary orbit:
 	say "Yes, that's [one of]the plan[or]the mission[or]the objective[or]what [we]['re] trying to do[at random]." instead.
@@ -1073,6 +1080,8 @@ Check home-going when the location is not the planetary orbit and the player is 
 Carry out home-going:
 	end the story finally saying "You have returned home".
 
+Instead of going when the location is the planetary orbit, say "[We] don't really have anywhere to go in normal space."
+
 Book 4 - Debug Commands - Not for Release
 
 Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
@@ -1080,7 +1089,7 @@ Carry out air-draining:
 	now the air of the armor is 10;
 	say "[bracket]Drained.[close bracket][paragraph break]".
 
-After reading a command (this is the ignore beta-comments rule): 
-	if the player's command matches the regular expression "^\p": 
-		say "([one of]Oh no! [or]How embarassing... [or]I'll look into that. [or][at random]Noted.)"; 
+After reading a command (this is the ignore beta-comments rule):
+	if the player's command matches the regular expression "^\p":
+		say "([one of]Oh no! [or]How embarassing... [or]I'll look into that. [or][at random]Noted.)";
 		reject the player's command.
