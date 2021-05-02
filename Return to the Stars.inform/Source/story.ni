@@ -419,7 +419,7 @@ Rule for supplying a missing noun while crawling into:
 	if the holder of the player is an air duct, now the noun is the holder of the player;
 	say "(through the air duct)[command clarification break]".
 
-Check an actor crawling into a closed air duct (called the conduit) when the player is not in the conduit (this is the can't crawl through grates rule):
+Check an actor crawling into a closed air duct (called the conduit) when the actor is not in the conduit (this is the can't crawl through grates rule):
 	instead say "The grate is in the way."
 
 Check an actor crawling into something that is not an air duct (this is the default block crawling rule):
@@ -434,8 +434,11 @@ Carry out an actor crawling into an air duct (this is the travel through air duc
 Report an actor crawling into an air duct (this is the report air duct travel rule):
 	if the actor is not the player, say "[The actor] [crawl] out of sight." (A)
 
-Understand "climb in/into [something]" as climbing.
-Instead of climbing an air duct, try entering the noun.
+Before exiting when the holder of the actor is an air duct and a grate is part of the holder of the actor:
+	say "(first kicking a hole into the grate)[command clarification break]";
+	silently try attacking a random grate that is part of the holder of the actor.
+
+Understand "climb in/into [something]" as entering.
 
 Instead of crawling into an air duct when the player is wearing the armor, say "The duct is just large enough for a human to crawl through [dash] bulky suit of armor not included."
 
