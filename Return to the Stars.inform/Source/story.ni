@@ -699,7 +699,7 @@ Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
 
-Test prison with "x me / listen to me / i / x fatigues / smell / x floor / x down / x north / look through door / x cot / get on cot / get up / x sheets / x sanitary station / enter station / x air duct / pull grate / enter duct / crawl / kick grate / out / switch doors off / up / x helmet / take helmet / s / e / e / x plates / take plates / x armor / x me / i / take all ration bars / i / eat ration / listen to me / w / open airlock / n / smell / e / jump / turn on lamp / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
+Test prison with "x me / listen to me / i / x fatigues / smell / x floor / x down / x north / look through door / x cot / get on cot / get up / x sheets / x camera / x sanitary station / enter station / x air duct / pull grate / enter duct / crawl / kick grate / out / switch maglock off / up / x helmet / take helmet and card / s / e / e / x plates / take plates / x armor / x me / i / take all ration bars / i / eat ration / listen to me / w / open airlock / n / smell / e / jump / turn on lamp / u / x down / x up / take silt / w / n / n / n / n / x me / x armor".
 
 Cell-complex is a region. Your cell, the corridor, the control room, the front office, the storage space, and the prison installations room are in cell-complex.
 
@@ -760,7 +760,8 @@ Instead of attacking the cot:
 		now the mangled frame is in your cell;
 		attempt rage conclusion;
 		rule succeeds.
-The mangled cot frame is a thing. The description is "The mangled remains of the cot." Understand "bent" or "destroyed" or "bed" or "bunk" or "rack" or "remains" or "remnants" or "pieces" as the mangled cot frame.
+The mangled cot frame is a thing. The description is "The mangled remains of the cot."
+Understand "bent" or "destroyed" or "bed" or "bunk" or "rack" or "remains" or "remnants" or "pieces" as the mangled cot frame.
 Instead of taking the mangled cot frame, say "No point lugging [those] around."
 
 Instead of attacking the bedsheets:
@@ -769,7 +770,9 @@ Instead of attacking the bedsheets:
 	now the ripped bedsheets are in your cell;
 	attempt rage conclusion;
 	rule succeeds.
-The ripped bedsheets are a thing.
+Some ripped bedsheets are a thing. The description is "You tore the bedsheets to pieces, and this is the result."
+Understand "torn" or "white" or "pieces" or "shreds" or "of" or "sheets" as the ripped bedsheets.
+Instead of doing anything other than examining to the ripped bedsheets, say "[We] [have] no further interest in [regarding the noun][them]."
 
 [Scenes didn't want to work for some reason, so...]
 To decide whether the rage is ongoing:
@@ -783,6 +786,8 @@ To decide whether the rage is concluded:
 	no.
 To attempt rage conclusion:
 	if the rage is concluded, say "[line break]You eye up your work: [if the camera is in your cell]only the camera remains on the wall, but it is too far up to reach now[otherwise]pieces of camera, cot, and bedsheets are strewn all across the floor[end if]. You managed to release a lot of the pent-up frustration that has accumulated over the past few weeks of being locked up in here, but you're not sure whether you approve of this new side of you."
+
+Test rampage with "break camera / purloin armor / wear armor / rip up sheets / tear up cot / look / x camera / take camera / x mangled frame / take it / x sheets / take sheets"
 
 [And here is our first custom room part.]
 The cell floor is a room-floor. The description is "The floor has a grey, rubbery non-slip surface." Understand "grey/gray/-- rubber/rubbery/rubberized/rubberised/plastic/-- cell/-- floor" as the cell floor.
