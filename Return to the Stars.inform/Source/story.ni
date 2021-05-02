@@ -330,6 +330,9 @@ Understand the command "kill" as something new.
 Understand "attack [something]" as attacking.
 Understand the command "combat", "fight", "murder" and "kill" as "attack".
 
+Understand "rip up/apart/-- [something]" or "rip [something] up/apart" or "rip [something] to bits/pieces" as attacking.
+Understand the command "tear" as "rip".
+
 [And finally]
 Understand "xyzzy" or "say xyzzy" or "cast xyzzy" as a mistake ("You're not superstitious like that.").
 Understand "throw snotball at evil librarian" or "throw snotball at [someone]" as a mistake ("You remember the last thing your squadmate Rovarssen told you before you got separated: [italic type]...and if nothing else, throw a snotball at them![roman type]").
@@ -703,10 +706,10 @@ Instead of listening to the location when the silence is in the location, try li
 Instead of listening to the silence:
 	say "It has been eerily quiet for a few days now. Gone are the footsteps, the occasional shouting, the idle chit-chat of the guards. Now you hear nothing but the faint noise of the ventilation system."
 
-Section 1 - Main Parts
+Section 1 - The Cell
 
 [We've spent A LOT of time in this room, so describe it in excruciating detail.]
-Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [A cot] stands in one corner of the room. An air duct covered by an old grate is mounted in the wall near the cot[if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]plink[roman type])[end if], next to which is a small [camera]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]"
+Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [if the cot is in your cell][A cot] stands in one corner of the room. [end if]An air duct[if a grate is part of cell air duct] covered by an old grate[end if] is mounted in the wall near [if the cot is in the location]the cot[otherwise]where the cot once stood[end if][if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]plink[roman type])[end if]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]".
 
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
@@ -719,23 +722,70 @@ Instead of unlocking the metal door with something when the location is your cel
 
 The cot is a fixed in place enterable supporter in your cell. "A cot stands in one corner of the room." The description is "Flimsy frame, uncomfortable plastic surface [dash] it's a cot alright."
 Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
-After printing the name of the cot, omit contents in listing.
 
 Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets."
 The description is "Plain white bedsheets. Thin, scratchy, and not quite warm enough to keep you comfortable. It seems like all expenses were spared here.[unless the bedsheets are handled] Your military discipline dictates that you neatly fold the bedsheets when you get up in the morning.[end if]".
-Understand "sheets" as the bedsheets.
+Understand "plain" or "white" or "sheets" or "bed" as the bedsheets.
 
 The sanitary station is a fixed in place enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room." The description is "A brushed aluminum clamshell contraption for personal hygiene, not unlike showers you've used on some UNDC ships."
 Understand "shower" or "toilet" or "head" as the sanitary station.
 Instead of entering the sanitary station, say "You've already showered today."
 After printing the name of the sanitary station, omit contents in listing.
 
-The camera is scenery in the cell. "A small camera hangs in one corner of the room, a small red light presumably indicating that it is active."
-Instead of attacking the camera, say "While it would give you great satisfaction to rip the camera off its mount, it's mounted too high up on the wall to reach.".
+The camera is a fixed in place thing in the cell. "A small camera hangs above the cot, keeping a watchful eye on you." The description is "A small camera hangs in one corner of the room, a small red light presumably indicating that it is active."
+
+[So I suppose the player can be a bit of a psychopath...]
+Instead of attacking the camera:
+	if the cot is not in your cell:
+		say "Unfortunately, the camera is mounted too high on the wall to do that, and you've already destroyed the cot.";
+	otherwise:
+		say "Confident that nobody is watching anymore, you climb onto the cot, tear the camera off the wall, and grind it to pieces under the heel of your boot.[if the player is wearing the armor]It makes a satisfying crunching noise as it breaks.[otherwise][line break]If you're right, and nobody is around to witness it, then this was a pointless little act of defiance. If you are wrong, then you just made your life a whole lot more difficult...[paragraph break]Either way, this felt [italic type]good[roman type].[end if]";
+		now the camera is nowhere;
+		now the camera remains are in your cell;
+		attempt rage conclusion;
+		rule succeeds.
+The camera remains are a plural-named thing. The description is "The remnants of the camera that you smashed lie on the floor." Understand "small" or "video" or "cctv" or "pieces" or "remnants" as the camera remains.
+Instead of doing something other than examining to the camera remains, say "The pieces of camera are hardly useful anymore."
+
+Instead of attacking the cot:
+	if the player is not wearing the armor:
+		say "As much as you'd like to [if the rage is ongoing]continue your rampage[otherwise]lay waste to this place[end if], the cot isn't quite flimsy enough to destroy with your bare hands.";
+	otherwise:
+		say "With your armor's power assist cranked up, you tear off the bolts holding the cot to the ground and rip its frame to pieces.";
+		now everything that is on the cot is in the location;
+		now the cot is nowhere;
+		now the mangled frame is in your cell;
+		attempt rage conclusion;
+		rule succeeds.
+The mangled cot frame is a thing. The description is "The mangled remains of the cot." Understand "bent" or "destroyed" or "bed" or "bunk" or "rack" or "remains" or "remnants" or "pieces" as the mangled cot frame.
+Instead of taking the mangled cot frame, say "No point lugging [those] around."
+
+Instead of attacking the bedsheets:
+	say "[if the rage is ongoing]You[otherwise]In a sudden fit of rage, you[end if] take the thin bedsheets and rip them to shreds.";
+	now the bedsheets are nowhere;
+	now the ripped bedsheets are in your cell;
+	attempt rage conclusion;
+	rule succeeds.
+The ripped bedsheets are a thing.
+
+[Scenes didn't want to work for some reason, so...]
+To decide whether the rage is ongoing:
+	if the mangled cot frame is in your cell and the ripped bedsheets are in your cell, no;
+	if the mangled cot frame is in your cell, yes;
+	if the ripped bedsheets are in your cell, yes;
+	if the camera remains are in your cell, yes;
+	no.
+To decide whether the rage is concluded:
+	if the mangled cot frame is in your cell and the ripped bedsheets are in your cell, yes;
+	no.
+To attempt rage conclusion:
+	if the rage is concluded, say "[line break]You eye up your work: [if the camera is in your cell]only the camera remains on the wall, but it is too far up to reach now[otherwise]pieces of camera, cot, and bedsheets are strewn all across the floor[end if]. You managed to release a lot of the pent-up frustration that has accumulated over the past few weeks of being locked up in here, but you're not sure whether you approve of this new side of you."
 
 [And here is our first custom room part.]
 The cell floor is a room-floor. The description is "The floor has a grey, rubbery non-slip surface." Understand "grey/gray/-- rubber/rubbery/rubberized/rubberised/plastic/-- cell/-- floor" as the cell floor.
 The room-floor-prop of your cell is the cell floor.
+
+Section 2 - Corridor and Stuff
 
 The corridor is a room. "Write me."
 
@@ -764,9 +814,8 @@ Report going through the airlock for the first time:
 The airlock's inner card reader is an unthing in the front office. The description is "The door doesn't seem to have a card reader. There must be another way to unlock it.".
 Instead of locking the airlock with something when the location is the front office, say "The door doesn't seem to have a card reader. There must be another way to unlock it.".
 Instead of unlocking the airlock with something when the location is the front office, say "The door doesn't seem to have a card reader. There must be another way to control it.".
-
 	
-Section 2 - The Storage Area
+Section 3 - The Storage Area
 
 The storage space is east of the front office. "Bare-metal [shelves] line the walls. This seems to be the place where inmates' possessions are stored."
 
@@ -793,7 +842,7 @@ Before armor-wear-preparation when the player is carrying the helmet:
 A ration bar is a kind of edible thing.
 On the shelves are five ration bars.
 
-Section 3 - Basement
+Section 4 - Basement
 
 The prison installations room is down from the control room. "This is where most of the installations and appliances keeping the cell complex running reside. [if the ventilation switch is switched on]A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall. [end if]A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
 
@@ -833,11 +882,9 @@ Rule for printing the description of a dark room when the location is the instal
 After deciding the scope of the player while in darkness and the location is the installations room:
 	place the lights switch in scope.
 
-Section 4 - The Antecourt
+Section 5 - Outside Area
 
 Prison antecourt is an outdoor room. "Write me."
-
-Section 5 - The Dock
 
 The prison docks are an outdoor room. They are east of the prison antecourt. "Write me."
 
