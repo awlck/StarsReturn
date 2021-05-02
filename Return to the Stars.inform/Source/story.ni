@@ -333,6 +333,12 @@ Understand the command "combat", "fight", "murder" and "kill" as "attack".
 Understand "rip up/apart/-- [something]" or "rip [something] up/apart" or "rip [something] to bits/pieces" as attacking.
 Understand the command "tear" as "rip".
 
+[Climbing]
+[A concept from TADS: "go up ladder", etc.]
+Understand "go up/down [something]" as climbing.
+Understand "climb up/down [something]" as climbing.
+Understand "slide down [something]" as climbing.
+
 [And finally]
 Understand "xyzzy" or "say xyzzy" or "cast xyzzy" as a mistake ("You're not superstitious like that.").
 Understand "throw snotball at evil librarian" or "throw snotball at [someone]" as a mistake ("You remember the last thing your squadmate Rovarssen told you before you got separated: [italic type]...and if nothing else, throw a snotball at them![roman type]").
@@ -1001,8 +1007,6 @@ Report going to a room in the sea-region from a room in the sea-region (this is 
 	say "You slowly trudge [noun]ward.";
 	continue the action.
 
-[A time allotment rule for going from a room in the sea-region (this is the walking in the sea takes longer rule):
-	rule succeeds with result 5.]
 A time allotment rule for going north when the location is in the sea-region or the location is the shore docks:
 	rule succeeds with result 5.
 A time allotment rule for going south when the location is in the sea-region:
@@ -1018,12 +1022,9 @@ Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID ca
 The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4.
 Index map with shore docks mapped north of prison docks.
 
-Sliding down is an action applying to one touchable thing.
-Understand "slide down [something]" as sliding down.
-Check sliding down something: say "[regarding the noun][Those]['re] not something [we] can slide down."
-
-The muddy incline is scenery in the shore docks.
-Instead of sliding down the muddy incline, try going south.
+The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
+Understand "slope" or "incline" or "rut" as the incline.
+Instead of climbing the muddy incline, try going south.
 Before going south from the shore docks, say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
 Before going down from the shore docks for the first time, say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
 
