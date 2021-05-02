@@ -856,17 +856,27 @@ Instead of doing something other than examining to some-air-ducts, say "They're 
 
 A ladder is scenery in the installations room. Instead of climbing the ladder, try going up.
 
-A switch is a kind of device. A switch is usually switched on.
-Check turning a switch:
+An obfuscated switch is a kind of device. An obfuscated switch is usually switched on.
+An obfuscated switch has some text called the obf-label. An obfuscated switch has some text called the real-label.
+The printed name of an obfuscated switch is usually "[if the player is wearing the armor][real-label][otherwise][obf-label][end if] switch".
+The description of an obfuscated switch is usually "A large rotary switch[if the player is wearing the armor]. Your suit's translator shows the label as '[real-label]'[otherwise]labeled '[obf-label]'[end if].".
+Understand "rotary" or "switch" as an obfuscated switch.
+To say switch-label of (o - an obfuscated switch):
+	say "[if the player is wearing the armor][real-label][otherwise][obf-label][end if]".
+Check turning an obfuscated switch:
 	if the noun is switched on, try switching off the noun instead;
 	otherwise try switching on the noun instead.
 
-The switch panel is in the installations room. "On one of the walls is a panel with a number of large switches on it." It is fixed in place. The description is "A number of large rotary switches are attached to this panel. One is labeled 'LIGHTS', the next 'VENTILATION', a third 'DOORS', and one is labeled 'CONTROLS'".
+The switch panel is in the installations room. "On one of the walls is a panel with a number of large switches on it." It is fixed in place.
+The description is "A number of large rotary switches are attached to this panel. One is labeled '[switch-label of the lights switch]', the next '[switch-label of the ventilation switch]', a third '[switch-label of the doors switch]', and one is labeled '[switch-label of the controls switch]'.".
+Does the player mean turning the switch panel: it is unlikely.
+Does the player mean switching off the switch panel: it is unlikely.
+Does the player mean switching on the switch panel: it is unlikely.
 
-The lights switch is part of the switch panel. It is a switch. The description is "A large rotary switch labeled 'LIGHTS'." Understand "light" as the lights switch.
-The ventilation switch is part of the panel. It is a switch. The description is "A large rotary switch labeled 'VENTILATION'."
-The doors switch is part of the panel. It is a switch. The description is "A large rotary switch labeled 'DOORS'."
-The controls switch is part of the panel. It is a switch. The description is "A large rotary switch labeled 'CONTROLS'."
+The lights switch is part of the switch panel. It is an obfuscated switch. The real-label is "LIGHTS". The obf-label is "YVTUGF". Understand "light" or "yvtugf" as the lights switch.
+The ventilation switch is part of the panel. It is an obfuscated switch. The real-label is "VENTILATION". The obf-label is "IRAGVYNGVBA". Understand "iragvyngvba" as the ventilation switch.
+The doors switch is part of the panel. It is an obfuscated switch. The real-label is "MAGLOCK". The obf-label is "ZNTYBPX". Understand "maglock" or "zntybpx" as the doors switch.
+The controls switch is part of the panel. It is an obfuscated switch. The real-label is "CONTROLS". The obf-label is "PBAGEBYF". Understand "pbagebyf" as the controls switch.
 
 Carry out switching off the lights switch:
 	now all rooms in cell-complex are dark.
