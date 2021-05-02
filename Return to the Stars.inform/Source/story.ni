@@ -801,7 +801,7 @@ Instead of wearing the helmet, say "Since the power and air supply are located i
 Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, your captors haven't messed anything up."
 
 The control panel is a scenery supporter in the control room. "It is festooned with buttons and switches."
-The prison warden's ID card is on the panel. "A purple-colored card with shwabolian writing on it." Understand "warden" or "guard" or "access" or "purple" as the ID card.
+The prison warden's ID card is on the panel. "A purple card sits on a control panel." The description is "A purple-colored card with shwabolian writing on it.[if the player is wearing the armor] Your suit translates it as 'Shevok Kemalik, Warden'.[end if]". Understand "warden" or "guard" or "access" or "purple" as the ID card.
 
 East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
 
@@ -840,6 +840,7 @@ Before armor-wear-preparation when the player is carrying the helmet:
 	now the helmet is nowhere;
 	now the plates are nowhere;
 	now the armor is in the location;
+	say "(donning the now-complete suit)[command clarification break]";
 	try wearing the armor instead.
 
 A ration bar is a kind of edible thing.
@@ -1031,7 +1032,6 @@ The command center door is north of the plaza and south of the entry hallway. It
 The command center door's card reader is a fixed in place thing in the plaza.
 Instead of unlocking the card reader with something, try unlocking the command center door with the noun.
 Instead of locking the card reader with something, try locking the command center door with the noun.
-
 
 Chapter 4 - The Command Center
 
