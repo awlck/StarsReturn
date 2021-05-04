@@ -511,7 +511,7 @@ Rule for supplying a missing second noun while shooting something with:
 		now the second noun is the weapon;
 		say "(with [the weapon])[command clarification break]".
 
-To shoot is a verb. To fire is a verb. To discard is a verb. To glance is a verb. To bring is a verb. To whirr is a verb. To dodge is a verb. To stand is a verb. To zero is a verb. To unleash is a verb. To discharge is a verb. To cock is a verb. To train is a verb. To pop is a verb.
+To shoot is a verb. To fire is a verb. To discard is a verb. To glance is a verb. To bring is a verb. To whirr is a verb. To dodge is a verb. To stand is a verb. To zero is a verb. To unleash is a verb. To discharge is a verb. To cock is a verb. To train is a verb. To pop is a verb. To miss is a verb.
 
 A wreckage is a kind of thing.
 Wrecking relates one wreckage (called the remains) to one thing.
@@ -572,8 +572,14 @@ Carry out an actor shooting something (called the target) with a gun (called the
 
 Report an actor shooting something (called the target) with a gun (called the weapon) (this is the default report shooting rule):
 	if the actor is the player:
-		say "[We] [fire] a three-shot burst from [the weapon] at [the target], utterly destroying [them]." (A);
-		if the clip shot from is empty, say "[We] [discard] the expended ammo clip." (B);
+		say "[We] [fire] a three-shot burst from [the weapon] at [the target], [run paragraph on]";
+		if the shot-result is:
+			-- deadly-hit:
+				if the target is not a person, say "utterly destroying [regarding the target][them].";
+				otherwise say "dropping [the target] where [they] stand.";
+			-- near-miss:
+				say "but in the heat of the moment, [we] [miss] [our] target.";
+		if the clip shot from is empty, say "[We] [discard] the expended ammo clip.";
 	otherwise if the target is the player:
 		say "[The actor] [one of][take] aim[or][bring] [their] [weapon] to bear[or][cock] [their] [weapon][or][train] [their] [weapon] at [us][or][zero] in on [us][at random] and [one of][unleash][or][shoot][or][fire][or][discharge][or][pop][at random] a volley in [our] direction! [run paragraph on]";
 		if the shot-result is:
@@ -589,7 +595,7 @@ Report an actor shooting something (called the target) with a gun (called the we
 			-- full-miss:
 				say "Their aim is way off and the shot [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind us[end if].";
 	otherwise:
-		say "[The actor] [fire] at [the target]." (C)
+		say "[The actor] [fire] at [the target]."
 
 [Really the only ways to die in this game are by running out of air, or getting shot to death. I don't want to use undo prevention, but we don't need to rub in the possibility of retrying the random combat, so...]
 When play begins (this is the don't advertise undo rule):
