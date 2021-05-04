@@ -395,6 +395,9 @@ To kick is a verb.
 The block attacking rule does nothing when the noun is a grate.
 Does the player mean attacking a grate when the player is in an air duct: it is likely.
 
+Check an actor attacking a grate when the noun is not part of something:
+	say "That would be fairly pointless." instead.
+
 Carry out an actor attacking a grate (called the target) (this is the grate destruction rule):
 	now the component parts core of the target is open;
 	now the target is nowhere.
@@ -467,6 +470,7 @@ Looking through is an action applying to one visible thing.
 Understand the commands "look" and "l" as something new. [Argh]
 Understand "look" as looking.
 Understand "look inside/in/into [something]" as searching.
+Understand "look under [something]" as looking under.
 Understand "look through [something]" as looking through.
 Understand the command "l" as "look".
 
@@ -813,12 +817,28 @@ West of the corridor is south of the control room. Index map with control room m
 The control room is a room. "Write me."
 
 A table is a scenery supporter in the control room.
-On the table is a thing called a helmet. "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it."
+On the table is a thing called a helmet. The initial appearance of the helmet is "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it.". The printed name is "[our] helmet".
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
 Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, your captors haven't messed anything up."
 
-The control panel is a scenery supporter in the control room. "It is festooned with buttons and switches."
-The prison warden's ID card is on the panel. "A purple card sits on a control panel." The description is "A purple-colored card with shwabolian writing on it.[if the player is wearing the armor] Your suit translates it as 'Shevok Kemalik, Warden'.[end if]". Understand "warden" or "guard" or "access" or "purple" as the ID card.
+The control panel is in the control room. "A control desk and some screens are installed on the wall.". The description is "[control-panel-desc].". Understand "desk" or "screen" or "system" or "panel" or "panels" or "screens" or "surface" or "console" as the control panel.
+To say control-panel-desc:
+	if the controls switch is switched on:
+		say "The screens show video feeds from various locations in the building[run paragraph on]";
+		if the camera is in your cell, say "[if the mangled cot frame is in your cell or the ripped bedsheets are in your cell]. The havok you wrought in your cell is plainly visible[end if]";
+		otherwise say ". One feed is missing [dash] presumably yours, considering that you broke the camera in your cell";
+	otherwise:
+		say "The screen is blank".
+
+The prison warden's ID card is a thing. The description is "A purple-colored card with shwabolian writing on it.[if the player is wearing the armor] Your suit translates it as 'Shevok Kemalik, Warden'.[end if]". Understand "warden" or "guard" or "access" or "purple" as the ID card.
+Instead of looking under the control panel, try searching the noun.
+Instead of searching the control panel:
+	now the player is carrying the ID card;
+	say "Looking under [the control panel], you find a purple card, which you pocket.";
+	rule succeeds.
+
+ladder-top is privately-named scenery in the control room. The printed name is "ladder". Understand "ladder" or "rungs" as the ladder-top.
+Instead of climbing ladder-top, try going down.
 
 East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
 
@@ -872,7 +892,9 @@ An air duct called bottom of the air duct is in the prison installations room. I
 some-air-ducts is scenery in the prison installations room. It is privately-named. The description of some-air-ducts is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
 Instead of doing something other than examining to some-air-ducts, say "They're not labeled, and you'd rather not wander through the air ducts aimlessly."
 
-A ladder is scenery in the installations room. Instead of climbing the ladder, try going up.
+ladder-bottom is privately-named scenery in the installations room. The printed name is "ladder".
+Understand "ladder" or "rungs" as the ladder-bottom.
+Instead of climbing the ladder-bottom, try going up.
 
 An obfuscated switch is a kind of device. An obfuscated switch is usually switched on.
 An obfuscated switch has some text called the obf-label. An obfuscated switch has some text called the real-label.
@@ -1028,11 +1050,11 @@ Section 1 - The Docks
 [Not a test as much as a convenience to quickly skip ahead during debugging.]
 Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card".
 
-The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]The prison buildings lie to the south, across the water, and the military complex continues to the north."
+The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]The prison buildings lie to the south, across the water, and the military complex continues to the north.[paragraph break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face..."
 Index map with shore docks mapped north of prison docks.
 
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
-Understand "slope" or "rut" or "muck" or "silt" as the incline.
+Understand "slope" or "rut" or "muck" or "silt" or "shore" or "shoreline" as the incline.
 Instead of climbing the muddy incline, try going south.
 Before going south from the shore docks, say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
 Before going down from the shore docks for the first time, say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
