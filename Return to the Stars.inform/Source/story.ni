@@ -255,6 +255,7 @@ Understand "chow" or "food" or "ration" as something edible.
 
 [Exiting]
 Understand "stand up" as exiting.
+Instead of exiting when the holder of the player is a room, try going outside.
 
 [Looking]
 Understand "look around" as looking.
@@ -580,7 +581,7 @@ Report an actor shooting something (called the target) with a gun (called the we
 		if the shot-result is:
 			-- deadly-hit:
 				if the target is not a person, say "utterly destroying [regarding the target][them].";
-				otherwise say "dropping [the target] where [they] stand.";
+				otherwise say "dropping [them] where [they] [stand].";
 			-- near-miss:
 				say "but in the heat of the moment, [we] [miss] [our] target.";
 		if the clip shot from is empty, say "[We] [discard] the expended ammo clip.";
@@ -607,13 +608,15 @@ When play begins (this is the don't advertise undo rule):
 	blank out the final question wording entry.
 
 A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod yet lizard-looking creature, walking on two legs."
-A corpse is a kind of wreckage.
+A corpse is a kind of wreckage. A corpse is usually fixed in place.
+Instead of taking a corpse, say "You'd rather not carry a dead body around with you."
 A corpse is part of every person.
 Every shwabolian carries a gun and two ammo clips.
-When play begins:
+When play begins (this is the prepare corpses rule):
 	repeat with s running through people:
 		let c be a random wreckage that is part of s;
-		now c is the remains of s.
+		now c is the remains of s;
+		now c is nowhere.
 
 Giving something to a shwabolian is invalid-conversation. Showing something to a shwabolian is invalid-conversation. Answering a shwabolian that something is invalid-conversation. Telling a shwabolian about something is invalid-conversation. Asking a shwabolian about something is invalid-conversation. Asking a shwabolian for something is invalid-conversation.
 
@@ -625,7 +628,7 @@ Carry out going:
 	now turns-in-location is zero;
 	continue the action.
 
-Every turn:
+Every turn (this is the aliens shooting rule):
 	increase turns-in-location by one;
 	if turns-in-location is at least two:
 		let the hostile be a random shwabolian in the location;
@@ -1063,8 +1066,6 @@ Section 2 - The Plaza
 
 The military complex plaza is an outdoor room. It is north of the shore docks. "Write me."
 
-The command-center-facade is a facade in the plaza. The printed name is "command center". Understand "command" or "center" as the command-center-facade. The associated room is the entry hallway.
-
 The command center door is north of the plaza and south of the entry hallway. It is an openable closed lockable locked door. The prison warden's ID card unlocks the command center door.
 The command center door's card reader is a fixed in place thing in the plaza.
 Instead of unlocking the card reader with something, try unlocking the command center door with the noun.
@@ -1102,11 +1103,37 @@ Instead of taking some-ammo-clips:
 Some racks are a fixed in place supporter in the armory.
 Understand "bare" or "metal" or "shelf" or "rack" as the racks. Understand "shelves" or "racks" as the plural of racks.
 A rifle is a gun on the racks. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
+Instead of attacking the racks:
+	say "You pull apart the frame of the shelf, giving you a piece of metal with a rather sharp edge.";
+	now all things that are on the racks are in the location;
+	now the racks are nowhere;
+	now the player has the makeshift knife;
+	rule succeeds.
+
+The makeshift knife is a thing. The description is "A piece of metal you pulled out of the shelves in the armory. It happens to have a rather sharp edge."
+Understand "make-shift" or "dagger" or "metal" or "frame" as the makeshift knife.
 
 Section 3 - Nerve Center
 
 The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
+
 The larger alien and the smaller alien are shwabolians in the ops center.
+The description of the larger alien's corpse is "A well and truly dead shwabolian. Blood is pooling around him from where your bullets hit their mark."
+Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
+
+[I expect this will probably be the most controversial part of the game.]
+Cutting it with is an action applying to two touchable things.
+Understand "cut up/-- [something] open/-- with [something preferably held]" as cutting it with.
+Understand "dissect [something] with [something preferably held]" as cutting it with.
+Understand "autopsy [something] with [something preferably held]" as cutting it with.
+Understand "slice [something] open/-- with [something preferably held]" as cutting it with.
+To cut is a verb.
+
+Check cutting something with something that is not the makeshift knife:
+	say "[The second noun] [cannot cut] anything." instead.
+
+Check cutting something that is not the larger alien's corpse with something:
+	say "Cutting up [the noun] would achieve little." instead.
 
 Report going to the ops center for the first time (this is the alien swallows key rule):
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
@@ -1115,7 +1142,11 @@ The alien swallows key rule is listed last in the report going rules.
 
 The briefing room is east of the lobby. "Write me."
 
-Chapter 5 - Hangar and Launch
+Chapter 5 - The Barracks
+
+The barracks are west of the military complex plaza.
+
+Chapter 6 - Hangar and Launch
 
 Section 1 - The Hangar
 
@@ -1182,7 +1213,7 @@ Instead of going down when the location is the planetary orbit, try nounless-deo
 
 Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat theory, but the real world doesn't work like that.") when the player is in the ship.
 
-Chapter 6 - Space
+Chapter 7 - Space
 
 Planetary orbit is a vacuum room.
 The room-floor-prop is nothing. The room-top-prop is nothing. The walls are {}.
