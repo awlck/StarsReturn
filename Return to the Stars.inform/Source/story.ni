@@ -917,17 +917,22 @@ Section 5 - Outside Area
 
 Prison antecourt is an outdoor room. "Write me."
 
-The prison docks are an outdoor room. They are east of the prison antecourt. "Write me."
+The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[line break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
 
-The water is a backdrop. It is in the prison docks and the shore docks.
+The dock is a backdrop. It is in the prison docks and the shore docks. The description is "A floating plastic contraption with a metal frame. It wobbles as you try to stand on it."
+Understand "plastic" or "contraption" as the dock.
+Understand "jump off [the dock]" as getting off.
+Instead of getting off the dock, try entering the water.
 
+The water is a backdrop. It is in the prison docks and the shore docks. The description is "The water is murky, but the sea is smooth.".
+Understand "ocean" or "sea" as the water.
 Instead of entering the water when the player is wearing the armor, try going down.
 
 Understand "jump in/into [something]" or "dive in/into [something]" as entering.
 Does the player mean entering the water: it is likely.
 
 Instead of jumping when the location is the prison docks or the location is the shore docks:
-	say "(in the water)[command clarification break]";
+	say "(into the water)[command clarification break]";
 	try entering the water.
 
 Instead of entering the water when the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you."
@@ -984,8 +989,6 @@ A time allotment rule for climbing the rocky cliffs:
 Instead of going up from seabottom-1 for more than the first time (this is the hint at climbing rule):
 	say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided.[line break](However, if you really must return, the cliffs look like you might stand a chance at climbing them.)"
 
-[Index map with seabottom-1 mapped north of the prison docks.]
-
 seabottom-2 is a sea-room. It is north of seabottom-1.
 
 seabottom-3 is a sea-room. It is north of seabottom-2.
@@ -1025,11 +1028,11 @@ Section 1 - The Docks
 [Not a test as much as a convenience to quickly skip ahead during debugging.]
 Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card".
 
-The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4.
+The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]The prison buildings lie to the south, across the water, and the military complex continues to the north."
 Index map with shore docks mapped north of prison docks.
 
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
-Understand "slope" or "incline" or "rut" as the incline.
+Understand "slope" or "rut" or "muck" or "silt" as the incline.
 Instead of climbing the muddy incline, try going south.
 Before going south from the shore docks, say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
 Before going down from the shore docks for the first time, say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
