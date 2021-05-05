@@ -36,6 +36,11 @@ Carry out requesting credits:
 To say the playtesters:
 	say "[bold type]Playtesters[roman type]: none yet...".
 
+Requesting help is an action out of world applying to nothing.
+Understand "help" or "hint" or "hints" as requesting help.
+Carry out requesting help:
+	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[paragraph break]".
+
 Table of Final Question Options (continued)
 final question wording	only if victorious	topic	final response rule	final response activity
 "read some author's NOTES about this story"	true	"author/author's/-- note/notes"	author's notes rule	--
@@ -51,10 +56,13 @@ The carrying capacity of the player is three.
 
 The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Covered in a generous amount of ocean mud [dash] [we] [haven't] looked this bad since bootcamp, probably. [We]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise][We]['ve] seen better days[end if]."
 
-The player is wearing a set of fatigues. The description of the fatigues is "A set of standard-issue combat fatigues[if the number of things held by the player is 1], the only possession you have left at the moment[end if].". Understand "uniform" or "fatigue" or "fatigues" or "blouse" or "pants" or "trousers" or "clothes" or "camo" or "camouflage" or "battle/combat dress" as the fatigues.
+The player is wearing a set of fatigues. The description of the fatigues is "A set of standard-issue combat fatigues, consisting of a gray shirt, pants and blouse in a grey-and-black digital urban camouflage pattern, and a pair of black leather boots[if the number of things held by the player is 1]. It is the only possession you have left at the moment[end if].". Understand "uniform" or "fatigue" or "fatigues" or "blouse" or "pants" or "trousers" or "shirt" or "clothes" or "digital" or "urban" or "camo" or "camouflage" or "battle/combat dress" as the fatigues.
 Instead of taking off the fatigues, say "You'd rather not strip naked.[if the location is your cell] It's not exactly warm in here, anyways.[end if]".
 Report smelling the fatigues:
 	say "You've been wearing the same clothes for the past few weeks, so they don't exactly smell fresh anymore."
+The pair of black leather combat boots is part of the fatigues. The description is "A pair of black leather combat boots. They have carried you across many worlds already."
+Instead of taking off the boots, say "Walking around barefoot doesn't seem particularly beneficial right now."
+Instead of taking off something that is not the armor when the armor is worn, say "You'd rather not strip naked. Also, you would need to remove the armor first."
 
 Instead of listening to the player:
 	if we have not eaten, say "Your stomach is growling.";
@@ -127,7 +135,7 @@ Instead of smelling the armor when the player is not wearing the armor and the a
 
 [The following is gleaned from Michael J. Robert's "Return to Ditch Day":]
 Instead of rubbing the armor when the armor is muddy, say "You try to wipe the mud off, but all you really accomplish is smearing it around."
-Understand "wipe off [something]" or "wipe [something] off" or "wipe [something]" or "wipe the/-- mud/-- off/-- [something]" as rubbing.
+Understand "wipe off [something]" or "wipe [something] off" or "wipe [something]" or "wipe the/-- mud off [something]" as rubbing.
 
 Report touching something that is not a person while the player is wearing the armor:
 	say "Through [our] armored gloves, [we] don't really feel much of anything."
@@ -268,6 +276,13 @@ Understand "search through [something]" as searching.
 Understand the command "sift" or "comb" or "weed" or "rummage" or "scour" or "dredge" as "search".
 Understand "dig into/through/-- [something]" as searching.
 
+[Locking it with]
+Understand "lock [something] using [something preferably held]" as locking it with.
+
+[Unlocking it with]
+Understand "unlock [something] using [something preferably held]" as unlocking it with.
+Understand "open [something] using [something preferably held]" as unlocking it with.
+
 [Switching on]
 Understand "enable [something]" as switching on.
 Understand the command "activate" or "engage" as "enable".
@@ -342,6 +357,7 @@ Understand "slide down [something]" as climbing.
 
 [And finally]
 Understand "xyzzy" or "say xyzzy" or "cast xyzzy" as a mistake ("You're not superstitious like that.").
+[https://intfiction.org/t/parsercomp-submissions-start-1st-of-may-not-the-deadline/50702]
 Understand "throw snotball at evil librarian" or "throw snotball at [someone]" as a mistake ("You remember the last thing your squadmate Rovarssen told you before you got separated: [italic type]...and if nothing else, throw a snotball at them![roman type]").
 
 Section 2 - Command Rewriting and Error Reporting
@@ -498,16 +514,16 @@ Definition: an ammo clip is empty rather than non-empty if its bullet count is l
 A standoff-outcome is a kind of value. The standoff-outcomes are full-miss, near-miss, shot-dodged, glancing-hit, and deadly-hit.
 
 Shooting it with is an action applying to one touchable thing and one visible thing.
-Understand "shoot [something ungunlike] with [a gun]" as shooting it with.
-Understand "shoot [something] with [something]" as shooting it with.
+Understand "shoot [something ungunlike] with/using [a gun]" as shooting it with.
+Understand "shoot [something] with/using [something]" as shooting it with.
 Understand "shoot [something]" as shooting it with.
 Understand "shoot [something] at [something]" as shooting it with (with nouns reversed).
 Understand "fire [something] at [something]" as shooting it with (with nouns reversed).
-Understand "fire at [something] with [something]" as shooting it with.
+Understand "fire at [something] with/using [something]" as shooting it with.
 Understand "fire at [something]" as shooting it with.
-Understand "fire at [something ungunlike] with [a gun]" as shooting it with.
-Understand "attack [something] with [something]" as shooting it with.
-Understand "attack [something ungunlike] with [a gun]" as shooting it with.
+Understand "fire at [something ungunlike] with/using [a gun]" as shooting it with.
+Understand "attack [something] with/using [something]" as shooting it with.
+Understand "attack [something ungunlike] with/using [a gun]" as shooting it with.
 The shooting it with action has an object called the clip shot from.
 The shooting it with action has a standoff-outcome called the shot-result.
 Rule for supplying a missing second noun while shooting something with:
@@ -814,7 +830,7 @@ The room-floor-prop of your cell is the cell floor.
 
 [Hint the player that there's no point just sitting around.]
 At 09:30 AM:
-	if we have not gone:
+	if we have not gone and the location is your cell:
 		say "Usually, by this time, you should long since have received your breakfast, but no-one has been around to check on you for a few days now."
 
 Section 2 - Corridor and Stuff
@@ -1128,10 +1144,10 @@ Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
 
 [I expect this will probably be the most controversial part of the game.]
 Cutting it with is an action applying to two touchable things.
-Understand "cut up/-- [something] open/-- with [something preferably held]" as cutting it with.
-Understand "dissect [something] with [something preferably held]" as cutting it with.
-Understand "autopsy [something] with [something preferably held]" as cutting it with.
-Understand "slice [something] open/-- with [something preferably held]" as cutting it with.
+Understand "cut up/-- [something] open/-- with/using [something preferably held]" as cutting it with.
+Understand "dissect [something] with/using [something preferably held]" as cutting it with.
+Understand "autopsy [something] with/using [something preferably held]" as cutting it with.
+Understand "slice [something] open/-- with/using [something preferably held]" as cutting it with.
 To cut is a verb.
 
 Check cutting something with something that is not the makeshift knife:
