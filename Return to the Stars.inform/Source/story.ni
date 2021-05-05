@@ -812,6 +812,11 @@ Test rampage with "break camera / purloin armor / wear armor / rip up sheets / t
 The cell floor is a room-floor. The description is "The floor has a grey, rubbery non-slip surface." Understand "grey/gray/-- rubber/rubbery/rubberized/rubberised/plastic/-- cell/-- floor" as the cell floor.
 The room-floor-prop of your cell is the cell floor.
 
+[Hint the player that there's no point just sitting around.]
+At 09:30 AM:
+	if we have not gone:
+		say "Usually, by this time, you should long since have received your breakfast, but no-one has been around to check on you for a few days now."
+
 Section 2 - Corridor and Stuff
 
 The corridor is a room. "Write me."
@@ -1257,3 +1262,23 @@ After reading a command (this is the ignore beta-comments rule):
 	if the player's command matches the regular expression "^\p":
 		say "([one of]Oh no! [or]How embarassing... [or]I'll look into that. [or][at random]Noted.)";
 		reject the player's command.
+
+Waiting more is an action applying to one number.
+
+Understand "wait [a time period]" or "wait for [a time period]" or "wait for a/an [a time period]" or "wait a/an [a time period]" as waiting more.
+
+Carry out waiting more:
+	let the target time be the time of day plus the time understood;
+	decrease the target time by one minute;
+	while the time of day is not the target time:
+		follow the turn sequence rules.
+
+[The one nuance here is that after our wait command occurs, the turn sequence rules will occur one more time. So we need to subtract one minute from the parsed time to make the turn end on the desired number of minutes.]
+
+Report waiting more:
+	say "It is now [time of day + 1 minute]."
+
+[And if we want to ensure that the player doesn't (accidentally or intentionally) put the interpreter through a really long loop, we could put an upper limit on his patience:]
+
+Check waiting more:
+	if the time understood is greater than one hour, say "You really haven't got that kind of patience." instead.
