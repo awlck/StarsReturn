@@ -63,6 +63,7 @@ Report smelling the fatigues:
 The pair of black leather combat boots is part of the fatigues. The description is "A pair of black leather combat boots. They have carried you across many worlds already."
 Instead of taking off the boots, say "Walking around barefoot doesn't seem particularly beneficial right now."
 Instead of taking off something that is not the armor when the armor is worn, say "You'd rather not strip naked. Also, you would need to remove the armor first."
+Instead of attacking the fatigues, say "Strips of fabric can come in handy in all sorts of situations, but the current is not among them."
 
 Instead of listening to the player:
 	if we have not eaten, say "Your stomach is growling.";
@@ -139,6 +140,8 @@ Understand "wipe off [something]" or "wipe [something] off" or "wipe [something]
 
 Report touching something that is not a person while the player is wearing the armor:
 	say "Through [our] armored gloves, [we] don't really feel much of anything."
+
+Understand "fly" or "fly up/away" or "take flight/off" as a mistake ("While your suit has many functions, flying isn't one of them.") when the player is wearing the armor and the player is not in the messenger ship.
 
 Section 2 - Toxicity, Vacuum, Submersion
 
@@ -1136,32 +1139,43 @@ Understand "make-shift" or "dagger" or "metal" or "frame" as the makeshift knife
 
 Section 3 - Nerve Center
 
+The briefing room is east of the lobby. "Write me."
+
 The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
 
 The larger alien and the smaller alien are shwabolians in the ops center.
 The description of the larger alien's corpse is "A well and truly dead shwabolian. Blood is pooling around him from where your bullets hit their mark."
-Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
 
-[I expect this will probably be the most controversial part of the game.]
+[I expect this will probably be the most controversial part of the game.
+This wasn't really planned from the start, but I needed some puzzles and my brain basically went: "Why don't we do this, here's the text for it!" -- and that was the only idea I was going to get.]
 Cutting it with is an action applying to two touchable things.
 Understand "cut up/-- [something] open/-- with/using [something preferably held]" as cutting it with.
 Understand "dissect [something] with/using [something preferably held]" as cutting it with.
 Understand "autopsy [something] with/using [something preferably held]" as cutting it with.
 Understand "slice [something] open/-- with/using [something preferably held]" as cutting it with.
 To cut is a verb.
+Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
+The larger alien's corpse can be open.
+Check cutting the open larger alien's corpse with something:
+	say "You'd rather not desecrate the body further." instead.
 
 Check cutting something with something that is not the makeshift knife:
 	say "[The second noun] [cannot cut] anything." instead.
 
 Check cutting something that is not the larger alien's corpse with something:
 	say "Cutting up [the noun] would achieve little." instead.
+Check cutting the player with something:
+	say "You'd rather keep your fluids inside your body" instead.
+Check cutting the armor with something:
+	say "You feel no need to test out the suit's ability to resist [the second noun]." instead.
+Check cutting the fatigues with something:
+	say "While strips of fabric can serve a number of purposes, there doesn't seem to be a need to sacrifice your clothes right now." instead.
 
 Report going to the ops center for the first time (this is the alien swallows key rule):
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
 
 The alien swallows key rule is listed last in the report going rules.
 
-The briefing room is east of the lobby. "Write me."
 
 Chapter 5 - The Barracks
 
