@@ -1072,7 +1072,7 @@ Chapter 3 - Military Complex Outdoors
 Section 1 - The Docks
 
 [Not a test as much as a convenience to quickly skip ahead during debugging.]
-Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card".
+Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card / down / up".
 
 The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]The prison buildings lie to the south, across the water, and the military complex continues to the north.[paragraph break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face..."
 Index map with shore docks mapped north of prison docks.
@@ -1165,7 +1165,36 @@ The briefing room is east of the lobby. "Write me."
 
 Chapter 5 - The Barracks
 
-The barracks are west of the military complex plaza.
+[This area doesn't really do anything useful, but it would be a bit weird if it were absent.]
+
+The mess hall is west of the military complex plaza.
+
+Some plain white tables are scenery in the mess hall.
+
+The barracks are west of the mess hall.
+
+Some bunks are in the barracks. "Four stacked bunk beds are lined up on the walls." They are fixed in place.
+The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
+
+The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[line break]The only way out is north, back to the barracks."
+
+Some toilets are scenery in the washroom.
+Some sinks are scenery in the washroom.
+Some mirrors are scenery in the washroom.
+Instead of examining the mirrors, try examining yourself.
+Some showers are scenery in the washroom.
+
+To slide is a verb. To collect is a verb.
+Instead of switching on the showers:
+	if the player is wearing the armor and the armor is muddy:
+		[say "You turn on one of the showers and let the water run over you. The mud[if we have cut a corpse with something] and grime[regarding two][otherwise][regarding one][end if] [slide] off your gear and [collect] on the floor before finding [their] way down the drain.";]
+		say "You turn on one of the showers and let the water run over you. The mud [regarding one][slide] off your gear and [collect] on the floor before finding [their] way down the drain.";
+		now the armor is not muddy;
+		rule succeeds;
+	otherwise:
+		say "You're already about as clean as you're going to get."
+Instead of switching off the showers, say "All the showers are off already.".
+Instead of entering the showers, try switching on the showers.
 
 Chapter 6 - Hangar and Launch
 
