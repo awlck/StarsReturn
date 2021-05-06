@@ -926,7 +926,7 @@ The printed name of an obfuscated switch is usually "[if the player is wearing t
 The description of an obfuscated switch is usually "A large rotary switch[if the player is wearing the armor]. Your suit's translator shows the label as '[real-label]'[otherwise]labeled '[obf-label]'[end if].".
 Understand "rotary" or "switch" as an obfuscated switch.
 To say switch-label of (o - an obfuscated switch):
-	say "[if the player is wearing the armor][real-label][otherwise][obf-label][end if]".
+	say "[if the player is wearing the armor][real-label of o][otherwise][obf-label of o][end if]".
 Check turning an obfuscated switch:
 	if the noun is switched on, try switching off the noun instead;
 	otherwise try switching on the noun instead.
