@@ -819,7 +819,7 @@ To decide whether the rage is ongoing:
 	if the ripped bedsheets are in your cell, yes;
 	if the camera remains are in your cell, yes;
 	no.
-To decide whether the rage is concluded:
+To decide whether the rage is/has concluded:
 	if the mangled cot frame is in your cell and the ripped bedsheets are in your cell, yes;
 	no.
 To attempt rage conclusion:
@@ -1162,6 +1162,9 @@ Check cutting the open larger alien's corpse with something:
 Check cutting something with something that is not the makeshift knife:
 	say "[The second noun] [cannot cut] anything." instead.
 
+Check cutting a corpse with something:
+	if the rage has concluded, say "Despite how satisfying it was to destroy the furniture in your cell, military tradition forbids desecrating a fallen soldier's body, and you see no reason to break with that rule in this instance." instead;
+	otherwise say "You see no need to disturb the rest of the fallen." instead.
 Check cutting something that is not the larger alien's corpse with something:
 	say "Cutting up [the noun] would achieve little." instead.
 Check cutting the player with something:
@@ -1175,7 +1178,6 @@ Report going to the ops center for the first time (this is the alien swallows ke
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
 
 The alien swallows key rule is listed last in the report going rules.
-
 
 Chapter 5 - The Barracks
 
