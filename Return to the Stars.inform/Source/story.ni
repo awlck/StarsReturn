@@ -9,6 +9,7 @@ Book 1 - Preamble
 Use american dialect and the serial comma.
 
 Include Basic Screen Effects by Emily Short.
+Include Menus by Emily Short.
 Include Version 16 of Smarter Parser by Aaron Reed.
 
 [This is an instruction to the I6 compiler to leave out routines not used by the game (such as those relating to external files and real numbers), reducing the size of the resulting Glulx story file by some 10%.]
@@ -28,23 +29,42 @@ To say CO2:
 
 [Making this a "when play begins" rule causes the macOS IDE to hang during play. Go figure.]
 After printing the banner text:
-	say "[italic type]Content Warning: explicit descriptions of gore and violence.[roman type][paragraph break]".
+	say "[italic type][if gore is allowed]Content Warning: descriptions of gore and violence[otherwise]Toned down mode[end if] [dash] type ABOUT for more info.[roman type][paragraph break]".
 
-Requesting credits is an action out of world applying to nothing.
-Understand "credits" or "about" as requesting credits.
+Gore-allowed is a truth state that varies. Gore-allowed is usually true.
+To decide whether gore is allowed/enabled:
+	decide on whether or not gore-allowed is true.
+To decide whether gore is not allowed:
+	decide on whether or not gore-allowed is false.
 
-Carry out requesting credits:
-	say the banner text;
-	say "[line break]Built using the following extensions:[line break][complete list of extension credits][line break]";
-	say the playtesters.
+Chapter I - Menus
+
+Requesting the game menu is an action out of world applying to nothing.
+Understand "credits" or "about" or "help" or "hint" or "hints" or "menu" as requesting the game menu.
+Carry out requesting the game menu:
+	now the current menu is the Table of Main Menu;
+	now the current menu title is "RETURN TO THE STARS";
+	carry out the displaying activity;
+	clear the screen;
+	try looking.
+
+Table of Main Menu
+title	subtable (table name)	description	toggle (a rule)
+"Content Warning"	--	--	query gore mode rule
+"Unusual Verbs"	--	"You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH"	--
+"Credits"	--	"[RttS] by Adrian Welcker[line break]Built using the following extensions:[line break][complete list of extension credits][paragraph break][the playtesters]"	--
 
 To say the playtesters:
 	say "[bold type]Playtesters[roman type]: none yet...".
 
-Requesting help is an action out of world applying to nothing.
-Understand "help" or "hint" or "hints" as requesting help.
-Carry out requesting help:
-	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[paragraph break]".
+To say rtts/RTTS/RttS:
+	say "[italic type]Return to the Stars[roman type]".
+
+This is the query gore mode rule:
+	say "[RttS] contains a few descriptions of gore and violence that some people may find objectionable. If you wish for these descriptions to be toned down (for example, when playing with smaller children), you can do that here.[if gore is allowed](Currently using original text.)[otherwise](Currently using toned-down text.)[end if][paragraph break]Show descriptions in their full gory descriptiveness? (YES or NO) >>";
+	now gore-allowed is whether or not the player consents.
+
+Chapter II - Final Question and Authors Notes
 
 Table of Final Question Options (continued)
 final question wording	only if victorious	topic	final response rule	final response activity
@@ -97,7 +117,7 @@ The armor has a number called the air. The air of the armor is 100.
 The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "dump" or "pouch" or "sack" or "holdall" as the armor.
 Dirtiness is a kind of value. The dirtinesses are clean, muddy, bloody, muddy-and-bloody, and covered.
 The armor has a dirtiness. The armor is clean.
-The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump pouch, and it can double as a space suit, providing air in hostile environments.[if the armor is not clean][paragraph break][end if][if the armor is muddy]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[otherwise if the armor is covered]Any and all details are hidden under a thick, uniformly brown layer of ocean mud.[otherwise if the armor is not clean]It's covered with a lot of blood and other... things. You should really find a place to clean up.[end if]".
+The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump pouch, and it can double as a space suit, providing air in hostile environments.[if the armor is not clean][paragraph break][end if][if the armor is muddy]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[otherwise if the armor is covered]Any and all details are hidden under a thick, uniformly brown layer of ocean mud.[otherwise if the armor is not clean and gore is allowed]It's covered with a lot of blood and other... things. You should really find a place to clean up.[otherwise if the armor is not clean]The gloves are covered in a significant amount of slimy lizard spit.[end if]".
 
 [Avoid trying to jam a rifle into the pouch]
 Check an actor taking (this is the revised use player's holdall to avoid exceeding carrying capacity rule):
@@ -156,7 +176,25 @@ Instead of smelling the armor when the player is not wearing the armor and the a
 
 [The following is gleaned from Michael J. Robert's "Return to Ditch Day":]
 Instead of rubbing the armor when the armor is muddy, say "You try to wipe the mud off, but all you really accomplish is smearing it around."
-Understand "wipe off [something]" or "wipe [something] off" or "wipe [something]" or "wipe the/-- mud off [something]" as rubbing.
+Instead of rubbing the armor when the armor is covered, say "But you just went through the effort of making sure you're entirely covered."
+Instead of rubbing the armor when the armor is muddy-and-bloody, say "Really all you manage is to smear the mud-[if gore is allowed]blood[otherwise]slime[end if] mixture around more."
+Instead of rubbing the armor when the armor is bloody:
+	if gore is allowed, say "You try to wipe away some of the disgusting blood-and-guts mixture, but the blood is beginning to coagulate and all you manage is to leave bloody handprints on formerly clean areas of your suit.";
+	otherwise say "You try to wipe off slime, but it is too sticky."
+Understand "wipe off [something]" or "wipe [something] off" or "wipe [something]" as rubbing.
+Understand "wipe the/-- mud off [something]" as rubbing when the armor is mud-caked.
+Understand "wipe the/-- blood off [something]" as rubbing when the armor is blood-stained and gore is allowed.
+Understand "wipe the/-- slime/spit/saliva off [something]" as rubbing when the armor is blood-stained and gore is not allowed.
+
+Definition: the armor is mud-caked:
+	if it is muddy, yes;
+	if it is muddy-and-bloody, yes;
+	if it is covered, yes;
+	no.
+Definition: the armor is blood-stained:
+	if it is bloody, yes;
+	if it is muddy-and-bloody, yes;
+	no.
 
 Report touching something that is not a person while the player is wearing the armor:
 	say "Through [our] armored gloves, [we] don't really feel much of anything."
@@ -222,10 +260,10 @@ Table of plain status
 left	central (a text)	right
 "[location]"	--	"[plain-air]"
 
-Rule for constructing the status line when the player is wearing the armor:
+Rule for constructing the status line when the player is wearing the armor and the displaying activity is not going on:
 	fill status bar with the Table of HUD status;
 	rule succeeds.
-Rule for constructing the status line when the player is not wearing the armor:
+Rule for constructing the status line when the player is not wearing the armor and the displaying activity is not going on:
 	fill status bar with the Table of plain status;
 	rule succeeds.
 
@@ -618,7 +656,7 @@ Report an actor shooting something (called the target) with a gun (called the we
 				say "At point-blank range, [the armor] [stand] little chance: leaving a trail of searing hot pain, the bullet carves a path through [our] [one of]head[or]chest[at random] before coming out on the other side, leaving [our] innards distributed on [the room-floor-prop of the location][unless the location is an outdoor room] and the wall behind [us][end unless].";
 				end the story saying "You have been shot";
 			-- glancing-hit:
-				say "[regarding the actor][They] [past participle of the verb hold] [their] [weapon] at an odd angle, and the shot [regarding one][glance] off [our] [one of]helmet[or]chest plate[or]shoulder plate[or]leg armor[at random], leaving [one of]a[or]another[or]yet another[or]a deep[at random] gouge in the material.";
+				say "[regarding the actor][They] [past participle of the verb hold] [their] [weapon] at an odd angle, and the shot [regarding one][glance] off [our] [one of]helmet[or]chest plate[or]shoulder plate[or]leg armor[at random], leaving [one of]a[or]a deep[or]another[or]yet another[then at random] gouge in the material.";
 			-- shot-dodged:
 				say "Fifteen years of military experience lead to some rather tuned reflexes, so [we] [dodge] in time to avoid the shot.";
 			-- near-miss:
@@ -1184,8 +1222,11 @@ Instead of cutting the closed larger alien's corpse with the makeshift knife:
 	now the larger alien's corpse is open;
 	if the armor is clean, now the armor is bloody;
 	if the armor is not bloody, now the armor is muddy-and-bloody;
-	[heavens, what is wrong with me...]
-	say "With a sigh, you kneel down in the puddle of blood now surrounding the body. You carefully postion [the second noun], plunging it deep into the dead creature's abdominal area; guts, blood, and other bodily fluids spilling out and onto your armored legs as you cut.[line break]With the incision complete, you take a second to steel yourself before reaching into the abdominal cavity. After a minute or so of fishing around in the bloody soup, you find the object of your desire: a small data crypt, which the creature swallowed when you came into the room. It appears to be undamaged.[paragraph break]You feel like throwing up.";
+	if gore is allowed:
+		[heavens, what is wrong with me...]
+		say "You double-check inside the creature's mouth, but no dice. With a sigh, you kneel down in the puddle of blood now surrounding the body. You carefully postion [the second noun], plunging it deep into the dead creature's abdominal area; guts, blood, and other bodily fluids spilling out and onto your armored legs as you cut.[line break]With the incision complete, you take a second to steel yourself before reaching into the abdominal cavity. After a minute or so of fishing around in the bloody soup, you find the object of your desire: a small data crypt, which the creature swallowed when you came into the room. It appears to be undamaged.[paragraph break]You feel like throwing up.";
+	otherwise:
+		say "In a process that defies any description, you retrieve the object of your desire: a small data crypt which the creature swallowed when you came into the room. It appears to be undamaged.";
 	now the player has the data crypt;
 	rule succeeds.
 
@@ -1210,20 +1251,21 @@ A time allotment rule for cutting the larger alien's corpse with something: rule
 
 [The somewhat more family friendly version.]
 Retrieving it from is an action applying to one thing and one touchable thing, and requiring light.
-Understand "retrieve [any thing] from [something]" or "extract [any thing] from [something]" as retrieving it from.
-Before retrieving the data crypt from the larger alien's corpse:
-	if the player does not have the makeshift knife:
-		say "You'll need some kind of tool to do that.";
-		stop the action;
-	if the player is not wearing the armor:
-		say "You'd rather not do this with your bare hands.";
-		stop the action;
-	now the larger alien's corpse is open;
-	if the armor is clean, now the armor is bloody;
-	if the armor is not bloody, now the armor is muddy-and-bloody;
-	say "In a process that defies any description, you retrieve the object of your desire: a small data crypt which the creature swallowed when you came into the room. It appears to be undamaged.";
-	now the player has the data crypt;
-	rule succeeds.
+Understand "retrieve [something] from [something]" or "extract [something] from [something]" as retrieving it from.
+Instead of retrieving the data crypt from the larger alien's corpse:
+	if gore is allowed:
+		if the player does not have the makeshift knife, say "You'll need some kind of tool to do that." instead;
+		try cutting the larger alien's corpse with the makeshift knife instead;
+	otherwise:
+		if the player is not wearing the armor:
+			say "You'd rather not do this with your bare hands.";
+			stop the action;
+		now the larger alien's corpse is open;
+		if the armor is clean, now the armor is bloody;
+		if the armor is not bloody, now the armor is muddy-and-bloody;
+		say "You open the creature's oversized mouth and peek inside. Shifting around its large tongue, you notice something at the back of its throat. You reach in and retrieve the small object that the creature hastily swallowed as you entered the room: a data crypt. It, as well as your glove, are covered in slimy lizard saliva.";
+		now the player has the data crypt;
+		rule succeeds.
 Check retrieving something from something:
 	try removing the noun from the second noun instead.
 
@@ -1231,11 +1273,12 @@ Report going to the ops center for the first time (this is the alien swallows ke
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
 The alien swallows key rule is listed last in the report going rules.
 
-A data crypt is a thing. The description is "A small storage device you salvaged from the innards of one of your captors."
+A data crypt is in the larger shwabolian's body. The description is "A small storage device you salvaged from [if gore is allowed]the innards of [end if]one of your captors."
+Understand "small/-- swallowed/eaten object/thing/device" or "small/-- object/thing/device swallowed/eaten by the/-- large/larger/-- alien/shwabolian/lizard" or "small" or "device" as the data crypt.
 
 [What I want to do after writing the above.]
 Vomiting is an action applying to nothing.
-Understand "vomit" or "throw up" or "puke" or "hurl" or "retch" or "ralph" or "barf" as vomiting.
+Understand "vomit" or "throw up" or "puke" or "hurl" or "retch" or "ralph" or "barf" as vomiting when gore is allowed.
 Check vomiting when the larger alien's corpse is not open:
 	say "You feel fine." instead.
 Check vomiting when we have vomited:
@@ -1276,7 +1319,7 @@ Some showers are scenery in the washroom.
 To slide is a verb. To collect is a verb.
 Instead of switching on the showers:
 	if the player is wearing the armor and the armor is not clean:
-		say "You turn on one of the showers and let the water run over you. [if the armor is muddy-and-bloody]The mud and grime[regarding two][otherwise if the armor is muddy or the armor is covered]The mud[regarding one][otherwise if the armor is bloody]The grime[regarding one][end if] [slide] off your gear and [collect] on the floor before finding [their] way down the drain.";
+		say "You turn on one of the showers and let the water run over you. [if the armor is muddy-and-bloody]The mud and [wash-grime][regarding two][otherwise if the armor is muddy or the armor is covered]The mud[regarding one][otherwise if the armor is bloody]The [wash-grime][regarding one][end if] [slide] off your gear and [collect] on the floor before finding [their] way down the drain.";
 		now the armor is clean;
 		if the vomit is in the location, now the vomit is nowhere;
 		rule succeeds;
@@ -1285,6 +1328,10 @@ Instead of switching on the showers:
 Instead of switching off the showers, say "All the showers are off already.".
 Instead of entering the showers, try switching on the showers.
 A time allotment rule for switching on the showers: rule succeeds with result 5.
+
+To say wash-grime:
+	if gore is allowed, say "blood";
+	otherwise say "slime".
 
 Chapter 6 - Hangar and Launch
 
