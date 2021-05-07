@@ -1214,6 +1214,7 @@ Check cutting the armor with something:
 	say "You feel no need to test out the suit's ability to resist [the second noun]." instead.
 Check cutting the fatigues with something:
 	say "While strips of fabric can serve a number of purposes, there doesn't seem to be a need to sacrifice your clothes right now." instead.
+A time allotment rule for cutting the larger alien's corpse with something: rule succeeds with result 5.
 
 Report going to the ops center for the first time (this is the alien swallows key rule):
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
@@ -1233,6 +1234,7 @@ Check vomiting when the location is not breathable and the larger alien's corpse
 Carry out vomiting: now the vomit is in the location.
 Report vomiting:
 	say "[if the player is wearing the armor]Raising your faceplate, you[otherwise]You[end if] give in to the urge to empty your stomach".
+A time allotment rule for vomiting: rule succeeds with result 2.
 
 The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.". The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
 Instead of taking the vomit, say "How, by scooping it up in your hands? You'd rather not."
@@ -1271,6 +1273,7 @@ Instead of switching on the showers:
 		say "You're already about as clean as you're going to get."
 Instead of switching off the showers, say "All the showers are off already.".
 Instead of entering the showers, try switching on the showers.
+A time allotment rule for switching on the showers: rule succeeds with result 5.
 
 Chapter 6 - Hangar and Launch
 
