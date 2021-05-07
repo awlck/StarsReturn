@@ -59,7 +59,7 @@ Chapter 1 - Player Description
 
 The carrying capacity of the player is three.
 
-The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Covered in a generous amount of ocean mud [dash] [we] [haven't] looked this bad since bootcamp, probably. [We]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise][We]['ve] seen better days[end if]."
+The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Covered in a generous amount of ocean mud [dash] [we] [haven't] looked this bad since bootcamp, probably. [We]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise if the player is wearing the armor and the armor is covered][We]['ve] completely covered [ourselves] in the ocean mud, so [we] now look more like a vaguely human-shaped brown blob[otherwise if the player is wearing the armor and the armor is not clean][We] look like [we] just dug around in another person's body, because that's exactly what [we] did. [We] should find a place to clean up[otherwise][We]['ve] seen better days[end if]."
 
 The player is wearing a set of fatigues. The description of the fatigues is "A set of standard-issue combat fatigues, consisting of a gray shirt, pants and blouse in a grey-and-black digital urban camouflage pattern, and a pair of black leather boots[if the number of things held by the player is 1]. It is the only possession you have left at the moment[end if].". Understand "uniform" or "fatigue" or "fatigues" or "blouse" or "pants" or "trousers" or "shirt" or "clothes" or "digital" or "urban" or "camo" or "camouflage" or "battle/combat dress" as the fatigues.
 Instead of taking off the fatigues, say "You'd rather not strip naked.[if the location is your cell] It's not exactly warm in here, anyways.[end if]".
@@ -95,8 +95,9 @@ Section 1 - Armor
 The player has a number called the air. The air of the player is 5.
 The armor has a number called the air. The air of the armor is 100.
 The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "dump" or "pouch" or "sack" or "holdall" as the armor.
-The armor can be muddy or clean. The armor is clean.
-The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump pouch, and it can double as a space suit, providing air in hostile environments.[if the armor is muddy][paragraph break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[end if]".
+Dirtiness is a kind of value. The dirtinesses are clean, muddy, bloody, muddy-and-bloody, and covered.
+The armor has a dirtiness. The armor is clean.
+The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump pouch, and it can double as a space suit, providing air in hostile environments.[if the armor is not clean][paragraph break][end if][if the armor is muddy]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[otherwise if the armor is covered]Any and all details are hidden under a thick, uniformly brown layer of ocean mud.[otherwise if the armor is not clean]It's covered with a lot of blood and other... things. You should really find a place to clean up.[end if]".
 
 [Avoid trying to jam a rifle into the pouch]
 Check an actor taking (this is the revised use player's holdall to avoid exceeding carrying capacity rule):
@@ -1162,7 +1163,7 @@ The briefing room is east of the lobby. "Write me."
 The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
 
 The larger alien and the smaller alien are shwabolians in the ops center.
-The description of the larger alien's corpse is "A well and truly dead shwabolian. Blood is pooling around him from where your bullets hit their mark."
+The description of the larger alien's corpse is "A well and truly dead shwabolian. [if closed]Blood is pooling around him from where your bullets hit their mark[otherwise]He is looking a bit worse for wear after you extracted the data crypt from inside him[end if]."
 
 [I expect this will probably be the most controversial part of the game.
 This wasn't really planned from the start, but I needed some puzzles and my brain basically went: "Why don't we do this, here's the text for it!" -- and that was the only idea I was going to get.]
@@ -1177,25 +1178,16 @@ The larger alien's corpse can be open[ or closed. The larger alien's corpse is c
 Check cutting the open larger alien's corpse with something:
 	say "You'd rather not desecrate the body further." instead.
 Instead of cutting the closed larger alien's corpse with the makeshift knife:
+	if the player is not wearing the armor:
+		say "You'd rather not do this with your bare hands.";
+		stop the action;
 	now the larger alien's corpse is open;
+	if the armor is clean, now the armor is bloody;
+	if the armor is not bloody, now the armor is muddy-and-bloody;
 	[heavens, what is wrong with me...]
 	say "With a sigh, you kneel down in the puddle of blood now surrounding the body. You carefully postion [the second noun], plunging it deep into the dead creature's abdominal area; guts, blood, and other bodily fluids spilling out and onto your armored legs as you cut.[line break]With the incision complete, you take a second to steel yourself before reaching into the abdominal cavity. After a minute or so of fishing around in the bloody soup, you find the object of your desire: a small data crypt, which the creature swallowed when you came into the room. It appears to be undamaged.[paragraph break]You feel like throwing up.";
 	now the player has the data crypt;
 	rule succeeds.
-
-[The somewhat more family friendly version.]
-Retrieving it from is an action applying to one thing and one touchable thing, and requiring light.
-Understand "retrieve [any thing] from [something]" as retrieving it from.
-Before retrieving the data crypt from the larger alien's corpse:
-	if the player does not have the makeshift knife:
-		say "You'll need some kind of tool to do that.";
-		stop the action;
-	now the larger alien's corpse is open;
-	say "In a process that defies any description, you retrieve the object of your desire: a small data crypt which the creature swallowed when you came into the room. It appears to be undamaged.";
-	now the player has the data crypt;
-	rule succeeds.
-Check retrieving something from something:
-	try removing the noun from the second noun instead.
 
 Check eating when the larger alien's corpse is open:
 	say "After what you did, you don't think you could stomach anything." instead.
@@ -1216,6 +1208,25 @@ Check cutting the fatigues with something:
 	say "While strips of fabric can serve a number of purposes, there doesn't seem to be a need to sacrifice your clothes right now." instead.
 A time allotment rule for cutting the larger alien's corpse with something: rule succeeds with result 5.
 
+[The somewhat more family friendly version.]
+Retrieving it from is an action applying to one thing and one touchable thing, and requiring light.
+Understand "retrieve [any thing] from [something]" or "extract [any thing] from [something]" as retrieving it from.
+Before retrieving the data crypt from the larger alien's corpse:
+	if the player does not have the makeshift knife:
+		say "You'll need some kind of tool to do that.";
+		stop the action;
+	if the player is not wearing the armor:
+		say "You'd rather not do this with your bare hands.";
+		stop the action;
+	now the larger alien's corpse is open;
+	if the armor is clean, now the armor is bloody;
+	if the armor is not bloody, now the armor is muddy-and-bloody;
+	say "In a process that defies any description, you retrieve the object of your desire: a small data crypt which the creature swallowed when you came into the room. It appears to be undamaged.";
+	now the player has the data crypt;
+	rule succeeds.
+Check retrieving something from something:
+	try removing the noun from the second noun instead.
+
 Report going to the ops center for the first time (this is the alien swallows key rule):
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
 The alien swallows key rule is listed last in the report going rules.
@@ -1233,13 +1244,13 @@ Check vomiting when the location is not breathable and the larger alien's corpse
 	say "You'd like nothing better, but this isn't the right place." instead.
 Carry out vomiting: now the vomit is in the location.
 Report vomiting:
-	say "[if the player is wearing the armor]Raising your faceplate, you[otherwise]You[end if] give in to the urge to empty your stomach".
+	say "[if the player is wearing the armor]Raising your faceplate, you[otherwise]You[end if] give in to the urge to empty your stomach and hurl into a corner of the room.".
 A time allotment rule for vomiting: rule succeeds with result 2.
 
 The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.". The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
 Instead of taking the vomit, say "How, by scooping it up in your hands? You'd rather not."
 
-Test alien with "pull grate / crawl through duct / out / turn off maglock / up / take helmet / look under desk / s / e / e / take plates / w / open airlock / n / e / turn on helmet light / enter water / n / n / n / n / n / unlock door with card / n / w / take rifle and ammo / break rack / e / n / n / shoot larger with rifle / shoot smaller with rifle / cut larger corpse with knife".
+Test alien with "pull grate / crawl through duct / out / turn off maglock / up / take helmet / look under desk / s / e / e / take plates / w / open airlock / n / e / turn on helmet light / enter water / n / n / n / n / n / unlock door with card / n / w / take rifle and ammo / break rack / e / n / n / shoot larger with rifle / shoot smaller with rifle / cut larger corpse with knife / x me / x armor / x data crypt / throw up".
 
 Chapter 5 - The Barracks
 
@@ -1264,10 +1275,10 @@ Some showers are scenery in the washroom.
 
 To slide is a verb. To collect is a verb.
 Instead of switching on the showers:
-	if the player is wearing the armor and the armor is muddy:
-		[say "You turn on one of the showers and let the water run over you. The mud[if we have cut a corpse with something] and grime[regarding two][otherwise][regarding one][end if] [slide] off your gear and [collect] on the floor before finding [their] way down the drain.";]
-		say "You turn on one of the showers and let the water run over you. The mud [regarding one][slide] off your gear and [collect] on the floor before finding [their] way down the drain.";
-		now the armor is not muddy;
+	if the player is wearing the armor and the armor is not clean:
+		say "You turn on one of the showers and let the water run over you. [if the armor is muddy-and-bloody]The mud and grime[regarding two][otherwise if the armor is muddy or the armor is covered]The mud[regarding one][otherwise if the armor is bloody]The grime[regarding one][end if] [slide] off your gear and [collect] on the floor before finding [their] way down the drain.";
+		now the armor is clean;
+		if the vomit is in the location, now the vomit is nowhere;
 		rule succeeds;
 	otherwise:
 		say "You're already about as clean as you're going to get."
