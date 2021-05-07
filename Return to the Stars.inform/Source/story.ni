@@ -26,6 +26,10 @@ To say CO2:
 	if unicode is available, say "CO[unicode 8322]";
 	otherwise say "CO2".
 
+[Making this a "when play begins" rule causes the macOS IDE to hang during play. Go figure.]
+After printing the banner text:
+	say "[italic type]Content Warning: explicit descriptions of gore and violence.[roman type][paragraph break]".
+
 Requesting credits is an action out of world applying to nothing.
 Understand "credits" or "about" as requesting credits.
 
@@ -69,7 +73,6 @@ Instead of attacking the fatigues, say "Strips of fabric can come in handy in al
 Instead of listening to the player:
 	if we have not eaten, say "Your stomach is growling.";
 	otherwise continue the action.
-
 
 Chapter 2 - Time
 
@@ -280,6 +283,9 @@ Understand the command "consume" or "devour" or "ingest" or "munch" as "eat".
 Understand "wolf down [something preferably held]" or "wolf [something preferably held] down" as eating.
 Understand "chow" or "food" or "ration" as something edible.
 
+[Going]
+Understand the command "travel" as "go".
+
 [Exiting]
 Understand "stand up" as exiting.
 Instead of exiting when the holder of the player is a room, try going outside.
@@ -382,6 +388,7 @@ Understand "throw snotball at evil librarian" or "throw snotball at [someone]" a
 Section 2 - Smarter Parser Stuff
 
 Use normal blank lines.
+The smarter parser load config file rule is not listed in the when play begins rulebook.
 
 A smarter parser rule (this is the stripping formal address rule):
 	if stripping "(sir|ma'am|maam),?" is fruitful, only from the beginning:
@@ -625,6 +632,7 @@ When play begins (this is the don't advertise undo rule):
 	choose row with a final response rule of immediately undo rule in the Table of Final Question Options;
 	blank out the final question wording entry.
 
+[Allow the player to determine the total number of bullets they are carrying.]
 Ammo-counting is an action applying to nothing.
 Understand "ammo" or "ammunition" or "count ammo/ammunition/rounds" as ammo-counting.
 Report ammo-counting:
@@ -1158,16 +1166,39 @@ The description of the larger alien's corpse is "A well and truly dead shwabolia
 
 [I expect this will probably be the most controversial part of the game.
 This wasn't really planned from the start, but I needed some puzzles and my brain basically went: "Why don't we do this, here's the text for it!" -- and that was the only idea I was going to get.]
-Cutting it with is an action applying to two touchable things.
+Cutting it with is an action applying to two touchable things and requiring light.
 Understand "cut up/-- [something] open/-- with/using [something preferably held]" as cutting it with.
 Understand "dissect [something] with/using [something preferably held]" as cutting it with.
 Understand "autopsy [something] with/using [something preferably held]" as cutting it with.
 Understand "slice [something] open/-- with/using [something preferably held]" as cutting it with.
 To cut is a verb.
 Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
-The larger alien's corpse can be open.
+The larger alien's corpse can be open[ or closed. The larger alien's corpse is closed].
 Check cutting the open larger alien's corpse with something:
 	say "You'd rather not desecrate the body further." instead.
+Instead of cutting the closed larger alien's corpse with the makeshift knife:
+	now the larger alien's corpse is open;
+	[heavens, what is wrong with me...]
+	say "With a sigh, you kneel down in the puddle of blood now surrounding the body. You carefully postion [the second noun], plunging it deep into the dead creature's abdominal area; guts, blood, and other bodily fluids spilling out and onto your armored legs as you cut.[line break]With the incision complete, you take a second to steel yourself before reaching into the abdominal cavity. After a minute or so of fishing around in the bloody soup, you find the object of your desire: a small data crypt, which the creature swallowed when you came into the room. It appears to be undamaged.[paragraph break]You feel like throwing up.";
+	now the player has the data crypt;
+	rule succeeds.
+
+[The somewhat more family friendly version.]
+Retrieving it from is an action applying to one thing and one touchable thing, and requiring light.
+Understand "retrieve [any thing] from [something]" as retrieving it from.
+Before retrieving the data crypt from the larger alien's corpse:
+	if the player does not have the makeshift knife:
+		say "You'll need some kind of tool to do that.";
+		stop the action;
+	now the larger alien's corpse is open;
+	say "In a process that defies any description, you retrieve the object of your desire: a small data crypt which the creature swallowed when you came into the room. It appears to be undamaged.";
+	now the player has the data crypt;
+	rule succeeds.
+Check retrieving something from something:
+	try removing the noun from the second noun instead.
+
+Check eating when the larger alien's corpse is open:
+	say "After what you did, you don't think you could stomach anything." instead.
 
 Check cutting something with something that is not the makeshift knife:
 	say "[The second noun] [cannot cut] anything." instead.
@@ -1186,8 +1217,27 @@ Check cutting the fatigues with something:
 
 Report going to the ops center for the first time (this is the alien swallows key rule):
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
-
 The alien swallows key rule is listed last in the report going rules.
+
+A data crypt is a thing. The description is "A small storage device you salvaged from the innards of one of your captors."
+
+[What I want to do after writing the above.]
+Vomiting is an action applying to nothing.
+Understand "vomit" or "throw up" or "puke" or "hurl" or "retch" or "ralph" or "barf" as vomiting.
+Check vomiting when the larger alien's corpse is not open:
+	say "You feel fine." instead.
+Check vomiting when we have vomited:
+	say "You feel a lot better already." instead.
+Check vomiting when the location is not breathable and the larger alien's corpse is open:
+	say "You'd like nothing better, but this isn't the right place." instead.
+Carry out vomiting: now the vomit is in the location.
+Report vomiting:
+	say "[if the player is wearing the armor]Raising your faceplate, you[otherwise]You[end if] give in to the urge to empty your stomach".
+
+The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.". The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
+Instead of taking the vomit, say "How, by scooping it up in your hands? You'd rather not."
+
+Test alien with "pull grate / crawl through duct / out / turn off maglock / up / take helmet / look under desk / s / e / e / take plates / w / open airlock / n / e / turn on helmet light / enter water / n / n / n / n / n / unlock door with card / n / w / take rifle and ammo / break rack / e / n / n / shoot larger with rifle / shoot smaller with rifle / cut larger corpse with knife".
 
 Chapter 5 - The Barracks
 
