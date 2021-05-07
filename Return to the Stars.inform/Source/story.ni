@@ -9,6 +9,7 @@ Book 1 - Preamble
 Use american dialect and the serial comma.
 
 Include Basic Screen Effects by Emily Short.
+Include Version 16 of Smarter Parser by Aaron Reed.
 
 [This is an instruction to the I6 compiler to leave out routines not used by the game (such as those relating to external files and real numbers), reducing the size of the resulting Glulx story file by some 10%.]
 Use OMIT_UNUSED_ROUTINES of 1.
@@ -363,43 +364,26 @@ Understand "xyzzy" or "say xyzzy" or "cast xyzzy" as a mistake ("You're not supe
 [https://intfiction.org/t/parsercomp-submissions-start-1st-of-may-not-the-deadline/50702]
 Understand "throw snotball at evil librarian" or "throw snotball at [someone]" as a mistake ("You remember the last thing your squadmate Rovarssen told you before you got separated: [italic type]...and if nothing else, throw a snotball at them![roman type]").
 
-Section 2 - Command Rewriting and Error Reporting
+Section 2 - Smarter Parser Stuff
 
-[Like Andrew Plotkin's "Heliopause", allow the player to end commands with an exclamation mark -- but do it in the I7 way.]
-After reading a command (this is the replace punctuation rule):
-	let T be "[the player's command]";
-	replace the regular expression "!|\?" in T with ".";
-	change the text of the player's command to T.
+Use normal blank lines.
 
-[To interpret commands like "I would like to leave the cell" or "Could you get up please"]
-Politeness-admonished is a truth state that varies. Politeness-admonished is false.
-Before reading a command (this is the reset politeness admonishment rule):
-	now politeness-admonished is false.
+A smarter parser rule (this is the stripping formal address rule):
+	if stripping "(sir|ma'am|maam),?" is fruitful, only from the beginning:
+		identify error as stripping formal address rule;
+		reparse the command.
 
-After reading a command (this is the replace please at end rule):
-	let T be "[the player's command]";
-	replace the regular expression ", please" in T with "";
-	change the text of the player's command to T.
+Table of Smarter Parser Messages (continued)
+rule name	message
+stripping formal address rule	"[as the parser]There's no need to be overly polite.[as normal]"
 
-After reading a command (this is the cut politeness rule):
-	if the player's command includes "i would like you/-- to":
-		if politeness-admonished is false, say "(As a soldier, [we]['re] used to taking orders, so there is no need for politeness.)";
-		now politeness-admonished is true;
-		cut the matched text;
-	if the player's command includes "please":
-		if politeness-admonished is false, say "(As a soldier, [we]['re] used to taking orders, so there is no need for politeness.)";
-		now politeness-admonished is true;
-		cut the matched text;
-	if the player's command includes "would/could/might you":
-		if politeness-admonished is false, say "(As a soldier, [we]['re] used to taking orders, so there is no need for politeness.)";
-		now politeness-admonished is true;
-		cut the matched text;
-	if the player's command includes "you must/should/could/might":
-		cut the matched text.
-
-After printing a parser error when the latest parser error is the not a verb I recognise error or the latest parser error is the can't see whom to talk to error:
-	if "[the player's command]" matches the regular expression "^(Sir,|Sir|Ma'am|Ma'am,|Maam|Maam,)", case insensitively:
-		say "(Try beginning your command with an imperative verb, e.g. TAKE BEDSHEETS.)".
+[Adjust some default Smarter Parser messages to be more relevant to the game.]
+Table of Smarter Parser Messages (amended)
+rule name	message
+stripping niceties rule	"[as the parser]As a soldier, [we]['re] used to taking orders, so there is no need for politeness.[as normal]"
+asking who are you rule	"[as the parser]I'm the parser [dash] I translate what you type into actions your character takes in the story world. Use imperative commands like LOOK, GET [get noun example], or GO [get direction example] to advance the story.[as normal]"
+stripping unnecessary addendum rule	"[as the parser]I only understood the first part of that[if corrections enabled is true] [dash] trying anyway[end if].[as normal]"
+failed communication attempts rule	"[as the parser]Conversation isn't necessary in this story.[as normal]"
 
 Chapter 5 - Grates and Air Ducts
 
