@@ -95,7 +95,22 @@ The armor is wearable and proper-named. It is a player's holdall. It is open and
 The armor can be muddy or clean. The armor is clean.
 The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump pouch, and it can double as a space suit, providing air in hostile environments.[if the armor is muddy][paragraph break]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[end if]".
 
-use player's holdall to avoid exceeding carrying capacity rule response (A) is "(putting [the transferred item] into [the current working sack][if the current working sack is the armor]'s dump pouch[end if] to make room)[command clarification break]".
+[Avoid trying to jam a rifle into the pouch]
+Check an actor taking (this is the revised use player's holdall to avoid exceeding carrying capacity rule):
+	if the number of things carried by the actor is at least the
+		carrying capacity of the actor:
+		if the actor is holding a player's holdall (called the current working sack):
+			let the transferred item be nothing;
+			repeat with the possible item running through things carried by the actor:
+				if the possible item is not lit and the possible item is not a gun and the possible item is not the current working sack, let the transferred item be the possible item;
+			if the transferred item is not nothing:
+				if the actor is the player, say "(putting [the transferred item] into [the current working sack][if the current working sack is the armor]'s dump pouch[end if] to make room)[command clarification break]" (A);
+				silently try the actor trying inserting the transferred item
+					into the current working sack;
+				if the transferred item is not in the current working sack:
+					stop the action.
+The revised use player's holdall to avoid exceeding carrying capacity rule is listed instead of the use player's holdall to avoid exceeding carrying capacity rule in the check taking rules.
+
 examine containers rule response (A) is "In [the noun][if the noun is the armor]'s dump pouch[end if] ".
 examine containers rule response (B) is "[The noun][if the noun is the armor]'s dump pouch[end if] [are] empty.".
 
@@ -493,7 +508,7 @@ Chapter 8 - Ranged Weapons
 
 A gun is a kind of thing. Understand "gun" as a gun.
 An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
-After printing the name of an ammo clip while taking inventory, say "(in which are [bullet count] rounds)".
+After printing the name of an ammo clip while taking inventory, say " (in which are [bullet count] rounds)".
 
 Definition: a thing is ungunlike if it is not a gun.
 Definition: an ammo clip is empty rather than non-empty if its bullet count is less than one.
@@ -589,7 +604,7 @@ Report an actor shooting something (called the target) with a gun (called the we
 				say "but in the heat of the moment, [we] [miss] [our] target.";
 		if the clip shot from is empty, say "[We] [discard] the expended ammo clip.";
 	otherwise if the target is the player:
-		say "[The actor] [one of][take] aim[or][bring] [their] [weapon] to bear[or][cock] [their] [weapon][or][train] [their] [weapon] at [us][or][zero] in on [us][at random] and [one of][unleash][or][shoot][or][fire][or][discharge][or][pop][at random] a volley in [our] direction! [run paragraph on]";
+		say "[The actor] [one of][take] aim[or][bring] [their] [weapon] to bear[or][cock] [their] [weapon][or][train] [their] [weapon] at [us][or][zero] in on [us][at random] and [regarding the actor][one of][unleash][or][shoot][or][fire][or][discharge][or][pop][at random] a volley in [our] direction! [run paragraph on]";
 		if the shot-result is:
 			-- deadly-hit:
 				say "At point-blank range, [the armor] [stand] little chance: leaving a trail of searing hot pain, the bullet carves a path through [our] [one of]head[or]chest[at random] before coming out on the other side, leaving [our] innards distributed on [the room-floor-prop of the location][unless the location is an outdoor room] and the wall behind [us][end unless].";
@@ -609,6 +624,17 @@ Report an actor shooting something (called the target) with a gun (called the we
 When play begins (this is the don't advertise undo rule):
 	choose row with a final response rule of immediately undo rule in the Table of Final Question Options;
 	blank out the final question wording entry.
+
+Ammo-counting is an action applying to nothing.
+Understand "ammo" or "ammunition" or "count ammo/ammunition/rounds" as ammo-counting.
+Report ammo-counting:
+	if the number of ammo clips carried by the player is zero:
+		say "You don't have any ammo.";
+	otherwise:
+		let cnt be zero;
+		repeat with c running through ammo clips carried by the player:
+			increase cnt by the bullet count of c;
+		say "All in all, you have [cnt] rounds left.".
 
 A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod yet lizard-looking creature, walking on two legs."
 A corpse is a kind of wreckage. A corpse is usually fixed in place.
