@@ -427,7 +427,6 @@ Understand "throw snotball at evil librarian" or "throw snotball at [someone]" a
 Section 2 - Smarter Parser Stuff
 
 Use normal blank lines.
-The smarter parser load config file rule is not listed in the when play begins rulebook.
 
 A smarter parser rule (this is the stripping formal address rule):
 	if stripping "(sir|ma'am|maam),?" is fruitful, only from the beginning:
@@ -1214,7 +1213,8 @@ To cut is a verb.
 Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
 The larger alien's corpse can be open[ or closed. The larger alien's corpse is closed].
 Check cutting the open larger alien's corpse with something:
-	say "You'd rather not desecrate the body further." instead.
+	if gore is allowed, say "You'd rather not desecrate the body further." instead;
+	otherwise say "You already have what you needed." instead.
 Instead of cutting the closed larger alien's corpse with the makeshift knife:
 	if the player is not wearing the armor:
 		say "You'd rather not do this with your bare hands.";
@@ -1253,6 +1253,9 @@ A time allotment rule for cutting the larger alien's corpse with something: rule
 Retrieving it from is an action applying to one thing and one touchable thing, and requiring light.
 Understand "retrieve [something] from [something]" or "extract [something] from [something]" as retrieving it from.
 Instead of retrieving the data crypt from the larger alien's corpse:
+	if the data crypt is not in the larger alien's corpse:
+		say "You already have [the data crypt].";
+		stop the action;
 	if gore is allowed:
 		if the player does not have the makeshift knife, say "You'll need some kind of tool to do that." instead;
 		try cutting the larger alien's corpse with the makeshift knife instead;
