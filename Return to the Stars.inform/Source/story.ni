@@ -2,7 +2,7 @@
 
 The story genre is "Science Fiction". The story headline is "An Interactive Escape".
 
-Release along with a website, an interpreter, and the source text.
+Release along with cover art ("A starship leaving a planet"), a website, an interpreter, and the source text.
 
 Book 1 - Preamble
 
