@@ -176,12 +176,21 @@ Check smelling when the player is wearing the armor and the location is breathab
 Instead of smelling the armor when the player is not wearing the armor and the armor is muddy, say "It smells like old fish.".
 
 [The following is gleaned from Michael J. Robert's "Return to Ditch Day":]
-Instead of rubbing the armor when the armor is muddy, say "You try to wipe the mud off, but all you really accomplish is smearing it around."
-Instead of rubbing the armor when the armor is covered, say "But you just went through the effort of making sure you're entirely covered."
-Instead of rubbing the armor when the armor is muddy-and-bloody, say "Really all you manage is to smear the mud-[if gore is allowed]blood[otherwise]slime[end if] mixture around more."
-Instead of rubbing the armor when the armor is bloody:
-	if gore is allowed, say "You try to wipe away some of the disgusting blood-and-guts mixture, but the blood is beginning to coagulate and all you manage is to leave bloody handprints on formerly clean areas of your suit.";
-	otherwise say "You try to wipe off slime, but it is too sticky."
+Instead of rubbing the armor:
+	[Having separate rules reads more nicely, but this saves us four instead rules.]
+	if the dirtiness of the armor is:
+		-- muddy:
+			 say "You try to wipe the mud off, but all you really accomplish is smearing it around.";
+		-- covered:
+			say "But you just went through the effort of making sure you're entirely covered.";
+		-- muddy-and-bloody:
+			say "Really all you manage is to smear the mud-[if gore is allowed]blood[otherwise]slime[end if] mixture around more.";
+		-- bloody:
+			if gore is allowed, say "You try to wipe away some of the disgusting blood-and-guts mixture, but the blood is beginning to coagulate and all you manage is to leave bloody handprints on formerly clean areas of your suit.";
+			otherwise say "You try to wipe off slime, but it is too sticky.";
+		-- clean:
+			say "You flick a bit of dust off your armor.";
+			rule succeeds.
 Understand "wipe off [something]" or "wipe [something] off" or "wipe [something]" as rubbing.
 Understand "wipe the/-- mud off [something]" as rubbing when the armor is mud-caked.
 Understand "wipe the/-- blood off [something]" as rubbing when the armor is blood-stained and gore is allowed.
