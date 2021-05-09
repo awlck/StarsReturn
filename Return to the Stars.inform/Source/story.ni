@@ -170,7 +170,7 @@ First for implicitly taking something (this is the implicitly taking timiming ru
 ["Standard actions which move the actor" are all left at the default one minute]
 
 [Standard actions concerning the actor's vision]
-Carry out looking (this is the default looking timings rule): take no time.
+Carry out looking (this is the default looking timings rule): take five seconds.
 Carry out looking under (this is the default looking under timings rule): take 30 seconds.
 
 [Standard actions which change the state of things]
@@ -1153,7 +1153,7 @@ Report jumping when the location is in the sea-region:
 Surrendering is an action applying to one topic. Understand "give up hope/--" or "capitulate" or "fall" or "succumb" or "succumb to/-- [text]" or "give in to [text]" or "surrender" or "surrender to/-- [text]" or "abandon your/my/-- me/myself/you/yourself/hope/faith/life/existence" or "resign" or "stop fighting/breathing" or "despair" as surrendering.
 Check surrendering: say "Not in a thousand years!" instead.
 Lying on the ocean floor is giving up. Entering the ocean floor is giving up. Sleeping is giving up. Waiting is giving up. Surrendering is giving up.
-Instead of giving up when the air of the armor is less than five and the location is in the sea-region:
+Instead of giving up when the air of the armor is less than 300 and the location is in the sea-region:
 	now the air of the armor is zero;
 	say "Looking at the remaining air timer on your HUD, a strange sense of calmness overcomes you: you won't make it out of this alive, and that's okay. After some fifteen years of waging war, you have done your share. You can rest now.[line break]The ocean floor looks soft and inviting. You lay down, the silt conforming to the shape of your armored body, cushioning the bulky plates and sharp angles that typically make sleeping in armor a rather futile effort. Your armor's [CO2] scrubbers are still working, and the heating elements will keep you comfortable. [italic type]There are worse ways to go...[roman type], you think to yourself as you slowly slip into unconsciousness, with a hint of a smile on your face.";
 	end the story finally saying "You have made peace."
