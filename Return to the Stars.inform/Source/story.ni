@@ -89,6 +89,7 @@ The pair of black leather combat boots is part of the fatigues. The description 
 Instead of taking off the boots, say "Walking around barefoot doesn't seem particularly beneficial right now."
 Instead of taking off something that is not the armor when the armor is worn, say "You'd rather not strip naked. Also, you would need to remove the armor first."
 Instead of attacking the fatigues, say "Strips of fabric can come in handy in all sorts of situations, but the current is not among them."
+Instead of doing something other than examining to the fatigues when the player is wearing the armor, say "You can't do that while wearing [the armor] over top of the fatigues."
 
 Instead of listening to the player:
 	if we have not eaten, say "Your stomach is growling.";
@@ -195,6 +196,8 @@ Definition: the armor is blood-stained:
 	if it is bloody, yes;
 	if it is muddy-and-bloody, yes;
 	no.
+
+Instead of rubbing the player when the player is wearing the armor, try rubbing the armor.
 
 Report touching something that is not a person while the player is wearing the armor:
 	say "Through [our] armored gloves, [we] don't really feel much of anything."
@@ -1137,10 +1140,37 @@ The shore docks are an outdoor room. They are up from seabottom-4 and north from
 Index map with shore docks mapped north of prison docks.
 
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
-Understand "slope" or "rut" or "muck" or "silt" or "shore" or "shoreline" as the incline.
+Understand "slope" or "rut" or "muck" or "mud" or "silt" or "shore" or "shoreline" as the incline.
 Instead of climbing the muddy incline, try going south.
 Before going south from the shore docks, say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
 Before going down from the shore docks for the first time, say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
+
+Rubbing it on is an action applying to two touchable things and requiring light.
+Understand "rub [something] on/onto [something]" as rubbing it on.
+Understand "slather [something] on/onto [something]" as rubbing it on.
+Understand "slather [something] with/in/using [something]" as rubbing it on (with nouns reversed).
+Understand the commands "cake", "coat", "encrust", "paint", "plaster", "slap", "smother", and "smear" as "slather".
+Understand "cover [something] with/in/using [something]" as rubbing it on (with nouns reversed).
+Understand the commands "disguise", "mask", and "obscure" as "cover".
+Report rubbing something on something:
+	say "[We] [rub] [the noun] on [the second noun], but not much happens." instead.
+Check rubbing the muddy incline on something:
+	if the player is not wearing the armor:
+		if the second noun is the player or the noun is the fatigues or the noun is the boots, say "That would take forever to clean up!" instead;
+	otherwise:
+		if the second noun is the player, try rubbing the muddy incline on the armor instead;
+		if the second noun is the fatigues or the second noun is the boots, say "But [we]['re] already wearing a perfectly adequate canvas over top of the fatigues." instead.
+Check rubbing the muddy incline on the armor when the player is not wearing the armor:
+	say "That would make a mess when trying to put the suit back on." instead.
+Instead of rubbing the muddy incline on the armor when the player is wearing the armor:
+	say "You kneel down in the mud and go to town, scooping up the gooey mud and slathering it onto yourself with both hands, until you are satisfied that you have covered every square inch (save for your visor) in a uniformly thick layer of the greyish-brown substance.";
+	now the armor is covered;
+	rule succeeds.
+Instead of rubbing the muddy incline on the armor when the player is wearing the armor and the armor is covered:
+	say "[We] are already covered in enough mud to no longer pass as a human being [dash] [we] see no reason to add more."
+A time allotment rule for rubbing the muddy incline on the armor when the player is wearing the armor:
+	rule succeeds with result 3.
+Instead of taking the muddy incline, try rubbing the muddy incline on the player.
 
 Section 2 - The Plaza
 
@@ -1150,6 +1180,20 @@ The command center door is north of the plaza and south of the entry hallway. It
 The command center door's card reader is a fixed in place thing in the plaza.
 Instead of unlocking the card reader with something, try unlocking the command center door with the noun.
 Instead of locking the card reader with something, try locking the command center door with the noun.
+
+The force field is a door. It is east of the plaza and west of the hangar.
+The force field can be enabled or disabled. The force field is enabled, open, and not openable.
+Understand "forcefield" or "force-field" as the force field.
+
+Check going [from the military complex plaza to the hangar] through the enabled force field:
+	if the player is not wearing the armor, say "The force field does not let you pass." instead;
+	if the armor is clean or the armor is blood-stained:
+		say "The force field does not let you pass." instead;
+	if the armor is muddy:
+		say "[one of]Your dirty hand[regarding one][or]Your lower arm[regarding one][or]A mud-stained leg[regarding one][or]Your mud-caked hands[regarding two][then at random] [pass] through the force field, but not more." instead;
+	if the armor is covered:
+		say "Your mud-covered body passes through the force field with little resistance.";
+		continue the action.
 
 Chapter 4 - The Command Center
 
@@ -1340,7 +1384,7 @@ Chapter 6 - Hangar and Launch
 
 Section 1 - The Hangar
 
-The hangar is east of the plaza. "Write me."
+The hangar is [east of the plaza] a room. "Write me."
 
 Section 2 - The Launch Pad
 
