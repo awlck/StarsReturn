@@ -1043,7 +1043,6 @@ Instead of getting off the dock, try entering the water.
 
 The water is a backdrop. It is in the prison docks and the shore docks. The description is "The water is murky, but the sea is smooth.".
 Understand "ocean" or "sea" as the water.
-Instead of entering the water when the player is wearing the armor, try going down.
 
 Understand "jump in/into [something]" or "dive in/into [something]" as entering.
 Does the player mean entering the water: it is likely.
@@ -1052,7 +1051,9 @@ Instead of jumping when the location is the prison docks or the location is the 
 	say "(into the water)[command clarification break]";
 	try entering the water.
 
-Instead of entering the water when the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you."
+Instead of entering the water:
+	if the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you.";
+	otherwise try going down.
 
 Chapter 2 - Underwater
 
@@ -1067,7 +1068,6 @@ Instead of examining up when the location is in the sea-region, try examining th
 
 The ocean floor is a backdrop in the sea-region. The description is "Silt has accumulated in the calmer waters between the shore and the prison island, enough to seriously hamper your movement down here." Understand "sea/ocean/-- bottom/ground/floor/silt" as the ocean floor.
 Instead of taking the ocean floor, say "You scoop up a handful of silt, but it quickly runs through your fingers."
-Instead of examining down when the location is in the sea-region, try examining the ocean floor.
 
 Instead of standing on the ocean floor, say "But [we] [are] already standing firmly on (or rather, [italic type]in[roman type]) the ocean floor."
 Instead of entering the ocean floor, say "You'd feel a bit silly lying in the silt."
@@ -1085,8 +1085,6 @@ Instead of giving up when the air of the armor is less than five and the locatio
 Test alternate with "pull grate / crawl into duct / kick grate / out / turn off doors / up / take helmet / s / e / e / take plates / w / n / e / turn on helmet light / jump / air-drain / n / z / lie down".
 
 Instead of going up in the sea-region (this is the can't swim in armor rule), say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided."
-
-Instead of going up in seabottom-4, try going north.
 
 seabottom-1 is a sea-room. It is down from the prison docks. "You are standing knee-deep in the silt at the bottom of the ocean. The rocky cliffs of the prison island lie to the south, the military complex is due north."
 
@@ -1117,6 +1115,7 @@ Before going north from seabottom-4 for the first time:
 Carry out going north from seabottom-4 (this is the armor dirtying rule):
 	now the armor is muddy;
 	continue the action.
+Instead of going up in seabottom-4, try going north.
 
 [And being in the water gets us clean again -- no real benefit, except continuity.]
 Every turn when the location is submerged (this is the armor cleaning rule):
