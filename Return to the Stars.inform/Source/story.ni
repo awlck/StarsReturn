@@ -1279,6 +1279,8 @@ Check eating when the larger alien's corpse is open:
 
 Check cutting something with something that is not the makeshift knife:
 	say "[The second noun] [cannot cut] anything." instead.
+Check cutting the makeshift knife with something:
+	say "Don't you have those the wrong way around?" instead.
 
 Check cutting a corpse with something:
 	if the rage has concluded, say "Despite how satisfying it was to destroy the furniture in your cell, military tradition forbids desecrating a fallen soldier's body, and you see no reason to break with that rule in this instance." instead;
