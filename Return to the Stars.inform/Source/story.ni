@@ -52,7 +52,7 @@ Table of Main Menu
 title	subtable (table name)	description	toggle (a rule)
 "Content Warning"	--	--	query gore mode rule
 "Unusual Verbs"	--	"You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH"	--
-"Credits"	--	"[RttS] by Adrian Welcker[line break]Built using the following extensions:[line break][complete list of extension credits][paragraph break][the playtesters]"	--
+"Credits"	--	"[RttS] by Adrian Welcker[line break]Built using the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][the playtesters]"	--
 
 To say the playtesters:
 	say "[bold type]Playtesters[roman type]: none yet...".
@@ -92,29 +92,101 @@ Instead of attacking the fatigues, say "Strips of fabric can come in handy in al
 Instead of doing something other than examining to the fatigues when the player is wearing the armor, say "You can't do that while wearing [the armor] over top of the fatigues."
 
 Instead of listening to the player:
-	if we have not eaten, say "Your stomach is growling.";
-	otherwise continue the action.
+	if we have not eaten:
+		say "Your stomach is growling.";
+		take 10 seconds;
+		rule succeeds;
+	otherwise:
+		continue the action.
 
 Chapter 2 - Time
 
-[Time is a somewhat important concept in this story, so we give it a little extra attention.]
+Section 1 - Applying Time
+
+[Time is a somewhat important concept in this story, so we give it a little extra attention.
+Implemented as a variation on Eric Eve's "Variable Time Control", that doesn't immediately gobble up the time taken once calculated.]
+
 The work duration is a number that varies.
-The work duration variable translates into I6 as "time_rate".[* Reusing the existing I6-level variable for how many minutes should pass each turn, which is applied by the "Advance Time Rule". This is usually just set to 1 throughout the course of the game: I7 doesn't normally touch it.]
+The work duration variable translates into I6 as "action_seconds".
+The current-action-time-custom is a truth state that varies.
+The current-action-time-custom variable translates into I6 as "action_time_is_custom".
 
-The time allotment rules are a rulebook producing a number.
+[This could easily be written in I7, but since the regular "advance time rule" is implemented in I6, it feels more adequate for our replacement to do the same.]
+Include (-
+! The number of seconds the current action will take
+Global action_seconds;
+! The number of seconds in the current minute of the time of day
+Global time_seconds;
+! Whether or not the current action has customised the time
+Global action_time_is_custom;
+! Default duration of an action that doesn't set its own time (one minute, just as usual)
+Constant DEFAULT_ACTION_SECONDS = 60;
 
-The last time allotment rule (this is the default time rule): rule succeeds with result 1.
+[ ADVANCE_TIME_R;
+	! Apply default time if the action succeeded and didn't set its own time.
+	if ((~~action_time_is_custom) && (reason_the_action_failed == 0)) action_seconds = DEFAULT_ACTION_SECONDS;
+	if (action_seconds > 0) turns++;
+	! Calculate the new time of day, leaving the action's time intact (which the Variable Time extension doesn't do, unfortunately)
+	time_seconds = time_seconds + action_seconds;
+	if (time_seconds >= 60) {
+		the_time = the_time + (time_seconds / 60);
+		time_seconds = time_seconds % 60;
+	}
+	the_time = the_time % TWENTY_FOUR_HOURS;
+];
+-) instead of "Advance Time Rule" in "OrderOfPlay.i6t".
 
 Every turn (this is the apply action-specific time rule):
-	now the work duration is the number produced by the time allotment rules;[* we could just as well have written each time allotment rule to set 'work duration' directly, but this feels better]
-	follow the air supply rules for the location.
+	[modify remaining air according to the number of seconds the action took
+	(which is why it is so important for that number to remain available)]
+	follow the air supply rules for the location;
+	[and go back to default time for the next action]
+	now current-action-time-custom is false;
+	now the work duration is 0.
+
+To take (s - a number) seconds:
+	now current-action-time-custom is true;
+	increase the work duration by s.
+To take (s - a number) seconds in total:
+	now current-action-time-custom is true;
+	now the work duration is s.
+To take no time: take zero seconds in total.
+To take (m - a number) minutes: take (m times 60) seconds.
+To take (m - a number) minutes in/-- total: take (m times 60) seconds in total.
+
+Section 2 - Default Timings for Standard Actions
+
+[Standard actions concerning the actor's possessions]
+Carry out taking inventory (this is the default taking inventory timings rule): take 20 seconds.
+Carry out taking (this is the default taking timings rule): take 10 seconds.
+Carry out removing it from (this is the default removing it from timings rule): take 15 seconds.
+Carry out dropping (this is the default dropping timings rule): take 10 seconds.
+Carry out putting it on (this is the default putting it on timings rule): take 10 seconds.
+Carry out inserting it into (this is the default inserting it into timings rule): take 15 seconds.
+Carry out eating (this is the default eating timings rule): take 2 minutes.
+
+First for implicitly taking something (this is the implicitly taking timiming rule): take 10 seconds.
+
+["Standard actions which move the actor" are all left at the default one minute]
+
+[Standard actions concerning the actor's vision]
+Carry out looking (this is the default looking timings rule): take no time.
+Carry out looking under (this is the default looking under timings rule): take 30 seconds.
+
+[Standard actions which change the state of things]
+Carry out locking it with (this is the default locking timings rule): take 30 seconds.
+Carry out unlocking it with (this is the default unlocking timings rule): take 30 seconds.
+Carry out switching on (this is the default switching on timings rule): take 30 seconds.
+Carry out switching off (this is the default switching off timings rule): take 30 seconds.
+
+Carry out attacking (this is the default attacking timings rule): take 90 seconds.
 
 Chapter 3 - Armor, Air, and Toxicity
 
 Section 1 - Armor
 
-The player has a number called the air. The air of the player is 5.
-The armor has a number called the air. The air of the armor is 100.
+The player has a number called the air. The air of the player is 300. [5 minutes]
+The armor has a number called the air. The air of the armor is 6000. [100 minutes]
 The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "dump" or "pouch" or "sack" or "holdall" as the armor.
 Dirtiness is a kind of value. The dirtinesses are clean, muddy, bloody, muddy-and-bloody, and covered.
 The armor has a dirtiness. The armor is clean.
@@ -132,6 +204,7 @@ Check an actor taking (this is the revised use player's holdall to avoid exceedi
 				if the actor is the player, say "(putting [the transferred item] into [the current working sack][if the current working sack is the armor]'s dump pouch[end if] to make room)[command clarification break]" (A);
 				silently try the actor trying inserting the transferred item
 					into the current working sack;
+				take 10 seconds;
 				if the transferred item is not in the current working sack:
 					stop the action.
 The revised use player's holdall to avoid exceeding carrying capacity rule is listed instead of the use player's holdall to avoid exceeding carrying capacity rule in the check taking rules.
@@ -154,11 +227,11 @@ After taking off the armor (this is the deposit armor immediately rule):
 	say "You take off the armor, setting the pieces down on the ground in front of you."
 	
 After wearing the armor (this is the take a deep breath rule):
-	decrease the air of the armor by (5 minus the air of the player);
-	now the air of the player is 5;
+	decrease the air of the armor by (300 minus the air of the player);
+	now the air of the player is 300;
 	continue the action.
 
-A time allotment rule for wearing the armor (this is the armor-donning is complex rule): rule succeeds with result 2.
+Carry out wearing the armor: take two minutes.
 
 There is a device called the helmet lamp.[* This somewhat stilted syntax is the only way we can force Inform to create "the helmet lamp" and (later on) "a helmet" as separate things. By default, Inform would assume that "helmet" is merely a shorthand form of "helmet lamp" and treat them as one object -- causing errors, because they aren't, of course.] It is part of the armor.
 Understand "helmet/-- lamp/light" as the helmet lamp.
@@ -171,6 +244,7 @@ Check smelling when the player is wearing the armor and the location is not brea
 
 [Conversely...]
 Check smelling when the player is wearing the armor and the location is breathable and the armor is muddy:
+	take 10 seconds;
 	say "You have a hard time smelling anything but the rancid fish smell emanating from the mud on your armor." instead.
 
 Instead of smelling the armor when the player is not wearing the armor and the armor is muddy, say "It smells like old fish.".
@@ -182,7 +256,7 @@ Instead of rubbing the armor:
 		-- muddy:
 			 say "You try to wipe the mud off, but all you really accomplish is smearing it around.";
 		-- covered:
-			say "But you just went through the effort of making sure you're entirely covered.";
+			say "But you just went through the effort of making sure you're entirely covered." instead;
 		-- muddy-and-bloody:
 			say "Really all you manage is to smear the mud-[if gore is allowed]blood[otherwise]slime[end if] mixture around more.";
 		-- bloody:
@@ -190,7 +264,7 @@ Instead of rubbing the armor:
 			otherwise say "You try to wipe off slime, but it is too sticky.";
 		-- clean:
 			say "You flick a bit of dust off your armor.";
-			rule succeeds.
+	take 30 seconds.
 Understand "wipe off [something]" or "wipe [something] off" or "wipe [something]" as rubbing.
 Understand "wipe the/-- mud off [something]" as rubbing when the armor is mud-caked.
 Understand "wipe the/-- blood off [something]" as rubbing when the armor is blood-stained and gore is allowed.
@@ -226,7 +300,7 @@ An air supply rule for a room that is not breathable when the player is wearing 
 	decrease the air of the armor by the work duration;
 	if the air of the armor is less than zero:
 		let d be the air of the armor multiplied by -1;
-		if the air of the player is five, say "The alarm grows more urgent as your suit's air reserve is now empty. As you take a final deep breath, you know that you have mere minutes left before you suffocate.";
+		if the air of the player is 300, say "The alarm grows more urgent as your suit's air reserve is now empty. As you take a final deep breath, you know that you have mere minutes left before you suffocate.";
 		decrease the air of the player by d.
 
 An air supply rule for a room that is not breathable when the player is not wearing the armor:
@@ -235,8 +309,8 @@ An air supply rule for a room that is not breathable when the player is not wear
 An air supply rule for a breathable room (this is the air replenishment rule):
 	now the air of the player is five;
 	if the player is wearing the armor:
-		if the air of the armor is less than 100, increase the air of the armor by five times the work duration;
-		if the air of the armor is greater than 100, now the air of the armor is 100.
+		if the air of the armor is less than 6000, increase the air of the armor by five times the work duration;
+		if the air of the armor is greater than 6000, now the air of the armor is 6000.
 
 An air supply rule for a toxic room when the air of the player is at most zero:
 	say "Without [unless the player is wearing the armor]the protection of your suit[otherwise]your suit's air supply[end if], you succumb to the toxic atmosphere of this wholly hostile world.";
@@ -283,9 +357,9 @@ To say hud-air:
 	[if the air of the armor is than 100 and the location is toxic:]
 	if the air of the armor is 100 or (the location is not toxic and the location is not submerged), stop;
 	if the air of the armor is greater than five:
-		say "Air: [air of the armor] min";
+		say "Air: [air of the armor / 60] min";
 	otherwise if the air of the armor is greater than zero:
-		say "AIR: [air of the armor] MIN";
+		say "AIR: [air of the armor / 60] MIN";
 	otherwise:
 		say "OUT OF AIR".
 
@@ -513,6 +587,7 @@ Check an actor crawling into something that is not an air duct (this is the defa
 Carry out an actor crawling into an air duct (this is the travel through air ducts rule):
 	let the target be the other end of the noun;
 	if the actor is the player, say "[We] [crawl] through the ducts, air rushing past [our] face." (A);
+	take 2 minutes;
 	if the target is open, now the actor is in the holder of the target;
 	otherwise now the actor is in the target.
 
@@ -1091,16 +1166,18 @@ seabottom-1 is a sea-room. It is down from the prison docks. "You are standing k
 Before going down to seabottom-1 for the first time:
 	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that is does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your arms and legs to slow your descent..."; [blatantly ignoring the potential issue of barotrauma, but whatever]
 	[pause the game; [for dramatic effect only]]
-	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good."
+	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good.";
+	take 45 seconds.
 
 The rocky cliffs are scenery in seabottom-1. "These cliffs are what the prison is built on top of." Understand "rocks" as the cliffs.
 Instead of climbing the rocky cliffs:
 	say "You climb up the cliffs[run paragraph on]";
-	if a random chance of 1 in 2 succeeds, say ", but lose your purchase on the slippery rock and fall back down to the bottom of the sea.[line break]Luckily, the ground is soft and the water slowed your descent, so you didn't hurt yourself." instead;
+	if a random chance of 1 in 2 succeeds:
+		take 6 minutes;
+		say ", but lose your purchase on the slippery rock and fall back down to the bottom of the sea.[line break]Luckily, the ground is soft and the water slowed your descent, so you didn't hurt yourself." instead;
 	say ".";
+	take 8 minutes;
 	now the player is in the prison docks.
-A time allotment rule for climbing the rocky cliffs:
-	rule succeeds with result 8.
 Instead of going up from seabottom-1 for more than the first time (this is the hint at climbing rule):
 	say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided.[line break](However, if you really must return, the cliffs look like you might stand a chance at climbing them.)"
 
@@ -1114,6 +1191,7 @@ Before going north from seabottom-4 for the first time:
 	say "You slowly make your way up the muddy incline [dash] half walking, half crawling [dash] until you finally reach dry land again.".
 Carry out going north from seabottom-4 (this is the armor dirtying rule):
 	now the armor is muddy;
+	take 5 minutes;
 	continue the action.
 Instead of going up in seabottom-4, try going north.
 
@@ -1130,12 +1208,8 @@ Instead of squeezing when the player has been in the sea-region and the location
 
 Report going to a room in the sea-region from a room in the sea-region (this is the report trudging rule):
 	say "You slowly trudge [noun]ward.";
+	take 5 minutes;
 	continue the action.
-
-A time allotment rule for going north when the location is in the sea-region or the location is the shore docks:
-	rule succeeds with result 5.
-A time allotment rule for going south when the location is in the sea-region:
-	rule succeeds with result 5.
 
 Chapter 3 - Military Complex Outdoors
 
@@ -1173,11 +1247,10 @@ Check rubbing the muddy incline on the armor when the player is not wearing the 
 Instead of rubbing the muddy incline on the armor when the player is wearing the armor:
 	say "You kneel down in the mud and go to town, scooping up the gooey mud and slathering it onto yourself with both hands, until you are satisfied that you have covered every square inch (save for your visor) in a uniformly thick layer of the greyish-brown substance.";
 	now the armor is covered;
+	take three minutes;
 	rule succeeds.
 Instead of rubbing the muddy incline on the armor when the player is wearing the armor and the armor is covered:
-	say "[We] are already covered in enough mud to no longer pass as a human being [dash] [we] see no reason to add more."
-A time allotment rule for rubbing the muddy incline on the armor when the player is wearing the armor:
-	rule succeeds with result 3.
+	say "[We] are already covered in enough mud to no longer pass as a human being [dash] [we] see no reason to add more.".
 Instead of taking the muddy incline, try rubbing the muddy incline on the player.
 
 Section 2 - The Plaza
@@ -1280,6 +1353,7 @@ Instead of cutting the closed larger alien's corpse with the makeshift knife:
 	otherwise:
 		say "In a process that defies any description, you retrieve the object of your desire: a small data crypt which the creature swallowed when you came into the room. It appears to be undamaged.";
 	now the player has the data crypt;
+	take 10 minutes;
 	rule succeeds.
 
 Check eating when the larger alien's corpse is open:
@@ -1301,7 +1375,6 @@ Check cutting the armor with something:
 	say "You feel no need to test out the suit's ability to resist [the second noun]." instead.
 Check cutting the fatigues with something:
 	say "While strips of fabric can serve a number of purposes, there doesn't seem to be a need to sacrifice your clothes right now." instead.
-A time allotment rule for cutting the larger alien's corpse with something: rule succeeds with result 5.
 
 [The somewhat more family friendly version.]
 Retrieving it from is an action applying to one thing and one touchable thing, and requiring light.
@@ -1322,6 +1395,7 @@ Instead of retrieving the data crypt from the larger alien's corpse:
 		if the armor is not bloody, now the armor is muddy-and-bloody;
 		say "You open the creature's oversized mouth and peek inside. Shifting around its large tongue, you notice something at the back of its throat. You reach in and retrieve the small object that the creature hastily swallowed as you entered the room: a data crypt. It, as well as your glove, are covered in slimy lizard saliva.";
 		now the player has the data crypt;
+		take 5 minutes;
 		rule succeeds.
 Check retrieving something from something:
 	try removing the noun from the second noun instead.
@@ -1342,10 +1416,11 @@ Check vomiting when we have vomited:
 	say "You feel a lot better already." instead.
 Check vomiting when the location is not breathable and the larger alien's corpse is open:
 	say "You'd like nothing better, but this isn't the right place." instead.
-Carry out vomiting: now the vomit is in the location.
+Carry out vomiting:
+	take 3 minutes;
+	now the vomit is in the location.
 Report vomiting:
 	say "[if the player is wearing the armor]Raising your faceplate, you[otherwise]You[end if] give in to the urge to empty your stomach and hurl into a corner of the room.".
-A time allotment rule for vomiting: rule succeeds with result 2.
 
 The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.". The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
 Instead of taking the vomit, say "How, by scooping it up in your hands? You'd rather not."
@@ -1378,13 +1453,13 @@ Instead of switching on the showers:
 	if the player is wearing the armor and the armor is not clean:
 		say "You turn on one of the showers and let the water run over you. [if the armor is muddy-and-bloody]The mud and [wash-grime][regarding two][otherwise if the armor is muddy or the armor is covered]The mud[regarding one][otherwise if the armor is bloody]The [wash-grime][regarding one][end if] [slide] off your gear and [collect] on the floor before finding [their] way down the drain.";
 		now the armor is clean;
+		take 8 minutes;
 		if the vomit is in the location, now the vomit is nowhere;
 		rule succeeds;
 	otherwise:
 		say "You're already about as clean as you're going to get."
 Instead of switching off the showers, say "All the showers are off already.".
 Instead of entering the showers, try switching on the showers.
-A time allotment rule for switching on the showers: rule succeeds with result 5.
 
 To say wash-grime:
 	if gore is allowed, say "blood";
@@ -1424,6 +1499,8 @@ Check launching the messenger ship when the messenger ship is not started:
 	say "The systems of [the messenger ship] are powered down." instead.
 Check launching the messenger ship when the location is the planetary orbit:
 	say "[We] [are] already in space." instead.
+Carry out launching the messenger ship:
+	take 30 minutes.
 
 Nounless-launching is an action applying to nothing.
 Understand "make orbit" or "take off" or "blast off" or "ascend" or "ascend into/to the/-- skies/sky/space/orbit" or "depart" as nounless-launching.
@@ -1445,6 +1522,8 @@ Check deorbiting the messenger ship when the player is not in the messenger ship
 	say "[We] [can't] remote-control [the messenger ship]. Also, doing that [would leave] [us] stranded out here." instead.
 Check deorbiting the messenger ship when the location is not the planetary orbit:
 	say "[We] [are] already on the planet." instead.
+Carry out deorbiting the messenger ship:
+	take 30 minutes.
 
 Nounless-deorbiting is an action applying to nothing.
 Understand "deorbit" or "break orbit" or "touchdown" or "touch down" or "make planetfall" or "enter the/-- atmosphere" or "re-enter the/-- atmosphere" or "reenter the/-- atmosphere" or "return to the/-- [surface-desc]" as nounless-deorbiting.
@@ -1486,6 +1565,7 @@ Check home-going when the location is not the planetary orbit and the player is 
 	say "Yes! Take off." instead.
 
 Carry out home-going:
+	take 300 minutes;
 	end the story finally saying "You have returned home".
 
 Instead of going when the location is the planetary orbit, say "[We] don't really have anywhere to go in normal space."
