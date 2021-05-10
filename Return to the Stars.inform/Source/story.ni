@@ -1066,6 +1066,7 @@ ladder-bottom is privately-named scenery in the installations room. The printed 
 Understand "ladder" or "rungs" as the ladder-bottom.
 Instead of climbing the ladder-bottom, try going up.
 
+["Obfuscated Switches" have a label in "Shwabolian" writing, which is really just ROT13-encoded english. The armor can translate those, so we show the plain english labels when the player is wearing the armor.]
 An obfuscated switch is a kind of device. An obfuscated switch is usually switched on.
 An obfuscated switch has some text called the obf-label. An obfuscated switch has some text called the real-label.
 The printed name of an obfuscated switch is usually "[if the player is wearing the armor][real-label][otherwise][obf-label][end if] switch".
@@ -1469,7 +1470,7 @@ Chapter 6 - Hangar and Launch
 
 Section 1 - The Hangar
 
-The hangar is [east of the plaza] a room. "Write me."
+The hangar is a room. "Write me."
 
 Section 2 - The Launch Pad
 
@@ -1481,18 +1482,57 @@ The control tower is up from the hangar. "Write me."
 
 The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
 
+The force field switch is an obfuscated switch in the control tower. The real-label is "FORCE FIELD". The obf-label is "SBEPR SVRYQ".
+Understand "forcefield" or "sbepr" or "svryq" or "sbeprsvryq" as the force field switch.
+Carry out switching off the force field switch: now the force field is disabled.
+Carry out switching on the force field switch: now the force field is enabled.
+
+The launch doors switch is an obfuscated switch in the control tower. The real-label is "LAUNCH DOORS". The obf-label is "YNHAPU QBBEF".
+Understand "launchdoors" or "ynhapu" or "qbbef" or "ynhapuqbbef" as the launch doors switch.
+
 Section 4 - Ship
 
 The messenger ship is an enterable container in the hangar.
 After printing the name of the messenger ship, omit contents in listing.
 The ship can be started. The ship is not started.
 
+The notch is a scenery container in the messenger ship. The description is "[if the data crypt is not in the notch]A notch in one of the control panels, ready to accept something[otherwise]The data crypts rests in its place in the control panel[end if]."
+Understand "recess" or "control" or "panel" or "aussparung" [;-)] as the notch.
+
+The canopy is part of the messenger ship. The description is "A sort of glass dome covering the cockpit, allowing the pilot to look in all directions."
+Understand "glass" or "dome" as the canopy.
+Instead of looking through the canopy when the player is in the messenger ship:
+	try looking;
+	take 15 seconds in total;
+	rule succeeds.
+
+Starting is an action applying to one touchable thing.
+Understand "start up/-- [something]" or "boot up/-- [something]" or "power up/-- [something]" as starting.
+Understand "start up/--" or "boot up/--" or "power up/--" as starting.
+Understand "prepare [something]" or "prepare [something] for launch/take-off" or "prepare for launch/take-off [something]" as starting.
+Understand "prepare" or "prepare for launch/take-off" as starting.
+Understand the command "prep" as "prepare".
+To start is a verb.
+Rule for supplying a missing noun while starting:
+	if the player is in the messenger ship, now the noun is the messenger ship.
+Check starting something that is not the messenger ship:
+	say "[We] [can't] [start] [regarding the noun][those]." instead.
+Check starting the started messenger ship:
+	say "The ship is already prepared for take-off." instead.
+Check starting the messenger ship when the messenger ship is not started and the data crypt is not in the notch:
+	say "The ship doesn't seem to want to power up.[one of][or] Something must still be missing.[stopping]".
+Carry out starting the messenger ship:
+	now the messenger ship is started;
+	take three minutes.
+Report starting the messenger ship:
+	say "You press the button that your suit indicates as being the main switch for the ship [dash] luckily, earth scientists were able to get their hands on a similar model of Shwabolian ship, so your suit is able to guide you through most of the pre-flight checks.[paragraph break]One by one, the systems of the messenger ship come alive around you. The ship is now ready for launch."
+
 Launching is an action applying to one visible thing.
 Understand "launch" or "launch [something]" as launching.
 Rule for supplying a missing noun while launching:
 	if the player is in the messenger ship, now the noun is the messenger ship.
 Check launching something that is not the messenger ship:
-	say "[We] [can't] launch [regarding the noun][those]." instead.
+	say "[We] [can't] [launch] [regarding the noun][those]." instead.
 Check launching the messenger ship when the player is not in the messenger ship:
 	say "[We] [can't] remote-control [the messenger ship]. Also, it would probably be good if [we] were [italic type]on[roman type] the ship when it launches, wouldn't it?" instead.
 Check launching the messenger ship when the messenger ship is not started:
@@ -1503,7 +1543,7 @@ Carry out launching the messenger ship:
 	take 30 minutes.
 
 Nounless-launching is an action applying to nothing.
-Understand "make orbit" or "take off" or "blast off" or "ascend" or "ascend into/to the/-- skies/sky/space/orbit" or "depart" as nounless-launching.
+Understand "make orbit" or "take off" or "blast off" or "lift off" or "ascend" or "ascend into/to the/-- skies/sky/space/orbit" or "depart" as nounless-launching.
 Understand "climb" or "climb into space/orbit" or "climb into the sky" or "rise" or "take flight" as nounless-launching when the player is in the ship.
 Check nounless-launching when the messenger ship is in the location:
 	try launching the messenger ship instead.
@@ -1582,6 +1622,7 @@ After reading a command (this is the ignore beta-comments rule):
 		say "([one of]Oh no! [or]How embarassing... [or]I'll look into that. [or][at random]Noted.)";
 		reject the player's command.
 
+[From Example 388]
 Waiting more is an action applying to one number.
 
 Understand "wait [a time period]" or "wait for [a time period]" or "wait for a/an [a time period]" or "wait a/an [a time period]" as waiting more.
