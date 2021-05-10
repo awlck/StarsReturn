@@ -1085,6 +1085,7 @@ Check turning an obfuscated switch:
 	otherwise try switching on the noun instead.
 
 The switch panel is in the installations room. "On one of the walls is a panel with a number of large switches on it." It is fixed in place.
+Understand "switches" as the panel.
 The description is "A number of large rotary switches are attached to this panel. One is labeled '[switch-label of the lights switch]', the next '[switch-label of the ventilation switch]', a third '[switch-label of the doors switch]', and one is labeled '[switch-label of the controls switch]'.".
 Does the player mean turning the switch panel: it is unlikely.
 Does the player mean switching off the switch panel: it is unlikely.
@@ -1488,12 +1489,18 @@ The control tower is up from the hangar. "Write me."
 
 The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
 
-The force field switch is an obfuscated switch in the control tower. The real-label is "FORCE FIELD". The obf-label is "SBEPR SVRYQ".
+The air traffic control desk is in the control tower. "A large desk festooned with screens and buttons is mounted below the window." It is fixed in place.
+The description is "This desk must be the place from which most of the air traffic going into and out of this place is controlled. It is festooned with screens, buttons, and switches, but three elements stick out: a switch labeled [switch-label of the force field switch], one labeled [switch-label of the launch doors switch], and a large red button."
+Understand "screen" or "screens" or "buttons" or "switches" or "air-traffic" or "air-traffic-control" as the control desk.
+
+The force field switch is an obfuscated switch. It is part of the control desk.
+The real-label is "FORCE FIELD". The obf-label is "SBEPR SVRYQ".
 Understand "forcefield" or "sbepr" or "svryq" or "sbeprsvryq" as the force field switch.
 Carry out switching off the force field switch: now the force field is disabled.
 Carry out switching on the force field switch: now the force field is enabled.
 
-The launch doors switch is an obfuscated switch in the control tower. The real-label is "LAUNCH DOORS". The obf-label is "YNHAPU QBBEF".
+The launch doors switch is an obfuscated switch. It is part of the control desk.
+The real-label is "LAUNCH DOORS". The obf-label is "YNHAPU QBBEF".
 Understand "launchdoors" or "ynhapu" or "qbbef" or "ynhapuqbbef" as the launch doors switch.
 
 Section 4 - Ship
@@ -1627,7 +1634,7 @@ Carry out air-draining:
 
 After reading a command (this is the ignore beta-comments rule):
 	if the player's command matches the regular expression "^\p":
-		say "([one of]Oh no! [or]How embarassing... [or]I'll look into that. [or][at random]Noted.)";
+		say "(Noted.)";
 		reject the player's command.
 
 [From Example 388]
@@ -1639,6 +1646,7 @@ Carry out waiting more:
 	let the target time be the time of day plus the time understood;
 	decrease the target time by one minute;
 	while the time of day is not the target time:
+		take 60 seconds in total;
 		follow the turn sequence rules.
 
 [The one nuance here is that after our wait command occurs, the turn sequence rules will occur one more time. So we need to subtract one minute from the parsed time to make the turn end on the desired number of minutes.]
