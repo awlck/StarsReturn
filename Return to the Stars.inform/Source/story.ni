@@ -1430,7 +1430,9 @@ Carry out vomiting:
 Report vomiting:
 	say "[if the player is wearing the armor]Raising your faceplate, you[otherwise]You[end if] give in to the urge to empty your stomach and hurl into a corner of the room.".
 
-The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.". The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
+The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.".
+The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
+Understand "vomitus" or "eject" or "former/-- contents of/-- your/my stomach/belly" as the vomit.
 Instead of taking the vomit, say "How, by scooping it up in your hands? You'd rather not."
 
 Test alien with "pull grate / crawl through duct / out / turn off maglock / up / take helmet / look under desk / s / e / e / take plates / w / open airlock / n / e / turn on helmet light / enter water / n / n / n / n / n / unlock door with card / n / w / take rifle and ammo / break rack / e / n / n / shoot larger with rifle / shoot smaller with rifle / cut larger corpse with knife / x me / x armor / x data crypt / throw up".
@@ -1521,13 +1523,10 @@ Instead of looking through the canopy when the player is in the messenger ship:
 
 Starting is an action applying to one touchable thing.
 Understand "start up/-- [something]" or "boot up/-- [something]" or "power up/-- [something]" as starting.
-Understand "start up/--" or "boot up/--" or "power up/--" as starting.
 Understand "prepare [something]" or "prepare [something] for launch/take-off" or "prepare for launch/take-off [something]" as starting.
-Understand "prepare" or "prepare for launch/take-off" as starting.
 Understand the command "prep" as "prepare".
 To start is a verb.
-Rule for supplying a missing noun while starting:
-	if the player is in the messenger ship, now the noun is the messenger ship.
+Does the player mean starting the messenger ship: it is likely.
 Check starting something that is not the messenger ship:
 	say "[We] [can't] [start] [regarding the noun][those]." instead.
 Check starting the started messenger ship:
@@ -1541,9 +1540,9 @@ Report starting the messenger ship:
 	say "You press the button that your suit indicates as being the main switch for the ship [dash] luckily, earth scientists were able to get their hands on a similar model of Shwabolian ship, so your suit is able to guide you through most of the pre-flight checks.[paragraph break]One by one, the systems of the messenger ship come alive around you. The ship is now ready for launch."
 
 Launching is an action applying to one visible thing.
-Understand "launch" or "launch [something]" as launching.
-Rule for supplying a missing noun while launching:
-	if the player is in the messenger ship, now the noun is the messenger ship.
+Understand "launch [something]" as launching.
+Does the player mean launching the messenger ship: it is likely.
+To launch is a verb.
 Check launching something that is not the messenger ship:
 	say "[We] [can't] [launch] [regarding the noun][those]." instead.
 Check launching the messenger ship when the player is not in the messenger ship:
@@ -1567,9 +1566,8 @@ Check nounless-launching (this is the default block nounless launching rule):
 Instead of going up when the player is in the ship, try nounless-launching.
 
 Deorbiting is an action applying to one visible thing.
-Understand "land" or "land [something]" or "land [something] on/at [surface-desc]" as deorbiting.
-Rule for supplying a missing noun while deorbiting:
-	if the player is in the messenger ship, now the noun is the messenger ship.
+Understand "land [something]" or "land [something] on/at [surface-desc]" as deorbiting.
+Does the player mean deorbiting the messenger ship: it is likely.
 Check deorbiting something that is not the messenger ship:
 	say "[We] [can't] land [regarding the noun][those]." instead.
 To leave is a verb.
@@ -1596,7 +1594,8 @@ Chapter 7 - Space
 Planetary orbit is a vacuum room.
 The room-floor-prop is nothing. The room-top-prop is nothing. The walls are {}.
 
-The planet is scenery in the orbit. "In the external camera view, [we] [see] the barren, yellow surface of your former prison receding behind [us]. [We] [are] glat to be on [our] way." Understand "wretched" or "damned" or "godforsaken" or "horrible" or "awful" or "third-rate" or "shithole" or "hellish" or "hell-hole" or "hellhole" or "planet" or "rock" or "wasteland" or "excuse" or "of a" as the planet.
+The planet is scenery in the orbit. "In the external camera view, [we] [see] the barren, yellow surface of your former prison receding behind [us]. [We] [are] glat to be on [our] way."
+Understand "wretched" or "damned" or "godforsaken" or "horrible" or "awful" or "third-rate" or "shithole" or "hellish" or "hell-hole" or "hellhole" or "planet" or "rock" or "wasteland" or "excuse" or "of a" as the planet.
 Understand "leave this/-- [the planet]" as getting off when the location is the planetary orbit.
 Instead of getting off the planet, try home-going.
 Understand "go to [the planet]" as entering when the location is the planetary orbit.
