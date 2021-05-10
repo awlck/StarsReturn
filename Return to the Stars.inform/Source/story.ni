@@ -51,8 +51,14 @@ Carry out requesting the game menu:
 Table of Main Menu
 title	subtable (table name)	description	toggle (a rule)
 "Content Warning"	--	--	query gore mode rule
-"Unusual Verbs"	--	"You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH"	--
-"Credits"	--	"[RttS] by Adrian Welcker[line break]Built using the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][the playtesters]"	--
+"Unusual Verbs"	--	"[help-text]"	--
+"Credits"	--	"[credits-text]"	--
+
+To say help-text:
+	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[line break]PREPARE [italic type]something[roman type] FOR LAUNCH"
+
+To say credits-text:
+	say "[RttS] by Adrian Welcker[line break]Built using the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][the playtesters]".
 
 To say the playtesters:
 	say "[bold type]Playtesters[roman type]: none yet...".
@@ -1539,6 +1545,8 @@ Check launching the messenger ship when the messenger ship is not started:
 	say "The systems of [the messenger ship] are powered down." instead.
 Check launching the messenger ship when the location is the planetary orbit:
 	say "[We] [are] already in space." instead.
+Check launching the messenger ship when the location is the hangar:
+	say "[We] will need to get the ship out in the open first." instead.
 Carry out launching the messenger ship:
 	take 30 minutes.
 
