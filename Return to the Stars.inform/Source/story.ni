@@ -838,7 +838,7 @@ The room-top-prop of an outdoor room is usually the default-sky.
 The room-floor-prop of an outdoor room is usually the default-ground.
 The walls of an outdoor room are usually {}.
 
-After deciding the scope of the player when not in darkness:
+After deciding the scope of the player when not in darkness (this is the place the current room's parts in scope rule):
 	if the room-top-prop of the location is not nothing, place the room-top-prop of the location in scope;
 	if the room-floor-prop of the location is not nothing, place the room-floor-prop of the location in scope;
 	repeat with r running through walls of the location:
@@ -905,7 +905,7 @@ Instead of listening to the silence:
 
 Section 1 - The Cell
 
-[We've spent A LOT of time in this room, so describe it in excruciating detail.]
+[We've spent A LOT of time in this room, so describe it in plenty of detail.]
 Your cell is a room. "This is the room you have spent most of your time in, ever since being taken captive. To be honest, you've kind of lost track of how long that has been. [if the cot is in your cell][A cot] stands in one corner of the room. [end if]An air duct[if a grate is part of cell air duct] covered by an old grate[end if] is mounted in the wall near [if the cot is in the location]the cot[otherwise]where the cot once stood[end if][if the ventilation switch is switched on], exuding a constant stream of cool, fresh air (and the occasional drop of condensation, which falls to the ground with an annoyingly loud [italic type]plink[roman type])[end if]. [A sanitary station] [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room. [if the metal door is closed][A metal door] lies to the north, keeping you securely in the cell.[otherwise][The metal door] northward is open, leading to a corridor.[end if]".
 
 An air duct called cell air duct is in your cell.
@@ -994,10 +994,10 @@ At 09:30 AM:
 
 Section 2 - Corridor and Stuff
 
-The corridor is a room. "Write me."
+The corridor is a room. "The featureless white corridor runs east-to-west, bending around a corner and out of sight to each end.[paragraph break][The metal door] leading to your cell is south. The control room lies around the corner to the west[if the front office is visited], and the entry area lies around the corner to the east[end if]."
 
 West of the corridor is south of the control room. Index map with control room mapped northwest of corridor.
-The control room is a room. "Write me."
+The control room is a room. "The walls are plastered with screens[if the controls switch is switched on] showing video feeds from throughout the facility[otherwise], but they are all blank[end if]. This must be the place from which the prisoners are monitored.[paragraph break][A ladder-top] leads down into the installations room, and a corridor leads south."
 
 A table is a scenery supporter in the control room.
 On the table is a thing called a helmet. The initial appearance of the helmet is "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it.". The printed name is "[our] helmet".
@@ -1072,8 +1072,10 @@ The prison installations room is down from the control room. "This is where most
 
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
 
-some-air-ducts is scenery in the prison installations room. It is privately-named. The description of some-air-ducts is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
-Instead of doing something other than examining to some-air-ducts, say "They're not labeled, and you'd rather not wander through the air ducts aimlessly."
+[some-air-ducts is scenery in the prison installations room. It is privately-named. The description of some-air-ducts is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
+Instead of doing something other than examining to some-air-ducts, say "They're not labeled, and you'd rather not wander through the air ducts aimlessly."]
+some-air-ducts is a north-wall. The description is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
+The walls of the installations room are {some-air-ducts, default-south-wall, default-west-wall, default-east-wall}.
 
 ladder-bottom is privately-named scenery in the installations room. The printed name is "ladder".
 Understand "ladder" or "rungs" as the ladder-bottom.
@@ -1233,7 +1235,7 @@ Section 1 - The Docks
 [Not a test as much as a convenience to quickly skip ahead during debugging.]
 Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card / down / up".
 
-The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]The prison buildings lie to the south, across the water, and the military complex continues to the north.[paragraph break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face..."
+The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face...[paragraph break]The prison buildings lie to the south, across the water, and the military complex continues to the north."
 Index map with shore docks mapped north of prison docks.
 
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
