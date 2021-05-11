@@ -1488,9 +1488,12 @@ Section 1 - The Hangar
 
 The hangar is a room. "Write me."
 
+The launch doors are a door. They are north of the hangar and south of the landing strip. They are closed.
+Instead of opening or closing the launch doors, say "These doors appear to be operated remotely."
+
 Section 2 - The Launch Pad
 
-The landing strip is north of the hangar. It is an outdoor room. "Write me."
+The landing strip is an outdoor room. "Write me."
 
 Section 3 - The Launch Control Room
 
@@ -1511,6 +1514,25 @@ Carry out switching on the force field switch: now the force field is enabled.
 The launch doors switch is an obfuscated switch. It is part of the control desk.
 The real-label is "LAUNCH DOORS". The obf-label is "YNHAPU QBBEF".
 Understand "launchdoors" or "ynhapu" or "qbbef" or "ynhapuqbbef" as the launch doors switch.
+Carry out switching off the launch doors switch:
+	now the launch doors are open.
+Report switching off the launch doors switch:
+	say "You flip the switch, and the large doors separating the hangar from the launch pad slide open."
+Carry out switching on the launch doors switch:
+	now the launch doors are closed.
+Report switching on the launch doors switch:
+	say "You flip the switch, and the large doors separating the hangar from the launch pad slide shut."
+
+The big red button is part of the control desk. The description is "A large red button is mounted in the center of the console. It is not labeled."
+Understand "large" as the button.
+Instead of pushing the big red button:
+	if the launch doors are closed or the messenger ship is not in the hangar:
+		take 10 seconds;
+		say "The system beeps, but nothing more happens.";
+	otherwise:
+		say "An alarm sounds, and the floor below the messenger ship begins to move: it is standing on a sort of conveyor belt, and is now moving outside and into position on the launch pad.";
+		now the messenger ship is in the landing strip;
+		take 90 seconds.
 
 Section 4 - Ship
 
@@ -1539,7 +1561,7 @@ Check starting something that is not the messenger ship:
 Check starting the started messenger ship:
 	say "The ship is already prepared for take-off." instead.
 Check starting the messenger ship when the messenger ship is not started and the data crypt is not in the notch:
-	say "The ship doesn't seem to want to power up.[one of][or] Something must still be missing.[stopping]".
+	say "The ship doesn't seem to want to power up.".
 Carry out starting the messenger ship:
 	now the messenger ship is started;
 	take three minutes.
@@ -1561,7 +1583,11 @@ Check launching the messenger ship when the location is the planetary orbit:
 Check launching the messenger ship when the location is the hangar:
 	say "[We] will need to get the ship out in the open first." instead.
 Carry out launching the messenger ship:
+	now the messenger ship is in the planetary orbit;
 	take 30 minutes.
+Report launching the messenger ship:
+	say "You fire up the engines and take off..."; [TODO]
+	try looking.
 
 Nounless-launching is an action applying to nothing.
 Understand "make orbit" or "take off" or "blast off" or "lift off" or "ascend" or "ascend into/to the/-- skies/sky/space/orbit" or "depart" as nounless-launching.
