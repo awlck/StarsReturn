@@ -1518,10 +1518,12 @@ Carry out switching off the launch doors switch:
 	now the launch doors are open.
 Report switching off the launch doors switch:
 	say "You flip the switch, and the large doors separating the hangar from the launch pad slide open."
+Instead of opening the launch doors switch, try switching off the noun.
 Carry out switching on the launch doors switch:
 	now the launch doors are closed.
 Report switching on the launch doors switch:
 	say "You flip the switch, and the large doors separating the hangar from the launch pad slide shut."
+Instead of closing the launch doors switch, try switching off the noun.
 
 The big red button is part of the control desk. The description is "A large red button is mounted in the center of the console. It is not labeled."
 Understand "large" as the button.
