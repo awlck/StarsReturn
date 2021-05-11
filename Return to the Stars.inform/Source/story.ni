@@ -142,13 +142,15 @@ Constant DEFAULT_ACTION_SECONDS = 60;
 ];
 -) instead of "Advance Time Rule" in "OrderOfPlay.i6t".
 
-Every turn (this is the apply action-specific time rule):
+[This can't be a simple "every turn" rule, because those run before the "advance time" rule. Figuring that out gave me a bit of a headache...]
+This is the update air and reset time rule:
 	[modify remaining air according to the number of seconds the action took
 	(which is why it is so important for that number to remain available)]
 	follow the air supply rules for the location;
 	[and go back to default time for the next action]
 	now current-action-time-custom is false;
 	now the work duration is 0.
+The update air and reset time rule is listed after the advance time rule in the turn sequence rules.
 
 To take (s - a number) seconds:
 	now current-action-time-custom is true;
@@ -333,6 +335,9 @@ The first air supply rule for a vacuum room when the player is not wearing the a
 An air supply rule for a vacuum room when the air of the player is at most zero:
 	end the story saying "You have asphyxiated".
 
+[Being in the ship overrides all air handling.]
+The first air supply rule: if the holder of the player is the messenger ship, stop.
+
 [Give the player an explicit nudge when they venture outside without protection]
 After going to a toxic room for at least the second time:
 	if the player is not wearing the armor, say "Your headache quickly returns as you venture outside again";
@@ -373,7 +378,9 @@ To say plain-air:
 	if the location is not breathable, say "NO AIR".
 
 To say hud-environ-status:
-	if the location is toxic:
+	if the holder of the player is the messenger ship:
+		say "Breathable";
+	otherwise if the location is toxic:
 		say "High levels of CO2";
 	otherwise if the location is vacuum:
 		say "No atmosphere";
@@ -631,11 +638,11 @@ Understand "look under [something]" as looking under.
 Understand "look through [something]" as looking through.
 Understand the command "l" as "look".
 
-Check looking through a transparent container (this is the convert looking through transparent containers to searching rule):
+First check looking through a transparent container (this is the convert looking through transparent containers to searching rule):
 	try searching the noun instead.
 
-Carry out looking through something when the other-side-description of the noun is empty (this is the opaque looking through rule):
-	say "[We] [can't] [see] through [the noun]."
+Check looking through something when the other-side-description of the noun is empty (this is the opaque looking through rule):
+	say "[We] [can't] [see] through [the noun]." instead.
 
 Carry out looking through (this is the standard looking through rule):
 	say "[the other-side-description of the noun][paragraph break]".
@@ -1412,7 +1419,7 @@ Report going to the ops center for the first time (this is the alien swallows ke
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
 The alien swallows key rule is listed last in the report going rules.
 
-A data crypt is in the larger shwabolian's body. The description is "A small storage device you salvaged from [if gore is allowed]the innards of [end if]one of your captors."
+A data crypt is a thing. The description is "A small storage device you salvaged from [if gore is allowed]the innards of [end if]one of your captors."
 Understand "small/-- swallowed/eaten object/thing/device" or "small/-- object/thing/device swallowed/eaten by the/-- large/larger/-- alien/shwabolian/lizard" or "small" or "device" as the data crypt.
 
 [What I want to do after writing the above.]
