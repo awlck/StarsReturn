@@ -914,8 +914,17 @@ Check attacking the cell air duct's grate when the noun is part of something:
 The description of the cell air duct's grate is "A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you wanted to (although the presence of the camera has so far kept you from attempting anything)."
 
 The metal door is north of your cell and south of the corridor. It is an openable closed lockable locked door.
-The other-side-description is "[We] peek through the small duraplast window into the corridor outside. It is empty."
+The description is "[cell-door-desc].".
+The other-side-description is "[We] peek through the small, scuffed up duraplast window into the corridor outside. It is empty."
+Understand "small" or "duraplast" or "window" as the metal door.
+To say cell-door-desc:
+	if the location is your cell, say "The door is smooth on the inside, with only a small window allowing you to catch a glimpse of the corridor behind it. It lines up perfectly with the surrounding wall [dash] if you didn't know better, you might think it is part of the wall itself.";
+	if the location is the corridor, say "This is the door leading to your cell. It has a handle that allows it to be opened from this side.".
 Instead of unlocking the metal door with something when the location is your cell, say "The door doens't have any lock or control mechanism on the inside."
+Instead of unlocking the metal door with something when the location is the corridor, say "The door appears to be locked and unlocked remotely."
+Instead of opening the unlocked metal door when the location is your cell:
+	say "The door only opens inwards, into the room you're in, it has no handle or knob, and there are no seams where it meets the surrounding wall. No matter how hard you try, you can't get a grip on the door, so you can't open it.";
+	take five minutes.
 
 The cot is a fixed in place enterable supporter in your cell. "A cot stands in one corner of the room." The description is "Flimsy frame, uncomfortable plastic surface [dash] it's a cot alright."
 Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
@@ -1071,6 +1080,7 @@ Section 4 - Basement
 The prison installations room is down from the control room. "This is where most of the installations and appliances keeping the cell complex running reside. [if the ventilation switch is switched on]A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall. [end if]A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
 
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
+The description is "The air duct leads back to your cell."
 
 [some-air-ducts is scenery in the prison installations room. It is privately-named. The description of some-air-ducts is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
 Instead of doing something other than examining to some-air-ducts, say "They're not labeled, and you'd rather not wander through the air ducts aimlessly."]
