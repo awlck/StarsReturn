@@ -1134,7 +1134,7 @@ After deciding the scope of the player while in darkness and the location is the
 
 Section 5 - Outside Area
 
-Prison antecourt is an outdoor room. "Write me."
+Prison antecourt is an outdoor room. "A small courtyard lies outside the prison, which appears to be built on a small island.[paragraph break]The way back into the prison is south, through the airlock. You are otherwise surrpunded by water, but there are some docks allowing easy access to the east."
 
 The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[line break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
 
@@ -1282,7 +1282,7 @@ Instead of taking the muddy incline, try rubbing the muddy incline on the player
 
 Section 2 - The Plaza
 
-The military complex plaza is an outdoor room. It is north of the shore docks. "Write me."
+The military complex plaza is an outdoor room. It is north of the shore docks. "This base must be the heart of the operations [dash] in this area, at least.[paragraph break]There are several places you could go from here. The shoreline and the docks lie to the south. [one of]What looks like[or]The[stopping] hangar lies to the east[if the force field is enabled], blocked off by a force field[end if]. A smaller building[if the player is wearing the armor], labeled 'Barracks',[end if] lies to the west, and a larger building [if the player is wearing the armor] with a sign reading 'Command Center'[end if] lies to the south."
 
 The command center door is north of the plaza and south of the entry hallway. It is an openable closed lockable locked door. The prison warden's ID card unlocks the command center door.
 The command center door's card reader is a fixed in place thing in the plaza.
@@ -1307,7 +1307,7 @@ Chapter 4 - The Command Center
 
 Section 1 - Hallways
 
-The entry hallway is a room. "Write me."
+The entry hallway is a room. "This is the entry area into the base's command center, where those in charge would no doubt hold briefings, discuss command descisions, and do other important officer things. (In all your years of military service, you've never felt a desire to move up into the officer ranks yourself, even though there were plenty of open spots in the newly-unified military.)[paragraph break]A small armory is to the west, and the hallway continues to the north."
 
 The command center lobby is north of the entry hallway. "Write me."
 
@@ -1347,7 +1347,13 @@ Understand "make-shift" or "dagger" or "metal" or "frame" as the makeshift knife
 
 Section 3 - Nerve Center
 
-The briefing room is east of the lobby. "Write me."
+The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. A large screen hangs on one of the walls, with a lectern in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolean facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is south, back into the lobby."
+
+A large round table is a fixed in place supporter in the briefing room.
+The description is "It is a simple table with a white plastic surface.".
+
+A large screen is a fixed in place thing in the briefing room.
+The description is "A large screen has been fitted into the wall. It is blank."
 
 The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
 
