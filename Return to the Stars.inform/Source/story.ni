@@ -1486,8 +1486,8 @@ Chapter 5 - The Barracks
 
 The mess hall is west of the military complex plaza. "This is the entry area to what must be the barracks of this place. The area near the entrance is set up like a mess hall, with tables and counters, while the back of the room is set up more leisurely, with [some pillows] on the floor and even a [italic type]couch[roman type]. You've never seen [a couch] in a military facility in your life.[paragraph break]You could go east, back outside, or west, further into the building."
 
-Some plain white tables are scenery in the mess hall.
-Some counters are scenery in the mess hall.
+Some plain white tables are scenery in the mess hall. The description is "You see nothing interesting about the tables. They are boring, even by the low standards of tables.".
+Some counters are scenery in the mess hall. The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recessions for food bowls.".
 
 Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
