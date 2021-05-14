@@ -1107,6 +1107,7 @@ The description is "A number of large rotary switches are attached to this panel
 Does the player mean turning the switch panel: it is unlikely.
 Does the player mean switching off the switch panel: it is unlikely.
 Does the player mean switching on the switch panel: it is unlikely.
+Does the player mean examining the switch panel: it is likely.
 
 The lights switch is part of the switch panel. It is an obfuscated switch. The real-label is "LIGHTS". The obf-label is "YVTUGF". Understand "light" or "yvtugf" as the lights switch.
 The ventilation switch is part of the panel. It is an obfuscated switch. The real-label is "VENTILATION". The obf-label is "IRAGVYNGVBA". Understand "iragvyngvba" as the ventilation switch.
@@ -1526,6 +1527,9 @@ The real-label is "FORCE FIELD". The obf-label is "SBEPR SVRYQ".
 Understand "forcefield" or "sbepr" or "svryq" or "sbeprsvryq" as the force field switch.
 Carry out switching off the force field switch: now the force field is disabled.
 Carry out switching on the force field switch: now the force field is enabled.
+Does the player mean switching off the air traffic control desk: it is unlikely.
+Does the player mean switching on the air traffic control desk: it is unlikely.
+Does the player mean examining the air traffic control desk: it is likely.
 
 The launch doors switch is an obfuscated switch. It is part of the control desk.
 The real-label is "LAUNCH DOORS". The obf-label is "YNHAPU QBBEF".
