@@ -52,6 +52,7 @@ Table of Main Menu
 title	subtable (table name)	description	toggle (a rule)
 "Content Warning"	--	--	query gore mode rule
 "Unusual Verbs"	--	"[help-text]"	--
+"Contacting the Author"	--	"[contact-info-text]"	--
 "Credits"	--	"[credits-text]"	--
 
 To say help-text:
@@ -59,6 +60,9 @@ To say help-text:
 
 To say credits-text:
 	say "[RttS] by Adrian Welcker[line break]Built using the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][the playtesters]".
+
+To say contact-info-text:
+	say "Enjoyed playing [RttS]? Found a bug? Got stuck and need a hint?[paragraph break]The most straightforward way to reach out is by e-mail to ardi@diepixelecke.de. For more general feedback, you can leave a review on IFDB, or just start talking about the game on intfiction.org [dash] I'll see it sooner or later.".
 
 To say the playtesters:
 	say "[bold type]Playtesters[roman type]: none yet...".
