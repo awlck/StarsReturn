@@ -1308,7 +1308,13 @@ Section 1 - Hallways
 
 The entry hallway is a room. "This is the entry area into the base's command center, where those in charge would no doubt hold briefings, discuss command descisions, and do other important officer things. (In all your years of military service, you've never felt a desire to move up into the officer ranks yourself, even though there were plenty of open spots in the newly-unified military.)[paragraph break]A small armory is to the west, and the hallway continues to the north."
 
-The command center lobby is north of the entry hallway. "Write me."
+The command center lobby is north of the entry hallway. "You are standing in a sparsely furnished lobby. Some chairs are lined up on a wall, but that's about it.[paragraph break]A briefing room is to the east, [if the ops center is unvisited]what appears to be an[otherwise]the[end if] ops center lies to the north, and the hallway leading back to the entrance is south.[if at least one shwabolian is in the ops center][paragraph break]You can hear subdued talking coming from the room to the north.[end if]"
+
+A chair is an enterable scenery supporter in the lobby.
+The description is "They look to be the same plastic monstrosities you had to sit on throughout your years in school."
+Understand "chairs" or "stool" or "stools" as the chair.
+Instead of taking the chair, say "The chairs are bolted to the wall." instead.
+
 
 Section 2 - Armory
 
