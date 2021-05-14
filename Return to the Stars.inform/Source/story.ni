@@ -1484,22 +1484,43 @@ Chapter 5 - The Barracks
 
 [This area doesn't really do anything useful, but it would be a bit weird if it were absent.]
 
-The mess hall is west of the military complex plaza.
+The mess hall is west of the military complex plaza. "This is the entry area to what must be the barracks of this place. The area near the entrance is set up like a mess hall, with tables and counters, while the back of the room is set up more leisurely, with [some pillows] on the floor and even a [italic type]couch[roman type]. You've never seen [a couch] in a military facility in your life.[paragraph break]You could go east, back outside, or west, further into the building."
 
 Some plain white tables are scenery in the mess hall.
+Some counters are scenery in the mess hall.
+
+Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
+Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
+A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin' couch[roman type]! How the hell did they get a couch out here?![line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.".
+Understand "sofa" as the couch.
+The couch has a dirtiness.
+After entering the couch:
+	if the player is wearing the armor and the armor is mud-caked and the couch is clean:
+		now the couch is muddy;
+		say "The couch looks comfy and inviting, and despite the entire situation you can't resist the urge to sit down for a bit. You transfer a considerable amount of mud to the couch in the proces, but if the Shwabolians ever notice, a dirty couch will be the least of your issues.";
+	otherwise:
+		continue the action.
 
 The barracks are west of the mess hall.
 
 Some bunks are in the barracks. "Four stacked bunk beds are lined up on the walls." They are fixed in place.
 The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
 
-The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[line break]The only way out is north, back to the barracks."
+The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[line break]The only way out is north, back to the barracks."
 
-Some toilets are scenery in the washroom.
-Some sinks are scenery in the washroom.
+Some toilets are scenery in the washroom. The description is "They look like the kind you'd find in the worst of public restrooms back on earth: steel body, no lid, no real seat. Comfort clearly wasn't high on the priority list here."
+Understand "toilet" or "loo" or "loos" or "head" as the toilets.
+
+Some sinks are scenery in the washroom. The description is "[if we have examined the toilets]Just like the toilets, the[otherwise]The[end if] sinks are made of plain steel."
+Understand "sink" or "washbasin" or "washbasins" or "washbowl" or "washbowls" or "wash" or "basin" or "basins" as the sinks.
+
 Some mirrors are scenery in the washroom.
-Instead of examining the mirrors, try examining yourself.
-Some showers are scenery in the washroom.
+Instead of examining the mirrors:
+	say "You regard yourself in one of the mirrors: [run paragraph on]";
+	try examining yourself;
+	rule succeeds.
+
+Some showers are scenery in the washroom. The description is "[if we have examined the toilets or we have examined the sinks]Much like the rest of the room, the[otherwise]The[end if] showers aren't much to look at: non-adjustable shower heads emerging from the ceiling, simple mechanical controls mounted on the walls, and all the water ultimately goes down the grated drains built into the tiled floor."
 
 To slide is a verb. To collect is a verb.
 Instead of switching on the showers:
