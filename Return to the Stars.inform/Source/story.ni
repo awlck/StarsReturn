@@ -1681,6 +1681,9 @@ Instead of going when the location is the planetary orbit, say "[We] don't reall
 
 Book 4 - Debug Commands - Not for Release
 
+First after printing the banner text (this is the prerelease notice rule):
+	say "[italic type]Play-test alpha build [dash] do not distribute![roman type][line break]".
+
 Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
 Carry out air-draining:
 	now the air of the armor is 10;
