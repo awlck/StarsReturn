@@ -1063,9 +1063,7 @@ Instead of putting the helmet on the shelves:
 	now the armor is on the shelves;
 	say "You put the helmet with the armor plates, completing the set again."
 
-Wearing the plates is armor-wear-preparation. Taking the plates is armor-wear-preparation.
-
-Before armor-wear-preparation when the player is carrying the helmet:
+Before wearing or taking the plates when the player is carrying the helmet:
 	now the helmet is nowhere;
 	now the plates are nowhere;
 	now the armor is in the location;
