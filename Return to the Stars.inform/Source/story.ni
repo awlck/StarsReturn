@@ -1312,7 +1312,7 @@ The command center lobby is north of the entry hallway. "Write me."
 
 Section 2 - Armory
 
-The armory is west of the entry hallway. "Write me."
+The armory is west of the entry hallway. "This 'armory' is really more of a glorified storage closet: [if the storage rack is in the armory]it is just large enough to hold [a storage rack] and [an ammo crate][otherwise][an ammo crate] stands on the ground, and the room would have just enough room for a small shelf (if you hadn't pulled that apart)[end if].[paragraph break]The only way out is east, back to the hallway."
 
 The ammo crate is a fixed in place container in the armory.
 Instead of taking the ammo crate, say "It's too heavy and awkward to carry around."
@@ -1331,28 +1331,37 @@ Instead of taking some-ammo-clips:
 			now c is in the ammo crate;
 			silently try taking c.
 
-Some racks are a fixed in place supporter in the armory.
-Understand "bare" or "metal" or "shelf" or "rack" as the racks. Understand "shelves" or "racks" as the plural of racks.
-A rifle is a gun on the racks. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
-Instead of attacking the racks:
+A storage rack are a fixed in place supporter in the armory.
+Understand "bare" or "metal" or "shelf" or "rack" as the rack.
+A rifle is a gun on the rack. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
+Instead of attacking the rack:
 	say "You pull apart the frame of the shelf, giving you a piece of metal with a rather sharp edge.";
-	now all things that are on the racks are in the location;
-	now the racks are nowhere;
+	now all things that are on the rack are in the location;
+	now the rack is nowhere;
 	now the player has the makeshift knife;
 	rule succeeds.
+Understand "make [knifedesc] [makefrom] [the storage rack]" as attacking.
+Understand "build [knifedesc] [makefrom] [the storage rack]" as attacking.
+Understand "turn [the storage rack] into [knifedesc]" as attacking.
+Understand "from" or "out of" as "[makefrom]".
+Understand "a/an/-- makeshift/improvised/-- knife" as "[knifedesc]".
+
+rack-gone is a privately-named unthing. The description is "You broke the rack to make a knife, remember?".
 
 The makeshift knife is a thing. The description is "A piece of metal you pulled out of the shelves in the armory. It happens to have a rather sharp edge."
 Understand "make-shift" or "dagger" or "metal" or "frame" as the makeshift knife.
 
-Section 3 - Nerve Center
+Section 3 - Briefing Room
 
-The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. A large screen hangs on one of the walls, with a lectern in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolean facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is south, back into the lobby."
+The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. A large screen hangs on one of the walls, with a lectern in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is south, back into the lobby."
 
 A large round table is a fixed in place supporter in the briefing room.
 The description is "It is a simple table with a white plastic surface.".
 
 A large screen is a fixed in place thing in the briefing room.
 The description is "A large screen has been fitted into the wall. It is blank."
+
+Section 4 - Nerve Center
 
 The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
 
