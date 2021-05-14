@@ -1505,7 +1505,7 @@ After entering the couch:
 	otherwise:
 		continue the action.
 
-The barracks are west of the mess hall. "You are standing in the sleeping area of the barracks. Like the entire facility so far, the room is designed in a very utilitarian manner, with no decoration or personal touches."
+The barracks are west of the mess hall. "You are standing in the sleeping area of the barracks. Like the entire facility so far, the room is designed in a very utilitarian manner, with no decoration or personal touches.[paragraph break]You can go east, back to the mess hall, or south, [if the communal washroom is not visited]further into the building[otherwise]into the washroom[end if]."
 
 Some bunks are in the barracks. "Four stacked bunk beds are lined up on the walls." They are fixed in place.
 The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
@@ -1547,14 +1547,15 @@ Chapter 6 - Hangar and Launch
 
 Section 1 - The Hangar
 
-The hangar is a room. "Write me."
+The hangar is a room. "This large, cavernous space where dropships and other small craft can be stored when not in use. It is currently empty[if the messenger ship is in the hangar], except for [a messenger ship][end if].[paragraph break][if the launch doors are open]You could go north, through [the launch doors] and onto the landing pad,[otherwise][The launch doors] leading north are closed. You can go[end if] west, [if the force field is enabled]through the force field and [end if]back to the plaza, or up to the control room."
 
 The launch doors are a door. They are north of the hangar and south of the landing strip. They are closed.
+The description is "Large sliding doors [dash] more than large enough for a dropship to fit through [dash] make up pretty much the entire northern wall of the hangar. They are currently [if the launch doors are open and the location is the hangar]open, revealing a view of the launch pad[otherwise if the launch doors are open]open, reavealing a view of the inside of the hangar[otherwise]closed.".
 Instead of opening or closing the launch doors, say "These doors appear to be operated remotely."
 
 Section 2 - The Launch Pad
 
-The landing strip is an outdoor room. "Write me."
+The landing strip is an outdoor room. "You are standing on the tarmac of a small landing pad. It's not long enough for a fixed-wing atmospheric craft to take off, but perfectly adequate for the vertical take-off and landing operation of a space-capable vessel."
 
 Section 3 - The Launch Control Room
 
