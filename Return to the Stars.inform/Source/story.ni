@@ -1505,7 +1505,7 @@ After entering the couch:
 	otherwise:
 		continue the action.
 
-The barracks are west of the mess hall.
+The barracks are west of the mess hall. "You are standing in the sleeping area of the barracks. Like the entire facility so far, the room is designed in a very utilitarian manner, with no decoration or personal touches."
 
 Some bunks are in the barracks. "Four stacked bunk beds are lined up on the walls." They are fixed in place.
 The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
