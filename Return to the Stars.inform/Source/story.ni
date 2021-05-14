@@ -1338,6 +1338,7 @@ Instead of attacking the rack:
 	say "You pull apart the frame of the shelf, giving you a piece of metal with a rather sharp edge.";
 	now all things that are on the rack are in the location;
 	now the rack is nowhere;
+	now rack-gone is in the armory;
 	now the player has the makeshift knife;
 	rule succeeds.
 Understand "make [knifedesc] [makefrom] [the storage rack]" as attacking.
@@ -1353,13 +1354,16 @@ Understand "make-shift" or "dagger" or "metal" or "frame" as the makeshift knife
 
 Section 3 - Briefing Room
 
-The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. A large screen hangs on one of the walls, with a lectern in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is south, back into the lobby."
+The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is south, back into the lobby."
 
 A large round table is a fixed in place supporter in the briefing room.
-The description is "It is a simple table with a white plastic surface.".
+The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warrented all this nonessential material being shipped out here.".
 
 A large screen is a fixed in place thing in the briefing room.
 The description is "A large screen has been fitted into the wall. It is blank."
+
+The lectern is a fixed in place supporter in the briefing room.
+The description is "A lectern stands in front of the screen, waiting for someone to step up and address those present in the room (which is none, at the moment). In keeping with everything you've seen so far, it lacks any seals, emblems, or insignia you might typically find on a lectern in a UNDC facility."
 
 Section 4 - Nerve Center
 
