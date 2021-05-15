@@ -182,7 +182,9 @@ Carry out putting it on (this is the default putting it on timings rule): take 1
 Carry out inserting it into (this is the default inserting it into timings rule): take 15 seconds.
 Carry out eating (this is the default eating timings rule): take 2 minutes.
 
-First for implicitly taking something (this is the implicitly taking timiming rule): take 10 seconds.
+First for implicitly taking something (this is the implicitly taking timing rule):
+	take 10 seconds;
+	make no decision.
 
 ["Standard actions which move the actor" are all left at the default one minute]
 
