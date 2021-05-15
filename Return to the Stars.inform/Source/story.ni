@@ -1037,7 +1037,8 @@ Instead of searching the control panel:
 ladder-top is privately-named scenery in the control room. The printed name is "ladder". Understand "ladder" or "rungs" as the ladder-top.
 Instead of climbing ladder-top, try going down.
 
-East of the corridor is south of the front office. Index map with front office mapped northeast of corridor.
+East of the corridor is south of the front office. "This is room is the entrance to the facility. You have no doubt that there would normally be at least one guard posted here, but at the moment it is empty.[paragraph break]You could go east, into a small storage area, south, back into the corridor.".
+Index map with front office mapped northeast of corridor.
 
 The airlock is a locked door. "[airlock-desc].". The airlock is north of the front office and south of the prison antecourt.
 
@@ -1054,7 +1055,7 @@ Instead of unlocking the airlock with something when the location is the front o
 	
 Section 3 - The Storage Area
 
-The storage space is east of the front office. "Bare-metal [shelves] line the walls. This seems to be the place where inmates' possessions are stored."
+The storage space is east of the front office. "This small storage closet seems to be the place where inmates' possessions are stored. Bare-metal [shelves] line the walls.[paragraph break]The only way out is west."
 
 Some shelves are a scenery supporter in the storage space.
 Understand "bare" or "metal" or "bare-metal" or "shelf" or "rack" as the shelves. Understand "shelves" or "racks" as the plural of shelves.
