@@ -1,6 +1,7 @@
 "Return to the Stars" by Adrian Welcker
 
 The story genre is "Science Fiction". The story headline is "An Interactive Escape".
+The story description is "After having been taken captive in battle, you soon settled into a routine: sleep, eat, shower, reconsider your life choices, repeat. Until, one day, there is no more food. Or guards, for that matter. It seems to be up to you to find a way out of your prison and back home...".
 
 Release along with cover art ("A starship leaving a planet"), a website, an interpreter, and the source text.
 
@@ -1285,16 +1286,31 @@ Instead of taking the muddy incline, try rubbing the muddy incline on the player
 
 Section 2 - The Plaza
 
-The military complex plaza is an outdoor room. It is north of the shore docks. "This base must be the heart of the operations [dash] in this area, at least.[paragraph break]There are several places you could go from here. The shoreline and the docks lie to the south. [one of]What looks like[or]The[stopping] hangar lies to the east[if the force field is enabled], blocked off by a force field[end if]. A smaller building[if the player is wearing the armor], labeled 'Barracks',[end if] lies to the west, and a larger building [if the player is wearing the armor] with a sign reading 'Command Center'[end if] lies to the south."
+The military complex plaza is an outdoor room. It is north of the shore docks. "This base must be the heart of the operations [dash] in this area, at least.[paragraph break]There are several places you could go from here. The shoreline and the docks lie to the south. [if the hangar is unvisited]What looks like a[otherwise]The[end if] hangar lies to the east[if the force field is enabled], blocked off by a force field[end if]. A smaller building[if the player is wearing the armor], labeled 'Barracks',[end if] lies to the west, and a larger building [if the player is wearing the armor] with a sign reading 'Command Center'[end if], blocked off by a door, lies to the north."
 
 The command center door is north of the plaza and south of the entry hallway. It is an openable closed lockable locked door. The prison warden's ID card unlocks the command center door.
-The command center door's card reader is a fixed in place thing in the plaza.
+The command center door's card reader is a fixed in place thing in the plaza. The description is "A small grey box waiting to be presented with an access card.".
 Instead of unlocking the card reader with something, try unlocking the command center door with the noun.
 Instead of locking the card reader with something, try locking the command center door with the noun.
 
-The force field is a door. It is east of the plaza and west of the hangar.
+The force field is a door. It is east of the plaza and west of the hangar. "[one of]The wind picks up some leaves and blows them through the force field to the [forcefield-desc-direction][or]The force field to the [forcefield-desc-direction] gives off a faint blue glow[or]A small bird flies through the force field and off to the [forcefield-desc-direction][then at random].".
+The description is "The force field [if enabled]gives off a faint blue glow[otherwise]is disabled[end if]."
 The force field can be enabled or disabled. The force field is enabled, open, and not openable.
 Understand "forcefield" or "force-field" as the force field.
+To say forcefield-desc-direction:
+	if the location is the plaza, say "east";
+	otherwise say "west".
+
+[Ensure that the disabled force field, the command center door, and its card reader dont't get mentioned in room descriptions.]
+After choosing notable locale objects (this is the military plaza locale objects rule):
+	if the force field is disabled:
+		if there is a notable-object of force field in the Table of Locale Priorities:
+			set the locale priority of the force field to 0;
+	if there is a notable-object of command center door in the Table of Locale Priorities:
+		set the locale priority of the command center door to 0;
+	if there is a notable-object of command center door's card reader in the Table of Locale Priorities:
+		set the locale priority of the command center door's card reader to 0.
+	continue the activity.
 
 Check going [from the military complex plaza to the hangar] through the enabled force field:
 	if the player is not wearing the armor, say "The force field does not let you pass." instead;
@@ -1559,7 +1575,7 @@ The landing strip is an outdoor room. "You are standing on the tarmac of a small
 
 Section 3 - The Launch Control Room
 
-The control tower is up from the hangar. "Write me."
+The control tower is up from the hangar. "You are standing in a room built into the wall near the ceiling of the cavernous hangar. No craft enters or leaves the airspace around the facility without the approval of the air-traffic controllers on duty here."
 
 The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
 
@@ -1570,8 +1586,10 @@ Understand "screen" or "screens" or "buttons" or "switches" or "air-traffic" or 
 The force field switch is an obfuscated switch. It is part of the control desk.
 The real-label is "FORCE FIELD". The obf-label is "SBEPR SVRYQ".
 Understand "forcefield" or "sbepr" or "svryq" or "sbeprsvryq" as the force field switch.
-Carry out switching off the force field switch: now the force field is disabled.
-Carry out switching on the force field switch: now the force field is enabled.
+Carry out switching off the force field switch:
+	now the force field is disabled.
+Carry out switching on the force field switch:
+	now the force field is enabled.
 Does the player mean switching off the air traffic control desk: it is unlikely.
 Does the player mean switching on the air traffic control desk: it is unlikely.
 Does the player mean examining the air traffic control desk: it is likely.
