@@ -1604,6 +1604,7 @@ Instead of pushing the big red button:
 Section 4 - Ship
 
 The messenger ship is an enterable container in the hangar.
+The description is "The messenger ship has a sleek silver shape. It looks like a somewhat larger, elongated variant of a typical Shwabolian dropship design. What sets it apart is the fact that, instead of a large cargo hold, it has a fully-featured alcubierre drive, allowing for faster-than-light travel. Useful for when urgent messages (or passengers) need to be delivered somewhere, and waiting for the next cargo hauler or patrol boat is not an option."
 After printing the name of the messenger ship, omit contents in listing.
 The ship can be started. The ship is not started.
 
@@ -1653,7 +1654,7 @@ Carry out launching the messenger ship:
 	now the messenger ship is in the planetary orbit;
 	take 30 minutes.
 Report launching the messenger ship:
-	say "You fire up the engines and take off..."; [TODO]
+	say "You get into the pilot's seat and take a few seconds to collect your thought. While you didn't perform [italic type]absolutely[roman type] terribly on the simulator tryouts in bootcamp, there is certainly a reason why you were placed with the space-borne infantry rather than in a dropship wing.[line break]... no time for second thoughts. It's either this, or staying on this planet until you either starve or your captors return and discover what you did. After all, you (hopefully) won't need to fly any combat maneuvers, just take off and make orbit. You push your doubts aside and follow the pointers provided by you armor's computer system.[paragraph break]Half an hour later, you have safely left the atmosphere and have settled into a stable low orbit.";
 	try looking.
 
 Nounless-launching is an action applying to nothing.
@@ -1691,7 +1692,7 @@ Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat th
 
 Chapter 7 - Space
 
-Planetary orbit is a vacuum room.
+Planetary orbit is a vacuum room. "You float in space, several hundred kilometers above the planets sickly yellowish surface.[paragraph break]The time has come to finally return home. Or, if you really must, you could attempt to break orbit and land back at the facility."
 The room-floor-prop is nothing. The room-top-prop is nothing. The walls are {}.
 
 The planet is scenery in the orbit. "In the external camera view, [we] [see] the barren, yellow surface of your former prison receding behind [us]. [We] [are] glat to be on [our] way."
