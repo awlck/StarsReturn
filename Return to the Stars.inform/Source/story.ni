@@ -147,6 +147,7 @@ Constant DEFAULT_ACTION_SECONDS = 60;
 		time_seconds = time_seconds % 60;
 	}
 	the_time = the_time % TWENTY_FOUR_HOURS;
+	rfalse;
 ];
 -) instead of "Advance Time Rule" in "OrderOfPlay.i6t".
 
