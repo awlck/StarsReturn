@@ -621,6 +621,7 @@ Before exiting when the holder of the actor is an air duct and a grate is part o
 	silently try attacking a random grate that is part of the holder of the actor.
 
 Understand "climb in/into [something]" as entering.
+Instead of climbing an air duct, try entering the noun.
 
 Instead of crawling into an air duct when the player is wearing the armor, say "The duct is just large enough for a human to crawl through [dash] bulky suit of armor not included."
 
@@ -1206,7 +1207,8 @@ Before going down to seabottom-1 for the first time:
 	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good.";
 	take 45 seconds.
 
-The rocky cliffs are scenery in seabottom-1. "These cliffs are what the prison is built on top of." Understand "rocks" as the cliffs.
+The rocky cliffs are scenery in seabottom-1. "These cliffs are what the prison is built on top of."
+Understand "rocks" or "cliff" as the cliffs.
 Instead of climbing the rocky cliffs:
 	say "You climb up the cliffs[run paragraph on]";
 	if a random chance of 1 in 2 succeeds:
@@ -1531,6 +1533,7 @@ The barracks are west of the mess hall. "You are standing in the sleeping area o
 
 Some bunks are in the barracks. "Four stacked bunk beds are lined up on the walls." They are fixed in place.
 The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
+Understand "stacked" or "bunk" as the bunks.
 
 The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[line break]The only way out is north, back to the barracks."
 
@@ -1541,6 +1544,7 @@ Some sinks are scenery in the washroom. The description is "[if we have examined
 Understand "sink" or "washbasin" or "washbasins" or "washbowl" or "washbowls" or "wash" or "basin" or "basins" as the sinks.
 
 Some mirrors are scenery in the washroom.
+Understand "mirror" as the mirrors.
 Instead of examining the mirrors:
 	say "You regard yourself in one of the mirrors: [run paragraph on]";
 	try examining yourself;
