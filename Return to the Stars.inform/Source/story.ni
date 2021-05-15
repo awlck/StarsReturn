@@ -28,7 +28,10 @@ To say CO2:
 	if unicode is available, say "CO[unicode 8322]";
 	otherwise say "CO2".
 
-[Making this a "when play begins" rule causes the macOS IDE to hang during play. Go figure.]
+When play begins (this is the show intro rule):
+	[say "Just when the NATO and Warsaw Pact nations had finally decided to put their differences aside for good, and the militaries of the world were busy reforming under the banner of the United Nations, the Shwabolians attacked. ".]
+	say "With his back against the proverbial wall, your commander ordered a somewhat daring raid on a Shwabolian outpost to break out of the strategic stalemate. Naturally, things didn't quite go as planned. Several members of your platoon were killed, and you were separated, captured, sedated, and taken to this prison... somewhere. Initially, you settled into a sort of routine: sleep, shower, eat, reconsider your life choices, the occasional questioning impeded by language barriers, and back to sleep again. But you haven't received food [dash] or any attention, really [dash] for the last three days.[paragraph break]If you are to leave this planet alive, you better find a way before you starve..."
+
 After printing the banner text:
 	say "[italic type][if gore is allowed]Content Warning: descriptions of gore and violence[otherwise]Toned down mode[end if] [dash] type ABOUT for more info.[roman type][paragraph break]".
 
@@ -60,7 +63,7 @@ To say help-text:
 	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[line break]PREPARE [italic type]something[roman type] FOR LAUNCH"
 
 To say credits-text:
-	say "[RttS] by Adrian Welcker[line break]Built using the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][the playtesters]".
+	say "[RttS] by Adrian Welcker[line break]Built using Inform 7 and the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][the playtesters]".
 
 To say contact-info-text:
 	say "Enjoyed playing [RttS]? Found a bug? Got stuck and need a hint?[paragraph break]The most straightforward way to reach out is by e-mail to ardi@diepixelecke.de. For more general feedback, you can leave a review on IFDB, or just start talking about the game on intfiction.org [dash] I'll see it sooner or later.".
