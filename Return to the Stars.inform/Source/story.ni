@@ -1037,8 +1037,9 @@ Instead of searching the control panel:
 ladder-top is privately-named scenery in the control room. The printed name is "ladder". Understand "ladder" or "rungs" as the ladder-top.
 Instead of climbing ladder-top, try going down.
 
-East of the corridor is south of the front office. "This is room is the entrance to the facility. You have no doubt that there would normally be at least one guard posted here, but at the moment it is empty.[paragraph break]You could go east, into a small storage area, south, back into the corridor.".
+East of the corridor is south of the front office.
 Index map with front office mapped northeast of corridor.
+The description of the front office is "This is room is the entrance to the facility. You have no doubt that there would normally be at least one guard posted here, but at the moment it is empty.[paragraph break]You could go east, into a small storage area, south, back into the corridor.".
 
 The airlock is a locked door. "[airlock-desc].". The airlock is north of the front office and south of the prison antecourt.
 
@@ -1310,7 +1311,7 @@ After choosing notable locale objects (this is the military plaza locale objects
 	if there is a notable-object of command center door in the Table of Locale Priorities:
 		set the locale priority of the command center door to 0;
 	if there is a notable-object of command center door's card reader in the Table of Locale Priorities:
-		set the locale priority of the command center door's card reader to 0.
+		set the locale priority of the command center door's card reader to 0;
 	continue the activity.
 
 Check going [from the military complex plaza to the hangar] through the enabled force field:
