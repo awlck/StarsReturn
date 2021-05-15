@@ -928,9 +928,9 @@ The description is "[cell-door-desc].".
 The other-side-description is "[We] peek through the small, scuffed up duraplast window into the corridor outside. It is empty."
 Understand "small" or "duraplast" or "window" as the metal door.
 To say cell-door-desc:
-	if the location is your cell, say "The door is smooth on the inside, with only a small window allowing you to catch a glimpse of the corridor behind it. It lines up perfectly with the surrounding wall [dash] if you didn't know better, you might think it is part of the wall itself.";
-	if the location is the corridor, say "This is the door leading to your cell. It has a handle that allows it to be opened from this side.".
-Instead of unlocking the metal door with something when the location is your cell, say "The door doens't have any lock or control mechanism on the inside."
+	if the location is your cell, say "The door is smooth on the inside, with only a small window allowing you to catch a glimpse of the corridor behind it. It lines up perfectly with the surrounding wall [dash] if you didn't know better, you might think it is part of the wall itself";
+	if the location is the corridor, say "This is the door leading to your cell. It has a handle that allows it to be opened from this side".
+Instead of unlocking the metal door with something when the location is your cell, say "The door doesn't have any lock or control mechanism on the inside."
 Instead of unlocking the metal door with something when the location is the corridor, say "The door appears to be locked and unlocked remotely."
 Instead of opening the unlocked metal door when the location is your cell:
 	say "The door only opens inwards, into the room you're in, it has no handle or knob, and there are no seams where it meets the surrounding wall. No matter how hard you try, you can't get a grip on the door, so you can't open it.";
