@@ -646,7 +646,7 @@ Looking through is an action applying to one visible thing.
 Understand the commands "look" and "l" as something new. [Argh]
 Understand "look" as looking.
 Understand "look inside/in/into [something]" as searching.
-Understand "look under [something]" as looking under.
+Understand "look under/underneath/below [something]" as looking under.
 Understand "look through [something]" as looking through.
 Understand the command "l" as "look".
 
@@ -1048,7 +1048,7 @@ Instead of climbing ladder-top, try going down.
 
 East of the corridor is south of the front office.
 Index map with front office mapped northeast of corridor.
-The description of the front office is "This is room is the entrance to the facility. You have no doubt that there would normally be at least one guard posted here, but at the moment it is empty.[paragraph break]You could go east, into a small storage area, south, back into the corridor.".
+The description of the front office is "This is room is the entrance to the facility. You have no doubt that there would normally be at least one guard posted here, but at the moment it is empty.[paragraph break]You could go east, into a small storage area, or south, back into the corridor.".
 
 The airlock is a locked door. "[airlock-desc].". The airlock is north of the front office and south of the prison antecourt.
 
@@ -1272,7 +1272,7 @@ Before going down from the shore docks for the first time, say "With more confid
 
 Rubbing it on is an action applying to two touchable things and requiring light.
 Understand "rub [something] on/onto [something]" as rubbing it on.
-Understand "rub [something] with/using/in [something]" as rubbing it on. [Not really proper english IMO, but was attempted in beta testing.]
+Understand "rub [something] with/using/in [something]" as rubbing it on (with nouns reversed). [Not really proper english IMO, but was attempted in beta testing.]
 Understand "slather [something] on/onto [something]" as rubbing it on.
 Understand "slather [something] with/in/using [something]" as rubbing it on (with nouns reversed).
 Understand the commands "cake", "coat", "encrust", "paint", "plaster", "slap", "smother", and "smear" as "slather".
@@ -1731,7 +1731,7 @@ Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat th
 
 Chapter 7 - Space
 
-Planetary orbit is a vacuum room. "You float in space, several hundred kilometers above the planets sickly yellowish surface.[paragraph break]The time has come to finally return home. Or, if you really must, you could attempt to break orbit and land back at the facility."
+Planetary orbit is a vacuum room. "You float in space, several hundred kilometers above the planet's sickly yellowish surface.[paragraph break]The time has come to finally return home. Or, if you really must, you could attempt to break orbit and land back at the facility."
 The room-floor-prop is nothing. The room-top-prop is nothing. The walls are {}.
 
 The planet is scenery in the orbit. "In the external camera view, [we] [see] the barren, yellow surface of your former prison receding behind [us]. [We] [are] glat to be on [our] way."
