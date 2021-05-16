@@ -206,7 +206,7 @@ Section 1 - Armor
 
 The player has a number called the air. The air of the player is 300. [5 minutes]
 The armor has a number called the air. The air of the armor is 6000. [100 minutes]
-The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "dump" or "pouch" or "sack" or "holdall" as the armor.
+The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "suit" or "dump" or "pouch" or "sack" or "holdall" as the armor.
 Dirtiness is a kind of value. The dirtinesses are clean, muddy, bloody, muddy-and-bloody, and covered.
 The armor has a dirtiness. The armor is clean.
 The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump pouch, and it can double as a space suit, providing air in hostile environments.[if the armor is not clean][paragraph break][end if][if the armor is muddy]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[otherwise if the armor is covered]Any and all details are hidden under a thick, uniformly brown layer of ocean mud.[otherwise if the armor is not clean and gore is allowed]It's covered with a lot of blood and other... things. You should really find a place to clean up.[otherwise if the armor is not clean]The gloves are covered in a significant amount of slimy lizard spit.[end if]".
@@ -693,7 +693,8 @@ Rule for supplying a missing second noun while shooting something with:
 
 To shoot is a verb. To fire is a verb. To discard is a verb. To glance is a verb. To bring is a verb. To whirr is a verb. To dodge is a verb. To stand is a verb. To zero is a verb. To unleash is a verb. To discharge is a verb. To cock is a verb. To train is a verb. To pop is a verb. To miss is a verb.
 
-A wreckage is a kind of thing.
+A wreckage is a kind of transparent container.
+After printing the name of a wreckage, omit contents in listing.
 Wrecking relates one wreckage (called the remains) to one thing.
 The verb to be the original of means the reversed wrecking relation.
 The verb to be the remains of means the wrecking relation.
@@ -764,7 +765,7 @@ Report an actor shooting something (called the target) with a gun (called the we
 		say "[The actor] [one of][take] aim[or][bring] [their] [weapon] to bear[or][cock] [their] [weapon][or][train] [their] [weapon] at [us][or][zero] in on [us][at random] and [regarding the actor][one of][unleash][or][shoot][or][fire][or][discharge][or][pop][at random] a volley in [our] direction! [run paragraph on]";
 		if the shot-result is:
 			-- deadly-hit:
-				say "At point-blank range, [the armor] [stand] little chance: leaving a trail of searing hot pain, the bullet carves a path through [our] [one of]head[or]chest[at random] before coming out on the other side, leaving [our] innards distributed on [the room-floor-prop of the location][unless the location is an outdoor room] and the wall behind [us][end unless].";
+				say "At point-blank range, [the armor] [stand] little chance: leaving a trail of searing hot pain, the bullet carves a path through [our] [one of]head[or]chest[at random] before coming out on the other side, leaving [our] innards distributed on [the room-floor-prop of the location][unless the location is an outdoor room] and the wall behind [regarding the target][us][end unless].";
 				end the story saying "You have been shot";
 			-- glancing-hit:
 				say "[regarding the actor][They] [past participle of the verb hold] [their] [weapon] at an odd angle, and the shot [regarding one][glance] off [our] [one of]helmet[or]chest plate[or]shoulder plate[or]leg armor[at random], leaving [one of]a[or]a deep[or]another[or]yet another[then at random] gouge in the material.";
@@ -797,6 +798,7 @@ Report ammo-counting:
 A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod yet lizard-looking creature, walking on two legs."
 A corpse is a kind of wreckage. A corpse is usually fixed in place.
 Instead of taking a corpse, say "You'd rather not carry a dead body around with you."
+Understand "alien" as a corpse.
 A corpse is part of every person.
 Every shwabolian carries a gun and two ammo clips.
 When play begins (this is the prepare corpses rule):
@@ -1041,7 +1043,7 @@ Instead of searching the control panel:
 	say "Looking under [the control panel], you find a purple card, which you pocket.";
 	rule succeeds.
 
-ladder-top is privately-named scenery in the control room. The printed name is "ladder". Understand "ladder" or "rungs" as the ladder-top.
+A ladder-top is privately-named scenery in the control room. The printed name is "ladder". Understand "ladder" or "rungs" as the ladder-top.
 Instead of climbing ladder-top, try going down.
 
 East of the corridor is south of the front office.
@@ -1147,7 +1149,7 @@ After deciding the scope of the player while in darkness and the location is the
 
 Section 5 - Outside Area
 
-Prison antecourt is an outdoor room. "A small courtyard lies outside the prison, which appears to be built on a small island.[paragraph break]The way back into the prison is south, through the airlock. You are otherwise surrpunded by water, but there are some docks allowing easy access to the east."
+Prison antecourt is an outdoor room. "A small courtyard lies outside the prison, which appears to be built on a small island.[paragraph break]The way back into the prison is south, through the airlock. You are otherwise surrounded by water, but there are some docks allowing easy access to the east."
 
 The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[line break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
 
@@ -1259,7 +1261,7 @@ Section 1 - The Docks
 [Not a test as much as a convenience to quickly skip ahead during debugging.]
 Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card / down / up".
 
-The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face...[paragraph break]The prison buildings lie to the south, across the water, and the military complex continues to the north."
+The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face...[paragraph break]The prison buildings lie to the south, down the muddy incline and across the water, and the military complex continues to the north."
 Index map with shore docks mapped north of prison docks.
 
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
@@ -1270,6 +1272,7 @@ Before going down from the shore docks for the first time, say "With more confid
 
 Rubbing it on is an action applying to two touchable things and requiring light.
 Understand "rub [something] on/onto [something]" as rubbing it on.
+Understand "rub [something] with/using/in [something]" as rubbing it on. [Not really proper english IMO, but was attempted in beta testing.]
 Understand "slather [something] on/onto [something]" as rubbing it on.
 Understand "slather [something] with/in/using [something]" as rubbing it on (with nouns reversed).
 Understand the commands "cake", "coat", "encrust", "paint", "plaster", "slap", "smother", and "smear" as "slather".
@@ -1293,6 +1296,11 @@ Instead of rubbing the muddy incline on the armor when the player is wearing the
 Instead of rubbing the muddy incline on the armor when the player is wearing the armor and the armor is covered:
 	say "[We] are already covered in enough mud to no longer pass as a human being [dash] [we] see no reason to add more.".
 Instead of taking the muddy incline, try rubbing the muddy incline on the player.
+Instead of lying on the default-ground when the location is the shore docks, try rubbing the muddy incline on yourself.
+Instead of lying on the muddy incline, try rubbing the muddy incline on yourself.
+Instead of rubbing the muddy incline:
+	say "(rubbing the mud onto yourself)[command clarification break]";
+	try rubbing the muddy incline on yourself.
 
 Section 2 - The Plaza
 
@@ -1324,9 +1332,9 @@ After choosing notable locale objects (this is the military plaza locale objects
 
 Check going [from the military complex plaza to the hangar] through the enabled force field:
 	if the player is not wearing the armor, say "The force field does not let you pass." instead;
-	if the armor is clean or the armor is blood-stained:
+	if the armor is clean:
 		say "The force field does not let you pass." instead;
-	if the armor is muddy:
+	if the armor is muddy or the armor is blood-stained:
 		say "[one of]Your dirty hand[regarding one][or]Your lower arm[regarding one][or]A mud-stained leg[regarding one][or]Your mud-caked hands[regarding two][then at random] [pass] through the force field, but not more." instead;
 	if the armor is covered:
 		say "Your mud-covered body passes through the force field with little resistance.";
@@ -1336,7 +1344,7 @@ Chapter 4 - The Command Center
 
 Section 1 - Hallways
 
-The entry hallway is a room. "This is the entry area into the base's command center, where those in charge would no doubt hold briefings, discuss command descisions, and do other important officer things. (In all your years of military service, you've never felt a desire to move up into the officer ranks yourself, even though there were plenty of open spots in the newly-unified military.)[paragraph break]A small armory is to the west, and the hallway continues to the north."
+The entry hallway is a room. "This is the entry area into the base's command center, where those in charge would no doubt hold briefings, discuss command decisions, and do other important officer things. (In all your years of military service, you've never felt a desire to move up into the officer ranks yourself, even though there were plenty of open spots in the newly-unified military.)[paragraph break]A small armory is to the west, and the hallway continues to the north."
 
 The command center lobby is north of the entry hallway. "You are standing in a sparsely furnished lobby. Some chairs are lined up on a wall, but that's about it.[paragraph break]A briefing room is to the east, [if the ops center is unvisited]what appears to be an[otherwise]the[end if] ops center lies to the north, and the hallway leading back to the entrance is south.[if at least one shwabolian is in the ops center][paragraph break]You can hear subdued talking coming from the room to the north.[end if]"
 
@@ -1344,7 +1352,6 @@ A chair is an enterable scenery supporter in the lobby.
 The description is "They look to be the same plastic monstrosities you had to sit on throughout your years in school."
 Understand "chairs" or "stool" or "stools" as the chair.
 Instead of taking the chair, say "The chairs are bolted to the wall." instead.
-
 
 Section 2 - Armory
 
@@ -1368,6 +1375,7 @@ Instead of taking some-ammo-clips:
 			silently try taking c.
 
 A storage rack are a fixed in place supporter in the armory.
+The description is "It is a very simple design, made of plain metal struts with rather sharp edges."
 Understand "bare" or "metal" or "shelf" or "rack" as the rack.
 A rifle is a gun on the rack. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
 Instead of attacking the rack:
@@ -1390,7 +1398,7 @@ Understand "make-shift" or "dagger" or "metal" or "frame" as the makeshift knife
 
 Section 3 - Briefing Room
 
-The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is south, back into the lobby."
+The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is west, back into the lobby."
 
 A large round table is a fixed in place supporter in the briefing room.
 The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warrented all this nonessential material being shipped out here.".
@@ -1411,17 +1419,18 @@ The description of the larger alien's corpse is "A well and truly dead shwabolia
 [I expect this will probably be the most controversial part of the game.
 This wasn't really planned from the start, but I needed some puzzles and my brain basically went: "Why don't we do this, here's the text for it!" -- and that was the only idea I was going to get.]
 Cutting it with is an action applying to two touchable things and requiring light.
+Understand the command "cut" as something new.
 Understand "cut up/-- [something] open/-- with/using [something preferably held]" as cutting it with.
 Understand "dissect [something] with/using [something preferably held]" as cutting it with.
 Understand "autopsy [something] with/using [something preferably held]" as cutting it with.
 Understand "slice [something] open/-- with/using [something preferably held]" as cutting it with.
 To cut is a verb.
 Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
-The larger alien's corpse can be open[ or closed. The larger alien's corpse is closed].
-Check cutting the open larger alien's corpse with something:
+The larger alien's corpse can be cut-up. The larger alien's corpse is not cut-up.
+Check cutting the cut-up larger alien's corpse with something:
 	if gore is allowed, say "You'd rather not desecrate the body further." instead;
 	otherwise say "You already have what you needed." instead.
-Instead of cutting the closed larger alien's corpse with the makeshift knife:
+Instead of cutting the not cut-up larger alien's corpse with the makeshift knife:
 	if the player is not wearing the armor:
 		say "You'd rather not do this with your bare hands.";
 		stop the action;
@@ -1437,7 +1446,7 @@ Instead of cutting the closed larger alien's corpse with the makeshift knife:
 	take 10 minutes;
 	rule succeeds.
 
-Check eating when the larger alien's corpse is open:
+Check eating when the larger alien's corpse is cut-up:
 	say "After what you did, you don't think you could stomach anything." instead.
 
 Check cutting something with something that is not the makeshift knife:
@@ -1486,12 +1495,12 @@ Report going to the ops center for the first time (this is the alien swallows ke
 The alien swallows key rule is listed last in the report going rules.
 
 A data crypt is a thing. The description is "A small storage device you salvaged from [if gore is allowed]the innards of [end if]one of your captors."
-Understand "small/-- swallowed/eaten object/thing/device" or "small/-- object/thing/device swallowed/eaten by the/-- large/larger/-- alien/shwabolian/lizard" or "small" or "device" as the data crypt.
+Understand "small/-- swallowed/eaten object/thing/device" or "small/-- object/thing/device swallowed/eaten by the/-- large/larger/-- alien/shwabolian/lizard" or "small" or "device" or "object" as the data crypt.
 
 [What I want to do after writing the above.]
 Vomiting is an action applying to nothing.
 Understand "vomit" or "throw up" or "puke" or "hurl" or "retch" or "ralph" or "barf" as vomiting when gore is allowed.
-Check vomiting when the larger alien's corpse is not open:
+Check vomiting when the larger alien's corpse is not cut-up:
 	say "You feel fine." instead.
 Check vomiting when we have vomited:
 	say "You feel a lot better already." instead.
