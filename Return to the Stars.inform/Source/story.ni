@@ -1668,8 +1668,14 @@ The description is "The messenger ship has a sleek silver shape. It looks like a
 After printing the name of the messenger ship, omit contents in listing.
 The ship can be started. The ship is not started.
 
-The notch is a scenery container in the messenger ship. The description is "[if the data crypt is not in the notch]A notch in one of the control panels, ready to accept something[otherwise]The data crypts rests in its place in the control panel[end if]."
-Understand "recess" or "control" or "panel" or "aussparung" [;-)] as the notch.
+The notch is a scenery container in the messenger ship. The description is "[if the data crypt is not in the notch]A notch is in one of the control panels, ready to accept something[otherwise]The data crypts rests in its place in the control panel[end if]."
+Understand "recess" or "control" or "panel" or "panels" or "aussparung" [;-)] as the notch.
+
+After entering the messenger ship, try looking.
+
+Carry out looking when the player is in the messenger ship (this is the messenger ship innards rule):
+	say "You are sitting in the cockpit of the messenger ship. [if the ship is started]The control panels in front of you inform you that all systems of the ship are in working order[otherwise]The control panels are dark and blank[end if]."
+The messenger ship innards rule is listed after the room description heading rule in the carry out looking rules.
 
 The canopy is part of the messenger ship. The description is "A sort of glass dome covering the cockpit, allowing the pilot to look in all directions."
 Understand "glass" or "dome" as the canopy.
@@ -1695,7 +1701,7 @@ Carry out starting the messenger ship:
 	take three minutes.
 Report starting the messenger ship:
 	say "You press the button that your suit indicates as being the main switch for the ship [dash] luckily, earth scientists were able to get their hands on a similar model of Shwabolian ship, so your suit is able to guide you through most of the pre-flight checks.[paragraph break]One by one, the systems of the messenger ship come alive around you. The ship is now ready for launch."
-Instead of turning on the messenger ship, try starting the messenger ship.
+Instead of switching on the messenger ship, try starting the messenger ship.
 
 Launching is an action applying to one visible thing.
 Understand "launch [something]" as launching.
