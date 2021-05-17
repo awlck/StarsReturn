@@ -64,13 +64,13 @@ To say help-text:
 	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[line break]PREPARE [italic type]something[roman type] FOR LAUNCH"
 
 To say credits-text:
-	say "[RttS] by Adrian Welcker[line break]Built using Inform 7 and the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][the playtesters]".
+	say "[RttS] by Adrian Welcker[line break]Built using Inform 7 and the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][bold type]Playtesters[roman type]: [the playtesters]".
 
 To say contact-info-text:
 	say "Enjoyed playing [RttS]? Found a bug? Got stuck and need a hint?[paragraph break]The most straightforward way to reach out is by e-mail to ardi@diepixelecke.de. For more general feedback, you can leave a review on IFDB, or just start talking about the game on intfiction.org [dash] I'll see it sooner or later.".
 
 To say the playtesters:
-	say "[bold type]Playtesters[roman type]: none yet...".
+	say "Lucas Beringer, Erik Schwejda, ... and your name will go here!".
 
 To say rtts/RTTS/RttS:
 	say "[italic type]Return to the Stars[roman type]".
@@ -86,7 +86,7 @@ final question wording	only if victorious	topic	final response rule	final respon
 "read some author's NOTES about this story"	true	"author/author's/-- note/notes"	author's notes rule	--
 
 This is the author's notes rule:
-	say "Thank you for playing 'Return to the Stars'![paragraph break]The general premise of needing to escape from captivity on an alien world occurred to me in early 2018, but as things often go in life, I was busy with other projects, so the idea was set aside and mostly forgotten about. The announcement of ParserComp 2021 brought the concept back to my mind, I reduced the scope somewhat, and in April [']21 I finally sat down and started working on the implementation in earnest [dash] partially out of sheer boredom, some five months into Germany's second COVID lockdown. Its release marks the first time I actually finish and publish a piece of IF.[paragraph break]With the minor history lesson out of the way, it is time for some acknowledgements. While it is often said in writing circles that 'everything has been done before', and that it's all about the individual author's take on a certain concept, I think it is only fair for me to acknowledge the major source of inspiration for 'Return': Marko Kloos['] [italic type]Frontlines[roman type] novel series. (And probably half a dozen others, subconsciously, but that's usually the one that comes to my mind when I think 'military SF'. I highly recommend it.) As such, the appearance of certain names or phrases, such as [italic type]space-borne infantry[roman type], is no coincidence. (Rest assured, however, that this is not just a barely-concealed fanficion.)".
+	say "Thank you for playing 'Return to the Stars'![paragraph break]The general premise of needing to escape from captivity on an alien world occurred to me in early 2018, but as things often go in life, I was busy with other projects, so the idea was set aside and mostly forgotten about. The announcement of ParserComp 2021 brought the concept back to my mind, I reduced the scope somewhat, and in April [']21 I finally sat down and started working on the implementation in earnest [dash] partially out of sheer boredom, some five months into Germany's second COVID lockdown. Its release marks the first time I actually finish and publish a piece of IF.[paragraph break]With the minor history lesson out of the way, it is time for some acknowledgements. While it is often said in writing circles that 'everything has been done before', and that it's all about the individual author's take on a certain concept, I think it is only fair for me to acknowledge the major source of inspiration for 'Return': Marko Kloos['] [italic type]Frontlines[roman type] novel series. (And probably half a dozen others, subconsciously, but that's usually the one that comes to my mind when I think 'military SF'. I highly recommend it.) As such, the appearance of certain names or phrases, such as [italic type]space-borne infantry[roman type], is no coincidence. (Rest assured, however, that this is not just a barely-concealed fanficion.)[line break]And, last but not least, a huge THANK YOU to my playtesters, who helped catch a number of larger and smaller issues in the game: [the playtesters].".
 
 Book 2 - Mechanics
 
@@ -421,12 +421,15 @@ Understand "grab [things inside] from/off [something]" as removing it from.
 Understand "collect [things]" as taking.
 Understand "collect [things inside] from/off [something]" as removing it from.
 
-[Dropping, Putting it on, Inserting it into]
+[Dropping]
 Understand "let go of/-- [things preferably held]" or "let [things preferably held] go" as dropping.
 Understand "set [things preferably held] down" or "set down [things preferably held]" as dropping.
 Understand the command "release" or "relinquish" or "deposit" or "offload" as "drop".
 Understand "cast aside [something]" or "cast [something] aside" as dropping.
 Understand the command "toss" as "cast".
+
+[Inserting it into]
+Understand "plug [something preferably held] into [something]" as inserting it into.
 
 [Eating]
 Understand the command "consume" or "devour" or "ingest" or "munch" as "eat".
@@ -535,6 +538,8 @@ Understand "xyzzy" or "say xyzzy" or "cast xyzzy" as a mistake ("You're not supe
 [https://intfiction.org/t/parsercomp-submissions-start-1st-of-may-not-the-deadline/50702]
 Understand "throw snotball at evil librarian" or "throw snotball at [someone]" as a mistake ("You remember the last thing your squadmate Rovarssen told you before you got separated: [italic type]...and if nothing else, throw a snotball at them![roman type]").
 
+Understand "use" or "use [text]" as a mistake ("You'll need to be more specific than that.").
+
 Section 2 - Smarter Parser Stuff
 
 Use normal blank lines.
@@ -560,6 +565,7 @@ Chapter 5 - Grates and Air Ducts
 
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 The description of an air duct is usually "It exudes a stream of cool, fresh air."
+Understand "vent" as an air duct. [Seems kinda sus]
 
 A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named. The indefinite article of a grate is usually "the".
 Understand "flimsy/rusty/old/-- grate/grid/grating/bars" as a grate.
@@ -940,6 +946,8 @@ Instead of unlocking the metal door with something when the location is the corr
 Instead of opening the unlocked metal door when the location is your cell:
 	say "The door only opens inwards, into the room you're in, it has no handle or knob, and there are no seams where it meets the surrounding wall. No matter how hard you try, you can't get a grip on the door, so you can't open it.";
 	take five minutes.
+Instead of attacking the metal door:
+	say "That was among the first things you tried when you got here. You've given up trying by now.".
 
 The cot is a fixed in place enterable supporter in your cell. "A cot stands in one corner of the room." The description is "Flimsy frame, uncomfortable plastic surface [dash] it's a cot alright."
 Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
@@ -952,6 +960,8 @@ The sanitary station is a fixed in place enterable container in the cell. "A san
 Understand "shower" or "toilet" or "head" as the sanitary station.
 Instead of entering the sanitary station, say "You've already showered today."
 After printing the name of the sanitary station, omit contents in listing.
+Instead of attacking the sanitary station when the rage is ongoing:
+	say "You kick [the station], but it is too sturdy for you to even make a dent in it.".
 
 The camera is a fixed in place thing in the cell. "A small camera hangs above the cot, keeping a watchful eye on you." The description is "A small camera hangs in one corner of the room, a small red light presumably indicating that it is active."
 
@@ -1052,6 +1062,7 @@ Index map with front office mapped northeast of corridor.
 The description of the front office is "This is room is the entrance to the facility. You have no doubt that there would normally be at least one guard posted here, but at the moment it is empty.[paragraph break]You could go east, into a small storage area, or south, back into the corridor.".
 
 The airlock is a locked door. "[airlock-desc].". The airlock is north of the front office and south of the prison antecourt.
+Understand "air" or "lock" as the airlock.
 
 To say airlock-desc:
 	if the player is in the front office, say "The way out of the building, to the north, leads through [if the player has not been in the military complex plaza]what appears to be [end if]an airlock";
@@ -1163,6 +1174,7 @@ The water is a backdrop. It is in the prison docks and the shore docks. The desc
 Understand "ocean" or "sea" as the water.
 
 Understand "jump in/into [something]" or "dive in/into [something]" as entering.
+Understand "swim in [something]" as entering when the water is in the location.
 Does the player mean entering the water: it is likely.
 
 Instead of jumping when the location is the prison docks or the location is the shore docks:
@@ -1345,7 +1357,8 @@ Chapter 4 - The Command Center
 
 Section 1 - Hallways
 
-The entry hallway is a room. "This is the entry area into the base's command center, where those in charge would no doubt hold briefings, discuss command decisions, and do other important officer things. (In all your years of military service, you've never felt a desire to move up into the officer ranks yourself, even though there were plenty of open spots in the newly-unified military.)[paragraph break]A small armory is to the west, and the hallway continues to the north."
+The entry hallway is a room. "This is the entry area into the base's command center, where those in charge would no doubt hold briefings, discuss command decisions, and do other important officer things. (In all your years of military service, you've never felt a desire to move up into the officer ranks yourself, even though there were plenty of open spots in the newly-unified military.)[paragraph break]A small armory is to the west, and the hallway continues to the north. The way out is south, through the door."
+Instead of going outside when the location is the entry hallway, try going south.
 
 The command center lobby is north of the entry hallway. "You are standing in a sparsely furnished lobby. Some chairs are lined up on a wall, but that's about it.[paragraph break]A briefing room is to the east, [if the ops center is unvisited]what appears to be an[otherwise]the[end if] ops center lies to the north, and the hallway leading back to the entrance is south.[if at least one shwabolian is in the ops center][paragraph break]You can hear subdued talking coming from the room to the north.[end if]"
 
@@ -1395,7 +1408,7 @@ Understand "a/an/-- makeshift/improvised/-- knife" as "[knifedesc]".
 rack-gone is a privately-named unthing. The description is "You broke the rack to make a knife, remember?".
 
 The makeshift knife is a thing. The description is "A piece of metal you pulled out of the shelves in the armory. It happens to have a rather sharp edge."
-Understand "make-shift" or "dagger" or "metal" or "frame" as the makeshift knife.
+Understand "make-shift" or "dagger" or "metal" or "frame" or "strut" or "shelf" or "piece" or "of" as the makeshift knife.
 
 Section 3 - Briefing Room
 
@@ -1427,6 +1440,7 @@ Understand "autopsy [something] with/using [something preferably held]" as cutti
 Understand "slice [something] open/-- with/using [something preferably held]" as cutting it with.
 To cut is a verb.
 Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
+Understand "large" as the larger alien's corpse. Understand "small" as the smaller alien's corpse.
 Check cutting the open larger alien's corpse with something:
 	if gore is allowed, say "You'd rather not desecrate the body further." instead;
 	otherwise say "You already have what you needed." instead.
@@ -1675,12 +1689,13 @@ Check starting something that is not the messenger ship:
 Check starting the started messenger ship:
 	say "The ship is already prepared for take-off." instead.
 Check starting the messenger ship when the messenger ship is not started and the data crypt is not in the notch:
-	say "The ship doesn't seem to want to power up.".
+	say "The ship doesn't seem to want to power up." instead.
 Carry out starting the messenger ship:
 	now the messenger ship is started;
 	take three minutes.
 Report starting the messenger ship:
 	say "You press the button that your suit indicates as being the main switch for the ship [dash] luckily, earth scientists were able to get their hands on a similar model of Shwabolian ship, so your suit is able to guide you through most of the pre-flight checks.[paragraph break]One by one, the systems of the messenger ship come alive around you. The ship is now ready for launch."
+Instead of turning on the messenger ship, try starting the messenger ship.
 
 Launching is an action applying to one visible thing.
 Understand "launch [something]" as launching.
@@ -1775,7 +1790,7 @@ Instead of going when the location is the planetary orbit, say "[We] don't reall
 Book 4 - Debug Commands - Not for Release
 
 First after printing the banner text (this is the prerelease notice rule):
-	say "[italic type]Play-test alpha build [dash] do not distribute![roman type][line break]".
+	say "[italic type]Beta build #1 for playtesters only [dash] do not distribute![roman type][line break]".
 
 Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
 Carry out air-draining:
