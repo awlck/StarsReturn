@@ -28,6 +28,7 @@ To say CO2:
 	if unicode is available, say "CO[unicode 8322]";
 	otherwise say "CO2".
 
+[This causes the macOS IDE's interpreter to hang just as play begins. Go figure.]
 When play begins (this is the show intro rule):
 	[say "Just when the NATO and Warsaw Pact nations had finally decided to put their differences aside for good, and the militaries of the world were busy reforming under the banner of the United Nations, the Shwabolians attacked. ".]
 	say "With his back against the proverbial wall, your commander ordered a somewhat daring raid on a Shwabolian outpost to break out of the strategic stalemate. Naturally, things didn't quite go as planned. Several members of your platoon were killed, and you were separated, captured, sedated, and taken to this prison... somewhere. Initially, you settled into a sort of routine: sleep, shower, eat, reconsider your life choices, the occasional questioning impeded by language barriers, and back to sleep again. But you haven't received food [dash] or any attention, really [dash] for the last three days.[paragraph break]If you are to leave this planet alive, you better find a way before you starve..."
@@ -693,7 +694,7 @@ Rule for supplying a missing second noun while shooting something with:
 
 To shoot is a verb. To fire is a verb. To discard is a verb. To glance is a verb. To bring is a verb. To whirr is a verb. To dodge is a verb. To stand is a verb. To zero is a verb. To unleash is a verb. To discharge is a verb. To cock is a verb. To train is a verb. To pop is a verb. To miss is a verb.
 
-A wreckage is a kind of transparent container.
+A wreckage is a kind of closed unopenable transparent container.
 After printing the name of a wreckage, omit contents in listing.
 Wrecking relates one wreckage (called the remains) to one thing.
 The verb to be the original of means the reversed wrecking relation.
@@ -1426,11 +1427,10 @@ Understand "autopsy [something] with/using [something preferably held]" as cutti
 Understand "slice [something] open/-- with/using [something preferably held]" as cutting it with.
 To cut is a verb.
 Understand "stomach" or "belly" or "abdomen" as the larger alien's corpse.
-The larger alien's corpse can be cut-up. The larger alien's corpse is not cut-up.
-Check cutting the cut-up larger alien's corpse with something:
+Check cutting the open larger alien's corpse with something:
 	if gore is allowed, say "You'd rather not desecrate the body further." instead;
 	otherwise say "You already have what you needed." instead.
-Instead of cutting the not cut-up larger alien's corpse with the makeshift knife:
+Instead of cutting the closed larger alien's corpse with the makeshift knife:
 	if the player is not wearing the armor:
 		say "You'd rather not do this with your bare hands.";
 		stop the action;
@@ -1446,7 +1446,7 @@ Instead of cutting the not cut-up larger alien's corpse with the makeshift knife
 	take 10 minutes;
 	rule succeeds.
 
-Check eating when the larger alien's corpse is cut-up:
+Check eating when the larger alien's corpse is open:
 	say "After what you did, you don't think you could stomach anything." instead.
 
 Check cutting something with something that is not the makeshift knife:
@@ -1468,13 +1468,16 @@ Check cutting the fatigues with something:
 
 [The somewhat more family friendly version.]
 Retrieving it from is an action applying to one thing and one touchable thing, and requiring light.
-Understand "retrieve [something] from [something]" or "extract [something] from [something]" as retrieving it from.
-Instead of retrieving the data crypt from the larger alien's corpse:
+[Understand "retrieve [something] from [something]" or "extract [something] from [something]" as retrieving it from.]
+Understand "retrieve [something] from [something]" as removing it from.
+Understand the command "extract" as "retrieve".
+Instead of removing the data crypt from the larger alien's corpse:
 	if the data crypt is not in the larger alien's corpse:
 		say "You already have [the data crypt].";
 		stop the action;
 	if gore is allowed:
 		if the player does not have the makeshift knife, say "You'll need some kind of tool to do that." instead;
+		say "(using [the makeshift knife])[command clarification break]";
 		try cutting the larger alien's corpse with the makeshift knife instead;
 	otherwise:
 		if the player is not wearing the armor:
@@ -1487,20 +1490,24 @@ Instead of retrieving the data crypt from the larger alien's corpse:
 		now the player has the data crypt;
 		take 5 minutes;
 		rule succeeds.
-Check retrieving something from something:
-	try removing the noun from the second noun instead.
+Instead of taking the data crypt when the data crypt is in the larger alien's corpse:
+	say "You'll need to be more specific about how you plan to get that back out of him." instead.
+Rule for reaching inside the closed larger alien's corpse:
+	if the current action is taking the data crypt, allow access;
+	if the current action is removing the data crypt from the larger alien's corpse, allow access;
+	make no decision.
 
 Report going to the ops center for the first time (this is the alien swallows key rule):
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
 The alien swallows key rule is listed last in the report going rules.
 
-A data crypt is a thing. The description is "A small storage device you salvaged from [if gore is allowed]the innards of [end if]one of your captors."
+A data crypt is in the larger alien's corpse. The description is "A small storage device you salvaged from [if gore is allowed]the innards of [end if]one of your captors."
 Understand "small/-- swallowed/eaten object/thing/device" or "small/-- object/thing/device swallowed/eaten by the/-- large/larger/-- alien/shwabolian/lizard" or "small" or "device" or "object" as the data crypt.
 
 [What I want to do after writing the above.]
 Vomiting is an action applying to nothing.
 Understand "vomit" or "throw up" or "puke" or "hurl" or "retch" or "ralph" or "barf" as vomiting when gore is allowed.
-Check vomiting when the larger alien's corpse is not cut-up:
+Check vomiting when the larger alien's corpse is closed:
 	say "You feel fine." instead.
 Check vomiting when we have vomited:
 	say "You feel a lot better already." instead.
@@ -1586,13 +1593,13 @@ Section 1 - The Hangar
 
 The hangar is a room. "This large, cavernous space where dropships and other small craft can be stored when not in use. It is currently empty[if the messenger ship is in the hangar], except for [a messenger ship][end if].[paragraph break][if the launch doors are open]You could go north, through [the launch doors] and onto the landing pad,[otherwise][The launch doors] leading north are closed. You can go[end if] west, [if the force field is enabled]through the force field and [end if]back to the plaza, or up to the control room."
 
-The launch doors are a door. They are north of the hangar and south of the landing strip. They are closed.
+The launch doors are a plural-named door. They are north of the hangar and south of the landing strip. They are closed.
 The description is "Large sliding doors [dash] more than large enough for a dropship to fit through [dash] make up pretty much the entire northern wall of the hangar. They are currently [if the launch doors are open and the location is the hangar]open, revealing a view of the launch pad[otherwise if the launch doors are open]open, reavealing a view of the inside of the hangar[otherwise]closed.".
 Instead of opening or closing the launch doors, say "These doors appear to be operated remotely."
 
 Section 2 - The Launch Pad
 
-The landing strip is an outdoor room. "You are standing on the tarmac of a small landing pad. It's not long enough for a fixed-wing atmospheric craft to take off, but perfectly adequate for the vertical take-off and landing operation of a space-capable vessel."
+The landing strip is an outdoor room. "You are standing on the tarmac of a small landing pad. It's not long enough for a fixed-wing atmospheric craft to take off, but perfectly adequate for the vertical take-off and landing operation of a space-capable vessel.[paragraph break]You could go south, through [the launch doors] and back into the hangar."
 
 Section 3 - The Launch Control Room
 
