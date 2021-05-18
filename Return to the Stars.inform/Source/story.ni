@@ -12,6 +12,9 @@ Use american dialect and the serial comma.
 Include Basic Screen Effects by Emily Short.
 Include Menus by Emily Short.
 Include Version 16 of Smarter Parser by Aaron Reed.
+Include Version 5/170902 of Undo Output Control by Nathanael Nerode.
+Include Version 1/170902 of Title Case for Headings by Nathanael Nerode.
+Include Version 3/210518 of Multi-examine by Jon Ingold.
 
 [This is an instruction to the I6 compiler to leave out routines not used by the game (such as those relating to external files and real numbers), reducing the size of the resulting Glulx story file by some 10%.]
 Use OMIT_UNUSED_ROUTINES of 1.
@@ -70,7 +73,7 @@ To say contact-info-text:
 	say "Enjoyed playing [RttS]? Found a bug? Got stuck and need a hint?[paragraph break]The most straightforward way to reach out is by e-mail to ardi@diepixelecke.de. For more general feedback, you can leave a review on IFDB, or just start talking about the game on intfiction.org [dash] I'll see it sooner or later.".
 
 To say the playtesters:
-	say "Lucas Beringer, Erik Schwejda, ... and your name will go here!".
+	say "Lucas Beringer, Erik Schwejda, Edo, ... and your name will go here!".
 
 To say rtts/RTTS/RttS:
 	say "[italic type]Return to the Stars[roman type]".
@@ -564,8 +567,12 @@ failed communication attempts rule	"[as the parser]Conversation isn't necessary 
 Chapter 5 - Grates and Air Ducts
 
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
-The description of an air duct is usually "It exudes a stream of cool, fresh air."
+The description of an air duct is usually "It exudes a stream of cool, fresh air. [if the item described incorporates a grate]It is covered up by a grate[otherwise]It is open[end if]."
 Understand "vent" as an air duct. [Seems kinda sus]
+
+Carry out looking when the player is in an air duct (this is the air duct looking rule):
+	say "You are lying in [the holder of the player], peeking out into the room:[paragraph break]".
+The air duct looking rule is listed after the room description heading with activity rule in the carry out looking rules.
 
 A grate is a kind of thing. A grate is part of every air duct. A grate is always improper-named. The indefinite article of a grate is usually "the".
 Understand "flimsy/rusty/old/-- grate/grid/grating/bars" as a grate.
@@ -625,6 +632,9 @@ Carry out an actor crawling into an air duct (this is the travel through air duc
 Report an actor crawling into an air duct (this is the report air duct travel rule):
 	if the actor is not the player, say "[The actor] [crawl] out of sight." (A)
 
+Check going when the holder of the player is an air duct (this is the crawling hint rule):
+	say "[We] [would have] to get out of [the holder of the player] first.[line break](To crawl through the duct, try typing CRAWL.)" instead.
+
 Before exiting when the holder of the actor is an air duct and a grate is part of the holder of the actor:
 	say "(first kicking a hole into the grate)[command clarification break]";
 	silently try attacking a random grate that is part of the holder of the actor.
@@ -671,10 +681,12 @@ Chapter 8 - Ranged Weapons
 [And, really just because we can't have a MilSF-themed game without guns in it...]
 
 A gun is a kind of thing. Understand "gun" as a gun.
-An ammo clip is a kind of thing. An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
-After printing the name of an ammo clip while taking inventory, say " (in which are [bullet count] rounds)".
-
 Definition: a thing is ungunlike if it is not a gun.
+
+An ammo clip is a kind of thing.
+The description of an ammo clip is usually "A magazine for a rifle. It contains [bullet count in words] rounds.".
+An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
+After printing the name of an ammo clip while taking inventory, say " (in which are [bullet count] rounds)".
 Definition: an ammo clip is empty rather than non-empty if its bullet count is less than one.
 
 A standoff-outcome is a kind of value. The standoff-outcomes are full-miss, near-miss, shot-dodged, glancing-hit, and deadly-hit.
@@ -739,7 +751,8 @@ Carry out an actor shooting something (called the target) with a gun (called the
 		otherwise if c is 2:
 			now the shot-result is shot-dodged;
 		otherwise if c is less than six:
-			now the shot-result is glancing-hit;
+			if the player is wearing the armor, now the shot-result is glancing-hit;
+			otherwise now the shot-result is deadly-hit;
 		otherwise if c is less than nine:
 			now the shot-result is near-miss;
 		otherwise:
@@ -772,16 +785,16 @@ Report an actor shooting something (called the target) with a gun (called the we
 		say "[The actor] [one of][take] aim[or][bring] [their] [weapon] to bear[or][cock] [their] [weapon][or][train] [their] [weapon] at [us][or][zero] in on [us][at random] and [regarding the actor][one of][unleash][or][shoot][or][fire][or][discharge][or][pop][at random] a volley in [our] direction! [run paragraph on]";
 		if the shot-result is:
 			-- deadly-hit:
-				say "At point-blank range, [the armor] [stand] little chance: leaving a trail of searing hot pain, the bullet carves a path through [our] [one of]head[or]chest[at random] before coming out on the other side, leaving [our] innards distributed on [the room-floor-prop of the location][unless the location is an outdoor room] and the wall behind [regarding the target][us][end unless].";
+				say "At point-blank range, [if the player is wearing the armor][the armor][otherwise][we][end if] [stand] little chance: leaving a trail of searing hot pain, the bullet carves a path through [our] [one of]head[or]chest[at random] before coming out on the other side, leaving [our] innards distributed on [the room-floor-prop of the location][unless the location is an outdoor room] and the wall behind [us][end unless].";
 				end the story saying "You have been shot";
 			-- glancing-hit:
 				say "[regarding the actor][They] [past participle of the verb hold] [their] [weapon] at an odd angle, and the shot [regarding one][glance] off [our] [one of]helmet[or]chest plate[or]shoulder plate[or]leg armor[at random], leaving [one of]a[or]a deep[or]another[or]yet another[then at random] gouge in the material.";
 			-- shot-dodged:
 				say "Fifteen years of military experience lead to some rather tuned reflexes, so [we] [dodge] in time to avoid the shot.";
 			-- near-miss:
-				say "[regarding the actor][Their] aim [are] slightly off. The bullet [regarding one][whirr] past [our] [one of]head[or]shoulder[or]chest[at random] and [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind us[end if].";
+				say "[regarding the actor][Their] aim [are] slightly off. The bullet [regarding one][whirr] past [our] [one of]head[or]shoulder[or]chest[at random] and [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
 			-- full-miss:
-				say "Their aim is way off and the shot [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind us[end if].";
+				say "Their aim is way off and the shot [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
 	otherwise:
 		say "[The actor] [fire] at [the target]."
 
@@ -820,7 +833,7 @@ Instead of invalid-conversation, say "Now is not the time for idle talk!".
 
 [Our sorry imitation of a combat AI]
 Turns-in-location is a number that varies.
-Carry out going:
+Carry out going (this is the reset combat rule):
 	now turns-in-location is zero;
 	continue the action.
 
@@ -853,7 +866,7 @@ An east-wall is a kind of room-wall. Understand "east/eastern wall/--" as a west
 [If we just wrote "A room has a room-top.", the property name would be equal to the kind name, confusing the compiler if we tried to create more instances of the kind later on.]
 A room has an object called the room-top-prop. The room-top-prop of a room is usually the default-ceiling.
 A room has an object called the room-floor-prop. The room-floor-prop of a room is usually the default-floor.
-A room has a list of room-walls called the walls. The walls of a room is usually {default-north-wall, default-west-wall, default-west-wall, default-east-wall}.
+A room has a list of room-walls called the walls. The walls of a room is usually {default-north-wall, default-south-wall, default-west-wall, default-east-wall}.
 
 The room-top-prop of an outdoor room is usually the default-sky.
 The room-floor-prop of an outdoor room is usually the default-ground.
@@ -932,7 +945,7 @@ Your cell is a room. "This is the room you have spent most of your time in, ever
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
 	instead say "It's too far up to throw a good punch at the grate."
-The description of the cell air duct's grate is "A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you wanted to (although the presence of the camera has so far kept you from attempting anything)."
+The description of the cell air duct's grate is "[if the cell air duct's grate is part of something]A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you wanted to (although the presence of the camera has so far kept you from attempting anything)[otherwise]The grate lies discarded on the ground[end if]."
 
 The metal door is north of your cell and south of the corridor. It is an openable closed lockable locked door.
 The description is "[cell-door-desc].".
@@ -1034,9 +1047,13 @@ West of the corridor is south of the control room. Index map with control room m
 The control room is a room. "The walls are plastered with screens[if the controls switch is switched on] showing video feeds from throughout the facility[otherwise], but they are all blank[end if]. This must be the place from which the prisoners are monitored.[paragraph break][A ladder-top] leads down into the installations room, and a corridor leads south."
 
 A table is a scenery supporter in the control room.
-On the table is a thing called a helmet. The initial appearance of the helmet is "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it.". The printed name is "[our] helmet".
+On the table is a thing called a helmet. The initial appearance of the helmet is "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it.". The printed name of the helmet is "[our] helmet".
+The description of the helmet is "Taking a closer look at the helmet confirms that it is, in fact, yours. Perhaps the rest of the suit is around here somewhere as well.".
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
 Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, your captors haven't messed anything up."
+
+Some wires are scenery in the control room.
+The description is "A slew of thin wires [if the helmet is on the table]runs from the control desk to your helmet[otherwise]lies discarded on the ground[end if].".
 
 The control panel is in the control room. "A control desk and some screens are installed on the wall.". The description is "[control-panel-desc].". Understand "desk" or "screen" or "system" or "panel" or "panels" or "screens" or "surface" or "console" as the control panel.
 To say control-panel-desc:
@@ -1059,7 +1076,7 @@ Instead of climbing ladder-top, try going down.
 
 East of the corridor is south of the front office.
 Index map with front office mapped northeast of corridor.
-The description of the front office is "This is room is the entrance to the facility. You have no doubt that there would normally be at least one guard posted here, but at the moment it is empty.[paragraph break]You could go east, into a small storage area, or south, back into the corridor.".
+The description of the front office is "This room is the entrance to the facility. You have no doubt that there would normally be at least one guard posted here, but at the moment it is empty.[paragraph break]You could go east, into a small storage area, or south, back into the corridor.".
 
 The airlock is a locked door. "[airlock-desc].". The airlock is north of the front office and south of the prison antecourt.
 Understand "air" or "lock" as the airlock.
@@ -1081,7 +1098,7 @@ The storage space is east of the front office. "This small storage closet seems 
 
 Some shelves are a scenery supporter in the storage space.
 Understand "bare" or "metal" or "bare-metal" or "shelf" or "rack" as the shelves. Understand "shelves" or "racks" as the plural of shelves.
-Some plates are on the shelves. "Pieces of armor plating lie on the shelves." The description is "[We] are fairly sure that these are the pieces of [our] battle armor. They seem to be intact, but an integral part [dash] the helmet [dash] is nowhere to be seen.." The printed name is "armor plates". Understand "armor/armour/armored/armoured/-- plates/plating" as the plates. They are fixed in place.
+Some plates are on the shelves. "Pieces of armor plating lie on the shelves." The description is "[We] are fairly sure that these are the pieces of [our] battle armor. They seem to be intact, but an integral part [dash] the helmet [dash] is [if the player has the helmet]not among them[otherwise]nowhere to be seen[end if]." The printed name is "armor plates". Understand "armor/armour/armored/armoured/-- plates/plating" or "armor" or "armour" as the plates. They are fixed in place.
 Instead of taking the plates, say "They're too bulky, and the plates alone won't do you much good."
 Instead of wearing the plates, say "The plates alone won't do you much good."
 
@@ -1099,6 +1116,11 @@ Before wearing or taking the plates when the player is carrying the helmet:
 	try wearing the armor instead.
 
 A ration bar is a kind of edible thing.
+The description of a ration bar is "You recognize the design of the wrapper: bars like these have been part of your meals from time to time.".
+Instead of tasting a ration bar:
+	say "As most ration bars tend to do, it tastes mostly like sugar, with some indeterminable artificial fruit mixed in.";
+	rule succeeds.
+
 On the shelves are five ration bars.
 
 Section 4 - Basement
@@ -1108,20 +1130,29 @@ The prison installations room is down from the control room. "This is where most
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
 The description is "The air duct leads back to your cell."
 
-[some-air-ducts is scenery in the prison installations room. It is privately-named. The description of some-air-ducts is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
-Instead of doing something other than examining to some-air-ducts, say "They're not labeled, and you'd rather not wander through the air ducts aimlessly."]
-some-air-ducts is a north-wall. The description is "They presumably lead to different rooms within the facility." The printed name is "some air ducts". Understand "air/-- ducts" as some-air-ducts.
-The walls of the installations room are {some-air-ducts, default-south-wall, default-west-wall, default-east-wall}.
+Some some-air-ducts is a north-wall. The printed name is "air ducts". 
+The description is "A number of air ducts are mounted into the northern wall, presumably leading to different rooms within the facility."
+Understand "air/-- ducts" as some-air-ducts.
+The ventilation-machine is a south-wall. The printed name is "ventilation machine".
+The description is "A large machine takes up almost the entire south wall[if the ventilation switch is switched on]. It is forcing air through the room[end if].".
+Understand "ventilation" or "machine" or "machinery" as the ventilation-machine.
+The walls of the installations room are {some-air-ducts, ventilation-machine, default-west-wall, default-east-wall}.
 
-ladder-bottom is privately-named scenery in the installations room. The printed name is "ladder".
+Some appliances are scenery in the installations room.
+The description is "Pipes and boxes line the wall."
+Understand "installation" or "installations" or "appliance" as the appliances.
+
+The ladder-bottom is privately-named scenery in the installations room. The printed name is "ladder".
+The description is "A simple ladder is mounted on the wall, leading up."
 Understand "ladder" or "rungs" as the ladder-bottom.
 Instead of climbing the ladder-bottom, try going up.
+
 
 ["Obfuscated Switches" have a label in "Shwabolian" writing, which is really just ROT13-encoded english. The armor can translate those, so we show the plain english labels when the player is wearing the armor.]
 An obfuscated switch is a kind of device. An obfuscated switch is usually switched on.
 An obfuscated switch has some text called the obf-label. An obfuscated switch has some text called the real-label.
 The printed name of an obfuscated switch is usually "[if the player is wearing the armor][real-label][otherwise][obf-label][end if] switch".
-The description of an obfuscated switch is usually "A large rotary switch[if the player is wearing the armor]. Your suit's translator shows the label as '[real-label]'[otherwise]labeled '[obf-label]'[end if].".
+The description of an obfuscated switch is usually "A large rotary switch[if the player is wearing the armor]. Your suit's translator shows the label as '[real-label]'[otherwise] labeled '[obf-label]'[end if].".
 Understand "rotary" or "switch" as an obfuscated switch.
 To say switch-label of (o - an obfuscated switch):
 	say "[if the player is wearing the armor][real-label of o][otherwise][obf-label of o][end if]".
@@ -1135,12 +1166,15 @@ The description is "A number of large rotary switches are attached to this panel
 Does the player mean turning the switch panel: it is unlikely.
 Does the player mean switching off the switch panel: it is unlikely.
 Does the player mean switching on the switch panel: it is unlikely.
-Does the player mean examining the switch panel: it is likely.
+[After reading a command (this is the redirect examining switches rule):
+	if the player's command matches "examine/x switches":
+		say "(the panel)[command clarification break]";
+		change the text of the player's command to "examine panel".]
 
-The lights switch is part of the switch panel. It is an obfuscated switch. The real-label is "LIGHTS". The obf-label is "YVTUGF". Understand "light" or "yvtugf" as the lights switch.
-The ventilation switch is part of the panel. It is an obfuscated switch. The real-label is "VENTILATION". The obf-label is "IRAGVYNGVBA". Understand "iragvyngvba" as the ventilation switch.
-The doors switch is part of the panel. It is an obfuscated switch. The real-label is "MAGLOCK". The obf-label is "ZNTYBPX". Understand "maglock" or "zntybpx" as the doors switch.
-The controls switch is part of the panel. It is an obfuscated switch. The real-label is "CONTROLS". The obf-label is "PBAGEBYF". Understand "pbagebyf" as the controls switch.
+The lights switch is part of the switch panel. It is an obfuscated switch. The real-label is "LIGHTS". The obf-label is "YVTUGF". Understand "light" or "yvtugf" or "first" as the lights switch.
+The ventilation switch is part of the panel. It is an obfuscated switch. The real-label is "VENTILATION". The obf-label is "IRAGVYNGVBA". Understand "iragvyngvba" or "second" as the ventilation switch.
+The doors switch is part of the panel. It is an obfuscated switch. The real-label is "MAGLOCK". The obf-label is "ZNTYBPX". Understand "maglock" or "zntybpx" or "third" as the doors switch.
+The controls switch is part of the panel. It is an obfuscated switch. The real-label is "CONTROLS". The obf-label is "PBAGEBYF". Understand "pbagebyf" or "fourth" as the controls switch.
 
 Carry out switching off the lights switch:
 	now all rooms in cell-complex are dark.
@@ -1185,6 +1219,10 @@ Instead of entering the water:
 	if the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you.";
 	otherwise try going down.
 
+The rocky shoreline is scenery in the prison docks.
+The description is "The coastal cliff falls off into the water".
+Understand "coastal" or "coast" as the shoreline.
+
 Chapter 2 - Underwater
 
 A sea-room is a kind of room. The description of a sea-room is "You are standing knee-deep in the silt at the bottom of the ocean. The military complex is due north." A sea-room is usually dark. The printed name is usually "at the bottom of the ocean". A sea-room is always submerged. The room-top-prop of a sea-room is usually the sea. The room-floor-prop of a sea-room is usually the ocean floor. The walls of a sea-room are usually {}.
@@ -1219,7 +1257,7 @@ Instead of going up in the sea-region (this is the can't swim in armor rule), sa
 seabottom-1 is a sea-room. It is down from the prison docks. "You are standing knee-deep in the silt at the bottom of the ocean. The rocky cliffs of the prison island lie to the south, the military complex is due north."
 
 Before going down to seabottom-1 for the first time:
-	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that is does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your arms and legs to slow your descent..."; [blatantly ignoring the potential issue of barotrauma, but whatever]
+	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that it does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your arms and legs to slow your descent..."; [blatantly ignoring the potential issue of barotrauma, but whatever]
 	[pause the game; [for dramatic effect only]]
 	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good.";
 	take 45 seconds.
@@ -1320,7 +1358,9 @@ Section 2 - The Plaza
 The military complex plaza is an outdoor room. It is north of the shore docks. "This base must be the heart of the operations [dash] in this area, at least.[paragraph break]There are several places you could go from here. The shoreline and the docks lie to the south. [if the hangar is unvisited]What looks like a[otherwise]The[end if] hangar lies to the east[if the force field is enabled], blocked off by a force field[end if]. A smaller building[if the player is wearing the armor], labeled 'Barracks',[end if] lies to the west, and a larger building [if the player is wearing the armor] with a sign reading 'Command Center'[end if], blocked off by a door, lies to the north."
 
 The command center door is north of the plaza and south of the entry hallway. It is an openable closed lockable locked door. The prison warden's ID card unlocks the command center door.
-The command center door's card reader is a fixed in place thing in the plaza. The description is "A small grey box waiting to be presented with an access card.".
+The description of the command center door is "A simple metal door. It is equipped with a card reader rather than a keyhole. It is [if open]open[otherwise]closed[end if].".
+The command center door's card reader is a backdrop. It is in the plaza and the entry hallway.
+The description is "A small grey box waiting to be presented with an access card.".
 Instead of unlocking the card reader with something, try unlocking the command center door with the noun.
 Instead of locking the card reader with something, try locking the command center door with the noun.
 
@@ -1339,8 +1379,8 @@ After choosing notable locale objects (this is the military plaza locale objects
 			set the locale priority of the force field to 0;
 	if there is a notable-object of command center door in the Table of Locale Priorities:
 		set the locale priority of the command center door to 0;
-	if there is a notable-object of command center door's card reader in the Table of Locale Priorities:
-		set the locale priority of the command center door's card reader to 0;
+	[if there is a notable-object of command center door's card reader in the Table of Locale Priorities:
+		set the locale priority of the command center door's card reader to 0;]
 	continue the activity.
 
 Check going [from the military complex plaza to the hangar] through the enabled force field:
@@ -1390,7 +1430,7 @@ Instead of taking some-ammo-clips:
 
 A storage rack are a fixed in place supporter in the armory.
 The description is "It is a very simple design, made of plain metal struts with rather sharp edges."
-Understand "bare" or "metal" or "shelf" or "rack" as the rack.
+Understand "bare" or "metal" or "shelf" or "rack" or "metal" or "struts" as the rack.
 A rifle is a gun on the rack. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
 Instead of attacking the rack:
 	say "You pull apart the frame of the shelf, giving you a piece of metal with a rather sharp edge.";
@@ -1404,6 +1444,7 @@ Understand "build [knifedesc] [makefrom] [the storage rack]" as attacking.
 Understand "turn [the storage rack] into [knifedesc]" as attacking.
 Understand "from" or "out of" as "[makefrom]".
 Understand "a/an/-- makeshift/improvised/-- knife" as "[knifedesc]".
+Understand "disassemble [the storage rack]" or "take apart [the storage rack]" or "take [the storage rack] apart" as attacking.
 
 rack-gone is a privately-named unthing. The description is "You broke the rack to make a knife, remember?".
 
@@ -1582,7 +1623,9 @@ Instead of examining the mirrors:
 	try examining yourself;
 	rule succeeds.
 
-Some showers are scenery in the washroom. The description is "[if we have examined the toilets or we have examined the sinks]Much like the rest of the room, the[otherwise]The[end if] showers aren't much to look at: non-adjustable shower heads emerging from the ceiling, simple mechanical controls mounted on the walls, and all the water ultimately goes down the grated drains built into the tiled floor."
+Some showers are scenery in the washroom.
+The description is "[if we have examined the toilets or we have examined the sinks]Much like the rest of the room, the[otherwise]The[end if] showers aren't much to look at: non-adjustable shower heads emerging from the ceiling, simple mechanical controls mounted on the walls, and all the water ultimately goes down the grated drains built into the tiled floor."
+Understand "shower" or "showerhead" or "showerheads" or "showers" or "control" or "controls" as the showers.
 
 To slide is a verb. To collect is a verb.
 Instead of switching on the showers:
@@ -1596,6 +1639,12 @@ Instead of switching on the showers:
 		say "You're already about as clean as you're going to get."
 Instead of switching off the showers, say "All the showers are off already.".
 Instead of entering the showers, try switching on the showers.
+
+Showering is an action applying to nothing.
+Check showering:
+	say "There's nothing here with which to shower." instead.
+Instead of showering when the showers are in the location, try switching on the showers.
+Instead of showering when the sanitary station is in the location, try entering the sanitary station.
 
 To say wash-grime:
 	if gore is allowed, say "blood";
@@ -1675,7 +1724,7 @@ After entering the messenger ship, try looking.
 
 Carry out looking when the player is in the messenger ship (this is the messenger ship innards rule):
 	say "You are sitting in the cockpit of the messenger ship. [if the ship is started]The control panels in front of you inform you that all systems of the ship are in working order[otherwise]The control panels are dark and blank[end if]."
-The messenger ship innards rule is listed after the room description heading rule in the carry out looking rules.
+The messenger ship innards rule is listed after the room description heading with activity rule in the carry out looking rules.
 
 The canopy is part of the messenger ship. The description is "A sort of glass dome covering the cockpit, allowing the pilot to look in all directions."
 Understand "glass" or "dome" as the canopy.
@@ -1796,7 +1845,7 @@ Instead of going when the location is the planetary orbit, say "[We] don't reall
 Book 4 - Debug Commands - Not for Release
 
 First after printing the banner text (this is the prerelease notice rule):
-	say "[italic type]Beta build #1 for playtesters only [dash] do not distribute![roman type][line break]".
+	say "[italic type]Beta build #3 for playtesters only [dash] do not distribute![roman type][line break]".
 
 Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
 Carry out air-draining:
