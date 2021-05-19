@@ -1437,7 +1437,8 @@ Instead of attacking the rack:
 	now all things that are on the rack are in the location;
 	now the rack is nowhere;
 	now rack-gone is in the armory;
-	now the player has the makeshift knife;
+	now the makeshift knife is in the armory;
+	silently try taking the makeshift knife;
 	rule succeeds.
 Understand "make [knifedesc] [makefrom] [the storage rack]" as attacking.
 Understand "build [knifedesc] [makefrom] [the storage rack]" as attacking.
@@ -1470,6 +1471,8 @@ The ops center is north of the lobby. "This appears to be the nerve center of th
 
 The larger alien and the smaller alien are shwabolians in the ops center.
 The description of the larger alien's corpse is "A well and truly dead shwabolian. [if closed]Blood is pooling around him from where your bullets hit their mark[otherwise]He is looking a bit worse for wear after you extracted the data crypt from inside him[end if]."
+
+Understand "stab [someone] with/using [something]" as a mistake ("Bringing a knife to a gunfight is rarely a good idea.").
 
 [I expect this will probably be the most controversial part of the game.
 This wasn't really planned from the start, but I needed some puzzles and my brain basically went: "Why don't we do this, here's the text for it!" -- and that was the only idea I was going to get.]
@@ -1506,6 +1509,8 @@ Check eating when the larger alien's corpse is open:
 
 Check cutting something with something that is not the makeshift knife:
 	say "[The second noun] [cannot cut] anything." instead.
+Check cutting the larger alien's corpse with the shard:
+	say "[The second noun] is far too delicate for the task [dash] it's like trying to cut down an old tree with a jigsaw." instead.
 Check cutting the makeshift knife with something:
 	say "Don't you have those the wrong way around?" instead.
 
@@ -1606,7 +1611,7 @@ The barracks are west of the mess hall. "You are standing in the sleeping area o
 
 Some bunks are in the barracks. "Four stacked bunk beds are lined up on the walls." They are fixed in place.
 The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
-Understand "stacked" or "bunk" as the bunks.
+Understand "stacked" or "bunk" or "bed" or "beds" as the bunks.
 
 The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[line break]The only way out is north, back to the barracks."
 
@@ -1619,9 +1624,23 @@ Understand "sink" or "washbasin" or "washbasins" or "washbowl" or "washbowls" or
 Some mirrors are scenery in the washroom.
 Understand "mirror" as the mirrors.
 Instead of examining the mirrors:
+	if the mirrors are handled, say "You smashed one mirror, but three remain.[paragraph break]";
 	say "You regard yourself in one of the mirrors: [run paragraph on]";
 	try examining yourself;
 	rule succeeds.
+Instead of attacking the mirrors:
+	if the mirrors are not handled:
+		if the player is not wearing the armor, say "You'd rather not, with your bare hands." instead;
+		now the mirrors are handled;
+		say "You drive an armored fist into one of the mirrors, smashing it. You pocket one of the larger pieces.";
+		now the shard is in the location;
+		silently try taking the shard;
+	otherwise:
+		say "Destroying one of the mirrors should be sufficient." instead.
+
+The shard is a thing.
+The description is "A piece of mirror. You catch a glimpse of your [if the player is not wearing the armor]face[otherwise if the armor is covered]mud-covered helmet[otherwise]helmet[end if] as you tilt it around."
+Understand "piece" or "of" or "glass" or "mirror" as the shard.
 
 Some showers are scenery in the washroom.
 The description is "[if we have examined the toilets or we have examined the sinks]Much like the rest of the room, the[otherwise]The[end if] showers aren't much to look at: non-adjustable shower heads emerging from the ceiling, simple mechanical controls mounted on the walls, and all the water ultimately goes down the grated drains built into the tiled floor."
@@ -1659,18 +1678,35 @@ The hangar is a room. "This large, cavernous space where dropships and other sma
 The launch doors are a plural-named door. They are north of the hangar and south of the landing strip. They are closed.
 The description is "Large sliding doors [dash] more than large enough for a dropship to fit through [dash] make up pretty much the entire northern wall of the hangar. They are currently [if the launch doors are open and the location is the hangar]open, revealing a view of the launch pad[otherwise if the launch doors are open]open, reavealing a view of the inside of the hangar[otherwise]closed.".
 Instead of opening or closing the launch doors, say "These doors appear to be operated remotely."
+[The force field is nominally a door, but we don't want it to be included in "x doors".]
+Before multiexamining when the location is the hangar and considering only doors:
+	alter the multiple object list to {the launch doors};
+	now the noun is the launch doors;
+	continue the action.
+Instead of looking through the open launch doors:
+	if the location is the hangar, say "The landing pad outside is [if the messenger ship is in the hangar]empty[otherwise]occupied by the messenger ship[end if].";
+	otherwise say "[if the messenger ship is in the hangar]The cavernous hangar is largely empty[otherwise]You see the messenger ship standing in the hangar[end if].";
+	rule succeeds.
 
 Section 2 - The Launch Pad
 
 The landing strip is an outdoor room. "You are standing on the tarmac of a small landing pad. It's not long enough for a fixed-wing atmospheric craft to take off, but perfectly adequate for the vertical take-off and landing operation of a space-capable vessel.[paragraph break]You could go south, through [the launch doors] and back into the hangar."
 
+The tarmac-ground is a room-floor. The printed name is "tarmac".
+The description is "[if the location is the landing strip]A smooth surface of black tarmac, ideal for ships to land on[otherwise if the messenger ship is in the landing strip]The messenger ship stands on the tarmac outside[otherwise]The tarmac outside is empty[end if].".
+Understand "tarmac" or "landing" or "pad" as the tarmac-ground.
+
 Section 3 - The Launch Control Room
 
-The control tower is up from the hangar. "You are standing in a room built into the wall near the ceiling of the cavernous hangar. No craft enters or leaves the airspace around the facility without the approval of the air-traffic controllers on duty here."
+The control tower is up from the hangar. "You are standing in a room built into the wall near the ceiling of the cavernous hangar. Normally, no craft would enter or leave the airspace around the facility without the approval of the air-traffic controllers on duty here, but now it is deserted.[paragraph break]The only way out is down, back into the hangar."
 
 The large window is in the tower. It is fixed in place. "A large window overlooks the landing pad outside."
+The other-side-description is "You can see the [if the messenger ship is in the landing strip]the messenger ship standing on the landing pad[otherwise]the empty landing pad outside[end if].".
 
-The air traffic control desk is in the control tower. "A large desk festooned with screens and buttons is mounted below the window." It is fixed in place.
+After deciding the scope of the player when the location is the control tower:
+	place the tarmac-ground in scope.
+
+The air traffic control desk is in the control tower. "A desk festooned with screens and buttons is mounted below the window." It is fixed in place.
 The description is "This desk must be the place from which most of the air traffic going into and out of this place is controlled. It is festooned with screens, buttons, and switches, but three elements stick out: a switch labeled [switch-label of the force field switch], one labeled [switch-label of the launch doors switch], and a large red button."
 Understand "screen" or "screens" or "buttons" or "switches" or "air-traffic" or "air-traffic-control" as the control desk.
 
@@ -1689,13 +1725,15 @@ The launch doors switch is an obfuscated switch. It is part of the control desk.
 The real-label is "LAUNCH DOORS". The obf-label is "YNHAPU QBBEF".
 Understand "launchdoors" or "ynhapu" or "qbbef" or "ynhapuqbbef" as the launch doors switch.
 Carry out switching off the launch doors switch:
-	now the launch doors are open.
-Report switching off the launch doors switch:
+	now the launch doors are open;
+	take 30 seconds.
+After switching off the launch doors switch:
 	say "You flip the switch, and the large doors separating the hangar from the launch pad slide open."
 Instead of opening the launch doors switch, try switching off the noun.
 Carry out switching on the launch doors switch:
-	now the launch doors are closed.
-Report switching on the launch doors switch:
+	now the launch doors are closed;
+	take 30 seconds.
+After switching on the launch doors switch:
 	say "You flip the switch, and the large doors separating the hangar from the launch pad slide shut."
 Instead of closing the launch doors switch, try switching off the noun.
 
@@ -1717,13 +1755,14 @@ The description is "The messenger ship has a sleek silver shape. It looks like a
 After printing the name of the messenger ship, omit contents in listing.
 The ship can be started. The ship is not started.
 
-The notch is a scenery container in the messenger ship. The description is "[if the data crypt is not in the notch]A notch is in one of the control panels, ready to accept something[otherwise]The data crypts rests in its place in the control panel[end if]."
-Understand "recess" or "control" or "panel" or "panels" or "aussparung" [;-)] as the notch.
+The notch is a scenery container in the messenger ship. The description is "The panels surrounding you are festooned with buttons and switches. You hope that most of them aren't too important.[line break][if the data crypt is not in the notch]A notch is in one of the control panels, ready to accept something[otherwise]The data crypts rests in its place in the control panel[end if]."
+Understand "recess" or "control" or "panel" or "panels" or "button" or "buttons" or "screen" or "screens" or "aussparung" [;-)] as the notch.
 
 After entering the messenger ship, try looking.
 
 Carry out looking when the player is in the messenger ship (this is the messenger ship innards rule):
-	say "You are sitting in the cockpit of the messenger ship. [if the ship is started]The control panels in front of you inform you that all systems of the ship are in working order[otherwise]The control panels are dark and blank[end if]."
+	say "You are sitting in the cockpit of the messenger ship. [if the ship is started]The control panels in front of you inform you that all systems of the ship are in working order[otherwise]The control panels are dark and blank[end if].";
+	rule succeeds.
 The messenger ship innards rule is listed after the room description heading with activity rule in the carry out looking rules.
 
 The canopy is part of the messenger ship. The description is "A sort of glass dome covering the cockpit, allowing the pilot to look in all directions."
