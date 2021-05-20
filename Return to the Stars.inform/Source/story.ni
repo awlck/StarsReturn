@@ -204,37 +204,26 @@ Carry out switching off (this is the default switching off timings rule): take 3
 
 Carry out attacking (this is the default attacking timings rule): take 90 seconds.
 
-Chapter 3 - Armor, Air, and Toxicity
+Chapter 3 - Unthings
+
+[This is another concept lifted from TADS's adv3 library: a thing denoting the absence of a thing.]
+An unthing is a kind of thing. It is always scenery. The description is usually "[The printed name] isn't here."
+Instead of doing something other than examining to an unthing, try examining the noun.
+
+Does the player mean doing something to an unthing: it is unlikely.
+
+Chapter 4 - Armor, Air, and Toxicity
 
 Section 1 - Armor
 
 The player has a number called the air. The air of the player is 360. [6 minutes]
 The armor has a number called the air. The air of the armor is 6000. [100 minutes]
-The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "suit" [or "dump" or "pouch" or "sack" or "holdall"] as the armor.
+The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor".
+Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "suit" as the armor.
 Dirtiness is a kind of value. The dirtinesses are clean, muddy, bloody, muddy-and-bloody, and covered.
 The armor has a dirtiness. The armor is clean.
 The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp, and it can double as a space suit, providing air in hostile environments.[if the armor is not clean][paragraph break][end if][if the armor is muddy]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[otherwise if the armor is covered]Any and all details are hidden under a thick, uniformly brown layer of ocean mud.[otherwise if the armor is not clean and gore is allowed]It's covered with a lot of blood and other... things. You should really find a place to clean up.[otherwise if the armor is not clean]The gloves are covered in a significant amount of slimy lizard spit.[end if]".
 
-[[Avoid trying to jam a rifle into the pouch]
-Check an actor taking (this is the revised use player's holdall to avoid exceeding carrying capacity rule):
-	if the number of things carried by the actor is at least the
-		carrying capacity of the actor:
-		if the actor is holding a player's holdall (called the current working sack):
-			let the transferred item be nothing;
-			repeat with the possible item running through things carried by the actor:
-				if the possible item is not lit and the possible item is not a gun and the possible item is not the current working sack, let the transferred item be the possible item;
-			if the transferred item is not nothing:
-				if the actor is the player, say "(putting [the transferred item] into [the current working sack][if the current working sack is the armor]'s dump pouch[end if] to make room)[command clarification break]" (A);
-				silently try the actor trying inserting the transferred item
-					into the current working sack;
-				take 10 seconds;
-				if the transferred item is not in the current working sack:
-					stop the action.
-The revised use player's holdall to avoid exceeding carrying capacity rule is listed instead of the use player's holdall to avoid exceeding carrying capacity rule in the check taking rules.
-
-examine containers rule response (A) is "In [the noun][if the noun is the armor]'s dump pouch[end if] ".
-examine containers rule response (B) is "[The noun][if the noun is the armor]'s dump pouch[end if] [are] empty.".
-]
 [There is little point to the character lugging around the pieces of the armor, so we disallow explicit takes and skip the implicit one when wearing it.]
 The carrying requirements rule does nothing when the current action is Wearing and the noun is the armor. The can't wear what's not held rule does nothing when the noun is the armor.
 Instead of taking the armor when the implicitly taking activity is not going on:
@@ -262,8 +251,12 @@ Carry out switching on the helmet lamp: now the helmet lamp is lit.
 Carry out switching off the helmet lamp: now the helmet lamp is not lit.
 
 The translator is part of the armor.
-The description of the translator is "The suits control system has a translation feature."
+The description of the translator is "The suit's control system has a translation feature."
 Instead of switching on or switching off the translator, say "The translator is always active."
+
+The dump pouch is an unthing. It is part of the armor.
+The description of the dump pouch is "All the pouches, webbing, and holsters seem to have gone missing from your armor."
+Understand "holster" or "holsters" or "webbing" or "pouches" or "pockets" as the dump pouch.
 
 [With the armor's air supply and filtration system active, we don't smell much.]
 Check smelling when the player is wearing the armor and the location is not breathable:
@@ -414,7 +407,7 @@ To say (relevant time - a time) as military time:
     let M be the minutes part of relevant time;
     say "[if H is less than 10]0[end if][H][if M is less than 10]0[end if][M]hrs".
 
-Chapter 4 - Parser Improvements
+Chapter 5 - Parser Improvements
 
 Section 1 - Synonyms and Extra Grammar
 
@@ -537,6 +530,10 @@ Understand the command "combat", "fight", "murder" and "kill" as "attack".
 Understand "rip up/apart/-- [something]" or "rip [something] up/apart" or "rip [something] to bits/pieces" as attacking.
 Understand the command "tear" as "rip".
 
+[Pushing it to]
+Understand "pull [something] [a direction]" as pushing it to.
+Understand "pull [something] to [a direction]" as pushing it to.
+
 [Climbing]
 [A concept from TADS: "go up ladder", etc.]
 Understand "go up/down [something]" as climbing.
@@ -571,7 +568,7 @@ asking who are you rule	"[as the parser]I'm the parser [dash] I translate what y
 stripping unnecessary addendum rule	"[as the parser]I only understood the first part of that[if corrections enabled is true] [dash] trying anyway[end if].[as normal]"
 failed communication attempts rule	"[as the parser]Conversation isn't necessary in this story.[as normal]"
 
-Chapter 5 - Grates and Air Ducts
+Chapter 6 - Grates and Air Ducts
 
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 The description of an air duct is usually "It exudes a stream of cool, fresh air. [if the item described incorporates a grate]It is covered up by a grate[otherwise]It is open[end if]."
@@ -654,16 +651,6 @@ Instead of climbing an air duct, try entering the noun.
 
 Instead of crawling into an air duct when the player is wearing the armor, say "The duct is just large enough for a human to crawl through [dash] bulky suit of armor not included."
 
-Chapter 6 - Looking at Buildings
-
-[This is to allow commands such as "x armory" or "enter armory" when the armory is an adjacent room.]
-A facade is a kind of scenery thing. A facade has a room called the associated room.
-
-Instead of entering a facade (called the building):
-	let direct be the best route from the location to the associated room of the building;
-	if direct is nothing, say "[We] [can't] [seem] to find a way inside [the noun].";
-	otherwise try going direct.
-
 Chapter 7 - Looking Through
 
 [There are a few locations within the game where the player may look through something to get a peek into another room.]
@@ -687,6 +674,8 @@ Carry out looking through (this is the standard looking through rule):
 	say "[the other-side-description of the noun][paragraph break]".
 
 Chapter 8 - Ranged Weapons
+
+Section 1 - Guns and Ammunition
 
 [And, really just because we can't have a MilSF-themed game without guns in it...]
 
@@ -825,8 +814,10 @@ Report ammo-counting:
 			increase cnt by the bullet count of c;
 		say "All in all, you have [cnt] rounds left.".
 
+Section 2 - Enemies
+
 A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod yet lizard-looking creature, walking on two legs."
-A corpse is a kind of wreckage. A corpse is usually fixed in place.
+A corpse is a kind of wreckage. A corpse is usually pushable between rooms.
 Instead of taking a corpse, say "You'd rather not carry a dead body around with you."
 Understand "alien" as a corpse.
 A corpse is part of every person.
@@ -854,6 +845,36 @@ Every turn (this is the aliens shooting rule):
 		if the hostile is not nothing:
 			let g be a random gun carried by the hostile;
 			try the hostile shooting the player with g.
+
+Check shooting a corpse with a gun:
+	let o be a random person that is the original of the noun;
+	say "[The o] is already as dead as it gets." instead.
+
+Check wearing a corpse:
+	say "While you enjoy the occasional costume theme party, [the noun] isn't the kind of costume you'd be willing to wear." instead.
+
+Section 3 - Blood
+
+A room can be blood-marked. A room is usually not blood-marked.
+
+Some blood is a backdrop.
+The description is "Blood stains [the room-floor-prop of the location]."
+
+Check examining a room-floor when the blood is in the location:
+	if the noun is the default-floor or the noun is the default-ground, try examining the blood instead.
+
+When play begins:
+	move the blood backdrop to all blood-marked rooms.
+
+Last carry out shooting a person with a gun (this is the spilling blood rule):
+	if the shot-result is deadly-hit, now the location is blood-marked;
+	update backdrop positions.
+
+Carry out going with a corpse:
+	if the room gone to is not in the sea-region:
+		now the room gone to is blood-marked;
+		update backdrop positions;
+	continue the action.
 
 Chapter 9 - Altered responses
 
@@ -927,12 +948,6 @@ Check lying on a container: try entering the noun instead.
 Check lying on:
 	say "Now is not the time for rest. Besides, [we]['ve] done nothing but sleep for the past few weeks, so [we]['re] not particularly tired."
 
-Chapter 11 - Unthings
-
-[This is another concept lifted from TADS's adv3 library: a thing denoting the absence of a thing.]
-An unthing is a kind of thing. It is always scenery. The description is usually "[The printed name] isn't here."
-Instead of doing something other than examining to an unthing, try examining the noun.
-
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
@@ -977,7 +992,7 @@ Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
 
 Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets."
 The description is "Plain white bedsheets. Thin, scratchy, and not quite warm enough to keep you comfortable. It seems like all expenses were spared here.[unless the bedsheets are handled] Your military discipline dictates that you neatly fold the bedsheets when you get up in the morning.[end if]".
-Understand "plain" or "white" or "sheets" or "bed" as the bedsheets.
+Understand "plain" or "white" or "sheets" or "bed" or "sheet" or "bedsheet" as the bedsheets.
 
 The sanitary station is a fixed in place enterable container in the cell. "A sanitary station [dash] a sort of hybrid toilet-shower-sink [dash] is built into a corner of the room." The description is "A brushed aluminum clamshell contraption for personal hygiene, not unlike showers you've used on some UNDC ships."
 Understand "shower" or "toilet" or "head" as the sanitary station.
@@ -1066,6 +1081,7 @@ Some wires are scenery in the control room.
 The description is "A slew of thin wires [if the helmet is on the table]runs from the control desk to your helmet[otherwise]lies discarded on the ground[end if].".
 
 The control panel is in the control room. "A control desk and some screens are installed on the wall.". The description is "[control-panel-desc].". Understand "desk" or "screen" or "system" or "panel" or "panels" or "screens" or "surface" or "console" as the control panel.
+Understand "video" or "feed" or "feeds" as the control panel when the ventilation switch is switched on.
 To say control-panel-desc:
 	if the controls switch is switched on:
 		say "The screens show video feeds from various locations in the building[run paragraph on]";
@@ -1157,7 +1173,6 @@ The description is "A simple ladder is mounted on the wall, leading up."
 Understand "ladder" or "rungs" as the ladder-bottom.
 Instead of climbing the ladder-bottom, try going up.
 
-
 ["Obfuscated Switches" have a label in "Shwabolian" writing, which is really just ROT13-encoded english. The armor can translate those, so we show the plain english labels when the player is wearing the armor.]
 An obfuscated switch is a kind of device. An obfuscated switch is usually switched on.
 An obfuscated switch has some text called the obf-label. An obfuscated switch has some text called the real-label.
@@ -1176,10 +1191,6 @@ The description is "A number of large rotary switches are attached to this panel
 Does the player mean turning the switch panel: it is unlikely.
 Does the player mean switching off the switch panel: it is unlikely.
 Does the player mean switching on the switch panel: it is unlikely.
-[After reading a command (this is the redirect examining switches rule):
-	if the player's command matches "examine/x switches":
-		say "(the panel)[command clarification break]";
-		change the text of the player's command to "examine panel".]
 
 The lights switch is part of the switch panel. It is an obfuscated switch. The real-label is "LIGHTS". The obf-label is "YVTUGF". Understand "light" or "yvtugf" or "first" as the lights switch.
 The ventilation switch is part of the panel. It is an obfuscated switch. The real-label is "VENTILATION". The obf-label is "IRAGVYNGVBA". Understand "iragvyngvba" or "second" as the ventilation switch.
@@ -1320,7 +1331,7 @@ Chapter 3 - Military Complex Outdoors
 Section 1 - The Docks
 
 [Not a test as much as a convenience to quickly skip ahead during debugging.]
-Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card / down / up".
+Test act2setup with "purloin my armor / wear armor / gonear incline / purloin ID card / down / up".
 
 The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp drop. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face...[paragraph break]The prison buildings lie to the south, down the muddy incline and across the water, and the military complex continues to the north."
 Index map with shore docks mapped north of prison docks.
@@ -1432,7 +1443,7 @@ Instead of taking some-ammo-clips:
 		say "You have enough ammunition already." instead;
 	otherwise:
 		let the clips taken be three minus the number of ammo clips carried by the player;
-		say "[Clips taken in words] clips: Taken.";
+		say "[Clips taken in words] clip[unless clips taken is one]s[end unless]: Taken.";
 		repeat with i running from 1 to clips taken:
 			let c be a random ammo clip in the ammo-temp-storage;
 			now c is in the ammo crate;
@@ -1601,20 +1612,40 @@ The description is "After digging around in that dead shwabolian, you felt the i
 Understand "vomitus" or "eject" or "former/-- contents of/-- your/my stomach/belly" as the vomit.
 Instead of taking the vomit, say "How, by scooping it up in your hands? You'd rather not."
 
+Sticking an arm in is an action applying to one touchable thing.
+Understand "stick a/an/my/your/-- arm/hand [stick-in] [something]" as sticking an arm in.
+Understand "in/down/into" or "down into" as "[stick-in]".
+Check sticking an arm in a corpse:
+	[According to Wikipedia, even in whales the esophagus is at most 10-25cm in diameter, so for a slightly-larger-than-human-sized creature, I guess it wouldn't make sense for a hand/wrist/arm to fit.]
+	say "Despite the size of the creature's mouth, its throat is not large enough for your hand and arm to fit down." instead.
+Check sticking an arm in something:
+	say "[The noun] [are] not something you can stick an arm into." instead.
+Instead of sticking an arm in the muddy incline:
+	say "You kneel down and stick an arm into the mud.";
+	if the armor is not mud-caked, now the armor is muddy;
+	take 30 seconds;
+	rule succeeds.
+Instead of sticking an arm in the water:
+	say "You hold your arm into the water. Nothing particular happens." instead.
+
 Test alien with "pull grate / crawl through duct / out / turn off maglock / up / take helmet / look under desk / s / e / e / take plates / w / open airlock / n / e / turn on helmet light / enter water / n / n / n / n / n / unlock door with card / n / w / take rifle and ammo / break rack / e / n / n / shoot larger with rifle / shoot smaller with rifle / cut larger corpse with knife / x me / x armor / x data crypt / throw up".
 
 Chapter 5 - The Barracks
 
 [This area doesn't really do anything useful, but it would be a bit weird if it were absent.]
 
-The mess hall is west of the military complex plaza. "This is the entry area to what must be the barracks of this place. The area near the entrance is set up like a mess hall, with tables and counters, while the back of the room is set up more leisurely, with [some pillows] on the floor and even a [italic type]couch[roman type]. You've never seen [a couch] in a military facility in your life.[paragraph break]You could go east, back outside, or west, further into the building."
+The mess hall is west of the military complex plaza. "This is the entry area to what must be the barracks of this place. The area near the entrance is set up like a mess hall, with tables and counters, while the back of the room is set up more casually, with [some pillows] on the floor and even a [italic type]couch[roman type]. You've never seen [a couch] in a military facility in your life.[paragraph break]You could go east, back outside, or west, further into the building."
 
-Some plain white tables are scenery in the mess hall. The description is "You see nothing interesting about the tables. They are boring, even by the low standards of tables.".
-Some counters are scenery in the mess hall. The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recessions for food bowls.".
+Some plain white tables are scenery in the mess hall.
+The description is "You see nothing interesting about the tables. They are boring, even by the low standards of tables.".
+Understand "boring" or "table" as the tables.
+Some counters are scenery in the mess hall.
+The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recessions for food bowls.".
+Understand "counter" or "recession" or "recessions" as the counters.
 
 Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
-A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin' couch[roman type]! How the hell did they get a couch out here?![line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.".
+A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin' couch[roman type]! How the hell did they get a couch out here?![if the couch is not clean][line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.[end if]".
 Understand "sofa" as the couch.
 The couch has a dirtiness. The couch is clean.
 After entering the couch:
@@ -1713,7 +1744,9 @@ The landing strip is an outdoor room. "You are standing on the tarmac of a small
 
 The tarmac-ground is a room-floor. The printed name is "tarmac".
 The description is "[if the location is the landing strip]A smooth surface of black tarmac, ideal for ships to land on[otherwise if the messenger ship is in the landing strip]The messenger ship stands on the tarmac outside[otherwise]The tarmac outside is empty[end if].".
-Understand "tarmac" or "landing" or "pad" as the tarmac-ground.
+Understand "ground" or "tarmac" or "landing" or "pad" as the tarmac-ground.
+
+The room-floor-prop of the landing strip is the tarmac-ground.
 
 Section 3 - The Launch Control Room
 
@@ -1903,7 +1936,7 @@ Instead of going when the location is the planetary orbit, say "[We] don't reall
 Book 4 - Debug Commands - Not for Release
 
 First after printing the banner text (this is the prerelease notice rule):
-	say "[italic type]Beta build #3 for playtesters only [dash] do not distribute![roman type][line break]".
+	say "[italic type]Beta build #4 for playtesters only [dash] do not distribute![roman type][line break]".
 
 Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
 Carry out air-draining:
