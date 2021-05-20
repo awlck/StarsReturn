@@ -73,7 +73,7 @@ To say contact-info-text:
 	say "Enjoyed playing [RttS]? Found a bug? Got stuck and need a hint?[paragraph break]The most straightforward way to reach out is by e-mail to ardi@diepixelecke.de. For more general feedback, you can leave a review on IFDB, or just start talking about the game on intfiction.org [dash] I'll see it sooner or later.".
 
 To say the playtesters:
-	say "Lucas Beringer, Erik Schwejda, Edo, ... and your name will go here!".
+	say "Lucas Beringer, Erik Schwejda, Edo, and Peter M.J. Gross".
 
 To say rtts/RTTS/RttS:
 	say "[italic type]Return to the Stars[roman type]".
@@ -95,7 +95,7 @@ Book 2 - Mechanics
 
 Chapter 1 - Player Description
 
-The carrying capacity of the player is three.
+[The carrying capacity of the player is three.]
 
 The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Covered in a generous amount of ocean mud [dash] [we] [haven't] looked this bad since bootcamp, probably. [We]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise if the player is wearing the armor and the armor is covered][We]['ve] completely covered [ourselves] in the ocean mud, so [we] now look more like a vaguely human-shaped brown blob[otherwise if the player is wearing the armor and the armor is not clean][We] look like [we] just dug around in another person's body, because that's exactly what [we] did. [We] should find a place to clean up[otherwise][We]['ve] seen better days[end if]."
 
@@ -208,14 +208,14 @@ Chapter 3 - Armor, Air, and Toxicity
 
 Section 1 - Armor
 
-The player has a number called the air. The air of the player is 300. [5 minutes]
+The player has a number called the air. The air of the player is 360. [6 minutes]
 The armor has a number called the air. The air of the armor is 6000. [100 minutes]
-The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "suit" or "dump" or "pouch" or "sack" or "holdall" as the armor.
+The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor". Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "suit" [or "dump" or "pouch" or "sack" or "holdall"] as the armor.
 Dirtiness is a kind of value. The dirtinesses are clean, muddy, bloody, muddy-and-bloody, and covered.
 The armor has a dirtiness. The armor is clean.
-The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp and a dump pouch, and it can double as a space suit, providing air in hostile environments.[if the armor is not clean][paragraph break][end if][if the armor is muddy]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[otherwise if the armor is covered]Any and all details are hidden under a thick, uniformly brown layer of ocean mud.[otherwise if the armor is not clean and gore is allowed]It's covered with a lot of blood and other... things. You should really find a place to clean up.[otherwise if the armor is not clean]The gloves are covered in a significant amount of slimy lizard spit.[end if]".
+The description of the armor is "It is sometimes said that a soldier's best friend is his weapon [dash] but that hasn't really been true in a while now, with weapons being issued and turned in as needed. Your armor, however, has traveled to many a world with you, and saved your hide more than once. You're glad to have it back.[line break]It is fitted with a helmet lamp, and it can double as a space suit, providing air in hostile environments.[if the armor is not clean][paragraph break][end if][if the armor is muddy]It will need a good cleaning after being dragged across the bottom of the ocean, but it still seems to be working fine.[otherwise if the armor is covered]Any and all details are hidden under a thick, uniformly brown layer of ocean mud.[otherwise if the armor is not clean and gore is allowed]It's covered with a lot of blood and other... things. You should really find a place to clean up.[otherwise if the armor is not clean]The gloves are covered in a significant amount of slimy lizard spit.[end if]".
 
-[Avoid trying to jam a rifle into the pouch]
+[[Avoid trying to jam a rifle into the pouch]
 Check an actor taking (this is the revised use player's holdall to avoid exceeding carrying capacity rule):
 	if the number of things carried by the actor is at least the
 		carrying capacity of the actor:
@@ -234,7 +234,7 @@ The revised use player's holdall to avoid exceeding carrying capacity rule is li
 
 examine containers rule response (A) is "In [the noun][if the noun is the armor]'s dump pouch[end if] ".
 examine containers rule response (B) is "[The noun][if the noun is the armor]'s dump pouch[end if] [are] empty.".
-
+]
 [There is little point to the character lugging around the pieces of the armor, so we disallow explicit takes and skip the implicit one when wearing it.]
 The carrying requirements rule does nothing when the current action is Wearing and the noun is the armor. The can't wear what's not held rule does nothing when the noun is the armor.
 Instead of taking the armor when the implicitly taking activity is not going on:
@@ -248,10 +248,10 @@ Report wearing the armor for the first time:
 After taking off the armor (this is the deposit armor immediately rule):
 	silently try dropping the armor;
 	say "You take off the armor, setting the pieces down on the ground in front of you."
-	
+
 After wearing the armor (this is the take a deep breath rule):
-	decrease the air of the armor by (300 minus the air of the player);
-	now the air of the player is 300;
+	decrease the air of the armor by (360 minus the air of the player);
+	now the air of the player is 360;
 	continue the action.
 
 Carry out wearing the armor: take two minutes.
@@ -260,6 +260,10 @@ There is a device called the helmet lamp.[* This somewhat stilted syntax is the 
 Understand "helmet/-- lamp/light" as the helmet lamp.
 Carry out switching on the helmet lamp: now the helmet lamp is lit.
 Carry out switching off the helmet lamp: now the helmet lamp is not lit.
+
+The translator is part of the armor.
+The description of the translator is "The suits control system has a translation feature."
+Instead of switching on or switching off the translator, say "The translator is always active."
 
 [With the armor's air supply and filtration system active, we don't smell much.]
 Check smelling when the player is wearing the armor and the location is not breathable:
@@ -323,7 +327,7 @@ An air supply rule for a room that is not breathable when the player is wearing 
 	decrease the air of the armor by the work duration;
 	if the air of the armor is less than zero:
 		let d be the air of the armor multiplied by -1;
-		if the air of the player is 300, say "The alarm grows more urgent as your suit's air reserve is now empty. As you take a final deep breath, you know that you have mere minutes left before you suffocate.";
+		if the air of the player is 360, say "The alarm grows more urgent as your suit's air reserve is now empty. As you take a final deep breath, you know that you have mere minutes left before you suffocate.";
 		decrease the air of the player by d.
 
 An air supply rule for a room that is not breathable when the player is not wearing the armor:
@@ -472,6 +476,9 @@ Understand the command "activate" or "engage" as "enable".
 Understand "disable [something]" as switching off.
 Understand the command "deactivate" or "disengage" as "disable".
 
+[Pulling]
+Understand the command "tug" as "pull".
+
 [Opening]
 Understand the command "unclose" as "open".
 
@@ -603,6 +610,9 @@ Instead of pulling a grate which is part of an air duct (called the conduit):
 	now the noun is in the holder of the conduit;
 	say "With a groan of exertion, [we] [pull] the grate with enough force for the old welds to give way. [We] set the grate down on the ground.";
 	rule succeeds.
+
+Instead of taking a grate which is not part of something:
+	say "You see no reason to carry [the noun] around."
 
 Connection relates one air duct to another (called the other end). The verb to connect to means the connection relation.
 
@@ -944,7 +954,7 @@ Your cell is a room. "This is the room you have spent most of your time in, ever
 
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
-	instead say "It's too far up to throw a good punch at the grate."
+	instead say "It's too far up to throw a good punch at the grate[one of][or]You may need to go in a different direction, so to speak[or]Perhaps if you tugged on it instead[stopping]."
 The description of the cell air duct's grate is "[if the cell air duct's grate is part of something]A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you wanted to (although the presence of the camera has so far kept you from attempting anything)[otherwise]The grate lies discarded on the ground[end if]."
 
 The metal door is north of your cell and south of the corridor. It is an openable closed lockable locked door.
@@ -1094,7 +1104,7 @@ Instead of unlocking the airlock with something when the location is the front o
 	
 Section 3 - The Storage Area
 
-The storage space is east of the front office. "This small storage closet seems to be the place where inmates' possessions are stored. Bare-metal [shelves] line the walls.[paragraph break]The only way out is west."
+The storage space is east of the front office. "This small storage closet seems to be the place where inmates['] possessions are stored. Bare-metal [shelves] line the walls.[paragraph break]The only way out is west."
 
 Some shelves are a scenery supporter in the storage space.
 Understand "bare" or "metal" or "bare-metal" or "shelf" or "rack" as the shelves. Understand "shelves" or "racks" as the plural of shelves.
@@ -1312,7 +1322,7 @@ Section 1 - The Docks
 [Not a test as much as a convenience to quickly skip ahead during debugging.]
 Test act2setup with "purloin armor / wear armor / gonear incline / purloin ID card / down / up".
 
-The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp falloff. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face...[paragraph break]The prison buildings lie to the south, down the muddy incline and across the water, and the military complex continues to the north."
+The shore docks are an outdoor room. They are up from seabottom-4 and north from seabottom-4. "The shoreline here seems more like an extension of the ocean floor you just walked: a gradual incline, rather than a sharp drop. A dock extends into the water to allow loading and unloading boats without needing to drive them up against the shore. (Although no boats are to be seen.)[line break]You vaguely recall coming through here, weeks ago, sedated, a breathing apparatus in your face...[paragraph break]The prison buildings lie to the south, down the muddy incline and across the water, and the military complex continues to the north."
 Index map with shore docks mapped north of prison docks.
 
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
@@ -1457,7 +1467,7 @@ Section 3 - Briefing Room
 The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is west, back into the lobby."
 
 A large round table is a fixed in place supporter in the briefing room.
-The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warrented all this nonessential material being shipped out here.".
+The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warranted all this nonessential material being shipped out here.".
 
 A large screen is a fixed in place thing in the briefing room.
 The description is "A large screen has been fitted into the wall. It is blank."
@@ -1470,7 +1480,9 @@ Section 4 - Nerve Center
 The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
 
 The larger alien and the smaller alien are shwabolians in the ops center.
+Understand "large" as the larger alien. Understand "small" as the smaller alien.
 The description of the larger alien's corpse is "A well and truly dead shwabolian. [if closed]Blood is pooling around him from where your bullets hit their mark[otherwise]He is looking a bit worse for wear after you extracted the data crypt from inside him[end if]."
+The examine containers rule does nothing when the noun is a corpse.
 
 Understand "stab [someone] with/using [something]" as a mistake ("Bringing a knife to a gunfight is rarely a good idea.").
 
@@ -1561,8 +1573,13 @@ Report going to the ops center for the first time (this is the alien swallows ke
 	say "As you enter the room, [the larger alien] hastily pulls a small device out of the control panel and swallows it. Then, the two reach for their weapons!".
 The alien swallows key rule is listed last in the report going rules.
 
-A data crypt is in the larger alien's corpse. The description is "A small storage device you salvaged from [if gore is allowed]the innards of [end if]one of your captors."
+A data crypt is in the larger alien's corpse.
+The description is "[data-crypt-desc]."
 Understand "small/-- swallowed/eaten object/thing/device" or "small/-- object/thing/device swallowed/eaten by the/-- large/larger/-- alien/shwabolian/lizard" or "small" or "device" or "object" as the data crypt.
+
+To say data-crypt-desc:
+	if the data crypt is in the larger alien's corpse, say "The object which the large alien swallowed is still inside of him";
+	otherwise say "A small storage device you salvaged from [if gore is allowed]the innards of [end if]one of your captors"
 
 [What I want to do after writing the above.]
 Vomiting is an action applying to nothing.
@@ -1599,7 +1616,7 @@ Some pillows are scenery in the mess hall. The description is "They are plain wh
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
 A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin' couch[roman type]! How the hell did they get a couch out here?![line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.".
 Understand "sofa" as the couch.
-The couch has a dirtiness.
+The couch has a dirtiness. The couch is clean.
 After entering the couch:
 	if the player is wearing the armor and the armor is mud-caked and the couch is clean:
 		now the couch is muddy;
@@ -1658,8 +1675,10 @@ Instead of switching on the showers:
 		say "You're already about as clean as you're going to get."
 Instead of switching off the showers, say "All the showers are off already.".
 Instead of entering the showers, try switching on the showers.
+Instead of taking the showers, try switching on the showers.
 
 Showering is an action applying to nothing.
+Understand "shower" or "wash me/you/myself/yourself/--" as showering.
 Check showering:
 	say "There's nothing here with which to shower." instead.
 Instead of showering when the showers are in the location, try switching on the showers.
@@ -1888,7 +1907,7 @@ First after printing the banner text (this is the prerelease notice rule):
 
 Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
 Carry out air-draining:
-	now the air of the armor is 10;
+	now the air of the armor is 300;
 	say "[bracket]Drained.[close bracket][paragraph break]".
 
 After reading a command (this is the ignore beta-comments rule):
