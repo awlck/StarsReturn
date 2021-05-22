@@ -95,8 +95,6 @@ Book 2 - Mechanics
 
 Chapter 1 - Player Description
 
-[The carrying capacity of the player is three.]
-
 The description of the player is "[if the player is wearing the armor and the armor is clean]In [our] armored suit [we] almost look soldierly again[otherwise if the player is wearing the armor and the armor is muddy]Covered in a generous amount of ocean mud [dash] [we] [haven't] looked this bad since bootcamp, probably. [We]['re] not sure whether [we] look particularly fierce or particularly ridiculous[otherwise if the player is wearing the armor and the armor is covered][We]['ve] completely covered [ourselves] in the ocean mud, so [we] now look more like a vaguely human-shaped brown blob[otherwise if the player is wearing the armor and the armor is not clean][We] look like [we] just dug around in another person's body, because that's exactly what [we] did. [We] should find a place to clean up[otherwise][We]['ve] seen better days[end if]."
 
 The player is wearing a set of fatigues. The description of the fatigues is "A set of standard-issue combat fatigues, consisting of a gray shirt, pants and blouse in a grey-and-black digital urban camouflage pattern, and a pair of black leather boots[if the number of things held by the player is 1]. It is the only possession you have left at the moment[end if].". Understand "uniform" or "fatigue" or "fatigues" or "blouse" or "pants" or "trousers" or "shirt" or "clothes" or "digital" or "urban" or "camo" or "camouflage" or "battle/combat dress" as the fatigues.
@@ -377,9 +375,8 @@ Rule for constructing the status line when the player is not wearing the armor a
 	rule succeeds.
 
 To say hud-air:
-	[if the air of the armor is than 100 and the location is toxic:]
-	if the air of the armor is 100 or (the location is not toxic and the location is not submerged), stop;
-	if the air of the armor is greater than five:
+	if the location is breathable, stop;
+	if the air of the armor is greater than 300:
 		say "Air: [air of the armor / 60] min";
 	otherwise if the air of the armor is greater than zero:
 		say "AIR: [air of the armor / 60] MIN";
@@ -816,7 +813,7 @@ Report ammo-counting:
 
 Section 2 - Enemies
 
-A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod yet lizard-looking creature, walking on two legs."
+A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humanoid yet lizard-looking creature, walking on two legs."
 A corpse is a kind of wreckage. A corpse is usually pushable between rooms.
 Instead of taking a corpse, say "You'd rather not carry a dead body around with you."
 Understand "alien" as a corpse.
@@ -1427,6 +1424,11 @@ A chair is an enterable scenery supporter in the lobby.
 The description is "They look to be the same plastic monstrosities you had to sit on throughout your years in school."
 Understand "chairs" or "stool" or "stools" as the chair.
 Instead of taking the chair, say "The chairs are bolted to the wall." instead.
+
+Instead of listening to the command center lobby when at least two shwabolians are in the ops center:
+	say "You can hear subdued talking coming from the room to the north.";
+	take 30 seconds;
+	rule succeeds.
 
 Section 2 - Armory
 
