@@ -1373,11 +1373,24 @@ Instead of rubbing the muddy incline on the armor when the player is wearing the
 Instead of rubbing the muddy incline on the armor when the player is wearing the armor and the armor is covered:
 	say "[We] are already covered in enough mud to no longer pass as a human being [dash] [we] see no reason to add more.".
 Instead of taking the muddy incline, try rubbing the muddy incline on the player.
-Instead of lying on the default-ground when the location is the shore docks, try rubbing the muddy incline on yourself.
-Instead of lying on the muddy incline, try rubbing the muddy incline on yourself.
 Instead of rubbing the muddy incline:
 	say "(rubbing the mud onto yourself)[command clarification break]";
 	try rubbing the muddy incline on yourself.
+
+Rolling in is an action applying to one touchable thing and requiring light.
+Understand "roll in [something]" or "roll around in [something]" as rolling in.
+Understand the command "wallow" as "roll".
+Check rolling in something:
+	say "That wouldn't accomplish much." instead.
+Check rolling in the muddy incline when the player is not wearing the armor:
+	say "That would take forever to clean up!" instead.
+Instead of rolling in the muddy incline when the player is wearing the armor:
+	say "You lie down in the mud, rolling back and forth until you are confident that you are covered helmet-to-boots in a thick layer of the greyish-brown goo.";
+	now the armor is covered;
+	take three minutes;
+	rule succeeds.
+Instead of lying on the default-ground when the location is the shore docks, try rolling in the muddy incline.
+Instead of lying on the muddy incline, try rolling in the noun.
 
 Section 2 - The Plaza
 
