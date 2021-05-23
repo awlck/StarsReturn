@@ -103,7 +103,9 @@ Report smelling the fatigues:
 	say "You've been wearing the same clothes for the past few weeks, so they don't exactly smell fresh anymore."
 The pair of black leather combat boots is part of the fatigues. The description is "A pair of black leather combat boots. They have carried you across many worlds already."
 Instead of taking off the boots, say "Walking around barefoot doesn't seem particularly beneficial right now."
-Instead of taking off something that is not the armor when the armor is worn, say "You'd rather not strip naked. Also, you would need to remove the armor first."
+Instead of taking off something that is not the armor when the armor is worn:
+	if the noun is the helmet lamp, make no decision;[* which then goes on to print "that seems to be part of your armor".]
+	say "You'd rather not strip naked. Also, you would need to remove the armor first.".
 Instead of attacking the fatigues, say "Strips of fabric can come in handy in all sorts of situations, but the current is not among them."
 Instead of doing something other than examining to the fatigues when the player is wearing the armor, say "You can't do that while wearing [the armor] over top of the fatigues."
 
@@ -305,6 +307,16 @@ Report touching something that is not a person while the player is wearing the a
 
 Understand "fly" or "fly up/away" or "take flight/off" as a mistake ("While your suit has many functions, flying isn't one of them.") when the player is wearing the armor and the player is not in the messenger ship.
 
+["remove helmet" is understood as the helmet lamp, which leads to odd responses. I'm too lazy to add the helmet as a separate part of the armor, so this hackery will have to do.]
+Instead of taking off the helmet lamp when the last word in "[the player's command]" is "helmet":
+	if the location is not breathable, say "That wouldn't be a great idea in the current environment";
+	otherwise say "Your helmet is best carried on your head, not under your arm.";
+	take no time.
+
+To decide which text is the last word in (T - a text):
+	let N be the number of words in T;
+	decide on word number N in T.
+
 Section 2 - Toxicity, Vacuum, Submersion
 
 [Here we lay out what happens when the player ventures into a hostile environment without adequate protection.]
@@ -411,7 +423,6 @@ Section 1 - Synonyms and Extra Grammar
 [Adding some extra grammar, mostly based on dictionary synonyms.]
 
 [Taking, Removing it from]
-[Understand the command "grab" as "take".]
 Understand the command "pack" as "pick".
 Understand "grab [things]" as taking.
 Understand "grab [things inside] from/off [something]" as removing it from.
@@ -1283,15 +1294,12 @@ Before going down to seabottom-1 for the first time:
 The rocky cliffs are scenery in seabottom-1. "These cliffs are what the prison is built on top of."
 Understand "rocks" or "cliff" as the cliffs.
 Instead of climbing the rocky cliffs:
-	say "You climb up the cliffs[run paragraph on]";
-	if a random chance of 1 in 2 succeeds:
-		take 6 minutes;
-		say ", but lose your purchase on the slippery rock and fall back down to the bottom of the sea.[line break]Luckily, the ground is soft and the water slowed your descent, so you didn't hurt yourself." instead;
-	say ".";
+	say "You climb up the cliffs.";
 	take 8 minutes;
 	now the player is in the prison docks.
 Instead of going up from seabottom-1 for more than the first time (this is the hint at climbing rule):
-	say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided.[line break](However, if you really must return, the cliffs look like you might stand a chance at climbing them.)"
+	say "While your armor's power assist usually keeps you from noticing its 50-or-so kilograms of heft, getting to the surface of the ocean would require a propeller of sorts, which is not provided.[line break](However, if you really must return, the cliffs look like you might stand a chance at climbing them.)".
+Instead of going south from seabottom-1, try climbing the rocky cliffs.
 
 seabottom-2 is a sea-room. It is north of seabottom-1.
 
@@ -1647,7 +1655,7 @@ Understand "counter" or "recession" or "recessions" as the counters.
 
 Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
-A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin' couch[roman type]! How the hell did they get a couch out here?![if the couch is not clean][line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.[end if]".
+A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin['] couch[roman type]! How the hell did they get a couch out here?![if the couch is not clean][line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.[end if]".
 Understand "sofa" as the couch.
 The couch has a dirtiness. The couch is clean.
 After entering the couch:
@@ -1789,7 +1797,7 @@ Carry out switching on the launch doors switch:
 	take 30 seconds.
 After switching on the launch doors switch:
 	say "You flip the switch, and the large doors separating the hangar from the launch pad slide shut."
-Instead of closing the launch doors switch, try switching off the noun.
+Instead of closing the launch doors switch, try switching on the noun.
 
 The big red button is part of the control desk. The description is "A large red button is mounted in the center of the console. It is not labeled."
 Understand "large" as the button.
@@ -1863,7 +1871,7 @@ Carry out launching the messenger ship:
 	now the messenger ship is in the planetary orbit;
 	take 30 minutes.
 Report launching the messenger ship:
-	say "You get into the pilot's seat and take a few seconds to collect your thought. While you didn't perform [italic type]absolutely[roman type] terribly on the simulator tryouts in bootcamp, there is certainly a reason why you were placed with the space-borne infantry rather than in a dropship wing.[line break]... no time for second thoughts. It's either this, or staying on this planet until you either starve or your captors return and discover what you did. After all, you (hopefully) won't need to fly any combat maneuvers, just take off and make orbit. You push your doubts aside and follow the pointers provided by you armor's computer system.[paragraph break]Half an hour later, you have safely left the atmosphere and have settled into a stable low orbit.";
+	say "You get into the pilot's seat and take a few seconds to collect your thoughts. While you didn't perform [italic type]absolutely[roman type] terribly on the simulator tryouts in bootcamp, there is certainly a reason why you were placed with the space-borne infantry rather than in a dropship wing.[line break]... no time for second thoughts. It's either this, or staying on this planet until you either starve or your captors return and discover what you did. After all, you (hopefully) won't need to fly any combat maneuvers, just take off and make orbit. You push your doubts aside and follow the pointers provided by you armor's computer system.[paragraph break]Half an hour later, you have safely left the atmosphere and have settled into a stable low orbit.";
 	try looking.
 
 Nounless-launching is an action applying to nothing.
