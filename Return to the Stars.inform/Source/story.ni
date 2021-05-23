@@ -1632,15 +1632,24 @@ Report vomiting:
 
 The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.".
 The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
-Understand "vomitus" or "eject" or "former/-- contents of/-- your/my stomach/belly" as the vomit.
+Understand "vomitus" or "eject" or "former/-- contents of/-- your/my/-- stomach/belly" as the vomit.
 Instead of taking the vomit, say "How, by scooping it up in your hands? You'd rather not."
 
+The mouth is part of the larger alien's corpse.
+Understand "large/larger/-- alien/alien's/-- mouth" as the mouth.
 Sticking an arm in is an action applying to one touchable thing.
 Understand "stick a/an/my/your/-- arm/hand [stick-in] [something]" as sticking an arm in.
 Understand "in/down/into" or "down into" as "[stick-in]".
-Check sticking an arm in a corpse:
+Check sticking an arm in a closed corpse:
 	[According to Wikipedia, even in whales the esophagus is at most 10-25cm in diameter, so for a slightly-larger-than-human-sized creature, I guess it wouldn't make sense for a hand/wrist/arm to fit.]
-	say "Despite the size of the creature's mouth, its throat is not large enough for your hand and arm to fit down." instead.
+	if gore is allowed:
+		say "Despite the size of the creature's mouth, its throat is not large enough for your hand and arm to fit down." instead;
+	otherwise:
+		if the player does not have the data crypt and the noun is the larger alien's corpse, try removing the data crypt from the noun instead;
+		otherwise say "You feel around inside the creature's mouth, but find nothing." instead.
+Check sticking an arm in the mouth: try sticking an arm in the component parts core of the noun instead.
+Check sticking an arm in an open corpse:
+	say "You already have what you needed." instead.
 Check sticking an arm in something:
 	say "[The noun] [are] not something you can stick an arm into." instead.
 Instead of sticking an arm in the muddy incline:
@@ -1938,7 +1947,7 @@ Instead of entering the transit node, try home-going.
 Instead of doing something other than entering or examining to the transit node, say "The node isn't a tangible thing [dash] just an area where local space-time is weak."
 
 Home-going is an action applying to nothing.
-Understand "go [home-desc]" or "return [home-desc]" or "travel [home-desc]" as home-going.
+Understand "go [home-desc]" or "return [home-desc]" or "travel [home-desc]" or "fly [home-desc]" as home-going.
 Understand "home" or "to/-- earth" as "[home-desc]".
 Understand "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "stick to the/-- panel" or "put the/-- control/-- stick to the/-- panel" or "punch it" or "transition [home-desc]" or "transition away" or "transition out of here" or "leave this/-- system" as home-going when the location is the orbit.
 
