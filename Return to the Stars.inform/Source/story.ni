@@ -1028,7 +1028,7 @@ A room-wall is a kind of room-part. Understand "wall" as a room-wall.
 A north-wall is a kind of room-wall. Understand "north/northern wall/--" as a north-wall. The default-north-wall is a north-wall. The printed name is "northern wall".
 A south-wall is a kind of room-wall. Understand "south/southern wall/--" as a south-wall. The default-south-wall is a south-wall. The printed name is "southern wall".
 A west-wall is a kind of room-wall. Understand "west/western wall/--" as a west-wall. The default-west-wall is a west-wall. The printed name is "western wall".
-An east-wall is a kind of room-wall. Understand "east/eastern wall/--" as a west-wall. The default-east-wall is an east-wall. The printed name is "eastern wall."
+An east-wall is a kind of room-wall. Understand "east/eastern wall/--" as an east-wall. The default-east-wall is an east-wall. The printed name is "eastern wall".
 
 [If we just wrote "A room has a room-top.", the property name would be equal to the kind name, confusing the compiler if we tried to create more instances of the kind later on.]
 A room has an object called the room-top-prop. The room-top-prop of a room is usually the default-ceiling.
