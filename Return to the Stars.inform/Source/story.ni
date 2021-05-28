@@ -1518,6 +1518,8 @@ Instead of taking the muddy incline, try rubbing the muddy incline on the player
 Instead of rubbing the muddy incline:
 	say "(rubbing the mud onto yourself)[command clarification break]";
 	try rubbing the muddy incline on yourself.
+Instead of putting the muddy incline on something, try rubbing the noun on the second noun instead.
+Before wearing the muddy incline, try rubbing the noun on yourself instead.
 
 Rolling in is an action applying to one touchable thing and requiring light.
 Understand "roll in [something]" or "roll around in [something]" as rolling in.
@@ -1533,6 +1535,7 @@ Instead of rolling in the muddy incline when the player is wearing the armor:
 	rule succeeds.
 Instead of lying on the default-ground when the location is the shore docks, try rolling in the muddy incline.
 Instead of lying on the muddy incline, try rolling in the noun.
+Instead of crawling into the muddy incline, try rolling in the noun.
 
 Section 2 - The Plaza
 
@@ -1564,7 +1567,7 @@ After choosing notable locale objects (this is the military plaza locale objects
 		set the locale priority of the command center door's card reader to 0;]
 	continue the activity.
 
-Check going [from the military complex plaza to the hangar] through the enabled force field:
+Check going through the enabled force field:
 	if the player is not wearing the armor, say "The force field does not let you pass." instead;
 	if the armor is clean:
 		say "The force field does not let you pass." instead;
@@ -1868,7 +1871,7 @@ Understand "piece" or "of" or "glass" or "mirror" as the shard.
 
 Some showers are scenery in the washroom.
 The description is "[if we have examined the toilets or we have examined the sinks]Much like the rest of the room, the[otherwise]The[end if] showers aren't much to look at: non-adjustable shower heads emerging from the ceiling, simple mechanical controls mounted on the walls, and all the water ultimately goes down the grated drains built into the tiled floor."
-Understand "shower" or "showerhead" or "showerheads" or "showers" or "control" or "controls" as the showers.
+Understand "shower" or "showerhead" or "showerheads" or "showers" or "control" or "controls" or "water" as the showers.
 
 To slide is a verb. To collect is a verb.
 Instead of switching on the showers:
@@ -2016,7 +2019,7 @@ Carry out starting the messenger ship:
 	now the messenger ship is started;
 	take three minutes.
 Report starting the messenger ship:
-	say "You press the button that your suit indicates as being the main switch for the ship [dash] luckily, earth scientists were able to get their hands on a similar model of Shwabolian ship, so your suit is able to guide you through most of the pre-flight checks.[paragraph break]One by one, the systems of the messenger ship come alive around you. The ship is now ready for launch."
+	say "Luckily, earth scientists were able to get their hands on a similar model of Shwabolian ship, so your suit is able to guide you through most of the pre-flight checks.[paragraph break]You press the button that your suit indicates as being the main switch for the ship. One by one, the messenger ship's systems come alive around you. The ship is now ready for launch.".
 Instead of switching on the messenger ship, try starting the messenger ship.
 
 Launching is an action applying to one visible thing.
