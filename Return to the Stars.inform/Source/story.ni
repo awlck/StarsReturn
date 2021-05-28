@@ -954,7 +954,7 @@ Section 2 - Enemies
 
 A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humanoid yet lizard-looking creature, walking on two legs."
 A corpse is a kind of wreckage. A corpse is usually pushable between rooms.
-Instead of taking a corpse, say "You'd rather not carry a dead body around with you."
+The cannotTakeMsg of a corpse is "You'd rather not carry a dead body around with you."
 Understand "alien" as a corpse.
 A corpse is part of every person.
 Every shwabolian carries a gun and two ammo clips.
@@ -1084,6 +1084,18 @@ Check lying on a container: try entering the noun instead.
 Check lying on:
 	say "Now is not the time for rest. Besides, [we]['ve] done nothing but sleep for the past few weeks, so [we]['re] not particularly tired."
 
+Chapter 11 - Rule-less refusals
+
+[To cut down on the slew of "instead" rules, allow things to have a 'cannotTakeMsg' that is displayed when trying to take scenery or something that is fixed in place -- again, this is lifted from the TADS library.][* Some might argue that I should have written the game in TADS instead, since I'm "borrowing" so many concepts from over there, and I am inclined to agree -- but by the time I realizeed that, in early May, I was already mired up to my neck in Inform code, and didn't dare attempt a port.]
+
+A thing has some text called the cannotTakeMsg.
+The cannotTakeMsg of a thing is usually "[regarding the noun][They're] [if scenery]hardly portable[otherwise]fixed in place[end if]."
+
+Check an actor taking (this is the can't take with message rule):
+	if the noun is scenery or the noun is fixed in place, say the cannotTakeMsg of the noun instead.
+The can't take with message rule is listed instead of the can't take what's fixed in place rule in the check taking rulebook.
+The can't take scenery rule is not listed in the check taking rulebook.
+
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
@@ -1123,7 +1135,9 @@ Instead of opening the unlocked metal door when the location is your cell:
 Instead of attacking the metal door:
 	say "That was among the first things you tried when you got here. You've given up trying by now.".
 
-The cot is a fixed in place enterable supporter in your cell. "A cot stands in one corner of the room." The description is "Flimsy frame, uncomfortable plastic surface [dash] it's a cot alright."
+The cot is a fixed in place enterable supporter in your cell. "A cot stands in one corner of the room."
+The description is "Flimsy frame, uncomfortable plastic surface [dash] it's a cot alright."
+The cannotTakeMsg is "It is bolted to the floor."
 Understand "bed" or "cot" or "bunk" or "rack" or "sack" as the cot.
 
 Some bedsheets are on the cot. "On the cot are some neatly folded bedsheets."
@@ -1164,7 +1178,7 @@ Instead of attacking the cot:
 		rule succeeds.
 The mangled cot frame is a thing. The description is "The mangled remains of the cot."
 Understand "bent" or "destroyed" or "bed" or "bunk" or "rack" or "remains" or "remnants" or "pieces" as the mangled cot frame.
-Instead of taking the mangled cot frame, say "No point lugging [those] around."
+The cannotTakeMsg of the mangled cot frame is "No point lugging that around."
 
 Instead of attacking the bedsheets:
 	say "[if the rage is ongoing]You[otherwise]In a sudden fit of rage, you[end if] take the thin bedsheets and rip them to shreds.";
@@ -1261,7 +1275,7 @@ The storage space is east of the front office. "This small storage closet seems 
 Some shelves are a scenery supporter in the storage space.
 Understand "bare" or "metal" or "bare-metal" or "shelf" or "rack" as the shelves. Understand "shelves" or "racks" as the plural of shelves.
 Some plates are on the shelves. "Pieces of armor plating lie on the shelves." The description is "[We] are fairly sure that these are the pieces of [our] battle armor. They seem to be intact, but an integral part [dash] the helmet [dash] is [if the player has the helmet]not among them[otherwise]nowhere to be seen[end if]." The printed name is "armor plates". Understand "armor/armour/armored/armoured/-- plates/plating" or "armor" or "armour" as the plates. They are fixed in place.
-Instead of taking the plates, say "They're too bulky, and the plates alone won't do you much good."
+The cannotTakeMsg of the plates is "They're too bulky, and the plates alone won't do you much good."
 Instead of wearing the plates, say "The plates alone won't do you much good."
 
 Instead of putting the helmet on the shelves:
@@ -1392,7 +1406,7 @@ The sea is a backdrop in the sea-region. The description is "There are about ten
 Instead of examining up when the location is in the sea-region, try examining the sea.
 
 The ocean floor is a backdrop in the sea-region. The description is "Silt has accumulated in the calmer waters between the shore and the prison island, enough to seriously hamper your movement down here." Understand "sea/ocean/-- bottom/ground/floor/silt" as the ocean floor.
-Instead of taking the ocean floor, say "You scoop up a handful of silt, but it quickly runs through your fingers."
+The cannotTakeMsg of the ocean floor is "You scoop up a handful of silt, but it quickly runs through your fingers."
 
 Instead of standing on the ocean floor, say "But [we] [are] already standing firmly on (or rather, [italic type]in[roman type]) the ocean floor."
 Instead of entering the ocean floor, say "You'd feel a bit silly lying in the silt."
@@ -1572,7 +1586,7 @@ The command center lobby is north of the entry hallway. "You are standing in a s
 A chair is an enterable scenery supporter in the lobby.
 The description is "They look to be the same plastic monstrosities you had to sit on throughout your years in school."
 Understand "chairs" or "stool" or "stools" as the chair.
-Instead of taking the chair, say "The chairs are bolted to the wall." instead.
+The cannotTakeMsg of the chairs is "The chairs are bolted to the wall."
 
 Instead of listening to the command center lobby when at least two shwabolians are in the ops center:
 	say "You can hear subdued talking coming from the room to the north.";
@@ -1584,7 +1598,7 @@ Section 2 - Armory
 The armory is west of the entry hallway. "This 'armory' is really more of a glorified storage closet: [if the storage rack is in the armory]it is just large enough to hold [a storage rack] and [an ammo crate][otherwise][an ammo crate] stands on the ground, and the room would have just enough room for a small shelf (if you hadn't pulled that apart)[end if].[paragraph break]The only way out is east, back to the hallway."
 
 The ammo crate is a fixed in place container in the armory.
-Instead of taking the ammo crate, say "It's too heavy and awkward to carry around."
+The cannotTakeMsg of the ammo crate is "It's too heavy and awkward to carry around."
 Does the player mean taking the ammo crate: it is unlikely.
 
 Some some-ammo-clips is in the crate. It is privately-named. The indefinite article is "some". The printed name is "ammo clips". Understand "clip" or "clips" or "ammo" or "ammunition" or "rounds" or "magazines" as some-ammo-clips.
@@ -1602,6 +1616,7 @@ Instead of taking some-ammo-clips:
 
 A storage rack are a fixed in place supporter in the armory.
 The description is "It is a very simple design, made of plain metal struts with rather sharp edges."
+The cannotTakeMsg is "It is too large and heavy to carry around in one piece."
 Understand "bare" or "metal" or "shelf" or "rack" or "metal" or "struts" as the rack.
 A rifle is a gun on the rack. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
 Instead of attacking the rack:
@@ -1761,7 +1776,7 @@ Report vomiting:
 The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.".
 The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
 Understand "vomitus" or "eject" or "former/-- contents of/-- your/my/-- stomach/belly" as the vomit.
-Instead of taking the vomit, say "How, by scooping it up in your hands? You'd rather not."
+The cannotTakeMsg of the vomit is "How, by scooping it up in your hands? You'd rather not."
 
 The mouth is part of the larger alien's corpse.
 Understand "large/larger/-- alien/alien's/-- mouth" as the mouth.
@@ -1805,6 +1820,7 @@ Understand "counter" or "recession" or "recessions" as the counters.
 
 Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
+The cannotTakeMsg of the pillows is "You don't see a point to carrying those around with you.".
 A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin['] couch[roman type]! How the hell did they get a couch out here?![if the couch is not clean][line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.[end if]".
 Understand "sofa" as the couch.
 The couch has a dirtiness. The couch is clean.
