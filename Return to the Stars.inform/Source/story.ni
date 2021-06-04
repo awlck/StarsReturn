@@ -33,8 +33,7 @@ To say CO2:
 
 [This causes the macOS IDE's interpreter to hang just as play begins. Go figure.]
 When play begins (this is the show intro rule):
-	[say "Just when the NATO and Warsaw Pact nations had finally decided to put their differences aside for good, and the militaries of the world were busy reforming under the banner of the United Nations, the Shwabolians attacked. ".]
-	say "With his back against the proverbial wall, your commander ordered a somewhat daring raid on a Shwabolian outpost to break out of the strategic stalemate. Naturally, things didn't quite go as planned. Several members of your platoon were killed, and you were separated, captured, sedated, and taken to this prison... somewhere. Initially, you settled into a sort of routine: sleep, shower, eat, reconsider your life choices, the occasional questioning impeded by language barriers, and back to sleep again. But you haven't received food [dash] or any attention, really [dash] for the last three days.[paragraph break]If you are to leave this planet alive, you better find a way before you starve..."
+	say "With his back against the proverbial wall, your commander ordered a somewhat daring raid on a Shwabolian outpost to break out of the strategic stalemate. Naturally, things didn't quite go as planned. Several members of your platoon were killed, and you were separated, captured, sedated, and taken to this prison... somewhere.[paragraph break]Initially, you settled into a sort of routine: sleep, shower, eat, reconsider your life choices, the occasional questioning impeded by language barriers, and back to sleep again. But it has been three days since your captors last fed you [dash] or given you any attention, really. If you are to leave this planet alive, you better find a way before you starve..."
 
 After printing the banner text:
 	say "[italic type][if gore is allowed]Content Warning: descriptions of gore and violence[otherwise]Toned down mode[end if] [dash] type ABOUT for more info.[roman type][paragraph break]".
@@ -952,7 +951,7 @@ Report ammo-counting:
 
 Section 2 - Enemies
 
-A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humanoid yet lizard-looking creature, walking on two legs."
+A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod creature, like a lizard walking on two legs."
 A corpse is a kind of wreckage. A corpse is usually pushable between rooms.
 The cannotTakeMsg of a corpse is "You'd rather not carry a dead body around with you."
 Understand "alien" as a corpse.
@@ -988,6 +987,17 @@ Check shooting a corpse with a gun:
 
 Check wearing a corpse:
 	say "While you enjoy the occasional costume theme party, [the noun] isn't the kind of costume you'd be willing to wear." instead.
+
+Instead of attacking a shwabolian: [That is, "hit alien", etc.]
+	say "They have guns, so your fists are probably not the most appropriate tool.".
+
+Taunting is an action applying to one thing.
+Understand "taunt [something]" or "make a/-- rude gesture at/-- [something]" as taunting.
+Understand the command "mock" as "taunt".
+Check taunting:
+	say "You curse out [the noun], but [they] [seem] to be unfazed." instead.
+Check taunting a shwabolian:
+	say "You curse out [the noun], but in doing so you only enhance [their] rage." instead.
 
 Section 3 - Blood
 
@@ -1661,7 +1671,7 @@ The ops center is north of the lobby. "This appears to be the nerve center of th
 
 The larger alien and the smaller alien are shwabolians in the ops center.
 Understand "large" as the larger alien. Understand "small" as the smaller alien.
-The description of the larger alien's corpse is "A well and truly dead shwabolian. [if closed]Blood is pooling around him from where your bullets hit their mark[otherwise]He is looking a bit worse for wear after you extracted the data crypt from inside him[end if]."
+The description of the larger alien's corpse is "A well and truly dead shwabolian. Its lizard appendages lie splayed out in all directions. [if closed]Blood is pooling around him from where your bullets hit their mark[otherwise]He is looking a bit worse for wear after you extracted the data crypt from inside him[end if]."
 The examine containers rule does nothing when the noun is a corpse.
 
 Understand "stab [someone] with/using [something]" as a mistake ("Bringing a knife to a gunfight is rarely a good idea.").
@@ -1996,12 +2006,15 @@ Carry out looking when the player is in the messenger ship (this is the messenge
 	rule succeeds.
 The messenger ship innards rule is listed after the room description heading with activity rule in the carry out looking rules.
 
-The canopy is part of the messenger ship. The description is "A sort of glass dome covering the cockpit, allowing the pilot to look in all directions."
+The canopy is part of the messenger ship.
+The description is "A sort of glass dome covering the cockpit, allowing the pilot to look in all directions."
 Understand "glass" or "dome" as the canopy.
 Instead of looking through the canopy when the player is in the messenger ship:
 	try looking;
 	take 15 seconds in total;
 	rule succeeds.
+The alcubierre drive is part of the messenger ship.
+The description is "The faster-than-light drive system is what sets this ship apart from others in its size class."
 
 Starting is an action applying to one touchable thing.
 Understand "start up/-- [something]" or "boot up/-- [something]" or "power up/-- [something]" as starting.
