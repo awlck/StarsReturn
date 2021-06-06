@@ -3,9 +3,11 @@
    Customized into a dark theme for "Return to the Stars".
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&family=Merriweather:ital@0;1&display=swap');
+
 body {
-	font-family: Optima, Helvetica, Arial, Roboro, "Noto Sans", "Palatino Linotype",
-		Palatino, "Linux Biolinum", "Times New Roman", Times, serif;
+	/* font-family: Optima, Helvetica, Roboto, "Noto Sans", "Palatino Linotype", Palatino, "Linux Biolinum", "Linux Biolinum O", "Avenir Next", "Avenir Next LT Pro", "Lucida Sans", "Gill Sans Nova", "Segoe UI", Arial, Ubuntu, sans-serif; */
+	font-family: Merriweather, serif;
 	font-size: 100%;
 	-webkit-text-size-adjust: none;
 	color: gainsboro;
@@ -213,18 +215,23 @@ the cover image.
 }
 
 span.quote { color: steelblue; }
-span.comment { color: olivedrab; }
+span.comment {
+	color: olivedrab;
+	font-style: italic;
+}
 span.substitution {
 	color: lightsteelblue;
 	font-variant: small-caps;
 }	
 span.i6code { color: #93a1a1; font-family: monospace; }
 span.columnhead { 
-	font-style: italic; 
+	font-style: italic;
 	font-size: 1em;
 }
 span.heading {
+	font-family: "Merriweather Sans", sans-serif;
 	font-weight: bold;
+	font-size: larger;
 } 
 .source td {
 	padding-top: .7em;
