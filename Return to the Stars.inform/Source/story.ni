@@ -31,7 +31,6 @@ To say CO2:
 	if unicode is available, say "CO[unicode 8322]";
 	otherwise say "CO2".
 
-[This causes the macOS IDE's interpreter to hang just as play begins. Go figure.]
 When play begins (this is the show intro rule):
 	say "With his back against the proverbial wall, your commander ordered a somewhat daring raid on a Shwabolian outpost to break out of the strategic stalemate. Naturally, things didn't quite go as planned. Several members of your platoon were killed, and you were separated, captured, sedated, and taken to this prison... somewhere.[paragraph break]Initially, you settled into a sort of routine: sleep, shower, eat, reconsider your life choices, the occasional questioning impeded by language barriers, and back to sleep again. But it has been three days since your captors last fed you [dash] or given you any attention, really. If you are to leave this planet alive, you better find a way before you starve..."
 
@@ -2128,37 +2127,5 @@ Instead of going when the location is the planetary orbit, say "[We] don't reall
 
 Book 4 - Debug Commands - Not for Release
 
-First after printing the banner text (this is the prerelease notice rule):
-	say "[italic type]Beta build #4 for playtesters only [dash] do not distribute![roman type][line break]".
-
-Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
-Carry out air-draining:
-	now the air of the armor is 300;
-	say "[bracket]Drained.[close bracket][paragraph break]".
-
-After reading a command (this is the ignore beta-comments rule):
-	if the player's command matches the regular expression "^\p":
-		say "(Noted.)";
-		reject the player's command.
-
-[From Example 388]
-Waiting more is an action applying to one number.
-
-Understand "wait [a time period]" or "wait for [a time period]" or "wait for a/an [a time period]" or "wait a/an [a time period]" as waiting more.
-
-Carry out waiting more:
-	let the target time be the time of day plus the time understood;
-	decrease the target time by one minute;
-	while the time of day is not the target time:
-		take 60 seconds in total;
-		follow the turn sequence rules.
-
-[The one nuance here is that after our wait command occurs, the turn sequence rules will occur one more time. So we need to subtract one minute from the parsed time to make the turn end on the desired number of minutes.]
-
-Report waiting more:
-	say "It is now [time of day + 1 minute]."
-
-[And if we want to ensure that the player doesn't (accidentally or intentionally) put the interpreter through a really long loop, we could put an upper limit on his patience:]
-
-Check waiting more:
-	if the time understood is greater than one hour, say "You really haven't got that kind of patience." instead.
+[The macOS IDE hangs whenever you click "Go", unless we unlist all rules that attempt to print something before the banner text. Go figure.]
+The show intro rule is not listed in any rulebook.
