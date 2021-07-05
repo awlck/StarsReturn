@@ -464,7 +464,7 @@ An air supply rule for a room that is not breathable when the player is not wear
 	decrease the air of the player by the work duration.
 
 An air supply rule for a breathable room (this is the air replenishment rule):
-	now the air of the player is five;
+	now the air of the player is 360;
 	if the player is wearing the armor:
 		if the air of the armor is less than 6000, increase the air of the armor by five times the work duration;
 		if the air of the armor is greater than 6000, now the air of the armor is 6000.
