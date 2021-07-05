@@ -119,7 +119,7 @@ hint	used
 
 Table of Prison-Leaving Hints
 hint	used
-"For security reasons, the airlock doesn't open from the inside."	a number
+"For security reasons, the airlock leading out of the building doesn't open from the inside."	a number
 "Perhaps you can disable the locks altogether."
 "Investigate the switches in the installations room."
 "If only you could read them."
