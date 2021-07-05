@@ -1608,7 +1608,7 @@ Instead of listening to the command center lobby when at least two shwabolians a
 
 Section 2 - Armory
 
-The armory is west of the entry hallway. "This 'armory' is really more of a glorified storage closet: [if the storage rack is in the armory]it is just large enough to hold [a storage rack] and [an ammo crate][otherwise][an ammo crate] stands on the ground, and the room would have just enough room for a small shelf (if you hadn't pulled that apart)[end if].[paragraph break]The only way out is east, back to the hallway."
+The armory is west of the entry hallway. "This 'armory' is really more of a glorified storage closet: [if the storage rack is in the armory]it is just large enough to hold a rather flimsy [storage rack] and [an ammo crate][otherwise][an ammo crate] stands on the ground, and the room would have just enough room for a small shelf (if you hadn't pulled that apart)[end if].[paragraph break]The only way out is east, back to the hallway."
 
 The ammo crate is a fixed in place container in the armory.
 The cannotTakeMsg of the ammo crate is "It's too heavy and awkward to carry around."
@@ -1628,7 +1628,7 @@ Instead of taking some-ammo-clips:
 			silently try taking c.
 
 A storage rack are a fixed in place supporter in the armory.
-The description is "It is a very simple design, made of plain metal struts with rather sharp edges."
+The description is "It is a very simple design, made of plain metal struts with rather sharp edges. It looks like you could easily break it if you were so inclined."
 The cannotTakeMsg is "It is too large and heavy to carry around in one piece."
 Understand "bare" or "metal" or "shelf" or "rack" or "metal" or "struts" as the rack.
 A rifle is a gun on the rack. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
@@ -1639,6 +1639,7 @@ Instead of attacking the rack:
 	now rack-gone is in the armory;
 	now the makeshift knife is in the armory;
 	silently try taking the makeshift knife;
+	take 90 seconds in total;
 	rule succeeds.
 Understand "make [knifedesc] [makefrom] [the storage rack]" as attacking.
 Understand "build [knifedesc] [makefrom] [the storage rack]" as attacking.
