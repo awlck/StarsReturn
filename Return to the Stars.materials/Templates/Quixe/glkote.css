@@ -72,7 +72,7 @@
 }
 
 .GridWindow {
-  background: #D0D0C0;
+  background: lightgray;
   overflow: hidden;
   font-family: monaco, andale mono, lucidatypewriter, courier, courier new, monospace; /* necessary! */
   font-size: 14px;
@@ -81,6 +81,7 @@
 
 .GridLine {
   white-space: pre; /* required for spaces to work right */
+  color: darkslategray;
 }
 
 .InvisibleCursor {
@@ -114,6 +115,7 @@
   color: #FFFFCC;
   opacity: 0.5;
   padding: 2px 6px;
+  border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
 }
@@ -139,6 +141,7 @@
   outline-style: none;
   background: none;
   font-weight: bold;
+  color: gainsboro;
 }
 
 .BufferWindow .Input {
@@ -223,7 +226,7 @@
 
 .Style_input {
   font-weight: bold;
-  color: #300000;
+  color: gainsboro;
 }
 
 .Style_user1 {
