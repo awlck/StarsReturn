@@ -951,7 +951,7 @@ Report ammo-counting:
 
 Section 2 - Enemies
 
-A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod creature, like a lizard walking on two legs."
+A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green not-quite-humaniod creature, like a lizard walking on two legs."
 A corpse is a kind of wreckage. A corpse is usually pushable between rooms.
 The cannotTakeMsg of a corpse is "You'd rather not carry a dead body around with you."
 Understand "alien" as a corpse.
@@ -1250,7 +1250,7 @@ To say control-panel-desc:
 	otherwise:
 		say "The screen is blank".
 
-The prison warden's ID card is a thing. The description is "A purple-colored card with shwabolian writing on it.[if the player is wearing the armor] Your suit translates it as 'Shevok Kemalik, Warden'.[end if]". Understand "warden" or "guard" or "access" or "purple" as the ID card.
+The prison warden's ID card is a thing. The description is "A purple-colored card with Shwabolian writing on it.[if the player is wearing the armor] Your suit translates it as 'Shevok Kemalik, Warden'.[end if]". Understand "warden" or "guard" or "access" or "purple" as the ID card.
 Instead of looking under the control panel, try searching the noun.
 Instead of searching the control panel:
 	now the player is carrying the ID card;
@@ -1631,7 +1631,7 @@ A storage rack are a fixed in place supporter in the armory.
 The description is "It is a very simple design, made of plain metal struts with rather sharp edges. It looks like you could easily break it if you were so inclined."
 The cannotTakeMsg is "It is too large and heavy to carry around in one piece."
 Understand "bare" or "metal" or "shelf" or "rack" or "metal" or "struts" as the rack.
-A rifle is a gun on the rack. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
+A rifle is a gun on the rack. The description is "A rifle of Shwabolian design as you've seen on the battlefield often enough."
 Instead of attacking the rack:
 	say "You pull apart the frame of the shelf, giving you a piece of metal with a rather sharp edge.";
 	now all things that are on the rack are in the location;
@@ -1668,7 +1668,7 @@ The description is "A lectern stands in front of the screen, waiting for someone
 
 Section 4 - Nerve Center
 
-The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
+The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive.[paragraph break]The only way out is south, back into the lobby."
 
 The larger alien and the smaller alien are shwabolians in the ops center.
 Understand "large" as the larger alien. Understand "small" as the smaller alien.
@@ -1700,7 +1700,7 @@ Instead of cutting the closed larger alien's corpse with the makeshift knife:
 	if the armor is not bloody, now the armor is muddy-and-bloody;
 	if gore is allowed:
 		[heavens, what is wrong with me...]
-		say "You double-check inside the creature's mouth, but no dice. With a sigh, you kneel down in the puddle of blood now surrounding the body. You carefully postion [the second noun], plunging it deep into the dead creature's abdominal area; guts, blood, and other bodily fluids spilling out and onto your armored legs as you cut.[line break]With the incision complete, you take a second to steel yourself before reaching into the abdominal cavity. After a minute or so of fishing around in the bloody soup, you find the object of your desire: a small data crypt, which the creature swallowed when you came into the room. It appears to be undamaged.[paragraph break]You feel like throwing up.";
+		say "You double-check inside the creature's mouth, but no dice. With a sigh, you kneel down in the puddle of blood now surrounding the body. You carefully position [the second noun], plunging it deep into the dead creature's abdominal area; guts, blood, and other bodily fluids spilling out and onto your armored legs as you cut.[line break]With the incision complete, you take a second to steel yourself before reaching into the abdominal cavity. After a minute or so of fishing around in the bloody soup, you find the object of your desire: a small data crypt, which the creature swallowed when you came into the room. It appears to be undamaged.[paragraph break]You feel like throwing up.";
 	otherwise:
 		say "In a process that defies any description, you retrieve the object of your desire: a small data crypt which the creature swallowed when you came into the room. It appears to be undamaged.";
 	now the player has the data crypt;
