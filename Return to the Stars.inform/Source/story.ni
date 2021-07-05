@@ -1366,7 +1366,8 @@ Carry out switching on the doors switch:
 	now all doors in cell-complex are locked.
 
 Report switching off the ventilation switch:
-	say "The ventilation machinery falls silent, and the wind in the room subsides."
+	say "As you turn the switch, the ventilation machinery falls silent, and the wind in the room subsides.";
+	rule succeeds.
 Rule for printing the description of a dark room when the location is the installations room:
 	say "It is pitch dark, save for a small light next to the lights switch beckoning you to turn the lights back on."
 
