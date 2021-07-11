@@ -1999,6 +1999,10 @@ The ship can be started. The ship is not started.
 
 The notch is a scenery container in the messenger ship. The description is "The panels surrounding you are festooned with buttons and switches. You hope that most of them aren't too important.[line break][if the data crypt is not in the notch]A notch is in one of the control panels, ready to accept something[otherwise]The data crypts rests in its place in the control panel[end if]."
 Understand "recess" or "control" or "panel" or "panels" or "button" or "buttons" or "screen" or "screens" or "aussparung" [;-)] as the notch.
+Check inserting something which is not the data crypt into the notch:
+	say "[The noun] doesn't seem to fit." instead.
+Instead of inserting a corpse into the notch:
+	say "You haphazardly slap the dead alien onto the control panel and across the notch. The ship does not seem to be impressed. The corpse slides back onto the ground."
 
 After entering the messenger ship, try looking.
 
