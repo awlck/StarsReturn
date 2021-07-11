@@ -2029,6 +2029,8 @@ Check starting the started messenger ship:
 	say "The ship is already prepared for take-off." instead.
 Check starting the messenger ship when the messenger ship is not started and the data crypt is not in the notch:
 	say "The ship doesn't seem to want to power up." instead.
+Check starting the messenger ship when the messenger ship is not started and the player is not in the messenger ship:
+	say "You can only do that from inside the ship." instead.
 Carry out starting the messenger ship:
 	now the messenger ship is started;
 	take three minutes.
