@@ -1998,7 +1998,7 @@ The description is "The messenger ship has a sleek silver shape. It looks like a
 After printing the name of the messenger ship, omit contents in listing.
 The ship can be started. The ship is not started.
 
-The notch is a scenery container in the messenger ship. The description is "The panels surrounding you are festooned with buttons and switches. You hope that most of them aren't too important.[line break][if the data crypt is not in the notch]A notch is in one of the control panels, ready to accept something[otherwise]The data crypts rests in its place in the control panel[end if]."
+The notch is a scenery container in the messenger ship. The description is "The panels surrounding you are festooned with buttons and switches. You hope that most of them aren't too important.[line break][if the data crypt is not in the notch]A notch is in one of the control panels, ready to accept something[otherwise]The data crypt rests in its place in the control panel[end if]."
 Understand "recess" or "control" or "panel" or "panels" or "button" or "buttons" or "screen" or "screens" or "aussparung" [;-)] as the notch.
 Check inserting something which is not the data crypt into the notch:
 	say "[The noun] doesn't seem to fit." instead.
@@ -2033,7 +2033,7 @@ Check starting something that is not the messenger ship:
 Check starting the started messenger ship:
 	say "The ship is already prepared for take-off." instead.
 Check starting the messenger ship when the messenger ship is not started and the data crypt is not in the notch:
-	say "The ship doesn't seem to want to power up." instead.
+	say "The ship doesn't seem to want to power up. Perhaps you need some sort of key for the ship to accept your commands." instead.
 Check starting the messenger ship when the messenger ship is not started and the player is not in the messenger ship:
 	say "You can only do that from inside the ship." instead.
 Carry out starting the messenger ship:
