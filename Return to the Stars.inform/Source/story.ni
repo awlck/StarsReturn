@@ -754,8 +754,9 @@ To crawl is a verb.
 Does the player mean crawling into an air duct: it is likely.
 
 Rule for supplying a missing noun while crawling into:
-	if the holder of the player is an air duct, now the noun is the holder of the player;
-	say "(through the air duct)[command clarification break]".
+	if the holder of the player is an air duct:
+		now the noun is the holder of the player;
+		say "(through the air duct)[command clarification break]".
 
 Check an actor crawling into a closed air duct (called the conduit) when the actor is not in the conduit (this is the can't crawl through grates rule):
 	instead say "The grate is in the way."
@@ -1126,7 +1127,7 @@ Your cell is a room. "This is the room you have spent most of your time in, ever
 
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
-	instead say "It's too far up to throw a good punch at the grate[one of][or]You may need to go in a different direction, so to speak[or]Perhaps if you tugged on it instead[stopping]."
+	instead say "It's too far up to throw a good punch at the grate[one of][or]. You may need to go in a different direction, so to speak[or]. Perhaps if you tugged on it instead[stopping]."
 The description of the cell air duct's grate is "[if the cell air duct's grate is part of something]A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you wanted to (although the presence of the camera has so far kept you from attempting anything)[otherwise]The grate lies discarded on the ground[end if]."
 
 The metal door is north of your cell and south of the corridor. It is an openable closed lockable locked door.
