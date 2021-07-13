@@ -2108,7 +2108,10 @@ Check deorbiting the messenger ship when the player is not in the messenger ship
 Check deorbiting the messenger ship when the location is not the planetary orbit:
 	say "[We] [are] already on the planet." instead.
 Carry out deorbiting the messenger ship:
+	now the messenger ship is in the landing strip;
 	take 30 minutes.
+Report deorbiting the messenger ship:
+	say "Slowly but surely, you descend back into the atmosphere and touch down at the facility."
 
 Nounless-deorbiting is an action applying to nothing.
 Understand "deorbit" or "break orbit" or "touchdown" or "touch down" or "make planetfall" or "enter the/-- atmosphere" or "re-enter the/-- atmosphere" or "reenter the/-- atmosphere" or "return to the/-- [surface-desc]" as nounless-deorbiting.
@@ -2116,7 +2119,7 @@ Understand "surface/planet/island" or "landing/-- runway/pad/strip" or "military
 Check nounless-deorbiting when the location is not planetary orbit:
 	say "[We] [are] not in orbit." instead.
 Check nounless-deorbiting when the messenger ship is in the location:
-	try launching the messenger ship instead.
+	try deorbiting the messenger ship instead.
 Instead of going down when the location is the planetary orbit, try nounless-deorbiting.
 
 Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat theory, but the real world doesn't work like that.") when the player is in the ship.
