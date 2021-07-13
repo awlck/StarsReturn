@@ -3,6 +3,9 @@
 The story genre is "Science Fiction". The story headline is "An Interactive Escape".
 The story description is "After having been taken captive in battle, you soon settled into a routine: sleep, eat, shower, reconsider your life choices, repeat. Until, one day, there is no more food. Or guards, for that matter. It seems to be up to you to find a way out of your prison and back home...".
 
+The release number is 2.
+The story creation year is 2021.
+
 Release along with cover art ("A starship leaving a planet"), a "StarryVoid" website, a "Quixe" interpreter, and the source text.
 
 Book 1 - Preamble
@@ -31,7 +34,6 @@ To say CO2:
 	if unicode is available, say "CO[unicode 8322]";
 	otherwise say "CO2".
 
-[This causes the macOS IDE's interpreter to hang just as play begins. Go figure.]
 When play begins (this is the show intro rule):
 	say "With his back against the proverbial wall, your commander ordered a somewhat daring raid on a Shwabolian outpost to break out of the strategic stalemate. Naturally, things didn't quite go as planned. Several members of your platoon were killed, and you were separated, captured, sedated, and taken to this prison... somewhere.[paragraph break]Initially, you settled into a sort of routine: sleep, shower, eat, reconsider your life choices, the occasional questioning impeded by language barriers, and back to sleep again. But it has been three days since your captors last fed you [dash] or given you any attention, really. If you are to leave this planet alive, you better find a way before you starve..."
 
@@ -119,7 +121,7 @@ hint	used
 
 Table of Prison-Leaving Hints
 hint	used
-"For security reasons, the airlock doesn't open from the inside."	a number
+"For security reasons, the airlock leading out of the building doesn't open from the inside."	a number
 "Perhaps you can disable the locks altogether."
 "Investigate the switches in the installations room."
 "If only you could read them."
@@ -464,7 +466,7 @@ An air supply rule for a room that is not breathable when the player is not wear
 	decrease the air of the player by the work duration.
 
 An air supply rule for a breathable room (this is the air replenishment rule):
-	now the air of the player is five;
+	now the air of the player is 360;
 	if the player is wearing the armor:
 		if the air of the armor is less than 6000, increase the air of the armor by five times the work duration;
 		if the air of the armor is greater than 6000, now the air of the armor is 6000.
@@ -603,6 +605,9 @@ Understand the command "activate" or "engage" as "enable".
 [Switching off]
 Understand "disable [something]" as switching off.
 Understand the command "deactivate" or "disengage" as "disable".
+
+[Turning]
+Understand the command "flip" as "turn".
 
 [Pulling]
 Understand the command "tug" as "pull".
@@ -755,8 +760,9 @@ To crawl is a verb.
 Does the player mean crawling into an air duct: it is likely.
 
 Rule for supplying a missing noun while crawling into:
-	if the holder of the player is an air duct, now the noun is the holder of the player;
-	say "(through the air duct)[command clarification break]".
+	if the holder of the player is an air duct:
+		now the noun is the holder of the player;
+		say "(through the air duct)[command clarification break]".
 
 Check an actor crawling into a closed air duct (called the conduit) when the actor is not in the conduit (this is the can't crawl through grates rule):
 	instead say "The grate is in the way."
@@ -951,8 +957,8 @@ Report ammo-counting:
 
 Section 2 - Enemies
 
-A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green humaniod creature, like a lizard walking on two legs."
-A corpse is a kind of wreckage. A corpse is usually pushable between rooms.
+A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green not-quite-humanoid creature, like a lizard walking on two legs."
+A corpse is a kind of wreckage. A corpse is usually fixed in place. A corpse is usually pushable between rooms.
 The cannotTakeMsg of a corpse is "You'd rather not carry a dead body around with you."
 Understand "alien" as a corpse.
 A corpse is part of every person.
@@ -1106,6 +1112,21 @@ Check an actor taking (this is the can't take with message rule):
 The can't take with message rule is listed instead of the can't take what's fixed in place rule in the check taking rulebook.
 The can't take scenery rule is not listed in the check taking rulebook.
 
+Chapter 12 - Clearing Pronouns
+
+[This is intended for use with multi-examining, which will not set 'they'/'them' to the group of objects that was just examined (which is impossible), instead leaving it to be some plural-named thing that happens to be in the location.]
+
+Include
+(-
+[ UnsetAllPronouns i;
+    for (i = 1: i <= (LanguagePronouns-->0) / 3: i++)
+	    LanguagePronouns-->(3*i) = NULL;
+];
+-)
+
+To clear all pronouns:
+    (- UnsetAllPronouns(); -).
+
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
@@ -1127,7 +1148,7 @@ Your cell is a room. "This is the room you have spent most of your time in, ever
 
 An air duct called cell air duct is in your cell.
 Check attacking the cell air duct's grate when the noun is part of something:
-	instead say "It's too far up to throw a good punch at the grate[one of][or]You may need to go in a different direction, so to speak[or]Perhaps if you tugged on it instead[stopping]."
+	instead say "It's too far up to throw a good punch at the grate[one of][or]. You may need to go in a different direction, so to speak[or]. Perhaps if you tugged on it instead[stopping]."
 The description of the cell air duct's grate is "[if the cell air duct's grate is part of something]A rather flimsy, rusty grate covering the air duct. It looks like you could break it if you wanted to (although the presence of the camera has so far kept you from attempting anything)[otherwise]The grate lies discarded on the ground[end if]."
 
 The metal door is north of your cell and south of the corridor. It is an openable closed lockable locked door.
@@ -1250,7 +1271,7 @@ To say control-panel-desc:
 	otherwise:
 		say "The screen is blank".
 
-The prison warden's ID card is a thing. The description is "A purple-colored card with shwabolian writing on it.[if the player is wearing the armor] Your suit translates it as 'Shevok Kemalik, Warden'.[end if]". Understand "warden" or "guard" or "access" or "purple" as the ID card.
+The prison warden's ID card is a thing. The description is "A purple-colored card with Shwabolian writing on it.[if the player is wearing the armor] Your suit translates it as 'Shevok Kemalik, Warden'.[end if]". Understand "warden" or "guard" or "access" or "purple" as the ID card.
 Instead of looking under the control panel, try searching the noun.
 Instead of searching the control panel:
 	now the player is carrying the ID card;
@@ -1306,6 +1327,9 @@ The description of a ration bar is "You recognize the design of the wrapper: bar
 Instead of tasting a ration bar:
 	say "As most ration bars tend to do, it tastes mostly like sugar, with some indeterminable artificial fruit mixed in.";
 	rule succeeds.
+After multiexamining a ration bar:
+	clear all pronouns;
+	continue the action.
 
 On the shelves are five ration bars.
 
@@ -1367,7 +1391,8 @@ Carry out switching on the doors switch:
 	now all doors in cell-complex are locked.
 
 Report switching off the ventilation switch:
-	say "The ventilation machinery falls silent, and the wind in the room subsides."
+	say "As you turn the switch, the ventilation machinery falls silent, and the wind in the room subsides.";
+	rule succeeds.
 Rule for printing the description of a dark room when the location is the installations room:
 	say "It is pitch dark, save for a small light next to the lights switch beckoning you to turn the lights back on."
 
@@ -1608,7 +1633,7 @@ Instead of listening to the command center lobby when at least two shwabolians a
 
 Section 2 - Armory
 
-The armory is west of the entry hallway. "This 'armory' is really more of a glorified storage closet: [if the storage rack is in the armory]it is just large enough to hold [a storage rack] and [an ammo crate][otherwise][an ammo crate] stands on the ground, and the room would have just enough room for a small shelf (if you hadn't pulled that apart)[end if].[paragraph break]The only way out is east, back to the hallway."
+The armory is west of the entry hallway. "This 'armory' is really more of a glorified storage closet: [if the storage rack is in the armory]it is just large enough to hold a rather flimsy [storage rack] and [an ammo crate][otherwise][an ammo crate] stands on the ground, and the room would have just enough room for a small shelf (if you hadn't pulled that apart)[end if].[paragraph break]The only way out is east, back to the hallway."
 
 The ammo crate is a fixed in place container in the armory.
 The cannotTakeMsg of the ammo crate is "It's too heavy and awkward to carry around."
@@ -1628,10 +1653,10 @@ Instead of taking some-ammo-clips:
 			silently try taking c.
 
 A storage rack are a fixed in place supporter in the armory.
-The description is "It is a very simple design, made of plain metal struts with rather sharp edges."
+The description is "It is a very simple design, made of plain metal struts with rather sharp edges. It looks like you could easily break it if you were so inclined."
 The cannotTakeMsg is "It is too large and heavy to carry around in one piece."
 Understand "bare" or "metal" or "shelf" or "rack" or "metal" or "struts" as the rack.
-A rifle is a gun on the rack. The description is "A rifle of shwabolian design as you've seen on the battlefield often enough."
+A rifle is a gun on the rack. The description is "A rifle of Shwabolian design as you've seen on the battlefield often enough."
 Instead of attacking the rack:
 	say "You pull apart the frame of the shelf, giving you a piece of metal with a rather sharp edge.";
 	now all things that are on the rack are in the location;
@@ -1639,6 +1664,7 @@ Instead of attacking the rack:
 	now rack-gone is in the armory;
 	now the makeshift knife is in the armory;
 	silently try taking the makeshift knife;
+	take 90 seconds in total;
 	rule succeeds.
 Understand "make [knifedesc] [makefrom] [the storage rack]" as attacking.
 Understand "build [knifedesc] [makefrom] [the storage rack]" as attacking.
@@ -1667,7 +1693,7 @@ The description is "A lectern stands in front of the screen, waiting for someone
 
 Section 4 - Nerve Center
 
-The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive."
+The ops center is north of the lobby. "This appears to be the nerve center of the operation [dash] whatever that may be. The walls are lined with screens and control surfaces, but most of them seem to be inactive.[paragraph break]The only way out is south, back into the lobby."
 
 The larger alien and the smaller alien are shwabolians in the ops center.
 Understand "large" as the larger alien. Understand "small" as the smaller alien.
@@ -1699,7 +1725,7 @@ Instead of cutting the closed larger alien's corpse with the makeshift knife:
 	if the armor is not bloody, now the armor is muddy-and-bloody;
 	if gore is allowed:
 		[heavens, what is wrong with me...]
-		say "You double-check inside the creature's mouth, but no dice. With a sigh, you kneel down in the puddle of blood now surrounding the body. You carefully postion [the second noun], plunging it deep into the dead creature's abdominal area; guts, blood, and other bodily fluids spilling out and onto your armored legs as you cut.[line break]With the incision complete, you take a second to steel yourself before reaching into the abdominal cavity. After a minute or so of fishing around in the bloody soup, you find the object of your desire: a small data crypt, which the creature swallowed when you came into the room. It appears to be undamaged.[paragraph break]You feel like throwing up.";
+		say "You double-check inside the creature's mouth, but no dice. With a sigh, you kneel down in the puddle of blood now surrounding the body. You carefully position [the second noun], plunging it deep into the dead creature's abdominal area; guts, blood, and other bodily fluids spilling out and onto your armored legs as you cut.[line break]With the incision complete, you take a second to steel yourself before reaching into the abdominal cavity. After a minute or so of fishing around in the bloody soup, you find the object of your desire: a small data crypt, which the creature swallowed when you came into the room. It appears to be undamaged.[paragraph break]You feel like throwing up.";
 	otherwise:
 		say "In a process that defies any description, you retrieve the object of your desire: a small data crypt which the creature swallowed when you came into the room. It appears to be undamaged.";
 	now the player has the data crypt;
@@ -1834,6 +1860,9 @@ Understand "counter" or "recession" or "recessions" as the counters.
 Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
 The cannotTakeMsg of the pillows is "You don't see a point to carrying those around with you.".
+Instead of pushing the pillows:
+	say "You toss the pillows to the side, but uncover nothing of interest."
+
 A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin['] couch[roman type]! How the hell did they get a couch out here?![if the couch is not clean][line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.[end if]".
 Understand "sofa" as the couch.
 The couch has a dirtiness. The couch is clean.
@@ -1996,8 +2025,12 @@ The description is "The messenger ship has a sleek silver shape. It looks like a
 After printing the name of the messenger ship, omit contents in listing.
 The ship can be started. The ship is not started.
 
-The notch is a scenery container in the messenger ship. The description is "The panels surrounding you are festooned with buttons and switches. You hope that most of them aren't too important.[line break][if the data crypt is not in the notch]A notch is in one of the control panels, ready to accept something[otherwise]The data crypts rests in its place in the control panel[end if]."
+The notch is a scenery container in the messenger ship. The description is "The panels surrounding you are festooned with buttons and switches. You hope that most of them aren't too important.[line break][if the data crypt is not in the notch]A notch is in one of the control panels, ready to accept something[otherwise]The data crypt rests in its place in the control panel[end if]."
 Understand "recess" or "control" or "panel" or "panels" or "button" or "buttons" or "screen" or "screens" or "aussparung" [;-)] as the notch.
+Check inserting something which is not the data crypt into the notch:
+	say "[The noun] doesn't seem to fit." instead.
+Instead of inserting a corpse into the notch:
+	say "You haphazardly slap the dead alien onto the control panel and across the notch. The ship does not seem to be impressed. The corpse slides back onto the ground."
 
 After entering the messenger ship, try looking.
 
@@ -2027,7 +2060,9 @@ Check starting something that is not the messenger ship:
 Check starting the started messenger ship:
 	say "The ship is already prepared for take-off." instead.
 Check starting the messenger ship when the messenger ship is not started and the data crypt is not in the notch:
-	say "The ship doesn't seem to want to power up." instead.
+	say "The ship doesn't seem to want to power up. Perhaps you need some sort of key for the ship to accept your commands." instead.
+Check starting the messenger ship when the messenger ship is not started and the player is not in the messenger ship:
+	say "You can only do that from inside the ship." instead.
 Carry out starting the messenger ship:
 	now the messenger ship is started;
 	take three minutes.
@@ -2076,7 +2111,10 @@ Check deorbiting the messenger ship when the player is not in the messenger ship
 Check deorbiting the messenger ship when the location is not the planetary orbit:
 	say "[We] [are] already on the planet." instead.
 Carry out deorbiting the messenger ship:
+	now the messenger ship is in the landing strip;
 	take 30 minutes.
+Report deorbiting the messenger ship:
+	say "Slowly but surely, you descend back into the atmosphere and touch down at the facility."
 
 Nounless-deorbiting is an action applying to nothing.
 Understand "deorbit" or "break orbit" or "touchdown" or "touch down" or "make planetfall" or "enter the/-- atmosphere" or "re-enter the/-- atmosphere" or "reenter the/-- atmosphere" or "return to the/-- [surface-desc]" as nounless-deorbiting.
@@ -2084,7 +2122,7 @@ Understand "surface/planet/island" or "landing/-- runway/pad/strip" or "military
 Check nounless-deorbiting when the location is not planetary orbit:
 	say "[We] [are] not in orbit." instead.
 Check nounless-deorbiting when the messenger ship is in the location:
-	try launching the messenger ship instead.
+	try deorbiting the messenger ship instead.
 Instead of going down when the location is the planetary orbit, try nounless-deorbiting.
 
 Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat theory, but the real world doesn't work like that.") when the player is in the ship.
@@ -2107,7 +2145,7 @@ Instead of entering the transit node, try home-going.
 Instead of doing something other than entering or examining to the transit node, say "The node isn't a tangible thing [dash] just an area where local space-time is weak."
 
 Home-going is an action applying to nothing.
-Understand "go [home-desc]" or "return [home-desc]" or "travel [home-desc]" or "fly [home-desc]" as home-going.
+Understand "go [home-desc]" or "return [home-desc]" or "travel [home-desc]" or "fly [home-desc]" or "fly ship/--" as home-going.
 Understand "home" or "to/-- earth" as "[home-desc]".
 Understand "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "stick to the/-- panel" or "put the/-- control/-- stick to the/-- panel" or "punch it" or "transition [home-desc]" or "transition away" or "transition out of here" or "leave this/-- system" as home-going when the location is the orbit.
 
@@ -2127,37 +2165,5 @@ Instead of going when the location is the planetary orbit, say "[We] don't reall
 
 Book 4 - Debug Commands - Not for Release
 
-First after printing the banner text (this is the prerelease notice rule):
-	say "[italic type]Beta build #4 for playtesters only [dash] do not distribute![roman type][line break]".
-
-Air-draining is an action out of world and applying to nothing. Understand "air-drain" as air-draining.
-Carry out air-draining:
-	now the air of the armor is 300;
-	say "[bracket]Drained.[close bracket][paragraph break]".
-
-After reading a command (this is the ignore beta-comments rule):
-	if the player's command matches the regular expression "^\p":
-		say "(Noted.)";
-		reject the player's command.
-
-[From Example 388]
-Waiting more is an action applying to one number.
-
-Understand "wait [a time period]" or "wait for [a time period]" or "wait for a/an [a time period]" or "wait a/an [a time period]" as waiting more.
-
-Carry out waiting more:
-	let the target time be the time of day plus the time understood;
-	decrease the target time by one minute;
-	while the time of day is not the target time:
-		take 60 seconds in total;
-		follow the turn sequence rules.
-
-[The one nuance here is that after our wait command occurs, the turn sequence rules will occur one more time. So we need to subtract one minute from the parsed time to make the turn end on the desired number of minutes.]
-
-Report waiting more:
-	say "It is now [time of day + 1 minute]."
-
-[And if we want to ensure that the player doesn't (accidentally or intentionally) put the interpreter through a really long loop, we could put an upper limit on his patience:]
-
-Check waiting more:
-	if the time understood is greater than one hour, say "You really haven't got that kind of patience." instead.
+[The macOS IDE hangs whenever you click "Go", unless we unlist all rules that attempt to print something before the banner text. Go figure.]
+The show intro rule is not listed in any rulebook.
