@@ -603,6 +603,9 @@ Understand the command "activate" or "engage" as "enable".
 Understand "disable [something]" as switching off.
 Understand the command "deactivate" or "disengage" as "disable".
 
+[Turning]
+Understand the command "flip" as "turn".
+
 [Pulling]
 Understand the command "tug" as "pull".
 
