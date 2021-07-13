@@ -2142,7 +2142,7 @@ Instead of entering the transit node, try home-going.
 Instead of doing something other than entering or examining to the transit node, say "The node isn't a tangible thing [dash] just an area where local space-time is weak."
 
 Home-going is an action applying to nothing.
-Understand "go [home-desc]" or "return [home-desc]" or "travel [home-desc]" or "fly [home-desc]" as home-going.
+Understand "go [home-desc]" or "return [home-desc]" or "travel [home-desc]" or "fly [home-desc]" or "fly ship/--" as home-going.
 Understand "home" or "to/-- earth" as "[home-desc]".
 Understand "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "stick to the/-- panel" or "put the/-- control/-- stick to the/-- panel" or "punch it" or "transition [home-desc]" or "transition away" or "transition out of here" or "leave this/-- system" as home-going when the location is the orbit.
 
