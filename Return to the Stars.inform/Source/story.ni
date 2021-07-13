@@ -954,8 +954,8 @@ Report ammo-counting:
 
 Section 2 - Enemies
 
-A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green not-quite-humaniod creature, like a lizard walking on two legs."
-A corpse is a kind of wreckage. A corpse is usually pushable between rooms.
+A shwabolian is a kind of person. The description of a shwabolian is usually "An unsightly green not-quite-humanoid creature, like a lizard walking on two legs."
+A corpse is a kind of wreckage. A corpse is usually fixed in place. A corpse is usually pushable between rooms.
 The cannotTakeMsg of a corpse is "You'd rather not carry a dead body around with you."
 Understand "alien" as a corpse.
 A corpse is part of every person.
