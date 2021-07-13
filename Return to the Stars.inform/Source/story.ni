@@ -3,6 +3,9 @@
 The story genre is "Science Fiction". The story headline is "An Interactive Escape".
 The story description is "After having been taken captive in battle, you soon settled into a routine: sleep, eat, shower, reconsider your life choices, repeat. Until, one day, there is no more food. Or guards, for that matter. It seems to be up to you to find a way out of your prison and back home...".
 
+The release number is 2.
+The story creation year is 2021.
+
 Release along with cover art ("A starship leaving a planet"), a "StarryVoid" website, a "Quixe" interpreter, and the source text.
 
 Book 1 - Preamble
