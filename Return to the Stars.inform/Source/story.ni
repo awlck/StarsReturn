@@ -1106,6 +1106,21 @@ Check an actor taking (this is the can't take with message rule):
 The can't take with message rule is listed instead of the can't take what's fixed in place rule in the check taking rulebook.
 The can't take scenery rule is not listed in the check taking rulebook.
 
+Chapter 12 - Clearing Pronouns
+
+[This is intended for use with multi-examining, which will not set 'they'/'them' to the group of objects that was just examined (which is impossible), instead leaving it to be some plural-named thing that happens to be in the location.]
+
+Include
+(-
+[ UnsetAllPronouns i;
+    for (i = 1: i <= (LanguagePronouns-->0) / 3: i++)
+	    LanguagePronouns-->(3*i) = NULL;
+];
+-)
+
+To clear all pronouns:
+    (- UnsetAllPronouns(); -).
+
 Book 3 - Locations
 
 Chapter 1 - Cell Complex and Prison Island
@@ -1306,6 +1321,9 @@ The description of a ration bar is "You recognize the design of the wrapper: bar
 Instead of tasting a ration bar:
 	say "As most ration bars tend to do, it tastes mostly like sugar, with some indeterminable artificial fruit mixed in.";
 	rule succeeds.
+After multiexamining a ration bar:
+	clear all pronouns;
+	continue the action.
 
 On the shelves are five ration bars.
 
