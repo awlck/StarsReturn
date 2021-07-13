@@ -1857,6 +1857,9 @@ Understand "counter" or "recession" or "recessions" as the counters.
 Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
 The cannotTakeMsg of the pillows is "You don't see a point to carrying those around with you.".
+Instead of pushing the pillows:
+	say "You toss the pillows to the side, but uncover nothing of interest."
+
 A couch is an enterable scenery container in the mess hall. The description is "It's not a particularly [italic type]nice[roman type] couch [dash] it looks rather old and worn [dash] but still: [italic type]it's a freakin['] couch[roman type]! How the hell did they get a couch out here?![if the couch is not clean][line break]It looks significantly worse for wear, now that you've plonked your dirty self down on it.[end if]".
 Understand "sofa" as the couch.
 The couch has a dirtiness. The couch is clean.
