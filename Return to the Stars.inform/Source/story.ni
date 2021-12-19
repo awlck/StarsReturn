@@ -1167,7 +1167,7 @@ A thing has some text called the cannotTakeMsg.
 The cannotTakeMsg of a thing is usually "[regarding the noun][They're] [if scenery]hardly portable[otherwise]fixed in place[end if]."
 
 Check an actor taking (this is the can't take with message rule):
-	if the noun is scenery or the noun is fixed in place, say the cannotTakeMsg of the noun instead.
+	if the noun is scenery or the noun is fixed in place, say "[the cannotTakeMsg of the noun][paragraph break]" instead.
 The can't take with message rule is listed instead of the can't take what's fixed in place rule in the check taking rulebook.
 The can't take scenery rule is not listed in the check taking rulebook.
 
