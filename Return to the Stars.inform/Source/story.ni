@@ -1944,6 +1944,7 @@ The description is "The non-folding, stacked version of the cot you spent the pa
 Understand "stacked" or "bunk" or "bed" or "beds" as the bunks.
 
 The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[paragraph break]The only way out is north, back to the barracks."
+The room-floor-prop is the washroom-floor.
 
 Some toilets are scenery in the washroom. The description is "They look like the kind you'd find in the worst of public restrooms back on earth: steel body, no lid, no real seat. Comfort clearly wasn't high on the priority list here."
 Understand "toilet" or "loo" or "loos" or "head" as the toilets.
@@ -2001,11 +2002,13 @@ To say wash-grime:
 	if gore is allowed, say "blood";
 	otherwise say "slime".
 
+The washroom-floor is a room-floor. The description is "The floor is made of white tile, and drain grates run along the walls.". Understand "drain" or "grate" or "grates" or "tile" or "tiles" or "tiled" as the washroom-floor.
+
 Chapter 6 - Hangar and Launch
 
 Section 1 - The Hangar
 
-The hangar is a room. "This large, cavernous space where dropships and other small craft can be stored when not in use. It is currently empty[if the messenger ship is in the hangar], except for [a messenger ship][end if].[paragraph break][if the launch doors are open]You could go north, through [the launch doors] and onto the landing pad,[otherwise][The launch doors] leading north are closed. You can go[end if] west, [if the force field is enabled]through the force field and [end if]back to the plaza, or up to the control room."
+The hangar is a room. "This large, cavernous space is where dropships and other small craft can be stored when not in use. It is currently empty[if the messenger ship is in the hangar], except for [a messenger ship][end if].[paragraph break][if the launch doors are open]You could go north, through [the launch doors] and onto the landing pad,[otherwise][The launch doors] leading north are closed. You can go[end if] west, [if the force field is enabled]through the force field and [end if]back to the plaza, or up to the control room."
 
 The launch doors are a plural-named door. They are north of the hangar and south of the landing strip. They are closed.
 The description is "Large sliding doors [dash] more than large enough for a dropship to fit through [dash] make up pretty much the entire northern wall of the hangar. They are currently [if the launch doors are open and the location is the hangar]open, revealing a view of the launch pad[otherwise if the launch doors are open]open, reavealing a view of the inside of the hangar[otherwise]closed.".
