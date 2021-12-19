@@ -987,9 +987,9 @@ Report an actor shooting something (called the target) with a gun (called the we
 			-- shot-dodged:
 				say "Fifteen years of military experience lead to some rather tuned reflexes, so [we] [dodge] in time to avoid the shot.";
 			-- near-miss:
-				say "[regarding the actor][Their] aim [are] slightly off. The bullet [regarding one][whirr] past [our] [one of]head[or]shoulder[or]chest[at random] and [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
+				say "[regarding the actor][Their] aim is slightly off. The bullet [regarding one][whirr] past [our] [one of]head[or]shoulder[or]chest[at random] and [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
 			-- full-miss:
-				say "Their aim is way off and the shot [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
+				say "[regarding the actor][Their] aim is way off and the shot [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
 	otherwise:
 		say "[The actor] [fire] at [the target]."
 
