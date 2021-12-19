@@ -432,7 +432,8 @@ Definition: the armor is blood-stained:
 Instead of rubbing the player when the player is wearing the armor, try rubbing the armor.
 
 Report touching something that is not a person while the player is wearing the armor:
-	say "Through [our] armored gloves, [we] don't really feel much of anything."
+	say "Through [our] armored gloves, [we] don't really feel much of anything.";
+	rule succeeds.
 
 Understand "fly" or "fly up/away" or "take flight/off" as a mistake ("While your suit has many functions, flying isn't one of them.") when the player is wearing the armor and the player is not in the messenger ship.
 
@@ -1607,10 +1608,10 @@ Check going through the enabled force field:
 	if the armor is clean:
 		say "The force field does not let you pass." instead;
 	if the armor is muddy or the armor is blood-stained:
-		say "[one of]Your dirty hand[regarding one][or]Your lower arm[regarding one][or]A mud-stained leg[regarding one][or]Your mud-caked hands[regarding two][then at random] [pass] through the force field, but not more." instead;
-	if the armor is covered:
-		say "Your mud-covered body passes through the force field with little resistance.";
-		continue the action.
+		say "[one of]Your dirty hand[regarding one][or]Your lower arm[regarding one][or]A mud-stained leg[regarding one][or]Your mud-caked hands[regarding two][then at random] [pass] through the force field, but not more." instead.
+
+Report going through the enabled force field when the armor is covered:
+	say "Your mud-covered body passes through the force field with little resistance.".
 
 Chapter 4 - The Command Center
 
