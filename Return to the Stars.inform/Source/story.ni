@@ -91,7 +91,7 @@ final question wording	only if victorious	topic	final response rule	final respon
 "read some author's NOTES about this story"	true	"author/author's/-- note/notes"	author's notes rule	--
 
 This is the author's notes rule:
-	say "Thank you for playing 'Return to the Stars'![paragraph break]The general premise of needing to escape from captivity on an alien world occurred to me in early 2018, but as things often go in life, I was busy with other projects, so the idea was set aside and mostly forgotten about. The announcement of ParserComp 2021 brought the concept back to my mind, I reduced the scope somewhat, and in April [']21 I finally sat down and started working on the implementation in earnest [dash] partially out of sheer boredom, some five months into Germany's second COVID lockdown. Its release marks the first time I actually finish and publish a piece of IF.[paragraph break]With the minor history lesson out of the way, it is time for some acknowledgements. While it is often said in writing circles that 'everything has been done before', and that it's all about the individual author's take on a certain concept, I think it is only fair for me to acknowledge the major source of inspiration for 'Return': Marko Kloos['] [italic type]Frontlines[roman type] novel series. (And probably half a dozen others, subconsciously, but that's usually the one that comes to my mind when I think 'military SF'. I highly recommend it.) As such, the appearance of certain names or phrases, such as [italic type]space-borne infantry[roman type], is no coincidence. (Rest assured, however, that this is not just a barely-concealed fanficion.)[line break]And, last but not least, a huge THANK YOU to my playtesters, who helped catch a number of larger and smaller issues in the game: [the playtesters].".
+	say "Thank you for playing 'Return to the Stars'![paragraph break]The general premise of needing to escape from captivity on an alien world occurred to me in early 2018, but as things often go in life, I was busy with other projects, so the idea was set aside and mostly forgotten about. The announcement of ParserComp 2021 brought the concept back to my mind, I reduced the scope somewhat, and in April [']21 I finally sat down and started working on the implementation in earnest [dash] partially out of sheer boredom, some five months into Germany's second COVID lockdown. Its release marks the first time I actually finish and publish a piece of IF.[paragraph break]With the minor history lesson out of the way, it is time for some acknowledgements. While it is often said in writing circles that 'everything has been done before', and that it's all about the individual author's take on a certain concept, I think it is only fair for me to acknowledge the major source of inspiration for 'Return': Marko Kloos['] [italic type]Frontlines[roman type] novel series. (And probably half a dozen others, subconsciously, but that's usually the one that comes to my mind when I think 'military SF'. I highly recommend it.) As such, the appearance of certain names or phrases, such as [italic type]space-borne infantry[roman type], is no coincidence. (Rest assured, however, that this is not just a barely-concealed fan ficion.)[line break]And, last but not least, a huge THANK YOU to my playtesters, who helped catch a number of larger and smaller issues in the game: [the playtesters].".
 
 Chapter III - Hints
 
@@ -502,12 +502,12 @@ Section 3 - Status Bar
 
 Table of HUD status
 left	central (a text)	right
-"[location]"	--	"[time of day as military time]"
-"[hud-environ-status]"	--	"[hud-air]"
+" [location]"	--	"       [time of day as military time]"
+" [hud-environ-status]"	--	"[hud-air]"
 
 Table of plain status
 left	central (a text)	right
-"[location]"	--	"[plain-air]"
+" [location]"	--	"[plain-air]"
 
 Rule for constructing the status line when the player is wearing the armor and the displaying activity is not going on:
 	fill status bar with the Table of HUD status;
@@ -519,14 +519,14 @@ Rule for constructing the status line when the player is not wearing the armor a
 To say hud-air:
 	if the location is breathable, stop;
 	if the air of the armor is greater than 300:
-		say "Air: [air of the armor / 60] min";
+		say "   Air: [air of the armor / 60] min";
 	otherwise if the air of the armor is greater than zero:
-		say "AIR: [air of the armor / 60] MIN";
+		say "   AIR: [air of the armor / 60] MIN";
 	otherwise:
-		say "OUT OF AIR".
+		say "     OUT OF AIR".
 
 To say plain-air:
-	if the location is not breathable, say "NO AIR".
+	if the location is not breathable, say "       NO AIR".
 
 To say hud-environ-status:
 	if the holder of the player is the messenger ship:
