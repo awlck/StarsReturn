@@ -126,7 +126,7 @@ hint	used
 "Investigate the switches in the installations room."
 "If only you could read them."
 "Your armor has a translator. Find it, then return to the installations room."
-"The foors in the facility have a magnet-based locking mechanism."
+"The doors in the facility have a magnet-based locking mechanism."
 "SWITCH MAGLOCK OFF."	
 
 Table of Air-Supply Hints
@@ -1253,7 +1253,7 @@ West of the corridor is south of the control room. Index map with control room m
 The control room is a room. "The walls are plastered with screens[if the controls switch is switched on] showing video feeds from throughout the facility[otherwise], but they are all blank[end if]. This must be the place from which the prisoners are monitored.[paragraph break][A ladder-top] leads down into the installations room, and a corridor leads south."
 
 A table is a scenery supporter in the control room.
-On the table is a thing called a helmet. The initial appearance of the helmet is "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it.". The printed name of the helmet is "[our] helmet".
+On the table is a thing called a helmet. The initial appearance of the helmet is "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it.". The printed name of the helmet is "[our] helmet". It is proper-named. Understand "your/my/-- helmet" as the helmet.
 The description of the helmet is "Taking a closer look at the helmet confirms that it is, in fact, yours. Perhaps the rest of the suit is around here somewhere as well.".
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
 Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, your captors haven't messed anything up."
@@ -1854,8 +1854,8 @@ Some plain white tables are scenery in the mess hall.
 The description is "You see nothing interesting about the tables. They are boring, even by the low standards of tables.".
 Understand "boring" or "table" as the tables.
 Some counters are scenery in the mess hall.
-The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recessions for food bowls.".
-Understand "counter" or "recession" or "recessions" as the counters.
+The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recesses for food bowls.".
+Understand "counter" or "recess" or "recesses" as the counters.
 
 Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
@@ -1869,7 +1869,7 @@ The couch has a dirtiness. The couch is clean.
 After entering the couch:
 	if the player is wearing the armor and the armor is mud-caked and the couch is clean:
 		now the couch is muddy;
-		say "The couch looks comfy and inviting, and despite the entire situation you can't resist the urge to sit down for a bit. You transfer a considerable amount of mud to the couch in the proces, but if the Shwabolians ever notice, a dirty couch will be the least of your issues.";
+		say "The couch looks comfy and inviting, and despite the entire situation you can't resist the urge to sit down for a bit. You transfer a considerable amount of mud to the couch in the process, but if the Shwabolians ever notice, a dirty couch will be the least of your issues.";
 	otherwise:
 		continue the action.
 
