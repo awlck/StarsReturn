@@ -66,7 +66,7 @@ title	subtable	description	toggle
 "Credits"	--	"[credits-text]"	--
 
 To say help-text:
-	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[line break]PREPARE [italic type]something[roman type] FOR LAUNCH"
+	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]LOAD [italic type]some kind of gun[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[line break]PREPARE [italic type]something[roman type] FOR LAUNCH"
 
 To say credits-text:
 	say "[RttS] by Adrian Welcker[line break]Built using Inform 7 and the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][bold type]Playtesters[roman type]: [the playtesters]".
@@ -823,12 +823,59 @@ Section 1 - Guns and Ammunition
 
 A gun is a kind of thing. Understand "gun" as a gun.
 Definition: a thing is ungunlike if it is not a gun.
+Definition: a gun is loaded rather than unloaded if at least one ammo clip is part of it.
+After printing the name of a gun (called g) while taking inventory:
+	if g is unloaded, say " (unloaded)";
+	otherwise:
+		let c be a random ammo clip that is part of g;
+		say " ([bullet count of c] rounds left)".
 
 An ammo clip is a kind of thing.
 The description of an ammo clip is usually "A magazine for a rifle. It contains [bullet count in words] rounds.".
 An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
 After printing the name of an ammo clip while taking inventory, say " (in which are [bullet count] rounds)".
 Definition: an ammo clip is empty rather than non-empty if its bullet count is less than one.
+
+Loading is an action applying to one touchable thing.
+Understand "load [something preferably held]" as loading.
+
+Loading it with is an action applying to two touchable things.
+Understand "load [something preferably held] with [something preferably held]" as loading it with.
+
+Check an actor loading something that is not a gun with something:
+	if the actor is the player, say "[The noun] can't be loaded like that.";
+	stop the action.
+Check an actor loading a gun with something that is not an ammo clip:
+	if the actor is the player, say "[The second noun] doesn't seem to fit into [the noun]'s magazine well.";
+	stop the action.
+Check an actor loading a loaded gun with something:
+	if the actor is the player, say "[The noun] is already loaded.";
+	stop the action.
+Carry out an actor loading a gun with an ammo clip:
+	now the second noun is part of the noun.
+Report an actor loading a gun with an ammo clip:
+	if the actor is the player, say "You slide the clip into [the noun]'s magazine well and chamber a round.";
+	otherwise say "[The actor] loads a fresh magazine into [their] [noun]."
+
+Check an actor loading a gun:
+	if the noun is loaded:
+		if the actor is the player, say "[The noun] is already loaded.";
+		stop the action;
+	if the actor does not carry at least one ammo clip:
+		if the actor is the player, say "[We] [are] all out of ammunition!";
+		stop the action;
+	let cnt be 31;
+	let clp be nothing;
+	repeat with c running through ammo clips carried by the actor:
+		if the bullet count of c is less than cnt:
+			now cnt is the bullet count of c;
+			now clp is c;
+	try the actor loading the noun with clp instead.
+Check an actor loading something that is not a gun:
+	if the actor is the player, say "[The noun] can't be loaded like that.";
+	stop the action.
+
+Instead of inserting something into a gun, try loading the second noun with the noun.
 
 A standoff-outcome is a kind of value. The standoff-outcomes are full-miss, near-miss, shot-dodged, glancing-hit, and deadly-hit.
 
@@ -860,19 +907,20 @@ The verb to be the original of means the reversed wrecking relation.
 The verb to be the remains of means the wrecking relation.
 
 Setting action variables for an actor shooting something with something:
-	let cnt be 31;
-	let clp be nothing;
-	[find the carried ammo clip with the lowest bullet count]
-	repeat with c running through ammo clips carried by the actor:
-		if the bullet count of c is less than cnt:
-			now cnt is the bullet count of c;
-			now clp is c;
-	now the clip shot from is clp.
+	if the second noun is loaded:
+		now the clip shot from is a random ammo clip which is part of the second noun.
 
 Check the player shooting something with something (this is the shooting requirements rule):
 	if the player is not carrying a gun, say "[regarding the actor][They] are pathetically unarmed!" instead;
 	if the second noun is not a gun, say "[The second noun] does not fire." instead;
-	if the clip shot from is nothing, say "You are all out of ammunition" instead;
+	if the clip shot from is nothing:
+		if the player is carrying at least one ammo clip:
+			say "(first loading [the second noun])[command clarification break]";
+			silently try loading the second noun;
+			if the second noun is unloaded, stop the action;
+			otherwise now the clip shot from is a random ammo clip which is part of the second noun;
+		otherwise:
+			say "You are all out of ammunition." instead;
 	if the noun is the second noun, say "Nice trick if you can do it!" instead;
 	if the noun is the player, say "Even though you could punch yourself for allowing yourself to be taken captive, suicide isn't an option." instead;
 	if the remains of the noun is nothing, say "Needless violence won't get you off this rock any faster. Also, you might still need [the noun] later on." instead.
@@ -880,7 +928,13 @@ Check the player shooting something with something (this is the shooting require
 Check an actor shooting something with something when the actor is not the player (this is the silent shooting requirements rule):
 	if the actor is not carrying a gun, stop the action;
 	if the second noun is not a gun, stop the action;
-	if the clip shot from is nothing, stop the action;
+	if the clip shot from is nothing:
+		if the actor is carrying at least one ammo clip:
+			try the actor loading the second noun;
+			if the second noun is unloaded, stop the action;
+			otherwise now the clip shot from is a random ammo clip which is part of the second noun;
+		otherwise:
+			stop the action;
 	if the remains of the noun is nothing, stop the action.
 
 Carry out an actor shooting something (called the target) with a gun (called the weapon) (this is the default shooting rule):
@@ -948,13 +1002,13 @@ When play begins (this is the don't advertise undo rule):
 Ammo-counting is an action applying to nothing.
 Understand "ammo" or "ammunition" or "count ammo/ammunition/rounds" as ammo-counting.
 Report ammo-counting:
-	if the number of ammo clips carried by the player is zero:
-		say "You don't have any ammo.";
-	otherwise:
-		let cnt be zero;
-		repeat with c running through ammo clips carried by the player:
+	let cnt be zero;
+	repeat with c running through ammo clips carried by the player:
+		increase cnt by the bullet count of c;
+	repeat with g running through loaded guns carried by the player:
+		repeat with c running through ammo clips which are part of g:
 			increase cnt by the bullet count of c;
-		say "All in all, you have [cnt] rounds left.".
+	say "All in all, you have [cnt] rounds left.".
 
 Section 2 - Enemies
 
@@ -969,6 +1023,10 @@ When play begins (this is the prepare corpses rule):
 		let c be a random wreckage that is part of s;
 		now c is the remains of s;
 		now c is nowhere.
+When play begins (this is the initially load enemies' weapons rule):
+	repeat with the antagonist running through shwabolians:
+		let the hardware be a random gun carried by the antagonist;
+		silently try the antagonist loading the hardware.
 
 Giving something to a shwabolian is invalid-conversation. Showing something to a shwabolian is invalid-conversation. Answering a shwabolian that something is invalid-conversation. Telling a shwabolian about something is invalid-conversation. Asking a shwabolian about something is invalid-conversation. Asking a shwabolian for something is invalid-conversation.
 
