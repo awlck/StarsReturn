@@ -1394,7 +1394,7 @@ On the shelves are five ration bars.
 
 Section 4 - Basement
 
-The prison installations room is down from the control room. "This is where most of the installations and appliances keeping the cell complex running reside. [if the ventilation switch is switched on]A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall. [end if]A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
+The prison installations room is down from the control room. "This is where most of the installations and appliances keeping the cell complex running reside.[if the ventilation switch is switched on] A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall.[end if][paragraph break]A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
 
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
 The description is "The air duct leads back to your cell."
@@ -1462,7 +1462,7 @@ Section 5 - Outside Area
 
 Prison antecourt is an outdoor room. "A small courtyard lies outside the prison, which appears to be built on a small island.[paragraph break]The way back into the prison is south, through the airlock. You are otherwise surrounded by water, but there are some docks allowing easy access to the east."
 
-The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[line break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
+The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[paragraph break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
 
 The dock is a backdrop. It is in the prison docks and the shore docks. The description is "A floating plastic contraption with a metal frame. It wobbles as you try to stand on it."
 Understand "plastic" or "contraption" as the dock.
@@ -1742,7 +1742,7 @@ Section 3 - Briefing Room
 The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is west, back into the lobby."
 
 A large round table is a fixed in place supporter in the briefing room.
-The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warranted all this nonessential material being shipped out here.".
+The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warranted all this non-essential material being shipped out here.".
 
 A large screen is a fixed in place thing in the briefing room.
 The description is "A large screen has been fitted into the wall. It is blank."
@@ -1938,7 +1938,7 @@ Some bunks are in the barracks. "Four stacked bunk beds are lined up on the wall
 The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
 Understand "stacked" or "bunk" or "bed" or "beds" as the bunks.
 
-The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[line break]The only way out is north, back to the barracks."
+The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[paragraph break]The only way out is north, back to the barracks."
 
 Some toilets are scenery in the washroom. The description is "They look like the kind you'd find in the worst of public restrooms back on earth: steel body, no lid, no real seat. Comfort clearly wasn't high on the priority list here."
 Understand "toilet" or "loo" or "loos" or "head" as the toilets.
@@ -2017,7 +2017,7 @@ Instead of looking through the open launch doors:
 
 Section 2 - The Launch Pad
 
-The landing strip is an outdoor room. "You are standing on the tarmac of a small landing pad. It's not long enough for a fixed-wing atmospheric craft to take off, but perfectly adequate for the vertical take-off and landing operation of a space-capable vessel.[paragraph break]You could go south, through [the launch doors] and back into the hangar."
+The landing strip is an outdoor room. "You are standing on the tarmac of a small landing pad. It's not long enough for a fixed-wing atmospheric craft to take off, but perfectly adequate for the vertical take-off and landing operation of a space-capable vessel.[paragraph break]You could go south, through [the launch doors] and back into the hangar." The printed name is "Landing Pad".
 
 The tarmac-ground is a room-floor. The printed name is "tarmac".
 The description is "[if the location is the landing strip]A smooth surface of black tarmac, ideal for ships to land on[otherwise if the messenger ship is in the landing strip]The messenger ship stands on the tarmac outside[otherwise]The tarmac outside is empty[end if].".
