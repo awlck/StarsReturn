@@ -1478,11 +1478,12 @@ Does the player mean entering the water: it is likely.
 
 Instead of jumping when the location is the prison docks or the location is the shore docks:
 	say "(into the water)[command clarification break]";
-	try entering the water.
+	try going down.
 
-Instead of entering the water:
-	if the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you.";
-	otherwise try going down.
+Instead of entering the water, try going down.
+Instead of going north from the prison docks, try going down.
+Before going down from the prison docks:
+	if the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you." instead.
 
 The rocky shoreline is scenery in the prison docks.
 The description is "The coastal cliff falls off into the water".
@@ -1580,8 +1581,12 @@ Index map with shore docks mapped north of prison docks.
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
 Understand "slope" or "rut" or "muck" or "mud" or "silt" or "shore" or "shoreline" as the incline.
 Instead of climbing the muddy incline, try going south.
-Before going south from the shore docks, say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
-Before going down from the shore docks for the first time, say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
+Before going south from the shore docks:
+	if the player is not wearing the armor, say "And swim all the way across? You'd never arrive in time before the atmosphere got the better of you." instead;
+	say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
+Before going down from the shore docks for the first time:
+	if the player is not wearing the armor, say "And swim all the way across? You'd never arrive in time before the atmosphere got the better of you." instead;
+	say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
 
 Rubbing it on is an action applying to two touchable things and requiring light.
 Understand "rub [something] on/onto [something]" as rubbing it on.
