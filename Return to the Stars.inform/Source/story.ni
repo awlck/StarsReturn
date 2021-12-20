@@ -455,7 +455,7 @@ An outdoor room is a kind of room. An outdoor room is usually toxic.
 The air supply rules are a room based rulebook.
 
 An air supply rule for a room that is not breathable when the player is wearing the armor:
-	if the air of the armor is five, say "Your suit sounds an alarm as its air supply is getting close to being depleted.";
+	if the air of the armor is 300, say "Your suit sounds an alarm as its air supply is getting close to being depleted.";
 	decrease the air of the armor by the work duration;
 	if the air of the armor is less than zero:
 		let d be the air of the armor multiplied by -1;
