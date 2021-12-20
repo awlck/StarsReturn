@@ -1906,6 +1906,11 @@ Instead of sticking an arm in the muddy incline:
 Instead of sticking an arm in the water:
 	say "You hold your arm into the water. Nothing particular happens." instead.
 
+Instead of saying sorry when the larger alien's corpse is open:
+	say "'Sorry,' you mutter. If there is a god, you hope he will forgive you for what you have just done."
+Instead of answering yourself that "sorry", try saying sorry.
+Instead of answering the larger alien's corpse that "sorry", try saying sorry.
+
 Test alien with "pull grate / crawl through duct / out / turn off maglock / up / take helmet / look under desk / s / e / e / take plates / w / open airlock / n / e / turn on helmet light / enter water / n / n / n / n / n / unlock door with card / n / w / take rifle and ammo / break rack / e / n / n / shoot larger with rifle / shoot smaller with rifle / cut larger corpse with knife / x me / x armor / x data crypt / throw up".
 
 Chapter 5 - The Barracks
