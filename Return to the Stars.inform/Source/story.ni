@@ -2191,7 +2191,7 @@ Check home-going when the location is not the planetary orbit and the player is 
 
 Carry out home-going:
 	take 300 minutes;
-	say "While your sudden appearance in the solar system caused some confusion and concern, the transmission of your identification codes [dash] and showing your face on video comms [dash] dissuaded the combined military forces in the area from blowing you to pieces. Against your own expectations, you manage to land the ship in the hangar of one of the fleet's large carriers. Despite the prospect of hours upon hours of debriefings from all levels of command, and probably military intelligence as well, you are glad to be back.";
+	say "While your sudden appearance in the solar system caused some confusion and concern, the transmission of your identification codes [dash] and showing your face on video comms [dash] dissuaded the combined military forces in the area from blowing you to pieces. Against your own expectations, you manage to land the ship in the hangar of one of the fleet's large carriers. You [italic type]finally[roman type] get something proper to eat and a fresh set of fatigues, then settle in for what promises to be about three lifetime's worth of debriefings...";
 	end the story finally saying "You have returned home".
 
 Instead of going when the location is the planetary orbit, say "[We] don't really have anywhere to go in normal space."
