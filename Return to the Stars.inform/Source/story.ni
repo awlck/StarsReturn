@@ -66,7 +66,7 @@ title	subtable	description	toggle
 "Credits"	--	"[credits-text]"	--
 
 To say help-text:
-	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[line break]PREPARE [italic type]something[roman type] FOR LAUNCH"
+	say "You may find the following 'non-standard' verbs to be useful on occasion:[paragraph break]CLIMB UP/DOWN [italic type]something[roman type][line break]CRAWL THROUGH [italic type]something[roman type][line break]LOOK UNDER [italic type]something[roman type][line break]CUT [italic type]something[roman type] OPEN WITH [italic type]some kind of knife[roman type][line break]LOAD [italic type]some kind of gun[roman type][line break]SHOOT [italic type]something[roman type] WITH [italic type]some kind of gun[roman type][line break]LAUNCH[line break]PREPARE [italic type]something[roman type] FOR LAUNCH"
 
 To say credits-text:
 	say "[RttS] by Adrian Welcker[line break]Built using Inform 7 and the following extensions:[line break][complete list of extension credits]Time-keeping based on code by Eric Eve.[paragraph break][bold type]Playtesters[roman type]: [the playtesters]".
@@ -91,7 +91,7 @@ final question wording	only if victorious	topic	final response rule	final respon
 "read some author's NOTES about this story"	true	"author/author's/-- note/notes"	author's notes rule	--
 
 This is the author's notes rule:
-	say "Thank you for playing 'Return to the Stars'![paragraph break]The general premise of needing to escape from captivity on an alien world occurred to me in early 2018, but as things often go in life, I was busy with other projects, so the idea was set aside and mostly forgotten about. The announcement of ParserComp 2021 brought the concept back to my mind, I reduced the scope somewhat, and in April [']21 I finally sat down and started working on the implementation in earnest [dash] partially out of sheer boredom, some five months into Germany's second COVID lockdown. Its release marks the first time I actually finish and publish a piece of IF.[paragraph break]With the minor history lesson out of the way, it is time for some acknowledgements. While it is often said in writing circles that 'everything has been done before', and that it's all about the individual author's take on a certain concept, I think it is only fair for me to acknowledge the major source of inspiration for 'Return': Marko Kloos['] [italic type]Frontlines[roman type] novel series. (And probably half a dozen others, subconsciously, but that's usually the one that comes to my mind when I think 'military SF'. I highly recommend it.) As such, the appearance of certain names or phrases, such as [italic type]space-borne infantry[roman type], is no coincidence. (Rest assured, however, that this is not just a barely-concealed fanficion.)[line break]And, last but not least, a huge THANK YOU to my playtesters, who helped catch a number of larger and smaller issues in the game: [the playtesters].".
+	say "Thank you for playing 'Return to the Stars'![paragraph break]The general premise of needing to escape from captivity on an alien world occurred to me in early 2018, but as things often go in life, I was busy with other projects, so the idea was set aside and mostly forgotten about. The announcement of ParserComp 2021 brought the concept back to my mind, I reduced the scope somewhat, and in April [']21 I finally sat down and started working on the implementation in earnest [dash] partially out of sheer boredom, some five months into Germany's second COVID lockdown. Its release marks the first time I actually finish and publish a piece of IF.[paragraph break]With the minor history lesson out of the way, it is time for some acknowledgements. While it is often said in writing circles that 'everything has been done before', and that it's all about the individual author's take on a certain concept, I think it is only fair for me to acknowledge the major source of inspiration for 'Return': Marko Kloos['] [italic type]Frontlines[roman type] novel series. (And probably half a dozen others, subconsciously, but that's usually the one that comes to my mind when I think 'military SF'. I highly recommend it.) As such, the appearance of certain names or phrases, such as [italic type]space-borne infantry[roman type], is no coincidence. (Rest assured, however, that this is not just a barely-concealed fan ficion.)[line break]And, last but not least, a huge THANK YOU to my playtesters, who helped catch a number of larger and smaller issues in the game: [the playtesters].".
 
 Chapter III - Hints
 
@@ -126,7 +126,7 @@ hint	used
 "Investigate the switches in the installations room."
 "If only you could read them."
 "Your armor has a translator. Find it, then return to the installations room."
-"The foors in the facility have a magnet-based locking mechanism."
+"The doors in the facility have a magnet-based locking mechanism."
 "SWITCH MAGLOCK OFF."	
 
 Table of Air-Supply Hints
@@ -432,7 +432,8 @@ Definition: the armor is blood-stained:
 Instead of rubbing the player when the player is wearing the armor, try rubbing the armor.
 
 Report touching something that is not a person while the player is wearing the armor:
-	say "Through [our] armored gloves, [we] don't really feel much of anything."
+	say "Through [our] armored gloves, [we] don't really feel much of anything.";
+	rule succeeds.
 
 Understand "fly" or "fly up/away" or "take flight/off" as a mistake ("While your suit has many functions, flying isn't one of them.") when the player is wearing the armor and the player is not in the messenger ship.
 
@@ -501,12 +502,12 @@ Section 3 - Status Bar
 
 Table of HUD status
 left	central (a text)	right
-"[location]"	--	"[time of day as military time]"
-"[hud-environ-status]"	--	"[hud-air]"
+" [location]"	--	"       [time of day as military time]"
+" [hud-environ-status]"	--	"[hud-air]"
 
 Table of plain status
 left	central (a text)	right
-"[location]"	--	"[plain-air]"
+" [location]"	--	"[plain-air]"
 
 Rule for constructing the status line when the player is wearing the armor and the displaying activity is not going on:
 	fill status bar with the Table of HUD status;
@@ -518,14 +519,14 @@ Rule for constructing the status line when the player is not wearing the armor a
 To say hud-air:
 	if the location is breathable, stop;
 	if the air of the armor is greater than 300:
-		say "Air: [air of the armor / 60] min";
+		say "   Air: [air of the armor / 60] min";
 	otherwise if the air of the armor is greater than zero:
-		say "AIR: [air of the armor / 60] MIN";
+		say "   AIR: [air of the armor / 60] MIN";
 	otherwise:
-		say "OUT OF AIR".
+		say "     OUT OF AIR".
 
 To say plain-air:
-	if the location is not breathable, say "NO AIR".
+	if the location is not breathable, say "       NO AIR".
 
 To say hud-environ-status:
 	if the holder of the player is the messenger ship:
@@ -822,12 +823,59 @@ Section 1 - Guns and Ammunition
 
 A gun is a kind of thing. Understand "gun" as a gun.
 Definition: a thing is ungunlike if it is not a gun.
+Definition: a gun is loaded rather than unloaded if at least one ammo clip is part of it.
+After printing the name of a gun (called g) while taking inventory:
+	if g is unloaded, say " (unloaded)";
+	otherwise:
+		let c be a random ammo clip that is part of g;
+		say " ([bullet count of c] rounds left)".
 
 An ammo clip is a kind of thing.
 The description of an ammo clip is usually "A magazine for a rifle. It contains [bullet count in words] rounds.".
 An ammo clip has a number called the bullet count. The bullet count of an ammo clip is usually 30.
 After printing the name of an ammo clip while taking inventory, say " (in which are [bullet count] rounds)".
 Definition: an ammo clip is empty rather than non-empty if its bullet count is less than one.
+
+Loading is an action applying to one touchable thing.
+Understand "load [something preferably held]" as loading.
+
+Loading it with is an action applying to two touchable things.
+Understand "load [something preferably held] with [something preferably held]" as loading it with.
+
+Check an actor loading something that is not a gun with something:
+	if the actor is the player, say "[The noun] can't be loaded like that.";
+	stop the action.
+Check an actor loading a gun with something that is not an ammo clip:
+	if the actor is the player, say "[The second noun] doesn't seem to fit into [the noun]'s magazine well.";
+	stop the action.
+Check an actor loading a loaded gun with something:
+	if the actor is the player, say "[The noun] is already loaded.";
+	stop the action.
+Carry out an actor loading a gun with an ammo clip:
+	now the second noun is part of the noun.
+Report an actor loading a gun with an ammo clip:
+	if the actor is the player, say "You slide the clip into [the noun]'s magazine well and chamber a round.";
+	otherwise say "[The actor] loads a fresh magazine into [their] [noun]."
+
+Check an actor loading a gun:
+	if the noun is loaded:
+		if the actor is the player, say "[The noun] is already loaded.";
+		stop the action;
+	if the actor does not carry at least one ammo clip:
+		if the actor is the player, say "[We] [are] all out of ammunition!";
+		stop the action;
+	let cnt be 31;
+	let clp be nothing;
+	repeat with c running through ammo clips carried by the actor:
+		if the bullet count of c is less than cnt:
+			now cnt is the bullet count of c;
+			now clp is c;
+	try the actor loading the noun with clp instead.
+Check an actor loading something that is not a gun:
+	if the actor is the player, say "[The noun] can't be loaded like that.";
+	stop the action.
+
+Instead of inserting something into a gun, try loading the second noun with the noun.
 
 A standoff-outcome is a kind of value. The standoff-outcomes are full-miss, near-miss, shot-dodged, glancing-hit, and deadly-hit.
 
@@ -859,19 +907,20 @@ The verb to be the original of means the reversed wrecking relation.
 The verb to be the remains of means the wrecking relation.
 
 Setting action variables for an actor shooting something with something:
-	let cnt be 31;
-	let clp be nothing;
-	[find the carried ammo clip with the lowest bullet count]
-	repeat with c running through ammo clips carried by the actor:
-		if the bullet count of c is less than cnt:
-			now cnt is the bullet count of c;
-			now clp is c;
-	now the clip shot from is clp.
+	if the second noun is loaded:
+		now the clip shot from is a random ammo clip which is part of the second noun.
 
 Check the player shooting something with something (this is the shooting requirements rule):
 	if the player is not carrying a gun, say "[regarding the actor][They] are pathetically unarmed!" instead;
 	if the second noun is not a gun, say "[The second noun] does not fire." instead;
-	if the clip shot from is nothing, say "You are all out of ammunition" instead;
+	if the clip shot from is nothing:
+		if the player is carrying at least one ammo clip:
+			say "(first loading [the second noun])[command clarification break]";
+			silently try loading the second noun;
+			if the second noun is unloaded, stop the action;
+			otherwise now the clip shot from is a random ammo clip which is part of the second noun;
+		otherwise:
+			say "You are all out of ammunition." instead;
 	if the noun is the second noun, say "Nice trick if you can do it!" instead;
 	if the noun is the player, say "Even though you could punch yourself for allowing yourself to be taken captive, suicide isn't an option." instead;
 	if the remains of the noun is nothing, say "Needless violence won't get you off this rock any faster. Also, you might still need [the noun] later on." instead.
@@ -879,7 +928,13 @@ Check the player shooting something with something (this is the shooting require
 Check an actor shooting something with something when the actor is not the player (this is the silent shooting requirements rule):
 	if the actor is not carrying a gun, stop the action;
 	if the second noun is not a gun, stop the action;
-	if the clip shot from is nothing, stop the action;
+	if the clip shot from is nothing:
+		if the actor is carrying at least one ammo clip:
+			try the actor loading the second noun;
+			if the second noun is unloaded, stop the action;
+			otherwise now the clip shot from is a random ammo clip which is part of the second noun;
+		otherwise:
+			stop the action;
 	if the remains of the noun is nothing, stop the action.
 
 Carry out an actor shooting something (called the target) with a gun (called the weapon) (this is the default shooting rule):
@@ -932,9 +987,9 @@ Report an actor shooting something (called the target) with a gun (called the we
 			-- shot-dodged:
 				say "Fifteen years of military experience lead to some rather tuned reflexes, so [we] [dodge] in time to avoid the shot.";
 			-- near-miss:
-				say "[regarding the actor][Their] aim [are] slightly off. The bullet [regarding one][whirr] past [our] [one of]head[or]shoulder[or]chest[at random] and [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
+				say "[regarding the actor][Their] aim is slightly off. The bullet [regarding one][whirr] past [our] [one of]head[or]shoulder[or]chest[at random] and [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
 			-- full-miss:
-				say "Their aim is way off and the shot [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
+				say "[regarding the actor][Their] aim is way off and the shot [if the location is an outdoor room]flies off into the distance[otherwise]embeds itself into the wall behind [us][end if].";
 	otherwise:
 		say "[The actor] [fire] at [the target]."
 
@@ -947,13 +1002,13 @@ When play begins (this is the don't advertise undo rule):
 Ammo-counting is an action applying to nothing.
 Understand "ammo" or "ammunition" or "count ammo/ammunition/rounds" as ammo-counting.
 Report ammo-counting:
-	if the number of ammo clips carried by the player is zero:
-		say "You don't have any ammo.";
-	otherwise:
-		let cnt be zero;
-		repeat with c running through ammo clips carried by the player:
+	let cnt be zero;
+	repeat with c running through ammo clips carried by the player:
+		increase cnt by the bullet count of c;
+	repeat with g running through loaded guns carried by the player:
+		repeat with c running through ammo clips which are part of g:
 			increase cnt by the bullet count of c;
-		say "All in all, you have [cnt] rounds left.".
+	say "All in all, you have [cnt] rounds left.".
 
 Section 2 - Enemies
 
@@ -968,6 +1023,10 @@ When play begins (this is the prepare corpses rule):
 		let c be a random wreckage that is part of s;
 		now c is the remains of s;
 		now c is nowhere.
+When play begins (this is the initially load enemies' weapons rule):
+	repeat with the antagonist running through shwabolians:
+		let the hardware be a random gun carried by the antagonist;
+		silently try the antagonist loading the hardware.
 
 Giving something to a shwabolian is invalid-conversation. Showing something to a shwabolian is invalid-conversation. Answering a shwabolian that something is invalid-conversation. Telling a shwabolian about something is invalid-conversation. Asking a shwabolian about something is invalid-conversation. Asking a shwabolian for something is invalid-conversation.
 
@@ -1037,7 +1096,7 @@ Chapter 10 - Room Parts
 
 [Creating a floor/ground, ceiling/sky, and walls that are usually the same but can be customized on a per-room basis, and all without having to create each instance of the default as a thing (that would be anywhere from two to six things per room!). Modeled after how room parts work in the TADS3 library.]
 A room-part is a kind of privately-named backdrop.
-A room-floor is a kind of room-part. Understand "floor" or "ground" as a floor. The default-floor is a room-floor. The printed name is "floor". The default-ground is a room-floor. The printed name is "ground".
+A room-floor is a kind of room-part. Understand "floor" or "ground" as a room-floor. The default-floor is a room-floor. The printed name is "floor". The default-ground is a room-floor. The printed name is "ground".
 A room-ceiling is a kind of room-part. Understand "ceiling" as a room-ceiling. The default-ceiling is a room-ceiling. The printed name is "ceiling".
 A room-sky is a kind of room-part. Understand "sky" as a room-sky. The default-sky is a room-sky. The printed name is "sky".
 A room-wall is a kind of room-part. Understand "wall" as a room-wall.
@@ -1253,7 +1312,7 @@ West of the corridor is south of the control room. Index map with control room m
 The control room is a room. "The walls are plastered with screens[if the controls switch is switched on] showing video feeds from throughout the facility[otherwise], but they are all blank[end if]. This must be the place from which the prisoners are monitored.[paragraph break][A ladder-top] leads down into the installations room, and a corridor leads south."
 
 A table is a scenery supporter in the control room.
-On the table is a thing called a helmet. The initial appearance of the helmet is "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it.". The printed name of the helmet is "[our] helmet".
+On the table is a thing called a helmet. The initial appearance of the helmet is "Your[if we have examined the plates] missing[end if] helmet is sitting on a table in the middle of the room, with a number of wires attached to it.". The printed name of the helmet is "[our] helmet". It is proper-named. Understand "your/my/-- helmet" as the helmet.
 The description of the helmet is "Taking a closer look at the helmet confirms that it is, in fact, yours. Perhaps the rest of the suit is around here somewhere as well.".
 Instead of wearing the helmet, say "Since the power and air supply are located in the torso pieces of the suit, wearing the helmet alone isn't terribly useful."
 Before taking the helmet for the first time, say "You carefully disconnect the wires that connect the helmet to the computer systems in the room. Hopefully, your captors haven't messed anything up."
@@ -1335,7 +1394,7 @@ On the shelves are five ration bars.
 
 Section 4 - Basement
 
-The prison installations room is down from the control room. "This is where most of the installations and appliances keeping the cell complex running reside. [if the ventilation switch is switched on]A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall. [end if]A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
+The prison installations room is down from the control room. "This is where most of the installations and appliances keeping the cell complex running reside.[if the ventilation switch is switched on] A stiff breeze blows through this room, from the large machine on one wall, to the air ducts on the opposite wall.[end if][paragraph break]A ladder leads up[if bottom of the air duct is open], the air duct to your cell is on the northern wall[end if]."
 
 An air duct called bottom of the air duct is in the prison installations room. It connects to the cell air duct.
 The description is "The air duct leads back to your cell."
@@ -1403,7 +1462,7 @@ Section 5 - Outside Area
 
 Prison antecourt is an outdoor room. "A small courtyard lies outside the prison, which appears to be built on a small island.[paragraph break]The way back into the prison is south, through the airlock. You are otherwise surrounded by water, but there are some docks allowing easy access to the east."
 
-The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[line break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
+The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[paragraph break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
 
 The dock is a backdrop. It is in the prison docks and the shore docks. The description is "A floating plastic contraption with a metal frame. It wobbles as you try to stand on it."
 Understand "plastic" or "contraption" as the dock.
@@ -1419,11 +1478,12 @@ Does the player mean entering the water: it is likely.
 
 Instead of jumping when the location is the prison docks or the location is the shore docks:
 	say "(into the water)[command clarification break]";
-	try entering the water.
+	try going down.
 
-Instead of entering the water:
-	if the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you.";
-	otherwise try going down.
+Instead of entering the water, try going down.
+Instead of going north from the prison docks, try going down.
+Before going down from the prison docks:
+	if the player is not wearing the armor, say "And swim all the way [if the location is the prison docks]to shore[otherwise]across[end if]? You'd never make it in time before the atmosphere here got the better of you." instead.
 
 The rocky shoreline is scenery in the prison docks.
 The description is "The coastal cliff falls off into the water".
@@ -1521,8 +1581,12 @@ Index map with shore docks mapped north of prison docks.
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
 Understand "slope" or "rut" or "muck" or "mud" or "silt" or "shore" or "shoreline" as the incline.
 Instead of climbing the muddy incline, try going south.
-Before going south from the shore docks, say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
-Before going down from the shore docks for the first time, say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
+Before going south from the shore docks:
+	if the player is not wearing the armor, say "And swim all the way across? You'd never arrive in time before the atmosphere got the better of you." instead;
+	say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
+Before going down from the shore docks for the first time:
+	if the player is not wearing the armor, say "And swim all the way across? You'd never arrive in time before the atmosphere got the better of you." instead;
+	say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
 
 Rubbing it on is an action applying to two touchable things and requiring light.
 Understand "rub [something] on/onto [something]" as rubbing it on.
@@ -1607,10 +1671,10 @@ Check going through the enabled force field:
 	if the armor is clean:
 		say "The force field does not let you pass." instead;
 	if the armor is muddy or the armor is blood-stained:
-		say "[one of]Your dirty hand[regarding one][or]Your lower arm[regarding one][or]A mud-stained leg[regarding one][or]Your mud-caked hands[regarding two][then at random] [pass] through the force field, but not more." instead;
-	if the armor is covered:
-		say "Your mud-covered body passes through the force field with little resistance.";
-		continue the action.
+		say "[one of]Your dirty hand[regarding one][or]Your lower arm[regarding one][or]A mud-stained leg[regarding one][or]Your mud-caked hands[regarding two][then at random] [pass] through the force field, but not more." instead.
+
+Report going through the enabled force field when the armor is covered:
+	say "Your mud-covered body passes through the force field with little resistance.".
 
 Chapter 4 - The Command Center
 
@@ -1683,7 +1747,7 @@ Section 3 - Briefing Room
 The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is west, back into the lobby."
 
 A large round table is a fixed in place supporter in the briefing room.
-The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warranted all this nonessential material being shipped out here.".
+The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warranted all this non-essential material being shipped out here.".
 
 A large screen is a fixed in place thing in the briefing room.
 The description is "A large screen has been fitted into the wall. It is blank."
@@ -1854,8 +1918,8 @@ Some plain white tables are scenery in the mess hall.
 The description is "You see nothing interesting about the tables. They are boring, even by the low standards of tables.".
 Understand "boring" or "table" as the tables.
 Some counters are scenery in the mess hall.
-The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recessions for food bowls.".
-Understand "counter" or "recession" or "recessions" as the counters.
+The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recesses for food bowls.".
+Understand "counter" or "recess" or "recesses" as the counters.
 
 Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
@@ -1869,7 +1933,7 @@ The couch has a dirtiness. The couch is clean.
 After entering the couch:
 	if the player is wearing the armor and the armor is mud-caked and the couch is clean:
 		now the couch is muddy;
-		say "The couch looks comfy and inviting, and despite the entire situation you can't resist the urge to sit down for a bit. You transfer a considerable amount of mud to the couch in the proces, but if the Shwabolians ever notice, a dirty couch will be the least of your issues.";
+		say "The couch looks comfy and inviting, and despite the entire situation you can't resist the urge to sit down for a bit. You transfer a considerable amount of mud to the couch in the process, but if the Shwabolians ever notice, a dirty couch will be the least of your issues.";
 	otherwise:
 		continue the action.
 
@@ -1879,7 +1943,8 @@ Some bunks are in the barracks. "Four stacked bunk beds are lined up on the wall
 The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
 Understand "stacked" or "bunk" or "bed" or "beds" as the bunks.
 
-The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[line break]The only way out is north, back to the barracks."
+The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[paragraph break]The only way out is north, back to the barracks."
+The room-floor-prop is the washroom-floor.
 
 Some toilets are scenery in the washroom. The description is "They look like the kind you'd find in the worst of public restrooms back on earth: steel body, no lid, no real seat. Comfort clearly wasn't high on the priority list here."
 Understand "toilet" or "loo" or "loos" or "head" as the toilets.
@@ -1937,11 +2002,13 @@ To say wash-grime:
 	if gore is allowed, say "blood";
 	otherwise say "slime".
 
+The washroom-floor is a room-floor. The description is "The floor is made of white tile, and drain grates run along the walls.". Understand "drain" or "grate" or "grates" or "tile" or "tiles" or "tiled" as the washroom-floor.
+
 Chapter 6 - Hangar and Launch
 
 Section 1 - The Hangar
 
-The hangar is a room. "This large, cavernous space where dropships and other small craft can be stored when not in use. It is currently empty[if the messenger ship is in the hangar], except for [a messenger ship][end if].[paragraph break][if the launch doors are open]You could go north, through [the launch doors] and onto the landing pad,[otherwise][The launch doors] leading north are closed. You can go[end if] west, [if the force field is enabled]through the force field and [end if]back to the plaza, or up to the control room."
+The hangar is a room. "This large, cavernous space is where dropships and other small craft can be stored when not in use. It is currently empty[if the messenger ship is in the hangar], except for [a messenger ship][end if].[paragraph break][if the launch doors are open]You could go north, through [the launch doors] and onto the landing pad,[otherwise][The launch doors] leading north are closed. You can go[end if] west, [if the force field is enabled]through the force field and [end if]back to the plaza, or up to the control room."
 
 The launch doors are a plural-named door. They are north of the hangar and south of the landing strip. They are closed.
 The description is "Large sliding doors [dash] more than large enough for a dropship to fit through [dash] make up pretty much the entire northern wall of the hangar. They are currently [if the launch doors are open and the location is the hangar]open, revealing a view of the launch pad[otherwise if the launch doors are open]open, reavealing a view of the inside of the hangar[otherwise]closed.".
@@ -1958,7 +2025,7 @@ Instead of looking through the open launch doors:
 
 Section 2 - The Launch Pad
 
-The landing strip is an outdoor room. "You are standing on the tarmac of a small landing pad. It's not long enough for a fixed-wing atmospheric craft to take off, but perfectly adequate for the vertical take-off and landing operation of a space-capable vessel.[paragraph break]You could go south, through [the launch doors] and back into the hangar."
+The landing strip is an outdoor room. "You are standing on the tarmac of a small landing pad. It's not long enough for a fixed-wing atmospheric craft to take off, but perfectly adequate for the vertical take-off and landing operation of a space-capable vessel.[paragraph break]You could go south, through [the launch doors] and back into the hangar." The printed name is "Landing Pad".
 
 The tarmac-ground is a room-floor. The printed name is "tarmac".
 The description is "[if the location is the landing strip]A smooth surface of black tarmac, ideal for ships to land on[otherwise if the messenger ship is in the landing strip]The messenger ship stands on the tarmac outside[otherwise]The tarmac outside is empty[end if].".
