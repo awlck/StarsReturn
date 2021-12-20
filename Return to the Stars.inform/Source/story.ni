@@ -1761,7 +1761,7 @@ The ops center is north of the lobby. "This appears to be the nerve center of th
 
 The larger alien and the smaller alien are shwabolians in the ops center.
 Understand "large" as the larger alien. Understand "small" as the smaller alien.
-The description of the larger alien's corpse is "A well and truly dead shwabolian. Its lizard appendages lie splayed out in all directions. [if closed]Blood is pooling around him from where your bullets hit their mark[otherwise]He is looking a bit worse for wear after you extracted the data crypt from inside him[end if]."
+The description of the larger alien's corpse is "A well and truly dead Shwabolian. Its lizard appendages lie splayed out in all directions. [if closed]Blood is pooling around him from where your bullets hit their mark[otherwise]He is looking a bit worse for wear after you extracted the data crypt from inside him[end if]."
 The examine containers rule does nothing when the noun is a corpse.
 
 Understand "stab [someone] with/using [something]" as a mistake ("Bringing a knife to a gunfight is rarely a good idea.").
@@ -1877,7 +1877,7 @@ Report vomiting:
 	say "[if the player is wearing the armor]Raising your faceplate, you[otherwise]You[end if] give in to the urge to empty your stomach and hurl into a corner of the room.".
 
 The vomit is a fixed in place thing. The initial appearance is "The former contents of your stomach form a puddle in a corner of the room.".
-The description is "After digging around in that dead shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
+The description is "After digging around in that dead Shwabolian, you felt the irresistible urge to relieve yourself of the contents of your own stomach. You'd rather not dwell on it.".
 Understand "vomitus" or "eject" or "former/-- contents of/-- your/my/-- stomach/belly" as the vomit.
 The cannotTakeMsg of the vomit is "How, by scooping it up in your hands? You'd rather not."
 
