@@ -824,11 +824,16 @@ Section 1 - Guns and Ammunition
 A gun is a kind of thing. Understand "gun" as a gun.
 Definition: a thing is ungunlike if it is not a gun.
 Definition: a gun is loaded rather than unloaded if at least one ammo clip is part of it.
-After printing the name of a gun (called g) while taking inventory:
+After printing the name of a gun (called g) while taking inventory (this is the report loading status of guns in inventory rule):
 	if g is unloaded, say " (unloaded)";
 	otherwise:
 		let c be a random ammo clip that is part of g;
 		say " ([bullet count of c] rounds left)".
+Last carry out rule for examining a gun (this is the report loading status of guns when examining rule):
+	if the noun is unloaded, say "[The noun] is currently not loaded.";
+	otherwise:
+		let c be a random ammo clip that is part of the noun;
+		say "There are [bullet count of c] rounds left in the magazine.".
 
 An ammo clip is a kind of thing.
 The description of an ammo clip is usually "A magazine for a rifle. It contains [bullet count in words] rounds.".
