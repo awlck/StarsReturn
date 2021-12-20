@@ -303,7 +303,7 @@ Section 1 - Armor
 
 The player has a number called the air. The air of the player is 360. [6 minutes]
 The armor has a number called the air. The air of the armor is 6000. [100 minutes]
-The armor is wearable and proper-named. It is a player's holdall. It is open and unopenable. The printed name is "[our] armor".
+The armor is wearable and proper-named. The printed name is "[our] armor".
 Understand "your/my/-- battle/combat/-- armor/armour/rattle" or "your/my/-- suit/set of/-- battle/combat/-- armor/armour" or "suit" as the armor.
 Dirtiness is a kind of value. The dirtinesses are clean, muddy, bloody, muddy-and-bloody, and covered.
 The armor has a dirtiness. The armor is clean.
