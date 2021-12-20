@@ -13,7 +13,7 @@ Book 1 - Preamble
 Use american dialect and the serial comma.
 
 Include Basic Screen Effects by Emily Short.
-Include Menus by Emily Short.
+Include Version 5 of Menus by Wade Clarke.
 Include Version 16 of Smarter Parser by Aaron Reed.
 Include Version 5/170902 of Undo Output Control by Nathanael Nerode.
 Include Version 1/170902 of Title Case for Headings by Nathanael Nerode.
@@ -51,14 +51,14 @@ Chapter I - Menus
 Requesting the game menu is an action out of world applying to nothing.
 Understand "credits" or "about" or "help" or "hint" or "hints" or "menu" as requesting the game menu.
 Carry out requesting the game menu:
-	now the current menu is the Table of Main Menu;
-	now the current menu title is "RETURN TO THE STARS";
+	[now the current menu is the Table of Main Menu;
+	now the current menu title is "RETURN TO THE STARS";]
 	carry out the displaying activity;
 	clear the screen;
 	try looking.
 
 Table of Main Menu
-title	subtable	description	toggle
+title	subtable	description	toggle	used (a number)	bookpage (a number)	localpage (a number)
 "Content Warning"	--	--	query gore mode rule
 "Unusual Verbs"	--	"[help-text]"	--
 "Hints"	Table of Hints	--	--
@@ -81,8 +81,12 @@ To say rtts/RTTS/RttS:
 	say "[italic type]Return to the Stars[roman type]".
 
 This is the query gore mode rule:
-	say "[RttS] contains a few descriptions of gore and violence that some people may find objectionable. If you wish for these descriptions to be toned down (for example, when playing with smaller children), you can do that here.[if gore is allowed](Currently using original text.)[otherwise](Currently using toned-down text.)[end if][paragraph break]Show descriptions in their full gory descriptiveness? (YES or NO) >>";
+	say "[paragraph break][RttS] contains a few descriptions of gore and violence that some people may find objectionable. If you wish for these descriptions to be toned down (for example, when playing with smaller children), you can do that here.[if gore is allowed](Currently using original text.)[otherwise](Currently using toned-down text.)[end if][paragraph break]Show descriptions in their full gory descriptiveness? (YES or NO) >>";
 	now gore-allowed is whether or not the player consents.
+
+When play begins (this is the set up Wade Clarke Menus rule):
+	now mn_master_table is the table of Main Menu;
+	now mn_master_title is "RETURN TO THE STARS".
 
 Chapter II - Final Question and Authors Notes
 
@@ -96,129 +100,81 @@ This is the author's notes rule:
 Chapter III - Hints
 
 Table of Hints
-title	subtable	description	toggle
-"How do I leave the cell?"	Table of Cell-Leaving Hints	a text	hint toggle rule
-"How do I leave the prison building?"	Table of Prison-Leaving Hints	--	hint toggle rule
-"How do I avoid dying outside?"	Table of Air-Supply Hints	--	hint toggle rule
-"How do I cross the water?"	Table of Diving Hints	--	hint toggle rule
-"How do I unlock the door to the command center?"	Table of CCDoor Hints	--	hint toggle rule
-"How do I return to the prison island?"	Table of Island-Return Hints	--	hint toggle rule
-"How do I pass the force field to the hangar?"	Table of Forcefield Hints	--	hint toggle rule
-"How do I start up the ship?"	Table of Ship-Starting Hints	--	hint toggle rule
-"How do I avoid getting shot?"	Table of Combat Training	--	hint toggle rule
-"How do I retrieve the swallowed object?"	Table of Autopsy Hints	--	hint toggle rule
-"How do I launch the ship?"	Table of Launching Hints	--	hint toggle rule
-"How do I return home?"	Table of Homecoming Hints	--	hint toggle rule
-
-Table of Cell-Leaving Hints
-hint	used
-"Look around again."	a number
-"There is another option besides the door."
-"That air duct sure looks interesting."
-"The grate covering it looks old and fragile."
-"It's too far up to kick it in, but you can try something else."
-"PULL GRATE. CRAWL THROUGH DUCT."
-
-Table of Prison-Leaving Hints
-hint	used
-"For security reasons, the airlock leading out of the building doesn't open from the inside."	a number
-"Perhaps you can disable the locks altogether."
-"Investigate the switches in the installations room."
-"If only you could read them."
-"Your armor has a translator. Find it, then return to the installations room."
-"The doors in the facility have a magnet-based locking mechanism."
-"SWITCH MAGLOCK OFF."	
-
-Table of Air-Supply Hints
-hint	used
-"You will need some kind of respiratory protection."	a number
-"Your trusty battle armor has that functionality. If only you had it..."
-"You can find the helmet in the control room and the rest of it in the storage room."
-"The storage room is east of the front office."
-
-Table of Diving Hints
-hint	used
-"Swimming in armor isn't really an option, obviously."	a number
-"But the armor has a built-in air supply."
-"And it can function as a space suit."
-"It might make for passable diving equipment as well."
-"JUMP IN WATER. Then walk north."
-
-Table of CCDoor Hints
-hint	used
-"The door has an attached card reader."	a number
-"So you'll need some kind of access card to unlock the door."
-"Perhaps someone has lost theirs somewhere."
-"Back on the prison island."
-"It's in the control room."
-"Under the desk."
-"LOOK UNDER DESK."
-"Return, then UNLOCK DOOR WITH CARD."
-
-Table of Island-Return Hints
-hint	used
-"Go back through the water, all the way to the south."	a number
-"You can CLIMB THE CLIFFS."
-
-Table of Forcefield Hints
-hint	used
-"Read the room description for the plaza."	a number
-"Stay and LOOK a couple of times."
-"Some things can pass through the force field."
-"What do those things have in common."
-"They're all native to the planet."
-"You will need to disguise yourself as being native to the planet."
-"The shoreline is rather muddy."
-"Go there, then COVER ARMOR IN MUD."
-
-Table of Ship-starting Hints
-hint	used
-"You'll need the keys, so to speak."	a number
-"Try finding the owner of the ship."
-"He's in the command center."
-"In the ops center, all the way to the north."
-"Bring a gun."
-"Once you've done that, ENTER THE SHIP and PUT CRYPT IN RECESS."
-"Now, BOOT UP SHIP."	
-
-Table of Combat Training
-hint	used
-"Sometimes, violence is the only answer."	a number
-"Best to bring more than your fists to a gunfight."
-"There's a small armory in the command center."
-"Take the rifle and ammo."
-"Combat is randomized, so you'd better SAVE."
-"Go back to the ops center, then SHOOT one of the aliens WITH THE RIFLE."
-
-Table of Autopsy Hints
-hint	used
-"The owner isn't going to return it willingly."	a number
-"He seems hell-bent on killing you, so perhaps deal with that first."
-"He is dead. It doesn't need to be pretty."
-"You will need some kind of cutting tool."
-"The shelf in the armory didn't seem to be very well made."
-"BREAK SHELF. Now you have a makeshift knife."
-"[if gore is allowed]CUT LARGER CORPSE WITH KNIFE[otherwise]RETRIEVE SWALLOWED OBJECT FROM LARGER[end if]."
-"[if gore is allowed]And once that is done, you may feel the need to THROW UP[otherwise]You now have the object[end if]."
-
-Table of Launching Hints
-hint	used
-"You'll need to get it out of the hangar first."	a number
-"The control room (UP from the hangar) has control over that."
-"OPEN LAUNCH DOORS first."
-"Then, PUSH RED BUTTON."
-"The ship is now outside."
-"Go out, then ENTER SHIP."
-"Boot up the ship, if you haven't already."
-"Finally, TAKE OFF."
-"(Or something to that effect. You might prefer to ASCEND INTO THE SKIES.)"
-
-Table of Homecoming Hints
-hint	used
-"Once you're in orbit, it's simple."	a number
-"Try some commands related to going home."
-"You can quite literally say GO HOME."
-"(Or TRANSITION TO EARTH, or even PUT THE PEDAL TO THE METAL.)"
+title (text)	subtable (table name)	description (text)	used (number)	bookpage (number)	localpage (number)
+"How do I leave the cell?"	table of hinting	"Look around again."
+"hint"	--	"There is another option besides the door."
+"hint"	--	"That air duct sure looks interesting."
+"hint"	--	"The grate covering it looks old and fragile."
+"hint"	--	"It's too far up to kick it in, but you can try something else."
+"hint"	--	"PULL GRATE. CRAWL THROUGH DUCT."
+"How do I leave the prison building?"	table of hinting	"For security reasons, the airlock leading out of the building doesn't open from the inside."
+"hint"	--	"Perhaps you can disable the locks altogether."
+"hint"	--	"Investigate the switches in the installations room."
+"hint"	--	"If only you could read them."
+"hint"	--	"Your armor has a translator. Find it, then return to the installations room."
+"hint"	--	"The doors in the facility have a magnet-based locking mechanism."
+"hint"	--	"SWITCH MAGLOCK OFF."
+"How do I avoid dying outside?"	table of hinting	"You will need some kind of respiratory protection."
+"hint"	--	"Your trusty battle armor has that functionality. If only you had it..."
+"hint"	--	"You can find the helmet in the control room and the rest of it in the storage room."
+"hint"	--	"The storage room is east of the front office."
+"How do I cross the water?"	table of hinting	"Swimming in armor isn't really an option, obviously."
+"hint"	--	"But the armor has a built-in air supply."
+"hint"	--	"And it can function as a space suit."
+"hint"	--	"It might make for passable diving equipment as well."
+"hint"	--	"JUMP IN WATER. Then walk north."
+"How do I unlock the door to the command center?"	table of hinting	"The door has an attached card reader."
+"hint"	--	"So you'll need some kind of access card to unlock the door."
+"hint"	--	"Perhaps someone has lost theirs somewhere."
+"hint"	--	"Back on the prison island."
+"hint"	--	"It's in the control room."
+"hint"	--	"Under the desk."
+"hint"	--	"LOOK UNDER DESK."
+"hint"	--	"Return, then UNLOCK DOOR WITH CARD."
+"How do I return to the prison island?"	table of hinting	"Go back through the water, all the way to the south."
+"hint"	--	"You can CLIMB THE CLIFFS."
+"How do I pass the force field to the hangar?"	table of hinting	"Read the room description for the plaza."
+"hint"	--	"Stay and LOOK a couple of times."
+"hint"	--	"Some things can pass through the force field."
+"hint"	--	"What do those things have in common?"
+"hint"	--	"They're all native to the planet."
+"hint"	--	"You will need to disguise yourself as being native to the planet."
+"hint"	--	"The shoreline is rather muddy."
+"hint"	--	"Go there, then COVER ARMOR IN MUD."
+"How do I start up the ship?"	table of hinting	"You'll need the keys, so to speak."
+"hint"	--	"Try finding the owner of the ship."
+"hint"	--	"He's in the command center."
+"hint"	--	"In the ops center, all the way to the north."
+"hint"	--	"Bring a gun."
+"hint"	--	"Once you've done that, ENTER THE SHIP and PUT CRYPT IN RECESS."
+"hint"	--	"Now, BOOT UP SHIP."
+"How do I avoid getting shot?"	table of hinting	"Sometimes, violence is the only answer."
+"hint"	--	"Best to bring more than your fists to a gunfight."
+"hint"	--	"There's a small armory in the command center."
+"hint"	--	"Take the rifle and ammo."
+"hint"	--	"Combat is randomized, so you'd better SAVE."
+"hint"	--	"Go back to the ops center, then SHOOT one of the aliens WITH THE RIFLE."
+"How do I retrieve the swallowed object?"	table of hinting	"The owner isn't going to return it willingly."
+"hint"	--	"He seems hell-bent on killing you, so perhaps deal with that first."
+"hint"	--	"He is dead. It doesn't need to be pretty."
+"hint"	--	"You will need some kind of cutting tool."
+"hint"	--	"The shelf in the armory didn't seem to be very well made."
+"hint"	--	"BREAK SHELF. Now you have a makeshift knife."
+"hint"	--	"[if gore is allowed]CUT LARGER CORPSE WITH KNIFE[otherwise]RETRIEVE SWALLOWED OBJECT FROM LARGER[end if]."
+"hint"	--	"[if gore is allowed]And once that is done, you may feel the need to THROW UP[otherwise]You now have the object[end if]."
+"How do I launch the ship?"	table of hinting	"You'll need to get it out of the hangar first."
+"hint"	--	"The control room (UP from the hangar) has control over that."
+"hint"	--	"OPEN LAUNCH DOORS first."
+"hint"	--	"Then, PUSH RED BUTTON."
+"hint"	--	"The ship is now outside."
+"hint"	--	"Go out, then ENTER SHIP."
+"hint"	--	"Boot up the ship, if you haven't already."
+"hint"	--	"Finally, TAKE OFF."
+"hint"	--	"(Or something to that effect. You might prefer to ASCEND INTO THE SKIES.)"
+"How do I return home?"	table of hinting	"Once you're in orbit, it's simple."
+"hint"	--	"Try some commands related to going home."
+"hint"	--	"You can quite literally say GO HOME."
+"hint"	--	"(Or TRANSITION TO EARTH, or even PUT THE PEDAL TO THE METAL.)"
 
 Book 2 - Mechanics
 
