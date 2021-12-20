@@ -1708,13 +1708,13 @@ Section 3 - Briefing Room
 The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is west, back into the lobby."
 
 A large round table is a fixed in place supporter in the briefing room.
-The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warranted all this non-essential material being shipped out here.".
+The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warranted all the material for this facility being shipped out here.".
 
 A large screen is a fixed in place thing in the briefing room.
 The description is "A large screen has been fitted into the wall. It is blank."
 
 The lectern is a fixed in place supporter in the briefing room.
-The description is "A lectern stands in front of the screen, waiting for someone to step up and address those present in the room (which is none, at the moment). In keeping with everything you've seen so far, it lacks any seals, emblems, or insignia you might typically find on a lectern in a UNDC facility."
+The description is "A lectern stands in front of the screen, waiting for someone to step up and address those present in the room (which is none, at the moment). It bears the emblem of the Shwabolian space military: a lizard-creature riding a rocket." Understand "emblem" or "logo" as the lectern.
 
 Section 4 - Nerve Center
 
@@ -1906,13 +1906,13 @@ After entering the couch:
 The barracks are west of the mess hall. "You are standing in the sleeping area of the barracks. Like the entire facility so far, the room is designed in a very utilitarian manner, with no decoration or personal touches.[paragraph break]You can go east, back to the mess hall, or south, [if the communal washroom is not visited]further into the building[otherwise]into the washroom[end if]."
 
 Some bunks are in the barracks. "Four stacked bunk beds are lined up on the walls." They are fixed in place.
-The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on."
+The description is "The non-folding, stacked version of the cot you spent the past weeks on, perhaps. From the looks of them, these bunks are only marginally more comfortable than what you had to sleep on. (Or perhaps the Shwabolians just have a very different notion of the word 'comfortable'. You wouldn't know, you haven't exactly had a chance to have a friendly chat with them.)"
 Understand "stacked" or "bunk" or "bed" or "beds" as the bunks.
 
 The communal washroom is south of the barracks. "This would be the place where the garrison force (if one can call it that, given the size of the facility) takes care of personal hygiene. It is a sterile-looking room, white tiles covering the floor and the walls all the way up to the ceiling. Four sinks and mirrors are installed on one wall, four toilets on another, the remaining two have two showers each. It doesn't seem like the Shwabolians care a whole lot about privacy, seeing as there are no dividers of any kind in the room.[paragraph break]The only way out is north, back to the barracks."
 The room-floor-prop is the washroom-floor.
 
-Some toilets are scenery in the washroom. The description is "They look like the kind you'd find in the worst of public restrooms back on earth: steel body, no lid, no real seat. Comfort clearly wasn't high on the priority list here."
+Some toilets are scenery in the washroom. The description is "They look like the kind you'd find in the worst of public restrooms back on earth: steel body, no lid, no real seat. [if we have examined the bunks]Again, comfort[else]Comfort clearly wasn't high on the priority list here."
 Understand "toilet" or "loo" or "loos" or "head" as the toilets.
 
 Some sinks are scenery in the washroom. The description is "[if we have examined the toilets]Just like the toilets, the[otherwise]The[end if] sinks are made of plain steel."
