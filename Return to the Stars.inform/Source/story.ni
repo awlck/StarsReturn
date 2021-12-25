@@ -1426,6 +1426,10 @@ Section 5 - Outside Area
 
 Prison antecourt is an outdoor room. "A small courtyard lies outside the prison, which appears to be built on a small island.[paragraph break]The way back into the prison is south, through the airlock. You are otherwise surrounded by water, but there are some docks allowing easy access to the east."
 
+The antecourt-water is scenery in the antecourt. It is privately-named. The printed name is "water".
+The description is "Water surrounds the island.". The cannotTakeMsg is "You can't get at the water from here."
+Understand "water" or "sea" or "ocean" as antecourt-water.
+
 The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[paragraph break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
 
 The dock is a backdrop. It is in the prison docks and the shore docks. The description is "A floating plastic contraption with a metal frame. It wobbles as you try to stand on it."
@@ -1434,7 +1438,15 @@ Understand "jump off [the dock]" as getting off.
 Instead of getting off the dock, try entering the water.
 
 The water is a backdrop. It is in the prison docks and the shore docks. The description is "The water is murky, but the sea is smooth.".
+The cannotTakeMsg is "You scoop up some water, but it quickly runs through your fingers."
 Understand "ocean" or "sea" as the water.
+Instead of rubbing the water on the armor:
+	say "You splash some water onto your suit. Not much happens.";
+	take 15 seconds;
+	rule succeeds.
+Instead of rubbing the water on something when the armor is worn:
+	if the second noun is the fatigues or the second noun is the boots or the second noun is the player, try rubbing the noun on the armor instead;
+	otherwise make no decision.
 
 Understand "jump in/into [something]" or "dive in/into [something]" as entering.
 Understand "swim in [something]" as entering when the water is in the location.
