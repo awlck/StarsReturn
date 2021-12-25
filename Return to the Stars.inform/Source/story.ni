@@ -1555,14 +1555,15 @@ The shore docks are an outdoor room. They are up from seabottom-4 and north from
 Index map with shore docks mapped north of prison docks.
 
 The muddy incline is scenery in the shore docks. "The muddy shore slopes down into the water. You can see the rut you left as you crawled up."
-Understand "slope" or "rut" or "muck" or "mud" or "silt" or "shore" or "shoreline" as the incline.
+Understand "slope" or "rut" or "muck" or "mud" or "silt" or "shore" or "shoreline" or "ground" or "floor" as the incline.
 Instead of climbing the muddy incline, try going south.
 Before going south from the shore docks:
 	if the player is not wearing the armor, say "And swim all the way across? You'd never arrive in time before the atmosphere got the better of you." instead;
 	say "You take a few tentative steps down the incline before falling on your ass and sliding the rest of the way down into the water."
-Before going down from the shore docks for the first time:
+Before going down from the shore docks:
 	if the player is not wearing the armor, say "And swim all the way across? You'd never arrive in time before the atmosphere got the better of you." instead;
 	say "With more confidence than before, you jump off the end of the dock and sink to the bottom of the ocean again."
+The room-floor-prop of the shore docks is the muddy incline.
 
 Rubbing it on is an action applying to two touchable things and requiring light.
 Understand "rub [something] on/onto [something]" as rubbing it on.
@@ -1611,6 +1612,7 @@ Instead of rolling in the muddy incline when the player is wearing the armor:
 Instead of lying on the default-ground when the location is the shore docks, try rolling in the muddy incline.
 Instead of lying on the muddy incline, try rolling in the noun.
 Instead of crawling into the muddy incline, try rolling in the noun.
+Instead of entering the muddy incline, try rolling in the noun.
 
 Section 2 - The Plaza
 
