@@ -1433,7 +1433,7 @@ Understand "water" or "sea" or "ocean" as antecourt-water.
 The prison docks are an outdoor room. They are east of the prison antecourt. "The prison is built on a tiny island in the ocean [dash] presumably to make escaping more difficult. A small dock extends into the water, away from the rocky shoreline.[paragraph break]The shore, populated with buildings, lies a few hundred meters to the north. The prison antecourt is to your west."
 
 The dock is a backdrop. It is in the prison docks and the shore docks. The description is "A floating plastic contraption with a metal frame. It wobbles as you try to stand on it."
-Understand "plastic" or "contraption" as the dock.
+Understand "plastic" or "contraption" or "jetty" as the dock.
 Understand "jump off [the dock]" as getting off.
 Instead of getting off the dock, try entering the water.
 
