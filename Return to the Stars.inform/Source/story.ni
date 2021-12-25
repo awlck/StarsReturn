@@ -1708,10 +1708,10 @@ Understand "make-shift" or "dagger" or "metal" or "frame" or "strut" or "shelf" 
 
 Section 3 - Briefing Room
 
-The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room too is entirely devoid of decoration.[paragraph break]The only way out is west, back into the lobby."
+The briefing room is east of the lobby. "This looks to be a briefing or meeting room of some kind, presumably for the higher-ranking officers stationed here. [A large round table] stands in the middle of the room. [A large screen] hangs on one of the walls, with [a lectern] in front of it [dash] for when the communal discussion format doesn't cut it.[line break]Like most of the Shwabolian facilities you've seen so far, this room does not have much in the way of decoration.[paragraph break]The only way out is west, back into the lobby."
 
 A large round table is a fixed in place supporter in the briefing room.
-The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[paragraph break]You can't help but wonder what warranted all the material for this facility being shipped out here.".
+The description is "It is a simple table with a white plastic surface. It has enough room for ten, perhaps fifteen people, although all the chairs seem to have been removed [dash] if there ever were any.[if the mess hall is visited][paragraph break]You can't help but wonder what warranted the construction of a base this large for the dozen-or-so people probably stationed here.".
 
 A large screen is a fixed in place thing in the briefing room.
 The description is "A large screen has been fitted into the wall. It is blank."
