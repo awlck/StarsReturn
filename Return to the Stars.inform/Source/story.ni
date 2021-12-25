@@ -458,7 +458,7 @@ Section 3 - Status Bar
 
 Table of HUD status
 left	central (a text)	right
-" [location]"	--	"       [time of day as military time]"
+" [location]"	--	"    [time of day as military time]"
 " [hud-environ-status]"	--	"[hud-air]"
 
 Table of plain status
@@ -472,14 +472,17 @@ Rule for constructing the status line when the player is not wearing the armor a
 	fill status bar with the Table of plain status;
 	rule succeeds.
 
+When play begins:
+	now the right alignment depth is 11.
+
 To say hud-air:
 	if the location is breathable, stop;
 	if the air of the armor is greater than 300:
-		say "   Air: [air of the armor / 60] min";
+		say "Air: [air of the armor / 60] min";
 	otherwise if the air of the armor is greater than zero:
-		say "   AIR: [air of the armor / 60] MIN";
+		say "AIR: [air of the armor / 60] MIN";
 	otherwise:
-		say "     OUT OF AIR".
+		say "  OUT OF AIR".
 
 To say plain-air:
 	if the location is not breathable, say "       NO AIR".
