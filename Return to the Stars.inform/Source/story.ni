@@ -1507,7 +1507,7 @@ seabottom-1 is a sea-room. It is down from the prison docks. "You are standing k
 
 Before going down to seabottom-1 for the first time:
 	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that it does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your arms and legs to slow your descent..."; [* blatantly ignoring the potential issue of barotrauma, but whatever]
-	[pause the game; [for dramatic effect only]]
+	pause the game; [for dramatic effect only]
 	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good.";
 	take 45 seconds.
 
