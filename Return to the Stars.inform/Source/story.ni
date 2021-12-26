@@ -19,7 +19,7 @@ Include Version 5/170902 of Undo Output Control by Nathanael Nerode.
 Include Version 1/170902 of Title Case for Headings by Nathanael Nerode.
 Include Version 3/210518 of Multi-examine by Jon Ingold.
 
-[This is an instruction to the I6 compiler to leave out routines not used by the game (such as those relating to external files and real numbers), reducing the size of the resulting Glulx story file by some 10%.]
+[This is an instruction to the I6 compiler to leave out routines not used by the game (such as those relating to external files and real numbers), reducing the size of the resulting Glulx story file by some 48KB.]
 Use OMIT_UNUSED_ROUTINES of 1.
 
 [Upon startup, the library checks whether the current interpreter claims to support unicode, and stores the result in this global variable.]
@@ -51,8 +51,6 @@ Chapter I - Menus
 Requesting the game menu is an action out of world applying to nothing.
 Understand "credits" or "about" or "help" or "hint" or "hints" or "menu" as requesting the game menu.
 Carry out requesting the game menu:
-	[now the current menu is the Table of Main Menu;
-	now the current menu title is "RETURN TO THE STARS";]
 	carry out the displaying activity;
 	clear the screen;
 	try looking.
@@ -473,7 +471,7 @@ Rule for constructing the status line when the player is not wearing the armor a
 	rule succeeds.
 
 When play begins:
-	now the right alignment depth is 11.
+	now the right alignment depth is 11.[* This, along with the spaces that appear in some of the status line tables, ensures that information on the right-hand side of the status bar is properly right-justified.]
 
 To say hud-air:
 	if the location is breathable, stop;
@@ -649,6 +647,8 @@ Understand "use" or "use [text]" as a mistake ("You'll need to be more specific 
 
 Section 2 - Smarter Parser Stuff
 
+[We employ Aaron Reed's "Smarter Parser" extension to provide some assistance to new players. Some responses are adjusted to be more thematic to the game.]
+
 Use normal blank lines.
 
 A smarter parser rule (this is the stripping formal address rule):
@@ -670,9 +670,10 @@ failed communication attempts rule	"[as the parser]Conversation isn't necessary 
 
 Chapter 6 - Grates and Air Ducts
 
+[A lot of code for a mechanic that is ultimately used only once, at the very beginning of the game.]
 An air duct is a kind of fixed in place closed enterable transparent scenery container. An air duct is always improper-named.
 The description of an air duct is usually "It exudes a stream of cool, fresh air. [if the item described incorporates a grate]It is covered up by a grate[otherwise]It is open[end if]."
-Understand "vent" as an air duct. [Seems kinda sus]
+Understand "vent" as an air duct. [Seems kinda sus, if you get my meaning.]
 
 Carry out looking when the player is in an air duct (this is the air duct looking rule):
 	say "You are lying in [the holder of the player], peeking out into the room:[paragraph break]".
@@ -1505,7 +1506,7 @@ Instead of going up in the sea-region (this is the can't swim in armor rule), sa
 seabottom-1 is a sea-room. It is down from the prison docks. "You are standing knee-deep in the silt at the bottom of the ocean. The rocky cliffs of the prison island lie to the south, the military complex is due north."
 
 Before going down to seabottom-1 for the first time:
-	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that it does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your arms and legs to slow your descent..."; [blatantly ignoring the potential issue of barotrauma, but whatever]
+	say "While your armor is designed primarily for planetary and shipboard operations, it can also double as a space suit and diving equipment in a pinch (or so the manufacturer promises). While you had more chances than you'd care for to verify that it does make for a passable spacesuit, it may finally be time to put the 'diving' part of that claim to the test.[line break]You jump into the water, spreading your arms and legs to slow your descent..."; [* blatantly ignoring the potential issue of barotrauma, but whatever]
 	[pause the game; [for dramatic effect only]]
 	say "About ten seconds later, you come to an abrupt halt as you land faceplate-first in the silt at the bottom of the sea.[line break]You scramble to your feet, wiping the muck off your faceplate. You can still breathe, and none of the electronics in your suit seem to have been fried [dash] so far, so good.";
 	take 45 seconds.
@@ -1573,7 +1574,7 @@ The room-floor-prop of the shore docks is the muddy incline.
 
 Rubbing it on is an action applying to two touchable things and requiring light.
 Understand "rub [something] on/onto [something]" as rubbing it on.
-Understand "rub [something] with/using/in [something]" as rubbing it on (with nouns reversed). [Not really proper english IMO, but was attempted in beta testing.]
+Understand "rub [something] with/using/in [something]" as rubbing it on (with nouns reversed).
 Understand "slather [something] on/onto [something]" as rubbing it on.
 Understand "slather [something] with/in/using [something]" as rubbing it on (with nouns reversed).
 Understand the commands "cake", "coat", "encrust", "paint", "plaster", "slap", "smother", and "smear" as "slather".
@@ -1646,8 +1647,6 @@ After choosing notable locale objects (this is the military plaza locale objects
 			set the locale priority of the force field to 0;
 	if there is a notable-object of command center door in the Table of Locale Priorities:
 		set the locale priority of the command center door to 0;
-	[if there is a notable-object of command center door's card reader in the Table of Locale Priorities:
-		set the locale priority of the command center door's card reader to 0;]
 	continue the activity.
 
 Check going through the enabled force field:
@@ -2192,7 +2191,7 @@ Check nounless-deorbiting when the messenger ship is in the location:
 	try deorbiting the messenger ship instead.
 Instead of going down when the location is the planetary orbit, try nounless-deorbiting.
 
-Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat theory, but the real world doesn't work like that.") when the player is in the ship.
+Understand "warp" or "warp [number]" as a mistake ("The warp drive was a neat theory, but the real world doesn't work like that."[* In December 2021, the chances of the warp drive becoming a real thing seem to have gone up significantly (see: https://scifi.radio/2021/12/07/darpa-researchers-create-first-genuine-warp-bubble-by-accident/), but I'm not changing this now.]) when the player is in the ship.
 
 Chapter 7 - Space
 
@@ -2214,7 +2213,7 @@ Instead of doing something other than entering or examining to the transit node,
 Home-going is an action applying to nothing.
 Understand "go [home-desc]" or "return [home-desc]" or "travel [home-desc]" or "fly [home-desc]" or "fly ship/--" as home-going.
 Understand "home" or "to/-- earth" as "[home-desc]".
-Understand "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "stick to the/-- panel" or "put the/-- control/-- stick to the/-- panel" or "punch it" or "transition [home-desc]" or "transition away" or "transition out of here" or "leave this/-- system" as home-going when the location is the orbit.
+Understand "pedal to the/-- metal" or "put the/-- pedal to the/-- metal" or "stick to the/-- panel" or "put the/-- control/-- stick to the/-- panel" or "punch it" or "transition [home-desc]" or "transition away" or "transition out of here" or "leave this/-- system" as home-going when the location is the orbit. [Allowing the player to get a bit creative with the wording for going home.]
 
 Check home-going when the location is not the planetary orbit:
 	say "Yes, that's [one of]the plan[or]the mission[or]the objective[or]what [we]['re] trying to do[at random]." instead.
