@@ -1,9 +1,14 @@
 "Return to the Stars" by Adrian Welcker
 
+[
+  Welcome to the source release of "Return to the Stars". Major spoilers ahead, obviously.
+  The source code is provided primarily for personal, educational use. The story, setting, text, etc. of "Return to the Stars" belong to me; but you have my explicit permission to to use the programming techniques of this game for your own works, and for that purpose you may reuse parts of the the source code (excluding the game text). If you want to do something that is not covered by this license, please send an e-mail to ardi@diepixelecke.de.
+]
+
 The story genre is "Science Fiction". The story headline is "An Interactive Escape".
 The story description is "After having been taken captive in battle, you soon settled into a routine: sleep, eat, shower, reconsider your life choices, repeat. Until, one day, there is no more food. Or guards, for that matter. It seems to be up to you to find a way out of your prison and back home...".
 
-The release number is 2.
+The release number is 3.
 The story creation year is 2021.
 
 Release along with cover art ("A starship leaving a planet"), a "StarryVoid" website, a "Quixe" interpreter, and the source text.
