@@ -1895,16 +1895,16 @@ Chapter 5 - The Barracks
 
 [This area doesn't really do anything useful, but it would be a bit weird if it were absent.]
 
-The mess hall is west of the military complex plaza. "This is the entry area to what must be the barracks of this place. The area near the entrance is set up like a mess hall, with tables and counters, while the back of the room is set up more casually, with [some pillows] on the floor and even a [italic type]couch[roman type]. You've never seen [a couch] in a military facility in your life.[paragraph break]You could go east, back outside, or west, further into the building."
+The mess hall is west of the military complex plaza. "This is the entry area to what must be the barracks of this place. The area near the entrance is set up like a mess hall, with tables and counters, while the back of the room is set up more casually, with [some pillows] on the floor and even a [italic type]couch[roman type]. You've never seen [a couch] on a remote outpost like this in your life.[paragraph break]You could go east, back outside, or west, further into the building."
 
 Some plain white tables are scenery in the mess hall.
-The description is "You see nothing interesting about the tables. They are boring, even by the low standards of tables.".
-Understand "boring" or "table" as the tables.
+The description is "Four white tables are arranged in the room, with space for some 16 people in total.".
+Understand or "table" as the tables.
 Some counters are scenery in the mess hall.
 The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recesses for food bowls.".
 Understand "counter" or "recess" or "recesses" as the counters.
 
-Some pillows are scenery in the mess hall. The description is "They are plain white pillows that could very well be the same that people used for sleeping.".
+Some pillows are scenery in the mess hall. The description is "They are simple white pillows that could very well be the same that people used for sleeping.".
 Understand "white" or "pillow" or "cushion" or "cushions" as the pillows.
 The cannotTakeMsg of the pillows is "You don't see a point to carrying those around with you.".
 Instead of pushing the pillows:
@@ -2208,7 +2208,7 @@ Check home-going when the location is not the planetary orbit and the player is 
 
 Carry out home-going:
 	take 300 minutes;
-	say "While your sudden appearance in the solar system caused some confusion and concern, the transmission of your identification codes [dash] and showing your face on video comms [dash] dissuaded the combined military forces in the area from blowing you to pieces. Against your own expectations, you manage to land the ship in the hangar of one of the fleet's large carriers. You [italic type]finally[roman type] get something proper to eat and a fresh set of fatigues, then settle in for what promises to be about three lifetime's worth of debriefings...";
+	say "While your sudden appearance in the solar system caused some confusion and concern, the transmission of your identification codes [dash] and showing your face on video comms [dash] dissuaded the combined military forces in the area from blowing you to pieces. Against your own expectations, you manage to land the ship in the hangar of one of the fleet's large carriers. You [italic type]finally[roman type] get something proper to eat and a fresh set of fatigues, then settle in for what promises to be about three lifetimes['] worth of debriefings...";
 	end the story finally saying "You have returned home".
 
 Instead of going when the location is the planetary orbit, say "[We] don't really have anywhere to go in normal space."
