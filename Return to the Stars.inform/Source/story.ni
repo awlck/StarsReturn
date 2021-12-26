@@ -2087,6 +2087,8 @@ Check inserting something which is not the data crypt into the notch:
 	say "[The noun] doesn't seem to fit." instead.
 Instead of inserting a corpse into the notch:
 	say "You haphazardly slap the dead alien onto the control panel and across the notch. The ship does not seem to be impressed. The corpse slides back onto the ground."
+After inserting the data crypt into the notch:
+	say "You place the data crypt into the notch on the control panel. It fits perfectly.[paragraph break]The ship beeps quietly."
 
 After entering the messenger ship, try looking.
 
@@ -2099,9 +2101,18 @@ The canopy is part of the messenger ship.
 The description is "A sort of glass dome covering the cockpit, allowing the pilot to look in all directions."
 Understand "glass" or "dome" as the canopy.
 Instead of looking through the canopy when the player is in the messenger ship:
-	try looking;
+	if the holder of the ship is:
+		-- the landing strip:
+			say "The ship is standing on the landing pad outside the hangar.";
+		-- the hangar:
+			say "The ship is parked in the hangar.";
+		-- the planetary orbit:
+			say "The ship is floating in space, several hundred kilometers above the planet's sickly yellowish surface.";
+		-- otherwise:
+			say "(BUG: invalid location of messenger ship.)";
 	take 15 seconds in total;
 	rule succeeds.
+Instead of examining outside when the holder of the player is the messenger ship, try looking through the canopy.
 The alcubierre drive is part of the messenger ship.
 The description is "The faster-than-light drive system is what sets this ship apart from others in its size class."
 
