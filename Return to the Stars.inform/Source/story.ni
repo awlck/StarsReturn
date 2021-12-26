@@ -1207,6 +1207,12 @@ Instead of attacking the sanitary station when the rage is ongoing:
 
 The camera is a fixed in place thing in the cell. "A small camera hangs above the cot, keeping a watchful eye on you." The description is "A small camera hangs in one corner of the room, a small red light presumably indicating that it is active."
 
+Instead of putting the bedsheets on the camera:
+	if the cot is not in the location, say "The camera is too far up for you to reach it. Besides, covering the camera probably wouldn't help you at this point." instead;
+	say "You try to drape [the bedsheets] over [the camera], but [regarding the bedsheets][they] [slide] back down.";
+	now the bedsheets are on the cot;
+	now the bedsheets are handled.
+
 [So I suppose the player can be a bit of a psychopath...]
 Instead of attacking the camera:
 	if the cot is not in your cell:
@@ -1899,7 +1905,7 @@ The mess hall is west of the military complex plaza. "This is the entry area to 
 
 Some plain white tables are scenery in the mess hall.
 The description is "Four white tables are arranged in the room, with space for some 16 people in total.".
-Understand or "table" as the tables.
+Understand "table" as the tables.
 Some counters are scenery in the mess hall.
 The description is "This must be where the food was handed out. Like most of the sparse furniture in here, there really isn't anything noteworthy about them: just white plastic surfaces with recesses for food bowls.".
 Understand "counter" or "recess" or "recesses" as the counters.
